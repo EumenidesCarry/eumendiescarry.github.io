@@ -1,0 +1,1819 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>华为 HCNA 学习笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/45/wallhaven-45zdx1.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-07-26 22:21" pubdate>
+        July 26, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      12.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      192
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">华为 HCNA 学习笔记</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <p>华为认证网络工程师是由华为公司认证与采购部推出的独立认证体系，与之前的华为认证不同，简称HCNA。</p>
+<h1 id="一、基本操作"><a href="#一、基本操作" class="headerlink" title="一、基本操作"></a>一、基本操作</h1><h2 id="1-1-华为路由-交换视图切换"><a href="#1-1-华为路由-交换视图切换" class="headerlink" title="1.1 华为路由/交换视图切换"></a>1.1 华为路由/交换视图切换</h2><p>&lt;Huawei&gt; 用户视图 —-&gt; [Huawei] 系统视图</p>
+<pre><code class="hljs routeros">&lt;Huawei&gt;system-view 
+Enter<span class="hljs-built_in"> system </span>view, return<span class="hljs-built_in"> user </span>view with Ctrl+Z.
+[Huawei]</code></pre>
+
+<h2 id="1-2-查看路由信息"><a href="#1-2-查看路由信息" class="headerlink" title="1.2 查看路由信息"></a>1.2 查看路由信息</h2><p>版本：</p>
+<pre><code class="hljs routeros">&lt;Huawei&gt;dis version 
+Huawei Versatile<span class="hljs-built_in"> Routing </span>Platform Software
+VRP (R) software, Version 5.110 (eNSP V100R001C00)
+Copyright (c) 2000-2011 HUAWEI TECH CO., LTD
+</code></pre>
+
+<p>操作系统 <font color=red>VRP</font>—&gt; Huawei Versatile Routing Platform Software</p>
+<p>查看 flash（操作系统及配置文件都放在 flash 里面）：</p>
+<pre><code class="hljs angelscript">&lt;Huawei&gt;dir				#显示所有文件
+Directory of flash:/
+
+  Idx  Attr     Size(Byte)  Date        Time       FileName 
+    <span class="hljs-number">0</span>  drw-              -  Aug <span class="hljs-number">07</span> <span class="hljs-number">2015</span> <span class="hljs-number">13</span>:<span class="hljs-number">51</span>:<span class="hljs-number">14</span>   src
+    <span class="hljs-number">1</span>  drw-              -  Jul <span class="hljs-number">31</span> <span class="hljs-number">2020</span> <span class="hljs-number">14</span>:<span class="hljs-number">34</span>:<span class="hljs-number">44</span>   pmdata
+    <span class="hljs-number">2</span>  drw-              -  Jul <span class="hljs-number">31</span> <span class="hljs-number">2020</span> <span class="hljs-number">14</span>:<span class="hljs-number">34</span>:<span class="hljs-number">50</span>   dhcp
+    <span class="hljs-number">3</span>  -rw-             <span class="hljs-number">28</span>  Jul <span class="hljs-number">31</span> <span class="hljs-number">2020</span> <span class="hljs-number">14</span>:<span class="hljs-number">34</span>:<span class="hljs-number">50</span>   <span class="hljs-keyword">private</span>-data.txt
+    <span class="hljs-number">4</span>  -rw-            <span class="hljs-number">452</span>  Jul <span class="hljs-number">31</span> <span class="hljs-number">2020</span> <span class="hljs-number">14</span>:<span class="hljs-number">39</span>:<span class="hljs-number">27</span>   vrpcfg.zip			#路由配置信息，配置完路由器 save 后生成的文件
+<span class="hljs-number">32</span>,<span class="hljs-number">004</span> KB total (<span class="hljs-number">31</span>,<span class="hljs-number">995</span> KB free)</code></pre>
+
+<p>文件操作命令：</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">delete</span> vrpcfg.zip		<span class="hljs-comment">#删除配置文件</span>
+<span class="hljs-keyword">rename</span> vrpcfg.zip vrpcfg.zip.bak		<span class="hljs-comment">#重命名配置文件</span>
+copy vrpcfg.zip vrpcfg.zip.bak	<span class="hljs-comment">#复制文件</span>
+mkdir	demo	<span class="hljs-comment">#创建文件夹</span>
+cd demo			<span class="hljs-comment">#进入demo文件夹</span>
+unzip xx.zip 	<span class="hljs-comment">#解压</span>
+more xx			<span class="hljs-comment">#查看文件内容</span>
+带 [ ] 表示位于回收站里的文件
+<span class="hljs-keyword">reset</span> <span class="hljs-keyword">recycle</span>-<span class="hljs-keyword">bin</span>  <span class="hljs-comment">#清空回收站</span></code></pre>
+
+
+
+<h1 id="二、配置端口"><a href="#二、配置端口" class="headerlink" title="二、配置端口"></a>二、配置端口</h1><pre><code class="hljs routeros">[Huawei]int e0/0/0			#进入端口
+[Huawei-Ethernet0/0/0]ip <span class="hljs-builtin-name">add</span> 192.168.1.1 24	#配置ip和24位子网掩码
+[Huawei-Ethernet0/0/0]dis this		#显示接口信息
+<span class="hljs-comment">#</span>
+interface Ethernet0/0/0
+<span class="hljs-built_in"> ip address </span>192.168.1.1 255.255.255.0
+<span class="hljs-comment">#</span>
+return
+[Huawei-Ethernet0/0/0]undo<span class="hljs-built_in"> ip address </span>#删除接口信息</code></pre>
+
+
+
+<h2 id="2-1-显示接口摘要"><a href="#2-1-显示接口摘要" class="headerlink" title="2.1 显示接口摘要"></a>2.1 显示接口摘要</h2><pre><code class="hljs routeros">[Huawei]display<span class="hljs-built_in"> ip </span>int brief 
+<span class="hljs-number">*d</span>own: administratively down
+!down: FIB overload down
+^down: standby
+(l): loopback
+(s): spoofing
+(d): Dampening Suppressed
+The number of<span class="hljs-built_in"> interface </span>that is UP <span class="hljs-keyword">in</span> Physical is 3
+The number of<span class="hljs-built_in"> interface </span>that is DOWN <span class="hljs-keyword">in</span> Physical is 8
+The number of<span class="hljs-built_in"> interface </span>that is UP <span class="hljs-keyword">in</span> Protocol is 3
+The number of<span class="hljs-built_in"> interface </span>that is DOWN <span class="hljs-keyword">in</span> Protocol is 8
+
+Interface                        <span class="hljs-built_in"> IP </span>Address/Mask      Physical   Protocol  
+Ethernet0/0/0                     192.168.1.1/24       up         up        
+Ethernet0/0/1                     172.16.1.1/24        up         up        
+GigabitEthernet0/0/0              unassigned           down       down      
+GigabitEthernet0/0/1              unassigned           down       down      
+GigabitEthernet0/0/2              unassigned           down       down      
+GigabitEthernet0/0/3              unassigned           down       down      
+NULL0                             unassigned           up         up(s)     
+Serial0/0/0                       unassigned           down       down      
+Serial0/0/1                       unassigned           down       down      
+Serial0/0/2                       unassigned           down       down      
+Serial0/0/3                       unassigned           down       down</code></pre>
+
+
+
+<h2 id="2-2-显示路由表"><a href="#2-2-显示路由表" class="headerlink" title="2.2 显示路由表"></a>2.2 显示路由表</h2><blockquote>
+<p>路由器转发数据包的唯一依据，是路由器转发数据包的一张“地图”</p>
+</blockquote>
+<pre><code class="hljs angelscript">[Huawei]display ip routing-table 
+Route Flags: R - relay, D - download to fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+         Destinations : <span class="hljs-number">6</span>        Routes : <span class="hljs-number">6</span>        
+
+Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>/<span class="hljs-number">8</span>   Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+     <span class="hljs-number">172.16</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">172.16</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>      Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+     <span class="hljs-number">172.16</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>     Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span></code></pre>
+
+
+
+<h2 id="2-3-关闭信息中心防止弹出日志"><a href="#2-3-关闭信息中心防止弹出日志" class="headerlink" title="2.3 关闭信息中心防止弹出日志"></a>2.3 关闭信息中心防止弹出日志</h2><pre><code class="hljs pgsql">[Huawei]undo <span class="hljs-keyword">info</span>-center <span class="hljs-keyword">enable</span> 
+<span class="hljs-keyword">Info</span>: Information center <span class="hljs-keyword">is</span> disabled.</code></pre>
+
+
+
+<h1 id="三、配置路由"><a href="#三、配置路由" class="headerlink" title="三、配置路由"></a>三、配置路由</h1><p><img src="/img/Huawei_route/Huawei_route_base_route.jpg" srcset="/img/loading.gif"></p>
+<h2 id="3-1-直连路由（Direct-routing）"><a href="#3-1-直连路由（Direct-routing）" class="headerlink" title="3.1 直连路由（Direct routing）"></a>3.1 直连路由（Direct routing）</h2><blockquote>
+<p>路由器接口所连接的子网的路由方式称为直连路由</p>
+</blockquote>
+<p>直接连接的路由，当路由器的接口配置好 ip 地址并且 up 后，会自动创建该路由。路由器默认情况下，只能到达直连的网段。</p>
+<p>列：路由器 R2 ，只能在直连网段 12.1.1.x 和 23.1.1.x 下通信</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_1.jpg" srcset="/img/loading.gif"></p>
+<p>其路由表：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_2.jpg" srcset="/img/loading.gif"></p>
+<h2 id="3-2-静态路由（Static-routing）"><a href="#3-2-静态路由（Static-routing）" class="headerlink" title="3.2 静态路由（Static routing）"></a>3.2 静态路由（Static routing）</h2><blockquote>
+<p>一种路由的方式，路由项（routing entry）由手动配置，而非动态决定。</p>
+</blockquote>
+<p>PC1 与 PC2 通信，需要配置静态路由：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_3.jpg" srcset="/img/loading.gif"></p>
+<p>PC1 —&gt; PC2</p>
+<p> <font color=pink>src:192.168.1.2 —&gt; dst:172.16.1.2</font></p>
+<p>R1：</p>
+<p>[R1]ip route-static <font color=red>172.16.1.0 24</font> <font color=blue>12.1.1.2</font></p>
+<p><font color=red>红色</font>：目标网段</p>
+<p><font color=blue>蓝色</font>：下一跳（next-hop），下一个传递者、承接者</p>
+<p>路由表：</p>
+<pre><code class="hljs angelscript">[R1]display ip routing-table 
+Route Flags: R - relay, D - download to fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+         Destinations : <span class="hljs-number">7</span>        Routes : <span class="hljs-number">7</span>        
+
+Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+
+       <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+       <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>/<span class="hljs-number">8</span>   Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+     <span class="hljs-number">172.16</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Static  <span class="hljs-number">60</span>   <span class="hljs-number">0</span>          RD   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>     Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span></code></pre>
+
+
+
+<p>R2：</p>
+<p>[R2]ip route-static <font color=red>172.16.1.0 24</font> <font color=blue>23.1.1.3</font></p>
+<p>回包路由配置：</p>
+<p>PC2 —&gt; PC1</p>
+<p><font color=pink>dst:192.168.1.2 &lt;— src:172.16.1.2</font></p>
+<p>R3:</p>
+<p>[R3]ip route-static 192.168.1.0 24 23.1.1.2</p>
+<p>R2:</p>
+<p>[R2]ip route-static 192.168.1.0 24 12.1.1.1</p>
+<h2 id="3-3-路由优先级（Preference）"><a href="#3-3-路由优先级（Preference）" class="headerlink" title="3.3 路由优先级（Preference）"></a>3.3 路由优先级（Preference）</h2><blockquote>
+<p>思科：管理距离。衡量路由的优先程度，到达同款同一目标有两种协议，此时优选路由优先级较小的路由协议。</p>
+</blockquote>
+<p>路由优先级范围：0-255</p>
+<p>常见路由协议默认的优先级（数字越小，优先级越高）：</p>
+<ul>
+<li>直连路由 0</li>
+<li>静态路由 60</li>
+<li>Rip（路由信息协议） 100</li>
+<li>Ospf（Open Shortest Path First开放式最短路径优先） 10</li>
+</ul>
+<p>禁用端口：</p>
+<pre><code class="hljs awk">[Huawei]int e0<span class="hljs-regexp">/0/</span><span class="hljs-number">1</span> 
+[Huawei-Ethernet0<span class="hljs-regexp">/0/</span><span class="hljs-number">1</span>]shutdown		<span class="hljs-comment">#关闭端口</span>
+[Huawei-Ethernet0<span class="hljs-regexp">/0/</span><span class="hljs-number">1</span>]undo shutdown <span class="hljs-comment">#开启端口</span></code></pre>
+
+
+
+<p><img src="/img/Huawei_route/Huawei_route_base_4.jpg" srcset="/img/loading.gif"></p>
+<p>目标：实现千兆 Ge 0/0/0 作为主链路，百兆 E 0/0/0 作为备份链路</p>
+<p>R1:</p>
+<pre><code class="hljs angelscript">[R1]ip route-static <span class="hljs-number">210.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">24</span> <span class="hljs-number">21.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span> preference <span class="hljs-number">50</span></code></pre>
+
+<p>CT：</p>
+<pre><code class="hljs angelscript">[ct]ip route-static <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">24</span> <span class="hljs-number">21.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span> preference <span class="hljs-number">50</span></code></pre>
+
+
+
+
+<p>调整优先级：</p>
+<pre><code class="hljs angelscript">[Huawei]ip route-static <span class="hljs-number">210.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">24</span> <span class="hljs-number">21.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span> preference <span class="hljs-number">50</span></code></pre>
+
+<p><font color=red>达到某相同目标网段，路由表始终放置最优路由</font></p>
+<pre><code class="hljs angelscript">[Huawei]dis ip rou
+Route Flags: R - relay, D - download to fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+         Destinations : <span class="hljs-number">9</span>        Routes : <span class="hljs-number">9</span>        
+
+Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+
+       <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+       <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+       <span class="hljs-number">21.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">21.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>        GigabitEthernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+       <span class="hljs-number">21.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       GigabitEthernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>/<span class="hljs-number">8</span>   Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>     Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+      <span class="hljs-number">210.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Static  <span class="hljs-number">50</span>   <span class="hljs-number">0</span>          RD   <span class="hljs-number">21.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>        GigabitEthernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span></code></pre>
+
+<h2 id="3-4-负载均衡"><a href="#3-4-负载均衡" class="headerlink" title="3.4 负载均衡"></a>3.4 负载均衡</h2><p>数据（负载）被均分到两条链路传输</p>
+<h2 id="3-5-路由度量"><a href="#3-5-路由度量" class="headerlink" title="3.5 路由度量"></a>3.5 路由度量</h2><blockquote>
+<p>度量值，路由开销，metric，cost。到达某目标所花费的开销（代价）的总和，用来衡量路径的优劣</p>
+</blockquote>
+<h2 id="3-6-缺省路由（Default-route）"><a href="#3-6-缺省路由（Default-route）" class="headerlink" title="3.6 缺省路由（Default route）"></a>3.6 缺省路由（Default route）</h2><blockquote>
+<p>默认路由，default route，pre 60</p>
+</blockquote>
+<pre><code class="hljs angelscript">[Huawei]ip route-static <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span> <span class="hljs-number">0</span> <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span> 		#访问任何网段都将数据包交给 <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span></code></pre>
+
+<p><font color=red>注：缺省路由属于特殊的静态路由</font></p>
+<p><font color=red>注：PC 的网关其实就是一种缺省路由</font></p>
+<p><font color=red>缺省路由属于“替补路由”，只有当其他路由不可达时才会使用缺省路由。</font></p>
+<p>缺省路由适用于<font color=red>边缘节点</font>及<font color=red>企业出口</font></p>
+<h2 id="3-7-环回接口（Loopback）"><a href="#3-7-环回接口（Loopback）" class="headerlink" title="3.7 环回接口（Loopback）"></a>3.7 环回接口（Loopback）</h2><blockquote>
+<p>逻辑接口，模拟网段、PC、服务器、后期用于动态路由选举 Router-ID</p>
+</blockquote>
+<p>配置环回接口：</p>
+<pre><code class="hljs angelscript">[Huawei]<span class="hljs-built_in">int</span> LoopBack <span class="hljs-number">0</span>
+[Huawei-LoopBack0]ip add <span class="hljs-number">220.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span> <span class="hljs-number">24</span></code></pre>
+
+
+
+<h2 id="3-8-DHCP（Dynamic-Host-Configuration-Protocol）"><a href="#3-8-DHCP（Dynamic-Host-Configuration-Protocol）" class="headerlink" title="3.8 DHCP（Dynamic Host Configuration Protocol）"></a>3.8 DHCP（Dynamic Host Configuration Protocol）</h2><blockquote>
+<p>动态主机配置协议是一个局域网的网络协议。指的是由服务器控制一段IP地址范围，客户机登录服务器时就可以自动获得服务器分配的IP地址和子网掩码。</p>
+</blockquote>
+<p><font color=red>BOOTP（Bootstrap Protocol，引导程序协议）是一种引导协议，基于IP/UDP协议，也称自举协议，是DHCP协议的前身。</font></p>
+<p><img src="/img/Huawei_route/Huawei_route_base_5.jpg" srcset="/img/loading.gif"></p>
+<p>开启 DHCP 功能：</p>
+<pre><code class="hljs bash">[Huawei]dhcp <span class="hljs-built_in">enable</span></code></pre>
+
+<p>创建地址池：</p>
+<pre><code class="hljs routeros">[Huawei]ip<span class="hljs-built_in"> pool </span>add_pool
+[Huawei-ip-pool-add_pool]gateway-list 192.168.1.1
+[Huawei-ip-pool-add_pool]network 192.168.1.0 mask 24	
+[Huawei-ip-pool-add_pool]dns-list 192.168.1.1 8.8.8.8
+[Huawei-ip-pool-add_pool]dis this
+<span class="hljs-comment">#</span>
+ip<span class="hljs-built_in"> pool </span>add_pool
+ gateway-list 192.168.1.1
+<span class="hljs-built_in"> network </span>192.168.1.0 mask 255.255.255.0
+ dns-list 192.168.1.1 8.8.8.8
+<span class="hljs-comment">#</span>
+return
+[Huawei-ip-pool-add_pool]q
+[Huawei]int e0/0/0	#和用户相连端口
+[Huawei-Ethernet0/0/0]dhcp select global #使用本地全局配置的地址池分配<span class="hljs-built_in"> IP </span>地址</code></pre>
+
+<p>客户端 PC6 从本地服务地址池 add_pool 获取 DHCP 地址：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_6.jpg" srcset="/img/loading.gif"></p>
+<p>获取地址包：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_7.jpg" srcset="/img/loading.gif"></p>
+<p>用户发送的第一个 DHCP 请求包源是 0.0.0.0 目标为 255.255.255.255 的广播报文，该报文称为 dhcp discover</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_8.jpg" srcset="/img/loading.gif"></p>
+<p>显示 dhcp 分配记录：</p>
+<pre><code class="hljs routeros">[Huawei]dis<span class="hljs-built_in"> ip pool </span>name add_pool used  
+  Pool-name      : add_pool
+  Pool-No        : 0
+ <span class="hljs-built_in"> Lease </span>         : 1 Days 0 Hours 0 Minutes
+  Domain-name    : -
+  DNS-server0    : 192.168.1.1     
+  DNS-server1    : 8.8.8.8         
+  NBNS-server0   : -               
+  Netbios-type   : -               
+  Position       : Local           Status           : Unlocked
+  Gateway-0      : 192.168.1.1     
+  Mask           : 255.255.255.0
+  VPN<span class="hljs-built_in"> instance </span>  : --
+ -----------------------------------------------------------------------------
+         Start           End     Total  Used  Idle(Expired)  Conflict  Disable
+ -----------------------------------------------------------------------------
+     192.168.1.1   192.168.1.254   253     3        250(0)         0        0
+ -----------------------------------------------------------------------------
+ 
+ <span class="hljs-built_in"> Network </span>section : 
+  --------------------------------------------------------------------------
+  Index             <span class="hljs-built_in"> IP </span>              MAC     <span class="hljs-built_in"> Lease </span>  Status  
+  --------------------------------------------------------------------------
+    251   192.168.1.252    5489-98c2-3d98       3018   Used       
+    252   192.168.1.253    5489-98e4-1b88       3360   Used       
+    253   192.168.1.254    5489-9856-795c       3364   Used       
+  --------------------------------------------------------------------------</code></pre>
+
+
+
+<h2 id="3-9-RIP-Routing-Information-Protocol"><a href="#3-9-RIP-Routing-Information-Protocol" class="headerlink" title="3.9 RIP(Routing Information Protocol)"></a>3.9 RIP(Routing Information Protocol)</h2><blockquote>
+<p>RIP（路由信息协议）协议基于距离矢量算法（DistanceVectorAlgorithms），使用“跳数”(即metric)来衡量到达目标地址的路由距离。这种协议的路由器只关心自己周围的世界，只与自己相邻的路由器交换信息，范围限制在15跳(15度)之内，再远，它就不关心了。RIP应用于OSI网络七层模型的应用层。各厂家定义的管理距离（AD，即优先级）如下：华为定义的优先级是100，思科定义的优先级是120。缺点：古老，收敛速度很慢！</p>
+</blockquote>
+<p><img src="/img/Huawei_route/Huawei_route_base_9.jpg" srcset="/img/loading.gif"></p>
+<p>配置RIP：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_10.jpg" srcset="/img/loading.gif"></p>
+<p>R1:</p>
+<pre><code class="hljs routeros">[R1-rip-1]dis this
+<span class="hljs-comment">#</span>
+rip 1
+ undo summary			#关闭自动汇总
+ version 2				#版本2
+<span class="hljs-built_in"> network </span>192.168.1.0	#宣告直连主类网络
+<span class="hljs-built_in"> network </span>12.0.0.0		#宣告直连主类网络
+<span class="hljs-comment">#</span>
+return</code></pre>
+
+<p>R2:</p>
+<pre><code class="hljs routeros">[R2-rip-1]dis this
+<span class="hljs-comment">#</span>
+rip 1
+ undo summary
+ version 2
+<span class="hljs-built_in"> network </span>12.0.0.0
+<span class="hljs-built_in"> network </span>23.0.0.0
+<span class="hljs-built_in"> network </span>172.16.0.0
+<span class="hljs-comment">#</span>
+return</code></pre>
+
+<p>R3:</p>
+<pre><code class="hljs routeros">[R3-rip-1]dis this
+<span class="hljs-comment">#</span>
+rip 1
+ undo summary
+ version 2
+<span class="hljs-built_in"> network </span>23.0.0.0
+<span class="hljs-built_in"> network </span>10.0.0.0
+<span class="hljs-comment">#</span>
+return</code></pre>
+
+
+
+<p>Rip 报文：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_11.jpg" srcset="/img/loading.gif"></p>
+<p>每隔 30s 发送一次报文，目标地址是：224.0.0.9 组播地址，报文里存放的是路由信息</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_12.jpg" srcset="/img/loading.gif"></p>
+<p>Rip 只看距离远近，距离是以跳数（Metric，经过路由器的个数）</p>
+<h2 id="3-10-静默接口（Silent-interface）"><a href="#3-10-静默接口（Silent-interface）" class="headerlink" title="3.10 静默接口（Silent-interface）"></a>3.10 静默接口（Silent-interface）</h2><p><font color=red>PC/客户端 不需要 Rip 报文，可以将路由连接客户端接口配置为抑制接口（silent-interface，静默接口）：</font></p>
+<pre><code class="hljs angelscript">[Huawei-rip<span class="hljs-number">-1</span>]silent-<span class="hljs-keyword">interface</span> <span class="hljs-symbol">e0</span>/<span class="hljs-symbol">0</span>/<span class="hljs-symbol">0</span>	#将 <span class="hljs-symbol">e0</span>/<span class="hljs-symbol">0</span>/<span class="hljs-symbol">0</span> 口配置为静默接口，<span class="hljs-symbol">Rip</span>的路由更新将不再从该接口发送</code></pre>
+
+<p>此时，R1 的路由表：</p>
+<pre><code class="hljs angelscript">[R1]dis ip routing-table 
+Route Flags: R - relay, D - download to fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+         Destinations : <span class="hljs-number">9</span>        Routes : <span class="hljs-number">9</span>        
+
+Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+
+     <span class="hljs-number">10.10</span><span class="hljs-number">.10</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  RIP     <span class="hljs-number">100</span>  <span class="hljs-number">2</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>			#Rip优先级为<span class="hljs-number">100</span>
+       <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+       <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+       <span class="hljs-number">23.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  RIP     <span class="hljs-number">100</span>  <span class="hljs-number">1</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>/<span class="hljs-number">8</span>   Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+     <span class="hljs-number">172.16</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  RIP     <span class="hljs-number">100</span>  <span class="hljs-number">1</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>     Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span></code></pre>
+
+
+
+<h2 id="3-11-OSPF-Open-Shortest-Path-First"><a href="#3-11-OSPF-Open-Shortest-Path-First" class="headerlink" title="3.11 OSPF(Open Shortest Path First)"></a>3.11 OSPF(Open Shortest Path First)</h2><blockquote>
+<p>开放式最短路径优先协议是 IETF 定义的一种基于链路状态的内部网关路由协议</p>
+</blockquote>
+<p>ospf 优先级为：10</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_13.jpg" srcset="/img/loading.gif"></p>
+<p>Area 0：骨干区域、核心区域</p>
+<p>Area 1、2…：常规区域</p>
+<ul>
+<li>每个区域都维护一个独立的LSDB</li>
+<li><font color=red>Area 0是骨干区域，其他区域都必须与此区域相连</font></li>
+</ul>
+<h3 id="3-11-1-配置-OSPF："><a href="#3-11-1-配置-OSPF：" class="headerlink" title="3.11.1 配置 OSPF："></a>3.11.1 配置 OSPF：</h3><p><img src="/img/Huawei_route/Huawei_route_base_14.jpg" srcset="/img/loading.gif"></p>
+<p>R1：</p>
+<pre><code class="hljs angelscript">[Huawei]ospf <span class="hljs-number">1</span>
+[Huawei-ospf<span class="hljs-number">-1</span>]area <span class="hljs-number">0</span>	
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]network <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> ?
+  X.X.X.X  OSPF wild card bits
+
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]network <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]network <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]dis <span class="hljs-keyword">this</span>
+#
+ area <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+  network <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+  network <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+#
+<span class="hljs-keyword">return</span></code></pre>
+
+<p>R2：</p>
+<pre><code class="hljs angelscript">[Huawei]ospf <span class="hljs-number">1</span>
+[Huawei-ospf<span class="hljs-number">-1</span>]area <span class="hljs-number">0</span>
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]network <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]network <span class="hljs-number">23.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]network <span class="hljs-number">172.16</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]dis <span class="hljs-keyword">this</span>
+#
+ area <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+  network <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+  network <span class="hljs-number">23.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+  network <span class="hljs-number">172.16</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+#
+<span class="hljs-keyword">return</span></code></pre>
+
+<p>R3:</p>
+<pre><code class="hljs angelscript">[Huawei]ospf <span class="hljs-number">1</span>
+[Huawei-ospf<span class="hljs-number">-1</span>]area <span class="hljs-number">0</span>	
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]network <span class="hljs-number">23.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]network <span class="hljs-number">10.10</span><span class="hljs-number">.10</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+[Huawei-ospf<span class="hljs-number">-1</span>-area<span class="hljs-number">-0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>]dis <span class="hljs-keyword">this</span>
+#
+ area <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>
+  network <span class="hljs-number">23.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+  network <span class="hljs-number">10.10</span><span class="hljs-number">.10</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+#
+<span class="hljs-keyword">return</span></code></pre>
+
+<p>配置完 OSPF 的 R1 路由信息：</p>
+<pre><code class="hljs angelscript">[Huawei]dis ip routing-table
+Route Flags: R - relay, D - download to fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+         Destinations : <span class="hljs-number">9</span>        Routes : <span class="hljs-number">9</span>        
+
+Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+
+     <span class="hljs-number">10.10</span><span class="hljs-number">.10</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  OSPF    <span class="hljs-number">10</span>   <span class="hljs-number">3</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+       <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+       <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+       <span class="hljs-number">23.1</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  OSPF    <span class="hljs-number">10</span>   <span class="hljs-number">2</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span>/<span class="hljs-number">8</span>   Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+      <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       InLoopBack0
+     <span class="hljs-number">172.16</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  OSPF    <span class="hljs-number">10</span>   <span class="hljs-number">2</span>           D   <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>        Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">1</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span>/<span class="hljs-number">24</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>     Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+    <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>/<span class="hljs-number">32</span>  Direct  <span class="hljs-number">0</span>    <span class="hljs-number">0</span>           D   <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>       Ethernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span></code></pre>
+
+
+
+<h3 id="3-11-2-OSPF-的报文：常见5种"><a href="#3-11-2-OSPF-的报文：常见5种" class="headerlink" title="3.11.2 OSPF 的报文：常见5种"></a>3.11.2 OSPF 的报文：常见5种</h3><p>hello：小巧，用来建立和维持邻居关系</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_15.jpg" srcset="/img/loading.gif"></p>
+<p>DBD 、LSR、LSU、LSack：用于传递路由信息，刚开始时发送</p>
+<p>重置 OSPF 进程来抓取上面4个包：</p>
+<pre><code class="hljs routeros">&lt;Huawei&gt;reset<span class="hljs-built_in"> ospf </span>process 				#重置（reset）大多需要在\&lt;Huawei&gt; 用户视图 下操作
+Warning: The<span class="hljs-built_in"> OSPF </span>process will be reset. Continue? [Y/N]:y</code></pre>
+
+<p><img src="/img/Huawei_route/Huawei_route_base_16.jpg" srcset="/img/loading.gif"></p>
+<h3 id="3-11-3-OSPF-邻居表"><a href="#3-11-3-OSPF-邻居表" class="headerlink" title="3.11.3 OSPF 邻居表"></a>3.11.3 OSPF 邻居表</h3><pre><code class="hljs routeros">[R2]dis<span class="hljs-built_in"> ospf peer </span>brief 
+
+	<span class="hljs-built_in"> OSPF </span>Process 1 with Router ID 12.1.1.2
+		 <span class="hljs-built_in"> Peer </span>Statistic Information
+ ----------------------------------------------------------------------------
+<span class="hljs-built_in"> Area </span>Id         <span class="hljs-built_in"> Interface </span>                      <span class="hljs-built_in"> Neighbor </span>id      State    
+ 0.0.0.0          Ethernet0/0/0                    192.168.1.1      Full        
+ 0.0.0.0          Ethernet0/0/1                    23.1.1.1         Full        
+ ----------------------------------------------------------------------------</code></pre>
+
+<h3 id="3-11-4-OSPF-静默接口（silent-interface）"><a href="#3-11-4-OSPF-静默接口（silent-interface）" class="headerlink" title="3.11.4 OSPF 静默接口（silent-interface）"></a>3.11.4 OSPF 静默接口（silent-interface）</h3><pre><code class="hljs routeros">[R1]ospf 1
+[R1-ospf-1]silent-interface e0/0/0
+[R1-ospf-1]dis this
+<span class="hljs-comment">#</span>
+ospf 1
+ silent-interface Ethernet0/0/0
+<span class="hljs-built_in"> area </span>0.0.0.0
+ <span class="hljs-built_in"> network </span>192.168.1.0 0.0.0.255
+ <span class="hljs-built_in"> network </span>12.1.1.0 0.0.0.255
+<span class="hljs-comment">#</span>
+return</code></pre>
+
+
+
+<h2 id="3-12-Telnet"><a href="#3-12-Telnet" class="headerlink" title="3.12 Telnet"></a>3.12 Telnet</h2><p><img src="/img/Huawei_route/Huawei_route_base_17.jpg" srcset="/img/loading.gif"></p>
+<p>开启 telnet 服务（华为默认开启）：</p>
+<pre><code class="hljs routeros">[R4]telnet<span class="hljs-built_in"> server </span><span class="hljs-builtin-name">enable</span> 
+Info: The Telnet<span class="hljs-built_in"> server </span>has been enabled.</code></pre>
+
+<p>R4 创建用户名和密码：</p>
+<pre><code class="hljs ada">[R4]aaa				#三 A 认证
+[R4-aaa]local-user ?
+  STRING&lt;<span class="hljs-number">1</span>-<span class="hljs-number">64</span>&gt;   User name, <span class="hljs-keyword">in</span> form <span class="hljs-keyword">of</span> <span class="hljs-symbol">&#x27;user</span>@domain&#x27;. Can <span class="hljs-keyword">use</span> wildcard <span class="hljs-string">&#x27;*&#x27;</span>,
+                 <span class="hljs-keyword">while</span> displaying <span class="hljs-keyword">and</span> modifying, such as *@isp,user@*,*@*.Can
+                 <span class="hljs-keyword">not</span> include invalid character / \ : * ? &quot; &lt; &gt; | @ &#x27;
+
+[R4-aaa]local-user telnetuser ?
+  <span class="hljs-keyword">access</span>-limit   Set <span class="hljs-keyword">access</span> limit <span class="hljs-keyword">of</span> user(s)
+  ftp-directory  Set user(s) FTP directory permitted
+  idle-timeout   Set the timeout period <span class="hljs-keyword">for</span> terminal user(s)
+  password       Set password 
+  privilege      Set admin user(s) level
+  service-<span class="hljs-keyword">type</span>   <span class="hljs-type">Service </span>types <span class="hljs-keyword">for</span> authorized user(s)
+  state          Activate/Block the user(s)
+  user-group     User group
+[R4-aaa]local-user telnetuser password cipher telnetuser privilege level <span class="hljs-number">3</span> 	#配置用户名密码，权限为<span class="hljs-number">3</span>
+[R4-aaa]local-user telnetuser service-<span class="hljs-keyword">type</span> <span class="hljs-type">telnet  		</span>#指定账户的类型为 telnet
+[R4]user-<span class="hljs-keyword">interface</span> 	
+[R4]user-<span class="hljs-keyword">interface</span> ?
+  INTEGER&lt;<span class="hljs-number">0</span>,<span class="hljs-number">34</span>-<span class="hljs-number">48</span>,<span class="hljs-number">50</span>-<span class="hljs-number">54</span>&gt;   The first user terminal <span class="hljs-keyword">interface</span> to be configured
+  console                  Primary user terminal <span class="hljs-keyword">interface</span>
+  current                  The current user terminal <span class="hljs-keyword">interface</span>
+  maximum-vty              The maximum number <span class="hljs-keyword">of</span> VTY users, the default value
+                           <span class="hljs-keyword">is</span> <span class="hljs-number">5</span>
+  vty                      The virtual user terminal <span class="hljs-keyword">interface</span> 
+
+	
+[R4]user-<span class="hljs-keyword">interface</span> vty <span class="hljs-number">0</span> <span class="hljs-number">4</span>
+[R4-ui-vty0-<span class="hljs-number">4</span>]au	
+[R4-ui-vty0-<span class="hljs-number">4</span>]authe	
+[R4-ui-vty0-<span class="hljs-number">4</span>]authentication-mode ?
+  aaa       AAA authentication
+  none      Login without checking
+  password  Authentication through the password <span class="hljs-keyword">of</span> a user terminal <span class="hljs-keyword">interface</span>
+
+[R4-ui-vty0-<span class="hljs-number">4</span>]authentication-mode aaa
+[R4-ui-vty0-<span class="hljs-number">4</span>]dis this
+#
+user-<span class="hljs-keyword">interface</span> con <span class="hljs-number">0</span>
+user-<span class="hljs-keyword">interface</span> vty <span class="hljs-number">0</span> <span class="hljs-number">4</span>
+ authentication-mode aaa
+user-<span class="hljs-keyword">interface</span> vty <span class="hljs-number">16</span> <span class="hljs-number">20</span>
+#
+<span class="hljs-keyword">return</span>
+[R4]user-<span class="hljs-keyword">interface</span> ?
+  INTEGER&lt;<span class="hljs-number">0</span>,<span class="hljs-number">34</span>-<span class="hljs-number">48</span>,<span class="hljs-number">50</span>-<span class="hljs-number">54</span>&gt;   The first user terminal <span class="hljs-keyword">interface</span> to be configured
+  console                  Primary user terminal <span class="hljs-keyword">interface</span>
+  current                  The current user terminal <span class="hljs-keyword">interface</span>
+  maximum-vty              The maximum number <span class="hljs-keyword">of</span> VTY users, the default value
+                           <span class="hljs-keyword">is</span> <span class="hljs-number">5</span>
+  vty                      The virtual user terminal <span class="hljs-keyword">interface</span> 
+	
+[R4]user-<span class="hljs-keyword">interface</span> vty <span class="hljs-number">0</span> <span class="hljs-number">4</span>					# 同时允许<span class="hljs-number">5</span>个人远程控制
+[R4-ui-vty0-<span class="hljs-number">4</span>]authentication-mode ?
+  aaa       AAA authentication
+  none      Login without checking
+  password  Authentication through the password <span class="hljs-keyword">of</span> a user terminal <span class="hljs-keyword">interface</span>
+
+[R4-ui-vty0-<span class="hljs-number">4</span>]authentication-mode aaa			#认证模式为 aaa 
+[R4-ui-vty0-<span class="hljs-number">4</span>]dis this
+#
+user-<span class="hljs-keyword">interface</span> con <span class="hljs-number">0</span>
+user-<span class="hljs-keyword">interface</span> vty <span class="hljs-number">0</span> <span class="hljs-number">4</span>
+ authentication-mode aaa
+user-<span class="hljs-keyword">interface</span> vty <span class="hljs-number">16</span> <span class="hljs-number">20</span>
+#
+<span class="hljs-keyword">return</span></code></pre>
+
+<p>R1 连接 telnet 服务端：</p>
+<pre><code class="hljs routeros">&lt;R1&gt;telnet 34.1.1.2
+Trying 34.1.1.2 <span class="hljs-built_in">..</span>.
+Press CTRL+K <span class="hljs-keyword">to</span> abort
+Connected <span class="hljs-keyword">to</span> 34.1.1.2 <span class="hljs-built_in">..</span>.
+
+
+Login authentication
+
+
+Username:admin
+Password:
+Info: The max number of VTY<span class="hljs-built_in"> users </span>is 10, <span class="hljs-keyword">and</span> the number
+      of current VTY<span class="hljs-built_in"> users </span>on line is 1.
+      The current login time is 2020-07-31 10:14:55.
+&lt;R4&gt;</code></pre>
+
+<h3 id="3-12-1-PC-客户端连接-telnet-服务器："><a href="#3-12-1-PC-客户端连接-telnet-服务器：" class="headerlink" title="3.12.1 PC 客户端连接 telnet 服务器："></a>3.12.1 PC 客户端连接 telnet 服务器：</h3><p>PC 开启 telnet 服务：</p>
+<p>控制面板–&gt;程序–&gt;启动或关闭 Windows 功能 –&gt; Telnet Client</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_19.jpg" srcset="/img/loading.gif"></p>
+<p>本机 PC 连接 eNSP Cloud 设置：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_18.jpg" srcset="/img/loading.gif"></p>
+<p>本机需要增加静态路由从192.168.1.1 通信：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_20.jpg" srcset="/img/loading.gif"></p>
+<p>显示本地 PC 路由表：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_21.jpg" srcset="/img/loading.gif"></p>
+<h2 id="3-13-FTP（File-Transfer-Protocol"><a href="#3-13-FTP（File-Transfer-Protocol" class="headerlink" title="3.13 FTP（File Transfer Protocol)"></a>3.13 FTP（File Transfer Protocol)</h2><p>使用 FTP 实现远程文件传输的同时，还可以保证数据传输的可靠性和高效性。</p>
+<h3 id="3-13-1-开启-FTP-服务"><a href="#3-13-1-开启-FTP-服务" class="headerlink" title="3.13.1 开启 FTP 服务"></a>3.13.1 开启 FTP 服务</h3><pre><code class="hljs routeros">[R4]ftp<span class="hljs-built_in"> server </span><span class="hljs-builtin-name">enable</span> 
+Info: Succeeded <span class="hljs-keyword">in</span> starting the FTP server.</code></pre>
+
+<p><img src="/img/Huawei_route/Huawei_route_base_22.jpg" srcset="/img/loading.gif"></p>
+<p>创建 FTP  账户：</p>
+<pre><code class="hljs crmsh">[R4]aaa
+[R4-aaa]local-<span class="hljs-keyword">user</span> <span class="hljs-title">ftpuser</span> password cipher ftpuser privilege level <span class="hljs-number">3</span> ftp-directory flash:
+<span class="hljs-literal">Inf</span>o: Add a new user.
+[R4-aaa]local-<span class="hljs-keyword">user</span> <span class="hljs-title">ftpuser</span> service-<span class="hljs-keyword">type</span> ftp				<span class="hljs-comment">#此账户用于 FTP 服务</span></code></pre>
+
+<p>连接 FTP 服务器：</p>
+<pre><code class="hljs angelscript">&lt;R1&gt;ftp <span class="hljs-number">34.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>
+Trying <span class="hljs-number">34.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span> ...
+Press CTRL+K to abort
+Connected to <span class="hljs-number">34.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>.
+<span class="hljs-number">220</span> FTP service ready.
+User(<span class="hljs-number">34.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span>:(none)):ftpuser
+<span class="hljs-number">331</span> Password required <span class="hljs-keyword">for</span> ftpuser.
+Enter password:
+<span class="hljs-number">230</span> User logged <span class="hljs-keyword">in</span>.
+
+[ftp]dir
+<span class="hljs-number">200</span> Port command okay.
+<span class="hljs-number">150</span> Opening ASCII mode data connection <span class="hljs-keyword">for</span> *.
+drwxrwxrwx   <span class="hljs-number">1</span> noone    nogroup         <span class="hljs-number">0</span> Aug <span class="hljs-number">07</span>  <span class="hljs-number">2015</span> src
+drwxrwxrwx   <span class="hljs-number">1</span> noone    nogroup         <span class="hljs-number">0</span> Jul <span class="hljs-number">31</span> <span class="hljs-number">08</span>:<span class="hljs-number">39</span> pmdata
+drwxrwxrwx   <span class="hljs-number">1</span> noone    nogroup         <span class="hljs-number">0</span> Jul <span class="hljs-number">31</span> <span class="hljs-number">08</span>:<span class="hljs-number">39</span> dhcp
+-rwxrwxrwx   <span class="hljs-number">1</span> noone    nogroup       <span class="hljs-number">603</span> Jul <span class="hljs-number">31</span> <span class="hljs-number">15</span>:<span class="hljs-number">09</span> <span class="hljs-keyword">private</span>-data.txt
+drwxrwxrwx   <span class="hljs-number">1</span> noone    nogroup         <span class="hljs-number">0</span> Jul <span class="hljs-number">31</span> <span class="hljs-number">08</span>:<span class="hljs-number">54</span> mplstpoam
+-rwxrwxrwx   <span class="hljs-number">1</span> noone    nogroup       <span class="hljs-number">507</span> Jul <span class="hljs-number">31</span> <span class="hljs-number">15</span>:<span class="hljs-number">19</span> ftp.demo
+-rwxrwxrwx   <span class="hljs-number">1</span> noone    nogroup       <span class="hljs-number">507</span> Jul <span class="hljs-number">31</span> <span class="hljs-number">15</span>:<span class="hljs-number">09</span> vrpcfg.zip
+<span class="hljs-number">226</span> Transfer complete.</code></pre>
+
+<h1 id="四、构建冗余型企业网络"><a href="#四、构建冗余型企业网络" class="headerlink" title="四、构建冗余型企业网络"></a>四、构建冗余型企业网络</h1><p>VLAN、Trunk、STP、VRRP、链路聚合、ACL</p>
+<h2 id="4-1-VLAN（Virtual-Local-Area-Network）"><a href="#4-1-VLAN（Virtual-Local-Area-Network）" class="headerlink" title="4.1 VLAN（Virtual Local Area Network）"></a>4.1 VLAN（Virtual Local Area Network）</h2><blockquote>
+<p>虚拟局域网是将一个物理的局域网在逻辑上划分成多个广播域的技术。通过在交换机上配置 VLAN ，可以实现在同一个 VLAN 内的用户可以进行二层互访，而不同 VLAN 间的用户被二层隔离。这样既能够隔离广播域，又能够提升网络的安全性。</p>
+</blockquote>
+<h3 id="4-1-1-配置"><a href="#4-1-1-配置" class="headerlink" title="4.1.1 配置"></a>4.1.1 配置</h3><p><img src="/img/Huawei_route/Huawei_route_base_23.jpg" srcset="/img/loading.gif"></p>
+<p>创建 VLAN：</p>
+<pre><code class="hljs routeros">[SW1]vlan batch 10 20			#同时创建多个<span class="hljs-built_in"> VLAN </span>：<span class="hljs-built_in"> VLAN </span>10 、VLAN 20
+[SW1]int gi0/0/1				#进入 GE 0/0/1 口
+[SW1-GigabitEthernet0/0/1]port link-type access #将接口类型配置为 access
+[SW1-GigabitEthernet0/0/1]port<span class="hljs-built_in"> default vlan </span>10 	#将接口划分到<span class="hljs-built_in"> VLAN </span>10 里
+[SW1-GigabitEthernet0/0/1]dis this
+<span class="hljs-comment">#</span>
+interface GigabitEthernet0/0/1
+<span class="hljs-built_in"> port </span>link-type access
+<span class="hljs-built_in"> port default vlan </span>10
+<span class="hljs-comment">#</span>
+return
+
+<span class="hljs-comment">#查看 VLAN 配置</span>
+[SW1]dis vlan
+The total number of vlans is : 3
+--------------------------------------------------------------------------------
+U: Up;         D: Down;         TG: Tagged;         UT: Untagged;
+MP: Vlan-mapping;               ST: Vlan-stacking;
+<span class="hljs-comment">#: ProtocolTransparent-vlan;    *: Management-vlan;</span>
+--------------------------------------------------------------------------------
+
+VID <span class="hljs-built_in"> Type </span>   Ports                                                          
+--------------------------------------------------------------------------------
+1    common  UT:GE0/0/4(U)      GE0/0/5(D)      GE0/0/6(D)      GE0/0/7(D)      
+                GE0/0/8(D)      GE0/0/9(D)      GE0/0/10(D)     GE0/0/11(D)     
+                GE0/0/12(D)     GE0/0/13(D)     GE0/0/14(D)     GE0/0/15(D)     
+                GE0/0/16(D)     GE0/0/17(D)     GE0/0/18(D)     GE0/0/19(D)     
+                GE0/0/20(D)     GE0/0/21(D)     GE0/0/22(D)     GE0/0/23(D)     
+                GE0/0/24(D)                                                     
+
+10   common  UT:GE0/0/1(U)      GE0/0/2(U)                                      
+
+20   common  UT:GE0/0/3(U)                                                      
+
+
+VID  Status  Property      MAC-LRN Statistics Description      
+--------------------------------------------------------------------------------
+
+1    <span class="hljs-builtin-name">enable</span> <span class="hljs-built_in"> default </span>      <span class="hljs-builtin-name">enable</span>  <span class="hljs-builtin-name">disable</span>   <span class="hljs-built_in"> VLAN </span>0001                         
+10   <span class="hljs-builtin-name">enable</span> <span class="hljs-built_in"> default </span>      <span class="hljs-builtin-name">enable</span>  <span class="hljs-builtin-name">disable</span>   <span class="hljs-built_in"> VLAN </span>0010                         
+20   <span class="hljs-builtin-name">enable</span> <span class="hljs-built_in"> default </span>      <span class="hljs-builtin-name">enable</span>  <span class="hljs-builtin-name">disable</span>   <span class="hljs-built_in"> VLAN </span>0020</code></pre>
+
+<p><font color=red>注： VLAN 1 属于默认 VLAN，默认情况下所有接口都在 VLAN 1 下。VLAN 隔离广播的同时，也会隔离 arp，从而导致单播无法通信。如果想让不同 VLAN 单播可以通信，还需要三层设备（路由器、三层交换机）做路由。</font></p>
+<p>注：默认情况下，交换机的一个接口只能从属一个 VLAN，只允许该 VLAN 的数据通过。</p>
+<h2 id="4-2-Trunk（干道，主干链路）"><a href="#4-2-Trunk（干道，主干链路）" class="headerlink" title="4.2 Trunk（干道，主干链路）"></a>4.2 Trunk（干道，主干链路）</h2><blockquote>
+<p>通常用于交换机和交换机之间，通过一个接口传输多个 VLAN 的数据包。</p>
+</blockquote>
+<h3 id="4-2-1-配置"><a href="#4-2-1-配置" class="headerlink" title="4.2.1 配置"></a>4.2.1 配置</h3><p><img src="/img/Huawei_route/Huawei_route_base_24.jpg" srcset="/img/loading.gif"></p>
+<p>将交换机与交换机相连接的端口类型改为 Trunk 类型</p>
+<pre><code class="hljs routeros">[SW1]int gi0/0/4
+[SW1-GigabitEthernet0/0/4]port link-type trunk 		#将接口类型配置为 trunk
+[SW1-GigabitEthernet0/0/4]port trunk allow-pass<span class="hljs-built_in"> vlan </span>all 	#允许所有的<span class="hljs-built_in"> VLAN </span>通过
+[SW1-GigabitEthernet0/0/4]dis this
+<span class="hljs-comment">#</span>
+interface GigabitEthernet0/0/4
+<span class="hljs-built_in"> port </span>link-type trunk
+<span class="hljs-built_in"> port </span>trunk allow-pass<span class="hljs-built_in"> vlan </span>2 <span class="hljs-keyword">to</span> 4094
+<span class="hljs-comment">#</span>
+return
+
+
+[SW1-GigabitEthernet0/0/4]port link-type ?
+  access        Access<span class="hljs-built_in"> port	</span>		#接 PC 端口
+  dot1q-tunnel  QinQ port
+  hybrid        Hybrid<span class="hljs-built_in"> port	</span>		#混合口 即可以接 PC 也可以接交换机（华为交换机的默认接口）
+  trunk         Trunk<span class="hljs-built_in"> port	</span>		#接交换机
+  
+<span class="hljs-comment">#查看接口类型</span>
+[SW1]dis<span class="hljs-built_in"> port </span>vlan
+Port                    Link<span class="hljs-built_in"> Type </span>   PVID  Trunk<span class="hljs-built_in"> VLAN </span>List
+-------------------------------------------------------------------------------
+GigabitEthernet0/0/1    access       10    -                                   
+GigabitEthernet0/0/2    access       10    -                                   
+GigabitEthernet0/0/3    access       20    -                                   
+GigabitEthernet0/0/4    trunk        1     1
+GigabitEthernet0/0/5    hybrid       1     -                                   
+GigabitEthernet0/0/6    hybrid       1     -                                             GigabitEthernet0/0/7    hybrid       1     -</code></pre>
+
+<p>PC 到交换机 access 口的包：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_25.jpg" srcset="/img/loading.gif"></p>
+<p><font color=red>注：PC 不识 VLAN 标记，不识 tag，只有通过交换机的 trunk 接口发出的报文才具备 VLAN 的标记（802.1q tag），见下图</font></p>
+<p>交换机 trunk 到 trunk 交换机包：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_26.jpg" srcset="/img/loading.gif"></p>
+<h3 id="4-2-2-PVID-本征-VLAN，native-vlan"><a href="#4-2-2-PVID-本征-VLAN，native-vlan" class="headerlink" title="4.2.2 PVID(本征 VLAN，native vlan)"></a>4.2.2 PVID(本征 VLAN，native vlan)</h3><p>该 VLAN 的报文经过 trunk 接口时不打标记。默认情况下本征 VLAN 是 VLAN 1。</p>
+<pre><code class="hljs routeros">[SW1]dis<span class="hljs-built_in"> port vlan </span>
+Port                    Link<span class="hljs-built_in"> Type </span>   PVID  Trunk<span class="hljs-built_in"> VLAN </span>List
+-------------------------------------------------------------------------------
+GigabitEthernet0/0/1    access       10    -                                   
+GigabitEthernet0/0/2    access       10    -                                   
+GigabitEthernet0/0/3    access       20    -                                   
+GigabitEthernet0/0/4    trunk        1     1-4094
+GigabitEthernet0/0/5    hybrid       1     -                                   
+GigabitEthernet0/0/6    hybrid       1     -                                   
+GigabitEthernet0/0/7    hybrid       1     -</code></pre>
+
+<p>例：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_27.jpg" srcset="/img/loading.gif"></p>
+<p>PC8 和 PC9 默认属于 VLAN 1，它们通信经过交换机 trunk 时，是不打 tag 的。</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_28.jpg" srcset="/img/loading.gif"></p>
+<h4 id="修改-PVID"><a href="#修改-PVID" class="headerlink" title="修改 PVID"></a>修改 PVID</h4><pre><code class="hljs routeros"><span class="hljs-comment">#两台相连交换机 trunk 都需要修改</span>
+[SW1]int gi 0/0/4	
+[SW1-GigabitEthernet0/0/4]port trunk pvid<span class="hljs-built_in"> vlan </span>20
+
+[SW2]int gi 0/0/1	
+[SW2-GigabitEthernet0/0/1]port trunk pvid<span class="hljs-built_in"> vlan </span>20</code></pre>
+
+<p>当 PVID 修改为 VLAN 20 后，VLAN 20 下的 PC 通信经过交换机 trunk 时不打 tag。</p>
+<h2 id="4-3-VLAN-间路由"><a href="#4-3-VLAN-间路由" class="headerlink" title="4.3 VLAN 间路由"></a>4.3 VLAN 间路由</h2><p><font color=red>注：不同的 VLAN 之间互相通信必须要有三层设备（路由器、多层交换机）做中转。</font></p>
+<h3 id="4-3-1-多层交换机–SVI（switch-virtual-interface，常用）"><a href="#4-3-1-多层交换机–SVI（switch-virtual-interface，常用）" class="headerlink" title="4.3.1 多层交换机–SVI（switch virtual interface，常用）"></a>4.3.1 多层交换机–SVI（switch virtual interface，常用）</h3><p><img src="/img/Huawei_route/Huawei_route_base_29.jpg" srcset="/img/loading.gif"></p>
+<h4 id="SVI-配置"><a href="#SVI-配置" class="headerlink" title="SVI 配置"></a>SVI 配置</h4><pre><code class="hljs routeros">[Huawei]int Vlanif 10
+[Huawei-Vlanif10]ip<span class="hljs-built_in"> address </span>192.168.10.1 24		#给<span class="hljs-built_in"> VLAN </span>10 配置<span class="hljs-built_in"> ip </span>地址 10.1 作为<span class="hljs-built_in"> VLAN </span>10 的用户网关
+[Huawei-Vlanif10]dis this
+<span class="hljs-comment">#</span>
+interface Vlanif10
+<span class="hljs-built_in"> ip address </span>192.168.10.1 255.255.255.0
+<span class="hljs-comment">#</span>
+return
+
+[Huawei]int Vlanif 20
+[Huawei-Vlanif20]ip<span class="hljs-built_in"> address </span>192.168.20.1 24		#给<span class="hljs-built_in"> VLAN </span>20 配置<span class="hljs-built_in"> ip </span>地址 20.1 作为<span class="hljs-built_in"> VLAN </span>20 的用户网关
+<span class="hljs-comment">#调试</span>
+[Huawei]dis<span class="hljs-built_in"> ip interface </span>brief 
+<span class="hljs-number">*d</span>own: administratively down
+^down: standby
+(l): loopback
+(s): spoofing
+The number of<span class="hljs-built_in"> interface </span>that is UP <span class="hljs-keyword">in</span> Physical is 4
+The number of<span class="hljs-built_in"> interface </span>that is DOWN <span class="hljs-keyword">in</span> Physical is 1
+The number of<span class="hljs-built_in"> interface </span>that is UP <span class="hljs-keyword">in</span> Protocol is 3
+The number of<span class="hljs-built_in"> interface </span>that is DOWN <span class="hljs-keyword">in</span> Protocol is 2
+
+Interface                        <span class="hljs-built_in"> IP </span>Address/Mask      Physical   Protocol  
+MEth0/0/1                         unassigned           down       down      
+NULL0                             unassigned           up         up(s)     
+Vlanif1                           unassigned           up         down      
+Vlanif10                          192.168.10.1/24      up         up        
+Vlanif20                          192.168.20.1/24      up         up
+<span class="hljs-comment">#显示路由表</span>
+[Huawei]dis<span class="hljs-built_in"> ip </span>routing-table 
+Route Flags: R - relay, D - download <span class="hljs-keyword">to</span> fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+         Destinations : 6        Routes : 6        
+
+Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+
+      127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0
+      127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+   192.168.10.0/24  Direct  0    0           D   192.168.10.1    Vlanif10
+   192.168.10.1/32  Direct  0    0           D   127.0.0.1       Vlanif10
+   192.168.20.0/24  Direct  0    0           D   192.168.20.1    Vlanif20
+   192.168.20.1/32  Direct  0    0           D   127.0.0.1       Vlanif20</code></pre>
+
+<p>注：</p>
+<p>VLAN 间路由：通过三层设备路由，使得不同 VLAN 间可以互相通信，但是仅仅允许单播通信。不同 VLAN 之间广播帧依然被隔离既没有失去 VLAN 原本的意义。</p>
+<h3 id="4-3-2-路由器–单臂路由"><a href="#4-3-2-路由器–单臂路由" class="headerlink" title="4.3.2 路由器–单臂路由"></a>4.3.2 路由器–单臂路由</h3><p><img src="/img/Huawei_route/Huawei_route_base_30.jpg" srcset="/img/loading.gif"></p>
+<h4 id="路由配置"><a href="#路由配置" class="headerlink" title="路由配置"></a>路由配置</h4><pre><code class="hljs routeros">[Router]int e0/0/0.?					#可生成的逻辑接口
+  &lt;1-4096&gt;   
+[Router]int e0/0/0.10
+[Router-Ethernet0/0/0.10]ip<span class="hljs-built_in"> address </span>192.168.10.254 24	#为逻辑接口 10 配置10网段的网关
+[Router-Ethernet0/0/0.10]dot1q termination vid 10		#绑定<span class="hljs-built_in"> VLAN </span>10
+[Router-Ethernet0/0/0.10]arp broadcast <span class="hljs-builtin-name">enable</span> 			#使子接口有ARP广播功能
+[Router-Ethernet0/0/0.10]dis this
+<span class="hljs-comment">#</span>
+interface Ethernet0/0/0.10
+ dot1q termination vid 10
+<span class="hljs-built_in"> ip address </span>192.168.10.254 255.255.255.0
+ arp broadcast enable
+<span class="hljs-comment">#</span>
+return
+
+[Router]int e0/0/0.20
+[Router-Ethernet0/0/0.20]ip<span class="hljs-built_in"> address </span>192.168.20.254 24
+[Router-Ethernet0/0/0.20]dot1q termination vid 20	
+[Router-Ethernet0/0/0.20]arp broadcast <span class="hljs-builtin-name">enable</span> 
+[Router-Ethernet0/0/0.20]dis this
+<span class="hljs-comment">#</span>
+interface Ethernet0/0/0.20
+ dot1q termination vid 20
+<span class="hljs-built_in"> ip address </span>192.168.20.254 255.255.255.0
+ arp broadcast enable
+<span class="hljs-comment">#</span>
+return
+
+[Router]dis<span class="hljs-built_in"> ip </span>routing-table
+Route Flags: R - relay, D - download <span class="hljs-keyword">to</span> fib
+------------------------------------------------------------------------------
+Routing Tables: Public
+         Destinations : 8        Routes : 8        
+
+Destination/Mask    Proto   Pre  Cost      Flags NextHop         Interface
+
+      127.0.0.0/8   Direct  0    0           D   127.0.0.1       InLoopBack0
+      127.0.0.1/32  Direct  0    0           D   127.0.0.1       InLoopBack0
+   192.168.10.0/24  Direct  0    0           D   192.168.10.254  Ethernet0/0/0.10
+   192.168.10.2/32  Direct  0    0           D   192.168.10.2    Ethernet0/0/0.10
+ 192.168.10.254/32  Direct  0    0           D   127.0.0.1       Ethernet0/0/0.10
+   192.168.20.0/24  Direct  0    0           D   192.168.20.254  Ethernet0/0/0.20
+   192.168.20.2/32  Direct  0    0           D   192.168.20.2    Ethernet0/0/0.20
+ 192.168.20.254/32  Direct  0    0           D   127.0.0.1       Ethernet0/0/0.20</code></pre>
+
+
+
+<h2 id="4-4-ACL（Access-Control-List）"><a href="#4-4-ACL（Access-Control-List）" class="headerlink" title="4.4 ACL（Access Control List）"></a>4.4 ACL（Access Control List）</h2><blockquote>
+<p>访问控制列表</p>
+</blockquote>
+<ul>
+<li>基本ACL（2000-2999）：只能匹配源 IP 地址</li>
+<li>高级ACL（3000-3999）：可以匹配源IP、目标IP、源端口、目标端口等三层和四层的字段</li>
+</ul>
+<h3 id="4-4-1-配置"><a href="#4-4-1-配置" class="headerlink" title="4.4.1 配置"></a>4.4.1 配置</h3><p><img src="/img/Huawei_route/Huawei_route_base_31.jpg" srcset="/img/loading.gif"></p>
+<p><strong>例1：</strong></p>
+<p>禁止 Client 1 192.168.10.1 访问172.16.10.0 网段：</p>
+<p>配置 R2 路由：</p>
+<pre><code class="hljs routeros"><span class="hljs-comment">#配置 ACL 规则</span>
+[R2]acl ?
+  INTEGER&lt;2000-2999&gt;  Basic access-list(<span class="hljs-builtin-name">add</span> <span class="hljs-keyword">to</span> current using rules)			#基本 ACL
+  INTEGER&lt;3000-3999&gt;  Advanced access-list(<span class="hljs-builtin-name">add</span> <span class="hljs-keyword">to</span> current using rules)		#高级 ACL
+  INTEGER&lt;4000-4999&gt;  Specify a L2 acl group
+ <span class="hljs-built_in"> ipv6 </span>               ACL<span class="hljs-built_in"> IPv6 </span>
+  name                Specify a named ACL
+  number              Specify a numbered ACL
+[R2-acl-basic-2000]rule ?
+  INTEGER&lt;0-4294967294&gt;  ID of ACL rule
+  deny                   Specify matched packet deny		#拒绝
+  permit                 Specify matched packet permit		#允许
+[R2-acl-basic-2000]rule deny source 192.168.10.1 ?
+  IP_ADDR&lt;X.X.X.X&gt;  Wildcard of source
+  0                 Wildcard bits : 0.0.0.0 ( a host )
+[R2-acl-basic-2000]rule deny source 192.168.10.1 0		#拒绝源地址为192.168.10.1的任何数据包，0代表主机，不代表某个网段
+[R2-acl-basic-2000]dis this
+[V200R003C00]
+<span class="hljs-comment">#</span>
+acl number 2000  
+ rule 5 deny source 192.168.10.1 0 		# 5 为自动生成的执行编号，第二条则为10（每条+5）
+<span class="hljs-comment">#</span>
+return
+<span class="hljs-comment">#在接口的入方向调用 ACL 规则</span>
+[R2]int gi0/0/0
+[R2-GigabitEthernet0/0/0]traffic-filter inbound acl 2000 #在 R2 接口的入（inbound）方向调用 acl
+[R2-GigabitEthernet0/0/0]dis this
+[V200R003C00]
+<span class="hljs-comment">#</span>
+interface GigabitEthernet0/0/0
+<span class="hljs-built_in"> ip address </span>12.1.1.2 255.255.255.0 
+ traffic-filter inbound acl 2000
+<span class="hljs-comment">#</span>
+return</code></pre>
+
+<p><strong>例2：</strong></p>
+<p><img src="/img/Huawei_route/Huawei_route_base_31.jpg" srcset="/img/loading.gif"></p>
+<p>在 R2 上配置<em>高级 ACL</em> 拒绝 Client 1 和 PC2 ping Server1（拒绝 ICMP 协议数据包），但是允许其 HTTP 访问 Server 1。</p>
+<pre><code class="hljs angelscript">#配置 ACL 规则
+[R2]acl <span class="hljs-number">3000</span>
+[R2-acl-adv<span class="hljs-number">-3000</span>]rule deny icmp source <span class="hljs-number">192.168</span><span class="hljs-number">.10</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span> destination <span class="hljs-number">172.16</span>
+<span class="hljs-number">.10</span><span class="hljs-number">.2</span> <span class="hljs-number">0</span>				#拒绝 <span class="hljs-number">192.168</span><span class="hljs-number">.10</span><span class="hljs-number">.0</span> 网段 ping（ICMP） Server <span class="hljs-number">1</span>(<span class="hljs-number">172.16</span>
+<span class="hljs-number">.10</span><span class="hljs-number">.2</span> <span class="hljs-number">0</span>代表本机)
+[R2-acl-adv<span class="hljs-number">-3000</span>]dis <span class="hljs-keyword">this</span>
+[V200R003C00]
+#
+acl number <span class="hljs-number">3000</span>  
+ rule <span class="hljs-number">5</span> deny icmp source <span class="hljs-number">192.168</span><span class="hljs-number">.10</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span> destination <span class="hljs-number">172.16</span><span class="hljs-number">.10</span><span class="hljs-number">.2</span> <span class="hljs-number">0</span> 
+#
+<span class="hljs-keyword">return</span>
+
+#接口入调用 ACL 规则
+[R2]<span class="hljs-built_in">int</span> gi0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+[R2-GigabitEthernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>]traffic-filter inbound acl <span class="hljs-number">3000</span></code></pre>
+
+
+
+<p><strong>例3：</strong></p>
+<p><img src="/img/Huawei_route/Huawei_route_base_31.jpg" srcset="/img/loading.gif"></p>
+<p>拒绝源地址 192.168.10.2 telnet（port 23） 访问12.1.1.2</p>
+<pre><code class="hljs angelscript">#配置 ACL 规则
+[R2]acl <span class="hljs-number">3001</span>
+[R2-acl-adv<span class="hljs-number">-3001</span>]rule deny tcp source <span class="hljs-number">192.168</span><span class="hljs-number">.10</span><span class="hljs-number">.2</span> <span class="hljs-number">0</span> destination <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span> <span class="hljs-number">0</span> dest
+ination-port eq <span class="hljs-number">23</span>
+[R2-acl-adv<span class="hljs-number">-3001</span>]dis <span class="hljs-keyword">this</span>
+[V200R003C00]
+#
+acl number <span class="hljs-number">3001</span>  
+ rule <span class="hljs-number">5</span> deny tcp source <span class="hljs-number">192.168</span><span class="hljs-number">.10</span><span class="hljs-number">.2</span> <span class="hljs-number">0</span> destination <span class="hljs-number">12.1</span><span class="hljs-number">.1</span><span class="hljs-number">.2</span> <span class="hljs-number">0</span> destination-port e
+q telnet 
+#
+<span class="hljs-keyword">return</span>
+
+#接口入调用 ACL 规则
+[R2]<span class="hljs-built_in">int</span> gi0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>
+[R2-GigabitEthernet0/<span class="hljs-number">0</span>/<span class="hljs-number">0</span>]traffic-filter inbound acl <span class="hljs-number">3001</span></code></pre>
+
+
+
+<p><font color=red><strong>注：</strong></font></p>
+<ol>
+<li><strong>一个接口的同一个方向，只能调用一个 ACL</strong></li>
+<li><strong>一个 ACL 里面可以有多个 rule 规则，从上往下依次执行</strong></li>
+<li><strong>数据包一旦被某 rule 匹配，就不再继续向下匹配</strong></li>
+<li><strong>默认隐含放过所有（华为的 ACL 用来拒绝数据包时）</strong></li>
+</ol>
+<h1 id="五、NAT（Network-Address-Translation）"><a href="#五、NAT（Network-Address-Translation）" class="headerlink" title="五、NAT（Network Address Translation）"></a>五、NAT（Network Address Translation）</h1><blockquote>
+<p>网络地址转换主要用于实现位于内部网络的主机访问外部网络的功能。当局域网内的主机需要访问外部网络时，通过 NAT 技术可以将其私网地址转换为公网地址，并且多个私网地址可以共用一个公网地址，这样既能保证网络互通，有节省公网地址。</p>
+</blockquote>
+<ul>
+<li>NAT 一般部署在连接内网和外网的网关设备上</li>
+</ul>
+<p><strong>私有地址：任何人都能使用</strong></p>
+<p>A 10.0.0.0/8</p>
+<p>B 172.16.0.0-172.31.255.255</p>
+<p>C 192.168.0.0/16</p>
+<h2 id="5-1-Static-NAT-配置"><a href="#5-1-Static-NAT-配置" class="headerlink" title="5.1 Static NAT 配置"></a>5.1 Static NAT 配置</h2><blockquote>
+<p>一对一（一一映射），一个私网地址对应一个公网地址，外网的用户可以访问内网的主机</p>
+</blockquote>
+<p><img src="/img/Huawei_route/Huawei_route_base_32.jpg" srcset="/img/loading.gif"></p>
+<p>基础配置：</p>
+<ol>
+<li>配置好 IP 地址</li>
+<li>出口配置缺省路由<code>[OUT]ip route-static 0.0.0.0 0 12.1.1.6</code></li>
+<li>在企业路由WAN端口（GE 0/0/1）配置 Static NAT</li>
+</ol>
+<pre><code class="hljs routeros">[OUT]int gi 0/0/1
+[OUT-GigabitEthernet0/0/1]nat static ?
+  <span class="hljs-builtin-name">enable</span>    <span class="hljs-builtin-name">Enable</span> function
+  global    Specify global information of<span class="hljs-built_in"> NAT	</span>	#全局公网地址
+  protocol  Specify protocol
+[OUT-GigabitEthernet0/0/1]nat static global 12.1.1.2 ?
+  inside  Specify inside information of<span class="hljs-built_in"> NAT </span> 		#内部网络
+[OUT-GigabitEthernet0/0/1]nat static global 12.1.1.2 inside 192.168.1.2 #将私网地址 1.2 和 12.1.1.2 做一对一映射
+[OUT-GigabitEthernet0/0/1]dis this
+[V200R003C00]
+<span class="hljs-comment">#</span>
+interface GigabitEthernet0/0/1
+ description TO_wan
+<span class="hljs-built_in"> ip address </span>12.1.1.1 255.255.255.248 
+<span class="hljs-built_in"> nat </span>static global 12.1.1.2 inside 192.168.1.2 netmask 255.255.255.255
+<span class="hljs-comment">#</span>
+return</code></pre>
+
+<p>用内网 PC 192.168.1.2 Ping 百度（9.9.9.9），从企业路由WAN端口（GE 0/0/1）出抓包：</p>
+<p><img src="/img/Huawei_route/Huawei_route_base_33.jpg" srcset="/img/loading.gif"></p>
+<p>发现此时内网地址 192.168.1.2 已经被转换为 12.1.1.2 </p>
+<p>调试：查看 NAT 转换过程：</p>
+<pre><code class="hljs routeros">[OUT]dis<span class="hljs-built_in"> nat </span>session protocol icmp
+ <span class="hljs-built_in"> NAT </span>Session Table Information:
+
+     Protocol          : ICMP(1)
+     SrcAddr   Vpn     : 192.168.1.2                                    
+     DestAddr  Vpn     : 9.9.9.9                                        
+    <span class="hljs-built_in"> Type </span>Code IcmpId  : 0   8   49311
+     NAT-Info
+       New SrcAddr     : 12.1.1.2       
+       New DestAddr    : ----
+       New IcmpId      : ----
+</code></pre>
+
+<h2 id="5-2-NAPT-Network-Address-Port-Translation"><a href="#5-2-NAPT-Network-Address-Port-Translation" class="headerlink" title="5.2 NAPT (Network Address Port Translation)"></a>5.2 NAPT (Network Address Port Translation)</h2><p>由于NAT实现是私有IP和NAT的公共IP之间的转换，那么，私有网中同时与公共网进行通信的主机数量就受到NAT的公共IP地址数量的限制。为了克服 这种限制，NAT被进一步扩展到在进行IP地址转换的同时进行Port的转换，这就是网络地址端口转换NAPT（Network Address Port Translation）技术。<br>    NAPT与NAT的区别在于，NAPT不仅转换IP包中的IP地址，还对IP包中TCP和UDP的Port进行转换。这使得多台私有网主机利用1个NAT公共IP就可以同时和公共网进行通信。（NAPT多了对TCP和UDP的端口号的转换）</p>
+<pre><code>私有网主机192.168.1.2要访问公共网中的 Http服务器166.111.80.200。首先，要建立TCP连接，假设分配的TCP Port是1010，发送了1个IP包（Des=166.111.80.200:80,Src=192.168.1.2:1010）,当IP包经过NAT 网关时，NAT会将IP包的源IP转换为NAT的公共IP，同时将源Port转换为NAT动态分配的1个Port。然后，转发到公共网，此时IP包 （Des=166.111.80.200：80，Src=202.204.65.2:2010）已经不含任何私有网IP和Port的信息。由于IP包的源 IP和Port已经被转换成NAT的公共IP和Port，响应的IP包 （Des=202.204.65.2:,Src=2010166.111.80.200:80）将被发送到NAT。这时NAT会将IP包的目的IP转换成 私有网主机的IP，同时将目的Port转换为私有网主机的Port，然后将IP包 （Des=192.168.1.2:1010，Src=166.111.80.200:80）转发到私网。对于通信双方而言，这种IP地址和Port的转 换是完全透明的。</code></pre>
+<h2 id="5-3-NAT-–-Easy-IP"><a href="#5-3-NAT-–-Easy-IP" class="headerlink" title="5.3 NAT – Easy IP"></a>5.3 NAT – Easy IP</h2><p>Easy IP 方式的实现原理与上节介绍的地址池NAPT 转换原理类似，可以算是NAPT的一种特例，不同的是Easy IP 方式可以实现自动根据路由器上WAN 接口的公网IP 地址实现与私网IP 地址之间的映射（无需创建公网地址池）。<br>Easy IP 主要应用于将路由器WAN 接口IP 地址作为要被映射的公网IP 地址的情形，特别适合小型局域网接入Internet 的情况。这里的小型局域网主要指中小型网吧、小型办公室等环境，一般具有以下特点：内部主机较少、出接口通过拨号方式获得临时（或固定）公网IP 地址以供内部主机访问Internet。图6-3 所示为Easy IP 方式的实现原理，具体过程如下。<br><img src="/img/Huawei_route/Huawei_route_base_57.jpg" srcset="/img/loading.gif"><br>① 假设私网中的Host A 主机要访问公网的Server，首先要向Router 发送一个请求报文（即Outbound 方向），此时报文中的源地址是10.1.1.100，端口号1540。<br>② Router 在收到请求报文后自动利用公网侧WAN 接口临时或者固定的“公网IP地址:端口号”（162.10.2.8:5480），建立与内网侧报文“源IP 地址:源端口号”间的Easy IP转换表项（也包括正、反两个方向），并依据正向Easy IP 表项的查找结果将报文转换后向公网侧发送。此时，转换后的报文源地址和源端口号由原来的（10.1.1.100:1540）转换成了（162.10.2.8:5480）。<br>③ Server 在收到请求报文后需要向Router 发送响应报文（即Inbound 方向），此时只须将收到的请求报文中的源IP 地址、源端口号和目的IP 地址、目的端口号对调即可，即此时的响应报文中的目的IP 地址、目的端口号为162.10.2.8:5480。<br>④ Router 在收到公网侧Server 的回应报文后，根据其“目的IP 地址:目的端口号”查找反向Easy IP 表项，并依据查找结果将报文转换后向内网侧发送。即转换后的报文中的目的IP 地址为10.1.1.100，目的端口号为1540，与Host A 发送请求报文中的源IP地址和源端口完全一样。<br>如果私网中的Host B 也要访问公网，则它所利用的公网IP 地址与Host A 一样，都是路由器WAN 口的公网IP 地址，但转换时所用的端口号一定要与Host A 转换时所用的端口不一样。</p>
+<blockquote>
+<p>允许多个私网地址转换成一个公网 IP ，常用</p>
+</blockquote>
+<p><img src="/img/Huawei_route/Huawei_route_base_32.jpg" srcset="/img/loading.gif"></p>
+<p>基础配置：</p>
+<ol>
+<li><p>首先配置 ACL 匹配内网私网地址段</p>
+<pre><code class="hljs angelscript">[OUT]acl <span class="hljs-number">2000</span>
+[OUT-acl-basic<span class="hljs-number">-2000</span>]rule permit source <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span>
+[OUT-acl-basic<span class="hljs-number">-2000</span>]dis <span class="hljs-keyword">this</span>
+[V200R003C00]
+#
+acl number <span class="hljs-number">2000</span>  
+ rule <span class="hljs-number">5</span> permit source <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.0</span> <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.255</span> 
+#
+<span class="hljs-keyword">return</span>
+[OUT-acl-basic<span class="hljs-number">-2000</span>]</code></pre>
+
+</li>
+</ol>
+<p><font color=red>注：ACL 用来做匹配范围时，没有默认隐含允许所有的规则</font></p>
+<ol start="2">
+<li><pre><code>[OUT-GigabitEthernet0/0/1]nat ?
+  outbound  Specify net address translation        #Easy IP，配置 NAT 地址池的转换策略，可以选择匹配ACL模式或不匹配ACL两种模式
+  server    Specify NAT server            #可以将某服务器的某端口映射出去（安全）
+  static    Specify static NAT            #静态 NAT，一对一
+ [OUT-GigabitEthernet0/0/1]nat outbound ?
+  INTEGER&lt;2000-3999&gt;  Apply basic or advanced ACL        #配置的 ACL 编号
+[OUT-GigabitEthernet0/0/1]nat outbound 2000 
+<pre><code class="hljs routeros">
+   原理：内网私网地址出包时转换成公网接口 WAN（GE 0/0/1）当前的<span class="hljs-built_in"> IP </span>地址
+
+<span class="hljs-comment">### 5.3.1 NAT -- Server</span>
+
+&gt; 可以将某服务器的某端口映射出去（安全）
+
+配置：
+
+![](/img/Huawei_route/Huawei_route_base_34.jpg)
+</code></pre>
+[OUT-GigabitEthernet0/0/1]nat server protocol tcp global 12.1.1.3 www inside 192
+.168.1.254 www         #将服务器的80端口映射成公网地址的80端口
+[OUT-GigabitEthernet0/0/1]dis this
+[V200R003C00]
+#
+interface GigabitEthernet0/0/1
+description TO_wan
+ip address 12.1.1.1 255.255.255.248 
+nat server protocol tcp global 12.1.1.3 www inside 192.168.1.254 www
+#
+return
+<pre><code class="hljs http">
+
+
+# 六、广域网封装协议
+
+&gt; 广域网中经常会使用串行链路来提供远距离的数据传输，高级数据链路控制 HDLC （  High-Level Data Link Control  ）和点对点协议 PPP （  Point to Point Protocol ）是两种典型的串口封装协议。 
+
+
+
+## 6.1 PPP（  Point to Point Protocol ）
+
+&gt; PPP （点对点协议）协议是一种点到点链路层协议，主要用于在全双工的同异步链路上进行点到点的数据传输
+
+### 6.1.1 PPP 配置
+
+![](/img/Huawei_route/Huawei_route_base_35.jpg)
+</code></pre>
+[R1]int Serial 4/0/0
+[R1-Serial4/0/0]ip add 12.1.1.1 24
+[R1-Serial4/0/0]dis this
+[V200R003C00]
+#
+interface Serial4/0/0
+link-protocol ppp
+ip address 12.1.1.1 255.255.255.0 
+#
+return
+[R1]ping 12.1.1.2
+PING 12.1.1.2: 56  data bytes, press CTRL_C to break
+ Reply from 12.1.1.2: bytes=56 Sequence=1 ttl=255 time=20 ms
+ Reply from 12.1.1.2: bytes=56 Sequence=2 ttl=255 time=30 ms
+</code></pre>
+</li>
+</ol>
+<pre><code class="hljs awk">
+抓包，PPP的封装方式：
+
+![](<span class="hljs-regexp">/img/</span>Huawei_route/Huawei_route_base_36.jpg)
+
+ &lt;font color=red&gt;注：PPP 可以对链路做认证&lt;/font&gt;：PAP 认证、CHAP 认证
+
+
+
+<span class="hljs-comment">#### PAP认证配置（密码明文传输，两次握手）</span>
+
+![](<span class="hljs-regexp">/img/</span>Huawei_route/Huawei_route_base_37.jpg)
+</code></pre>
+<p>#认证端（服务端）<br>[R2]aaa<br>[R2-aaa]local-user HCNP password cipher hcnp123        #创建本地用户名和密码<br>Info: Add a new user.<br>[R2-aaa]local-user hcnp service-type ppp            #创建的账户用作 ppp 认证<br>[R2]int Serial 4/0/0<br>[R2-Serial4/0/0]ppp authentication-mode pap            #进入接口开启认证</p>
+<p>#被认证端（客户端）<br>[R1]int Serial 4/0/0<br>[R1-Serial4/0/0]ppp pap local-user HCNP password ?<br>  cipher  Display the current password with cipher text<br>  simple  Display the current password with plain text<br>[R1-Serial4/0/0]ppp pap local-user HCNP password simple hcnp123 #发送 pap 用户名密码认证</p>
+<pre><code class="hljs http">
+
+
+#### CHAP 认证配置（三次握手，加密传输）
+
+![](/img/Huawei_route/Huawei_route_base_37.jpg)
+</code></pre>
+<p>#认证端（服务端）<br>[R2-Serial4/0/0]ppp authentication-mode chap<br>[R2-Serial4/0/0]dis this<br>[V200R003C00]<br>#<br>interface Serial4/0/0<br> link-protocol ppp<br> ppp authentication-mode chap<br> ip address 12.1.1.2 255.255.255.0<br>#<br>return</p>
+<p>#被认证端（客户端）<br>[R1-Serial4/0/0]ppp chap user HCNP<br>[R1-Serial4/0/0]ppp chap password simple hcnp123</p>
+<pre><code class="hljs http">
+
+
+## 6.2 HDLC（High-Level Data Link Control ）
+
+&gt; HDLC（高级数据链路控制） 是高级数据链路控制协议，是一种数据链路层的协议。HDLC 是一个 ISO 标准的面向位的数据链路协议，其在同步串行数据链路上封装数据，最常用于点对点链接
+
+### 6.2.1 HDLC 配置
+
+![](/img/Huawei_route/Huawei_route_base_35.jpg)
+</code></pre>
+<p>[R1]int s4/0/0<br>[R1-Serial4/0/0]dis this<br>[V200R003C00]<br>#<br>interface Serial4/0/0<br> link-protocol ppp                    #华为、H3C 串口默认封装方式为 PPP，思科为 HDLC<br> ip address 12.1.1.1 255.255.255.0<br>#<br>return<br>[R1-Serial4/0/0]link-protocol ?<br>  fr    Select FR as line protocol<br>  hdlc  Enable HDLC protocol<br>  lapb  LAPB(X.25 level 2 protocol)<br>  ppp   Point-to-Point protocol<br>  sdlc  SDLC(Synchronous Data Line Control) protocol<br>  x25   X.25 protocol<br>[R1-Serial4/0/0]link-protocol hdlc         #手动修改成 HDLC<br>Warning: The encapsulation protocol of the link will be changed. Continue? [Y/N]<br>:y<br>[R1-Serial4/0/0]dis this<br>[V200R003C00]<br>#<br>interface Serial4/0/0<br> link-protocol hdlc<br> ip address 12.1.1.1 255.255.255.0<br>#<br>return</p>
+<pre><code class="hljs awk">
+&lt;font color=red&gt;注：两个相连端口封装方式需要一致，不然无法通信，所以路由 R2 需要做相同配置。&lt;/font&gt;
+
+通信抓包：
+
+![](<span class="hljs-regexp">/img/</span>Huawei_route/Huawei_route_base_35.jpg)
+
+
+
+<span class="hljs-comment">## 6.3 FR（Frame-relay）</span>
+
+&gt; 帧中继
+
+<span class="hljs-comment">### 6.3.1 FR 配置</span>
+
+![](<span class="hljs-regexp">/img/</span>Huawei_route/Huawei_route_base_39.jpg)
+</code></pre>
+<p>[R1-Serial4/0/0]dis this<br>[V200R003C00]<br>#<br>interface Serial4/0/0<br> link-protocol fr<br> ip address 12.1.1.1 255.255.255.0<br>#<br>return</p>
+<p>#查看映射<br>[R1]dis fr map-info<br>Map Statistics for interface Serial4/0/0 (DTE)<br>  DLCI = 102, IP INARP 12.1.1.2, Serial4/0/0<br>    create time = 2020/08/07 09:25:46, status = ACTIVE<br>    encapsulation = ietf, vlink = 2, broadcast</p>
+<pre><code class="hljs shell">
+抓包：
+
+![](/img/Huawei_route_base_40.jpg)
+
+
+
+<span class="hljs-meta">#</span><span class="bash"> 七、链路聚合</span>
+
+<span class="hljs-meta">&gt;</span><span class="bash">链路捆绑、端口聚合、eth-channel</span>
+<span class="hljs-meta">&gt;</span>
+<span class="hljs-meta">&gt;</span><span class="bash">随着网络规模不断扩大，用户对骨干链路的带宽和可靠性提出了越来越高的要求。在传统技术中，常用更换高速率的接口板或更换支持高速率接口板的设备的方式来增加带宽，但这种方案需要付出高额的费用，而且不够灵活。</span>
+<span class="hljs-meta">&gt;</span><span class="bash">采用链路聚合技术可以在不进行硬件升级的条件下，通过将多个物理接口捆绑为一个逻辑接口，来达到增加链路带宽的目的。在实现增大带宽目的的同时，链路聚合采用备份链路的机制，可以有效的提高设备之间链路的可靠性。</span>
+
+
+
+<span class="hljs-meta">#</span><span class="bash"><span class="hljs-comment">## 配置</span></span>
+
+![](/img/Huawei_route_base_41.jpg)
+</code></pre>
+<p>#现状态<br>[SW1]dis stp brief<br> MSTID  Port                        Role  STP State     Protection<br>   0    GigabitEthernet0/0/1        ROOT  FORWARDING      NONE        #FORWARDING：转发<br>   0    GigabitEthernet0/0/2        ALTE  DISCARDING      NONE        #DISCARDING：丢弃<br>   0    GigabitEthernet0/0/3        ALTE  DISCARDING      NONE<br>   0    GigabitEthernet0/0/4        DESI  FORWARDING      NONE</p>
+<p>#配置链路聚合<br>[SW1]int Eth-Trunk 1                #创建逻辑捆绑接口组 1<br>[SW1-GigabitEthernet0/0/1]eth-trunk 1    #进入接口，将接口加入 Eth-Trunk 1<br>[SW1-GigabitEthernet0/0/2]eth-trunk 1<br>[SW1-GigabitEthernet0/0/3]eth-trunk 1<br>#查看配置<br>[SW1]dis eth-trunk<br>Eth-Trunk1’s state information is:<br>WorkingMode: NORMAL         Hash arithmetic: According to SIP-XOR-DIP<br>Least Active-linknumber: 1  Max Bandwidth-affected-linknumber: 8  #最多能捆绑8个链路<br>Operate status: up         Number Of Up Port In Trunk: 3                     </p>
+<hr>
+<p>PortName                      Status      Weight<br>GigabitEthernet0/0/1          Up          1<br>GigabitEthernet0/0/2          Up          1<br>GigabitEthernet0/0/3          Up          1   </p>
+<p>[SW1]dis stp brief<br> MSTID  Port                        Role  STP State     Protection<br>   0    GigabitEthernet0/0/4        DESI  FORWARDING      NONE<br>   0    Eth-Trunk1                  ROOT  FORWARDING      NONE<br>#交换机 R2 同样配置</p>
+<pre><code class="hljs http">
+
+
+# 八、VRRP
+
+&gt; Virtual Router Redundancy [rɪˈdʌndənsi] Protocol，**虚拟网关冗余协议**
+&gt;
+&gt; 三层网关冗余技术，对用户的网关做冗余
+
+## 8.1 配置
+
+![](/img/Huawei_route/Huawei_route_base_42.jpg)
+
+#### 基础配置
+
+- 核心的 IP 地址
+- 接入层交换机无需配置
+- 用户网关配置成 192.168.10.1
+
+#### VRRP 配置
+</code></pre>
+<p>#核心1<br>[core1]int gi 0/0/0            #下联用户接口配置<br>[core1-GigabitEthernet0/0/0]vrrp ?<br>  arp       Gratuitous arp<br>  un-check  Uncheck VRRP packet TTL value<br>  vrid      Specify virtual router identifier<br>[core1-GigabitEthernet0/0/0]vrrp vrid ?            #指定虚拟路由器标识符（Specify virtual router identifier）<br>  INTEGER&lt;1-255&gt;  Virtual router identifier<br>[core1-GigabitEthernet0/0/0]vrrp vrid 1 ?<br>  authentication-mode  Specify password and authentication mode<br>  preempt-mode         Specify preempt mode<br>  priority             Specify priority<br>  timer                Specify timer<br>  track                Specify the track configuration<br>  version-3            Specify the device to support V3 for VRRP<br>  virtual-ip           Specify virtual IP address<br>#创建虚拟组1，并指定虚拟 IP 地址，该虚拟地址作为用户网关<br>[core1-GigabitEthernet0/0/0]vrrp vrid 1 virtual-ip 192.168.10.1<br>[core1-GigabitEthernet0/0/0]dis this<br>[V200R003C00]<br>#<br>interface GigabitEthernet0/0/0<br> ip address 192.168.10.253 255.255.255.0<br> vrrp vrid 1 virtual-ip 192.168.10.1<br>#<br>return<br>#核心2同样配置<br>[core2-GigabitEthernet0/0/0]vrrp vrid 1 priority 105    #将优先级改为105作为主路由器，优先级默认是100。数字越大越优先<br>[core2-GigabitEthernet0/0/0]dis this<br>[V200R003C00]<br>#<br>interface GigabitEthernet0/0/0<br> ip address 192.168.10.254 255.255.255.0<br> vrrp vrid 1 virtual-ip 192.168.10.1<br> vrrp vrid 1 priority 105<br>#<br>return<br>#查看 VRRP 状态<br>[core1]dis vrrp brief<br>Total:1     Master:0     Backup:1     Non-active:0<br>VRID  State        Interface                Type     Virtual IP     </p>
+<hr>
+<p>1     Backup       GE0/0/0                  Normal   192.168.10.1 </p>
+<p>[core2]dis vrrp brief<br>Total:1     Master:1     Backup:0     Non-active:0<br>VRID  State        Interface                Type     Virtual IP     </p>
+<hr>
+<p>1     Master       GE0/0/0                  Normal   192.168.10.1 、</p>
+<p>#查看 VRRP 详细信息<br>[core2]dis vrrp<br>  GigabitEthernet0/0/0 | Virtual Router 1<br>    State : Master<br>    Virtual IP : 192.168.10.1<br>    Master IP : 192.168.10.254<br>    PriorityRun : 105<br>    PriorityConfig : 105<br>    MasterPriority : 105<br>    Preempt : YES   Delay Time : 0 s<br>    TimerRun : 1 s<br>    TimerConfig : 1 s<br>    Auth type : NONE                #认证信息<br>    Virtual MAC : 0000-5e00-0101<br>    Check TTL : YES<br>    Config type : normal-vrrp<br>    Backup-forward : disabled<br>    Create time : 2020-08-10 12:19:35 UTC-08:00<br>    Last change time : 2020-08-10 12:24:04 UTC-08:00</p>
+<p>#配置如上联接口断开，降低 master 优先级<br>##配置跟踪上联接口 GE 0/0/1 状态，当发现 GE 0/0/1 口 down 时，将自动降低此路由的优先级-10，以让出 master 的位置<br>[core2-GigabitEthernet0/0/0]vrrp vrid 1 track interface  GigabitEthernet 0/0/1<br>[core2-GigabitEthernet0/0/0]dis this<br>[V200R003C00]<br>#<br>interface GigabitEthernet0/0/0<br> ip address 192.168.10.254 255.255.255.0<br> vrrp vrid 1 virtual-ip 192.168.10.1<br> vrrp vrid 1 priority 105<br> vrrp vrid 1 track（跟踪） interface GigabitEthernet0/0/1<br>#<br>return<br>[core2]dis vrrp<br>  GigabitEthernet0/0/0 | Virtual Router 1<br>    State : Backup<br>    Virtual IP : 192.168.10.1<br>    Master IP : 192.168.10.253<br>    PriorityRun : 95        &lt;—降低后的优先级<br>    PriorityConfig : 105<br>    MasterPriority : 100<br>    Preempt : YES   Delay Time : 0 s<br>    TimerRun : 1 s<br>    TimerConfig : 1 s<br>    Auth type : NONE<br>    Virtual MAC : 0000-5e00-0101<br>    Check TTL : YES<br>    Config type : normal-vrrp<br>    Backup-forward : disabled<br>    Track IF : GigabitEthernet0/0/1   Priority reduced : 10    &lt;—降低优先级10<br>    IF state : DOWN        &lt;—上联端口断开<br>    Create time : 2020-08-10 12:19:35 UTC-08:00<br>    Last change time : 2020-08-10 13:17:30 UTC-08:00</p>
+<p>#开启简单的密码认证，两个核心都需要配置（可选配置）<br>[core2-GigabitEthernet0/0/0]vrrp vrid 1 authentication-mode simple plain 123  #配置简单明文密码123</p>
+<pre><code class="hljs routeros">
+<span class="hljs-comment">#### 工作原理</span>
+
+抓取核心1 GE 0/0/0 口报文
+
+![](/img/Huawei_route/Huawei_route_base_43.jpg)
+
+核心路由器会每隔一段时间（约1S）发送一个特定的<span class="hljs-built_in"> VRRP </span>报文。如果一段时间没有收到对方发来的<span class="hljs-built_in"> VRRP </span>报文，就认定对方 master 设备出现故障。此时 backup 会总动切换成 master
+
+
+<span class="hljs-comment"># 九、STP （Spanning Tree Protocol）</span>
+
+&gt;为了提高网络可靠性，交换网络中通常会使用冗余链路。然而，冗余链路会给交换网络带来环路风险，并导致广播风暴以及 MAC 地址表不稳定等问题，进而会影响到用户的通信质量。生成树协议 STP 可以在提高可靠性的同时又能避免环路带来的各种问题。
+
+&lt;font <span class="hljs-attribute">color</span>=red&gt;**作用：防止交换环路**&lt;/font&gt;
+![](/img/Huawei_route/Huawei_route_base_44.jpg)
+
+华为交换机默认开机启动 STP
+
+<span class="hljs-comment">## 9.1 实验</span>
+
+将交换机 STP 关闭，抓包：
+![](/img/Huawei_route/Huawei_route_base_44.jpg)</code></pre>
+<p>[SW1]stp disable </p>
+<pre><code class="hljs clean">PC ping ip <span class="hljs-number">1.1</span><span class="hljs-number">.1</span><span class="hljs-number">.255</span> ，为广播地址，其目标 MAC 地址为 ff:ff:ff:ff:ff:ff（交换机靠 MAC 转发）
+
+![](/img/Huawei_route/Huawei_route_base_45.jpg)
+
+### <span class="hljs-number">9.1</span><span class="hljs-number">.1</span> 引发各种问题
+
+#### 广播风暴
+
+![](/img/Huawei_route/Huawei_route_base_46.jpg)
+
+#### MAC 地址表震荡
+
+![](/imgHuawei_route<span class="hljs-comment">//Huawei_route_base_47.jpg)</span>
+
+
+## <span class="hljs-number">9.2</span> 工作原理
+
+STP通过阻塞端口来消除环路，并能够实现链路备份的目的。
+查看阻塞端口：</code></pre>
+<p>[SW1]dis stp brief<br> MSTID  Port                        Role  STP State     Protection<br>   0    GigabitEthernet0/0/1        DESI  DISCARDING      NONE<br>   0    GigabitEthernet0/0/2        DESI  DISCARDING      NONE<br>   0    GigabitEthernet0/0/3        ROOT  FORWARDING      NONE</p>
+<pre><code class="hljs angelscript">
+## <span class="hljs-number">9.3</span> STP 算法
+
+先选出不被阻塞的接口，剩下的接口都会被阻塞。
+
+### <span class="hljs-number">9.3</span><span class="hljs-number">.1</span> 过程
+
+<span class="hljs-number">1.</span> 整个网络（广播域）先选出根桥（根交换机），先比较优先级（默认<span class="hljs-number">32768</span>），再比较 MAC 地址，越小越优先。根桥上面的端口都是**指定端口**
+
+![](/img/Huawei_route/Huawei_route_base_48.jpg)
+
+显示：
+</code></pre>
+<p><SW1>dis stp<br>——-[CIST Global Info][Mode MSTP]——-<br>CIST Bridge         :32768.4c1f-cc6b-2dc9     #桥ID（优先级+MAC）<br>Config Times        :Hello 2s MaxAge 20s FwDly 15s MaxHop 20<br>Active Times        :Hello 2s MaxAge 20s FwDly 15s MaxHop 20<br>CIST Root/ERPC      :32768.4c1f-cc5f-2395 / 20000   #显示根桥信息<br>CIST RegRoot/IRPC   :32768.4c1f-cc6b-2dc9 / 0<br>CIST RootPortId     :128.3<br>BPDU-Protection     :Disabled<br>TC or TCN received  :5<br>TC count per hello  :0<br>STP Converge Mode   :Normal<br>Time since last TC  :0 days 0h:17m:53s<br>Number of TC        :6<br>Last TC occurred    :GigabitEthernet0/0/1<br>—-[Port1(GigabitEthernet0/0/1)][FORWARDING]—-<br> Port Protocol       :Enabled<br> Port Role           :Designated Port<br> Port Priority       :128<br> Port Cost(Dot1T )   :Config=auto / Active=20000<br> Designated Bridge/Port   :32768.4c1f-cc6b-2dc9 / 128.1<br> Port Edged          :Config=default / Active=disabled<br> Point-to-point      :Config=auto / Active=true<br> Transit Limit       :147 packets/hello-time<br> Protection Type     :None<br>  —- More —-</p>
+<pre><code class="hljs">
+
+2. 非根桥上面选举根端口（根端口有且仅有一个）到达根桥最近的端口当选为根端口
+非根交换机在选举根端口时分别依据该端口的根路劲开销、对端BID（桥ID）、对端 PID 和本端 PID
+![](/img/Huawei_route_base_49.jpg)
+
+3. 每段链路必须选举一个指定端口（且只有一个），桥 ID （优先级+MAC）较小的交换机上面的端口当选为指定端口
+![](/img/Huawei_route_base_50.jpg)
+
+4. 剩下的端口全部被阻塞
+![](/img/Huawei_route_base_51.jpg)
+查看状态：</code></pre>
+<p><SW2>dis stp brief<br> MSTID  Port                        Role  STP State     Protection<br>   0    GigabitEthernet0/0/1        ALTE  DISCARDING      NONE    #阻塞<br>   0    GigabitEthernet0/0/2        ROOT  FORWARDING      NONE</p>
+<pre><code class="hljs">
+
+## 9.4 更改交换机的优先级</code></pre>
+<p>[SW2]stp priority ?<br>  INTEGER&lt;0-61440&gt;  Bridge priority, in steps of 4096   #需要4096的倍数</p>
+<p>[SW2]stp priority 0   #将优先级改为0<br>#或者直接设置为根桥<br>[SW2]stp root ?<br>  primary    Primary root switch    #设置为根桥<br>  secondary  Secondary root switch  #设备备份根桥</p>
+<pre><code class="hljs elixir">![](<span class="hljs-regexp">/img/</span>Huawei_route/Huawei_route_base_51.jpg)
+
+----------------&gt;
+![](<span class="hljs-regexp">/img/</span>Huawei_route/Huawei_route_base_52.jpg)
+
+
+<span class="hljs-comment">## 9.5 BPDU 报文</span>
+BPDU 包含桥 ID、路径开销、端口 ID、计数器等参数
+
+![](<span class="hljs-regexp">/img/</span>Huawei_route/Huawei_route_base_53.jpg)
+
+
+
+<span class="hljs-comment">## 9.6 端口重启过程</span>
+
+down ---&gt; listening ---&gt; learning ---&gt; forwarding
+此过程大概 <span class="hljs-number">30</span>s
+listening：监听端口
+learning：检测该端口是否需要阻塞，如要阻塞，则阻塞端口，防止环路
+
+设置边缘端口：建议将接 PC 的接口配置为边缘端口（减少接口的收敛时间）
+</code></pre>
+<p>[SW1-GigabitEthernet0/0/1]stp edged-port enable</p>
+<pre><code class="hljs dts">
+<span class="hljs-meta">## 9.7 STP 根保护</span>
+
+一旦使能根保护功能的指定端口收到优先级更低的 BPUD 时，端口状态将进入 Discarding 状态，不再转发报文。经过一段时间（通常为两倍的 Forward Delay）,如果端口一直没有再收到优先级较高（数值低）的 BPUD，端口会自动恢复到正常的 Forwarding 状态。
+<span class="hljs-params">&lt;font color=red&gt;</span>注：该指令只能在指定端口配置才会生效<span class="hljs-params">&lt;/font&gt;</span>
+
+![](<span class="hljs-meta-keyword">/img/</span>Huawei_route/Huawei_route_base_54.jpg)
+
+在根桥上的两个端口设置根保护，在 SW1 上接个优先级为 <span class="hljs-number">0</span> 的交换机</code></pre>
+<p>[SW2-GigabitEthernet0/0/1]stp root-protection<br>[SW2-GigabitEthernet0/0/2]stp root-protection<br>#接上优先级为0的交换机，发现根桥设置根保护的端口为阻塞状态<br>[SW2]dis stp brief<br> MSTID  Port                        Role  STP State     Protection<br>   0    GigabitEthernet0/0/1        DESI  DISCARDING      ROOT<br>   0    GigabitEthernet0/0/2        DESI  DISCARDING      ROOT</p>
+<pre><code class="hljs dts">
+<span class="hljs-meta">## 9.8 STP BPDU 防护</span>
+
+作用：保护根桥（全局），开启 BPDU 保护后，如果从<span class="hljs-params">&lt;font color=red&gt;</span>边缘端口<span class="hljs-params">&lt;/font&gt;</span>收到 STP 报文，交换机会自动将该接口 shutdown，从而确保根桥不会被抢占，同时确保不会出现环路。
+
+![](<span class="hljs-meta-keyword">/img/</span>Huawei_route/Huawei_route_base_54.jpg)</code></pre>
+<p>#首先在 SW1 上的 GE 0/0/1 口配置边缘接口<br>[SW1-GigabitEthernet0/0/1]stp edged-port enable<br>在交换机 SW1 上配置 STP BPUD 防护<br>[SW1]stp bpdu-protection<br>#30S 后自动 up ，自动恢复机制<br>[SW1]error-down auto-recovery cause bpdu-protection interval 30</p>
+<pre><code class="hljs clean">
+## <span class="hljs-number">9.9</span> RSTP
+
+Rapaid STP  快速的生成树协议，STP 升级版
+设置:</code></pre>
+<p>[SW2]stp mode rstp    #将 STP 模式切换为 RSTP</p>
+<pre><code class="hljs http">
+
+# 十、IPV6
+
+&gt;Internal protocol version 6
+
+ipv4 32bit 地址个数为 2^32
+ipv6 128bit 地址个数为 2^128
+
+ipv6 实例：
+**2001:0DB8:0000:0000:0000:0000:0346:8D58**
+ipv6 由8个字段组成，每个字段占16个 bit
+上面地址简写：2001:DB8:0:0:0:0:346:8D58 ---&gt; 2001:DB8::346:8D58
+
+## 10.1 特殊 ipv6 地址
+
+1. ::1 本地环回地址
+2. :: 相当于 ipv4 0.0.0.0
+3. FF 开头 组播 v6 地址 例如：FF::5 类似于224.0.0.5
+
+
+## 10.2 ipv6 静态路由配置
+
+![](/img/Huawei_route/Huawei_route_base_56.jpg)
+</code></pre>
+<p>[R1]ipv6      #全局使能 ipv6 功能<br>[R1-GigabitEthernet0/0/1]ipv6 enable<br>[R1-GigabitEthernet0/0/1]ipv6 address 12::1 ?<br>  INTEGER&lt;1-128&gt;  IPv6 prefix length &lt;1-128&gt;<br>  link-local      Use link-local address<br>[R1-GigabitEthernet0/0/1]ipv6 address 12::1 64  #设置 ipv6 地址和前缀长度64<br>#查看路由器接口信息<br>[R1]dis ipv6 int brief<br>*down: administratively down<br>(l): loopback<br>(s): spoofing<br>Interface                    Physical              Protocol<br>GigabitEthernet0/0/0         up                    up<br>[IPv6 Address] 2001::1<br>GigabitEthernet0/0/1         up                    up<br>[IPv6 Address] 12::1<br>#查看路由表<br>[R1]dis ipv6 routing-table<br>#配置静态路由<br>[R1]ipv6 route-static 2002:: 64 12::2<br>#在 R2 配置缺省路由<br>[R2]ipv6 route-static :: 0 12::1<br>#查看 R1 路由表<br>[R1]dis ipv6 routing-table<br>Routing Table : Public<br>    Destinations : 7    Routes : 7</p>
+<p> Destination  : ::1                             PrefixLength : 128<br> NextHop      : ::1                             Preference   : 0<br> Cost         : 0                               Protocol     : Direct<br> RelayNextHop : ::                              TunnelID     : 0x0<br> Interface    : InLoopBack0                     Flags        : D</p>
+<p> Destination  : 2002::                          PrefixLength : 64<br> NextHop      : 12::2                           Preference   : 60<br> Cost         : 0                               Protocol     : Static<br> RelayNextHop : ::                              TunnelID     : 0x0<br> Interface    : GigabitEthernet0/0/1            Flags        : RD</p>
+<pre><code>ipv6 报文：
+![](/img/Huawei_route/Huawei_route_base_54.jpg)
+
+
+## 10.3 IPV6 地址分类
+
+#### 单播
+#### 组播
+#### 任意播（取消广播概念）
+
+ipv6 无状态自动配置：PC 会通过发送特定类型的 icmp 报文请求路由器接口前缀，结合自己的 MAC 地址自动生成全球独一无二的 ipv6 地址
+
+ipv6 中以 FE80:: 开头的地址都属于本地链路地址（Link-local），只有在本地链路有效。启用了 ipv6 功能的接口都会自动生成相应的 Link-local 地址。
+
+
+
+
+
+
+
+
+
+
+
+</code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/HCNA/">HCNA</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/18/linux_maintenance/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux 运维初级学习笔记</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/24/tcp_udp/">
+                        <span class="hidden-mobile">TCP UDP 的区别</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "华为 HCNA 学习笔记&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

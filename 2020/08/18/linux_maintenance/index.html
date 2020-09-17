@@ -1,0 +1,969 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Linux 运维初级学习笔记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/md/wallhaven-mdzdok.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-08-18 17:03" pubdate>
+        August 18, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      43
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux 运维初级学习笔记</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="了解-Linux"><a href="#了解-Linux" class="headerlink" title="了解 Linux"></a>了解 Linux</h1><h2 id="Linux-的基本原则"><a href="#Linux-的基本原则" class="headerlink" title="Linux 的基本原则"></a>Linux 的基本原则</h2><ol>
+<li>由目的单一的小程序组成；组合小程序完成复杂任务</li>
+<li>一切皆文件</li>
+<li>尽量避免捕获用户接口</li>
+<li>配置文件保存为纯文本格式</li>
+</ol>
+<h2 id="GUI"><a href="#GUI" class="headerlink" title="GUI"></a>GUI</h2><pre><code class="hljs bash">Graphic User Interface
+Windows
+X-Window
+    Gnome: C
+    RDE: C++
+    XFace</code></pre>
+
+<h2 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h2><pre><code class="hljs bash">Command-line Interface
+sh
+bash
+csh
+zsh
+ksh
+ksh
+tcsh
+命令提示符，prompt，bash(shell)
+    <span class="hljs-comment">#: root</span>
+    $: 普通用户
+命令格式
+    命令   选项     参数
+            选项：
+                短选项：-
+                    多个选项可以组合：ls -a -l = ls -al
+                长选项：--
+
+            参数：命令作用的对象
+
+```  
+
+<span class="hljs-comment">## su(SwitchUser，切换用户)</span>
+
+```NAME
+       su - run a <span class="hljs-built_in">command</span> with substitute user and group ID
+
+[root@localhost ~]<span class="hljs-comment"># su [-l] 用户名</span>
+</code></pre>
+
+<h2 id="API-Application-program-Interface"><a href="#API-Application-program-Interface" class="headerlink" title="API(Application program Interface)"></a>API(Application program Interface)</h2><p> .so 文件：Shared Object 动态链接库，库文件，应用程序所需要的</p>
+<h1 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h1><h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><pre><code class="hljs bash">ls
+    -l：长格式
+        文件类型：
+            -：普通文件（file）
+            d：目录文件（directory）
+            b：块设备文件（block）
+            c：字符设备文件（character）
+            l：符号链接文件（symbolic link file）
+            p：命令管道文件（pipe）
+            s：套接字文件（socket）
+[root@localhost ~]<span class="hljs-comment"># ls -l /dev</span>
+crw-------. 1 root root     10, 235 7月  20 18:39 autofs
+drwxr-xr-x. 2 root root         200 8月   9 16:36 block
+lrwrwxxrwx. 1 root root           3 7月  20 18:39 cdrom -&gt; sr0
+brw-rw----. 1 root cdrom    11,   0 7月  20 18:39 sr0
+srw-rw-rw-. 1 root root           0 7月  20 18:39 <span class="hljs-built_in">log</span>
+
+    -a：显示以 . 开头的隐藏文件
+    -i：index node，inode
+        [root@localhost ~]<span class="hljs-comment"># ls -li</span>
+        34051578 <span class="hljs-built_in">test</span>
+    -R：递归（recursive）显示
+</code></pre>
+
+<h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><pre><code class="hljs bash"><span class="hljs-built_in">cd</span>：change directory
+    <span class="hljs-built_in">cd</span> ~USERNAME：进入指定用户的 home 目录
+    <span class="hljs-built_in">cd</span> -：在当前目录和前一次所在目录之间来回切换</code></pre>
+
+<h2 id="type"><a href="#type" class="headerlink" title="type"></a>type</h2><p>显示指定命令属于哪种类型<br>内置命令（shell 内置）：内部的，内建<br>外部命令：在文件系统的某个路径下有一个命令名称相应的可执行文件</p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># type cd</span>
+<span class="hljs-built_in">cd</span> 是 shell 内嵌        <span class="hljs-comment">#内置命令</span>
+[root@localhost ~]<span class="hljs-comment"># which ls</span>
+<span class="hljs-built_in">alias</span> ls=<span class="hljs-string">&#x27;ls --color=auto&#x27;</span>  <span class="hljs-comment">#外部命令</span>
+        /usr/bin/ls</code></pre>
+
+<h2 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h2><pre><code class="hljs bash">显示环境变量
+[root@localhost ~]<span class="hljs-comment"># printevn</span>
+PATH=/usr/<span class="hljs-built_in">local</span>/sbin:/usr/<span class="hljs-built_in">local</span>/bin:/usr/sbin:/usr/bin:/root/bin</code></pre>
+
+<h2 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h2><ul>
+<li>&lt;&gt;：必选项</li>
+<li>[]：可选项</li>
+<li>…：可多次出现</li>
+<li>|：多选一</li>
+<li>{}：分组</li>
+</ul>
+<h1 id="文件系统操作"><a href="#文件系统操作" class="headerlink" title="文件系统操作"></a>文件系统操作</h1><h2 id="目录详解"><a href="#目录详解" class="headerlink" title="目录详解"></a>目录详解</h2><p>rootfs：根文件系统</p>
+<pre><code class="hljs bash">/boot：系统启动相关文件，如内核、initrd 以及 grub(bootloader)
+/dev：设备文件
+        块设备：随机访问，将数据分为块，称为数据块，如硬盘
+        字符设备：线性访问，按字符为单位
+        设备号：主设备号（major）和次设备号（minor）
+/etc：配置文件
+/lib64：库文件
+    静态库
+    动态库：.so(shared object)
+    /modules：内核模块文件
+/opt：可选目录
+/proc：伪文件系统，内核映射文件
+/sys：伪文件系统，跟硬件设备相关的属性映射文件
+/tmp：临时文件
+/var：可变化文件，如存放日志文件
+/bin：可执行文件，用户命令
+/sbin：管理命令
+/usr：Unix Software Resource(shared,read-only),操作系统软件资源所放置的目录,所有系统默认的软件都会放置到/usr</code></pre>
+
+<h2 id="管理"><a href="#管理" class="headerlink" title="管理"></a>管理</h2><h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><ul>
+<li>touch：change file timestamps<br>  -a：修改访问时间<br>  -m：修改更改时间<br>  -t：修改到指定时间</li>
+<li>stat：显示文件或文件系统状态</li>
+</ul>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># stat test</span>
+  File: ‘<span class="hljs-built_in">test</span>’
+  Size: 4             Blocks: 8          IO Block: 4096   regular file
+Device: fd00h/64768d  Inode: 34051578    Links: 1
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Context: unconfined_u:object_r:admin_home_t:s0
+Access: 2020-08-18 23:29:02.280000000 +0800
+Modify: 2020-08-18 23:26:58.260000000 +0800
+Change: 2020-08-18 23:29:02.280000000 +0800
+ Birth: -</code></pre>
+
+<ul>
+<li>cp</li>
+</ul>
+<h3 id="目录管理"><a href="#目录管理" class="headerlink" title="目录管理"></a>目录管理</h3><ul>
+<li>ls</li>
+<li>cd</li>
+<li>pwd</li>
+<li>mkdir：创建空目录<br>  -p：依次创建层级目录，如 mkdir -p /1/2/3<br>  -v：显示详情</li>
+</ul>
+<pre><code class="hljs bash"><span class="hljs-comment">#例1：在目录下创建多个目录，如在空目录 /mnt/ 下创建 /mnt/test/x/m,/mnt/test/y</span>
+[root@localhost ~]<span class="hljs-comment"># mkdir -pv /mnt/test/&#123;x/m,y&#125;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test&quot;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test/x&quot;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test/x/m&quot;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test/y&quot;</span>
+<span class="hljs-comment">#例2：在目录下创建 a_b,a_c,d_b,d_C 文件</span>
+[root@localhost ~]<span class="hljs-comment"># mkdir -pv /mnt/test2/&#123;a,d&#125;_&#123;b,c&#125;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test2&quot;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test2/a_b&quot;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test2/a_c&quot;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test2/d_b&quot;</span>
+mkdir: 已创建目录 <span class="hljs-string">&quot;/mnt/test2/d_c&quot;</span></code></pre>
+
+<ul>
+<li>rmdir：删除空目录</li>
+</ul>
+<h3 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h3><pre><code class="hljs bash">cut：
+    -d：指定字段分隔符，默认是空格
+    -f：指定要显示的字段
+        -f 1，3 显示字段1和3的字符
+        -f 1-3 显示字段1到3的字符
+</code></pre>
+
+<h3 id="命令历史"><a href="#命令历史" class="headerlink" title="命令历史"></a>命令历史</h3><pre><code class="hljs bash"><span class="hljs-built_in">history</span>：查看历史命令
+    -c：清空命令历史
+    -d OFFSET [n]：删除指定位置的命令
+    -w：保存命令历史至历史文件中
+!n：执行命令历史的第N条命令</code></pre>
+
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>根据模式，搜索文本，并将符合模式的文本行显示出来<br>Pattern：文本字符和正则表达式的元字符组合而成的匹配条件</p>
+<pre><code class="hljs bash">grep [OPTIONS] PATTERN [FILE...]
+        -i：忽略大小字母
+        -v：显示没有被匹配到的行
+        -o：只显示被模式匹配到的字符串
+        -E：使用扩展正则表达式
+        -A <span class="hljs-comment">#：显示匹配到的后#行</span>
+        -B <span class="hljs-comment">#：显示匹配到的前#行</span>
+        -C <span class="hljs-comment">#：显示匹配到的上下#行</span></code></pre>
+
+<h3 id="正则表达式（REGular-EXPression-REGEXP）"><a href="#正则表达式（REGular-EXPression-REGEXP）" class="headerlink" title="正则表达式（REGular EXPression, REGEXP）"></a>正则表达式（REGular EXPression, REGEXP）</h3><p><strong>元字符：</strong></p>
+<p>.：匹配其前面的字符任意次</p>
+<p>[]：匹配指定范围内的任意单字符</p>
+<p>[^]：匹配指定范围外的任意单个字符</p>
+<table>
+<thead>
+<tr>
+<th align="left">字符簇</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">[[:alpha:]]</td>
+<td align="left">任何字母</td>
+</tr>
+<tr>
+<td align="left">[[:digit:]]</td>
+<td align="left">任何数字</td>
+</tr>
+<tr>
+<td align="left">[[:alnum:]]</td>
+<td align="left">任何字母和数字</td>
+</tr>
+<tr>
+<td align="left">[[:space:]]</td>
+<td align="left">任何空白字符</td>
+</tr>
+<tr>
+<td align="left">[[:upper:]]</td>
+<td align="left">任何大写字母</td>
+</tr>
+<tr>
+<td align="left">[[:lower:]]</td>
+<td align="left">任何小写字母</td>
+</tr>
+<tr>
+<td align="left">[[:punct:]]</td>
+<td align="left">任何标点符号</td>
+</tr>
+<tr>
+<td align="left">[[:xdigit:]]</td>
+<td align="left">任何16进制的数字，相当于[0-9a-fA-F]</td>
+</tr>
+</tbody></table>
+<p><strong>匹配次数：</strong></p>
+<pre><code class="hljs bash">*：匹配其前面的字符任意次
+
+\?：匹配其前面的的字符1次或0次
+
+\&#123;m,n\&#125;：匹配其前面的字符至少m次，至多n次</code></pre>
+
+<p><strong>位置锚定：</strong></p>
+<pre><code class="hljs bash">^：锚定行首，此字符后面的任意内容必须出现在行首
+[root@localhost learing]<span class="hljs-comment"># cat test_grep_fenzu.txt </span>
+ 1space
+  2space
+   3space
+<span class="hljs-comment">#显示行首至少有一个空白字符</span>
+[root@localhost learing]<span class="hljs-comment"># grep -E &#x27;^[[:space:]]+&#x27; test_grep_fenzu.txt </span>
+ 1space
+  2space
+   3space
+
+$：锚定行尾，此字符后面的任意内容必须出现在行尾
+
+^$：空白行
+
+\&lt;或\b：锚定词首，其后面的任意字符必须作为单次首部出现
+
+\&gt;或\b：锚定词尾，其前面的任意字符必须作为单次尾部出现
+<span class="hljs-comment">#使用 \&lt;()\&gt; 找出1-255的数字</span>
+[root@localhost learing]<span class="hljs-comment"># ifconfig | grep -E &#x27;\&lt;([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\&gt;&#x27;</span>
+        inet 192.168.2.22  netmask 255.255.255.0  broadcast 192.168.2.255
+        inet6 fd2a:2d84:d032:0:650f:b141:8e42:b014  prefixlen 64  scopeid 0x0&lt;global&gt;
+        inet6 fe80::3416:22f7:9cb1:88ba  prefixlen 64  scopeid 0x20&lt;link&gt;
+        inet6 fd2a:2d84:d032::778  prefixlen 128  scopeid 0x0&lt;global&gt;
+        RX packets 976525  bytes 271923354 (259.3 MiB)
+        TX packets 884321  bytes 110229028 (105.1 MiB)
+
+<span class="hljs-comment">#查找 ip 地址</span>
+[root@localhost learing]<span class="hljs-comment"># ifconfig | grep -E &#x27;(\&lt;([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\&gt;\.)&#123;3&#125;\&lt;([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\&gt;&#x27;</span>
+        inet 192.168.2.22  netmask 255.255.255.0  broadcast 192.168.2.255
+        inet 127.0.0.1  netmask 255.0.0.0
+</code></pre>
+
+<p><strong>分组：</strong></p>
+<pre><code class="hljs bash">\(\)
+    \(ab\)：ab为一整体出现
+[root@localhost learing]<span class="hljs-comment"># cat test_grep_fenzu.txt </span>
+cat
+Cat
+china
+c
+C
+China
+ 1space
+  2space
+   3space
+
+<span class="hljs-comment">#not use ()</span>
+[root@localhost learing]<span class="hljs-comment"># grep -E &#x27;C|cat&#x27; test_grep_fenzu.txt </span>
+cat
+Cat
+C
+China
+
+<span class="hljs-comment">#use ()</span>
+[root@localhost learing]<span class="hljs-comment"># grep -E &#x27;(C|c)at&#x27; test_grep_fenzu.txt </span>
+cat
+Cat
+</code></pre>
+
+
+<h1 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h1><h2 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h2><p><strong>变量算法：</strong></p>
+<p>$[$A-$B]：变量 A 减去 变量 B</p>
+<h2 id="引用变量"><a href="#引用变量" class="headerlink" title="引用变量"></a>引用变量</h2><p>${VAR_NAME}，一般花括号可省略，某些情况无法省略</p>
+<pre><code class="hljs bash"><span class="hljs-comment">#无法省略</span>
+[root@localhost learing]<span class="hljs-comment"># ANIMAL=pig</span>
+[root@localhost learing]<span class="hljs-comment"># echo &quot;there are some $ANIMALs.&quot;</span>
+there are some .
+[root@localhost learing]<span class="hljs-comment"># echo &quot;there are some $&#123;ANIMAL&#125;s.&quot;</span>
+there are some pigs.</code></pre>
+
+<h2 id="程序执行返回"><a href="#程序执行返回" class="headerlink" title="程序执行返回"></a>程序执行返回</h2><p>程序执行返回状态码（0-255）：</p>
+<ul>
+<li>0：正确执行</li>
+<li>1-255：错误执行，1、2、127 为系统预留</li>
+</ul>
+<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><h3 id="条件测试类型"><a href="#条件测试类型" class="headerlink" title="条件测试类型"></a>条件测试类型</h3><ul>
+<li>整数测试</li>
+<li>字符测试</li>
+<li>文件测试</li>
+</ul>
+<h3 id="条件测试表达式"><a href="#条件测试表达式" class="headerlink" title="条件测试表达式"></a>条件测试表达式</h3><ul>
+<li>[ expression ]</li>
+<li>[[ expression]]</li>
+</ul>
+<h3 id="命令逻辑关系"><a href="#命令逻辑关系" class="headerlink" title="命令逻辑关系"></a>命令逻辑关系</h3><p><strong>逻辑与：&amp;&amp;</strong></p>
+<ul>
+<li>第一个条件为假时，第二个条件就不用再判断，最总结果为假</li>
+<li>第一个条件为真是，还需要判断第二个条件</li>
+</ul>
+<p>例子：</p>
+<pre><code class="hljs bahs">#判断用户 user1 是否存在，不存在就增加 user1 用户
+! id user1 &amp;&amp; useradd user1</code></pre>
+
+<p><strong>逻辑或：||</strong><br>有个真，就是真<br>例子：</p>
+<pre><code class="hljs bash"><span class="hljs-comment">#判断用户 user1 存在，就显示用户已存在，否则，就添加用户</span>
+id user1 &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;user1 exists.&#x27;</span> || useradd user1
+<span class="hljs-comment">#判断用户 user1 不存在，就添加用户，否则，显示已存在</span>
+! id user1 &amp;&amp; useradd user1 || <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;user1 exists.&#x27;</span></code></pre>
+
+<h3 id="shell-算术运算"><a href="#shell-算术运算" class="headerlink" title="shell 算术运算"></a>shell 算术运算</h3><ol>
+<li>let 算数表达式<ul>
+<li>let C=$A+$B</li>
+</ul>
+</li>
+<li>$[算术表达式]<ul>
+<li>$[$A-$B]</li>
+</ul>
+</li>
+<li>$((算术表达式))<ul>
+<li>$((算术表达式))</li>
+</ul>
+</li>
+</ol>
+<h3 id="exit"><a href="#exit" class="headerlink" title="exit"></a>exit</h3><p>退出脚本</p>
+<h3 id="文件测试"><a href="#文件测试" class="headerlink" title="文件测试"></a>文件测试</h3><ul>
+<li>-e File：测试文件是否存在</li>
+<li>-f File：测试文件是否为普通文件</li>
+<li>-d File：测试指定目录是否为目录</li>
+<li>-r File：测试当前用户对指定文件是否有可读权限</li>
+<li>-w</li>
+<li>-x</li>
+</ul>
+<h2 id="sed-Stream-EDitor"><a href="#sed-Stream-EDitor" class="headerlink" title="sed (Stream EDitor)"></a>sed (Stream EDitor)</h2><p><font color=red>默认不编辑原文件，仅对模式空间的数据做处理</font></p>
+<pre><code class="hljs bash">sed [options] <span class="hljs-string">&#x27;AddressCommand&#x27;</span> file1 [file2 ...]
+    -n：静默模式，不再默认显示模式空间的内容
+    -i：直接修改原文件
+    -e script：可以同时执行多个脚本
+    -f filename：读取 filename 里的脚本处理 sed /path/to/sed_script 作用file
+    -r：表示使用扩展正则表达式</code></pre>
+
+<p><strong>Address</strong></p>
+<ol>
+<li><p>StartLine,EndLine: </p>
+<ul>
+<li>1,100 ：1到100行</li>
+<li>$：最后一行</li>
+</ul>
+</li>
+<li><p>/模式定义/：/^root/</p>
+</li>
+<li><p>/pattern1/,/pattern2/：第一次被 pattern1 匹配到的行，至第一次被 pattern2 匹配到的行结束，中中间的行</p>
+</li>
+<li><p>LineNumber：指定的行数</p>
+</li>
+<li><p>StartLine，+N：从 StartLine 开始，向后的 N行</p>
+</li>
+</ol>
+<p><strong>Command</strong></p>
+<ol>
+<li><p>d：删除符合条件的行</p>
+<ul>
+<li>sed ‘1,3d’ /etc/fstab ：删除 fstab 的第 1 到 第 3 行</li>
+<li>sed ‘/oot/d’ /etc/fstab ：删除包含 oot 的行</li>
+</ul>
+</li>
+<li><p>p：显示符合条件的行</p>
+<ul>
+<li>sed -n ‘/^//a#sed test’ /etc/fstab <pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># sed -n &#x27;/^\//p&#x27; /etc/fstab </span>
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0</code></pre>
+</li>
+</ul>
+</li>
+<li><p>a \string：在指定的行后面追加新行，内容为 string</p>
+<ul>
+<li>sed ‘/^//a#sed test’ /etc/fstab ：在 / 开头的行下行添加一行内容为 #sed test 的行</li>
+<li>\n 可以换行<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># sed &#x27;/^\//a\#sed test&#x27; /etc/fstab </span>
+
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># /etc/fstab</span>
+<span class="hljs-comment"># Created by anaconda on Sat Jun  6 20:09:07 2020</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Accessible filesystems, by reference, are maintained under &#x27;/dev/disk&#x27;</span>
+<span class="hljs-comment"># See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info</span>
+<span class="hljs-comment">#</span>
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+<span class="hljs-comment">#sed test</span>
+UUID=39b6f37f-531f-41c2-a498-dbe216fcfc4b /boot                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0
+<span class="hljs-comment">#sed test</span></code></pre>
+</li>
+</ul>
+</li>
+<li><p>i \string：在指定的行前面添加新行，内容为 string</p>
+</li>
+<li><p>r filename：将指定文件的内容添加至符合条件的行处</p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># cat /etc/issue</span>
+\S
+Kernel \r on an \m
+
+[root@localhost ~]<span class="hljs-comment"># sed &#x27;1r /etc/issue&#x27; /etc/fstab </span>
+
+\S
+Kernel \r on an \m
+
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># /etc/fstab</span>
+<span class="hljs-comment"># Created by anaconda on Sat Jun  6 20:09:07 2020</span>
+<span class="hljs-comment">#</span>
+<span class="hljs-comment"># Accessible filesystems, by reference, are maintained under &#x27;/dev/disk&#x27;</span>
+<span class="hljs-comment"># See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info</span>
+<span class="hljs-comment">#</span>
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+UUID=39b6f37f-531f-41c2-a498-dbe216fcfc4b /boot                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0</code></pre>
+</li>
+<li><p>w filename：将指定范围内的内容另存至指定的文件中</p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># sed -n &#x27;/^\//w /root/mount.txt&#x27; /etc/fstab </span>
+[root@localhost ~]<span class="hljs-comment"># cat /root/mount.txt </span>
+/dev/mapper/centos-root /                       xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0</code></pre>
+</li>
+<li><p>s/pattern/string/[修饰符]：查找并替换，替换每行中第一次被匹配到的字符串</p>
+</li>
+</ol>
+<ul>
+<li>修饰符<ul>
+<li>g ：全局替换</li>
+<li>i：忽略大小写</li>
+</ul>
+</li>
+<li>s///,s###,s@@@：可使用其他分隔符</li>
+</ul>
+<pre><code class="hljs bash"><span class="hljs-comment">#查找 root 替换成 ROOT，查找能够用正则表达式</span>
+[root@localhost ~]<span class="hljs-comment"># sed &#x27;s/root/ROOT/&#x27; /etc/fstab </span>
+/dev/mapper/centos-ROOT /                       xfs     defaults        0 0
+UUID=39b6f37f-531f-41c2-a498-dbe216fcfc4b /boot                   xfs     defaults        0 0
+/dev/mapper/centos-swap swap                    swap    defaults        0 0</code></pre>
+
+<ol start="8">
+<li>更改字符串</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-comment">#将字符带有 l..k 后面添加 r</span>
+[root@localhost learing]<span class="hljs-comment"># cat sed.txt </span>
+like
+love
+<span class="hljs-comment">#第一种，用 &amp;</span>
+[root@localhost learing]<span class="hljs-comment"># sed &#x27;s/l..e/&amp;r/&#x27; sed.txt </span>
+liker
+lover
+<span class="hljs-comment">#第二种，用分组</span>
+[root@localhost learing]<span class="hljs-comment"># sed &#x27;s/\(l..e\)/\1r/&#x27; sed.txt </span>
+liker
+lover</code></pre>
+
+<ol start="9">
+<li>删除每行开头的空格</li>
+</ol>
+<pre><code class="hljs bash"><span class="hljs-comment">#可删除多个空格</span>
+[root@localhost learing]<span class="hljs-comment"># history | sed &#x27;s/^[[:space:]]*//g&#x27;</span>
+1022  <span class="hljs-built_in">history</span> | sed <span class="hljs-string">&#x27;s/ //&#x27;</span>
+1023  <span class="hljs-built_in">history</span> | sed <span class="hljs-string">&#x27;s/^ //&#x27;</span>
+1024  <span class="hljs-built_in">history</span> | sed <span class="hljs-string">&#x27;s/[[:space:]//&#x27;</span>
+1025  <span class="hljs-built_in">history</span> | sed <span class="hljs-string">&#x27;s/[[:space:]]//&#x27;</span>
+1026  <span class="hljs-built_in">history</span> | sed <span class="hljs-string">&#x27;s/^[[:space:]]+//&#x27;</span>
+1027  <span class="hljs-built_in">history</span> | sed <span class="hljs-string">&#x27;s/^[[:space:]]*//&#x27;</span>
+1028  <span class="hljs-built_in">history</span> | sed <span class="hljs-string">&#x27;s/^[[:space:]]+1//&#x27;</span>
+1029  <span class="hljs-built_in">history</span> | sed <span class="hljs-string">&#x27;s/^[[:space:]]*//&#x27;</span></code></pre>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/18/ip_trouble/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">IP 地址发生冲突导致网络故障，排查解决</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/07/26/Huawei_route_base/">
+                        <span class="hidden-mobile">华为 HCNA 学习笔记</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Linux 运维初级学习笔记&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

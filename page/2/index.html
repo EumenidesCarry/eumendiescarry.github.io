@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/13/kernel_modify/" target="_self">
+          <img src="https://th.wallhaven.cc/small/od/odqlol.jpg" srcset="/img/loading.gif" alt="Linux 简单内核优化">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/05/13/kernel_modify/">Linux 简单内核优化</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/05/13/kernel_modify/">
+          
+          
+            
+          
+          ulimitulimit 为 shell 内建指令，可用来控制shell执行程序的资源。
+[root@localhost ~]# ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-05-13 09:15" pubdate>
+              2020-05-13
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+              <a href="/tags/kernel/">kernel</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/04/07/vSphere_esxi_deploy/" target="_self">
+          <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1596917923997&di=618debf5d6fc18c50916aee5fd51670b&imgtype=0&src=http%3A%2F%2F2a.zol-img.com.cn%2Fproduct%2F105_500x2000%2F378%2FceIUwQIvzRtDY.png" srcset="/img/loading.gif" alt="规划和安装ESXI">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/04/07/vSphere_esxi_deploy/">规划和安装ESXI</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/04/07/vSphere_esxi_deploy/">
+          
+          
+            
+          
+          1. 规划 vSphere 部署1.1 服务器平台检查设备兼容性：存储控制器或者网络适配器
+可使用 VNware 网上支持搜索的兼容指南（Compatibility Guide）：www.vmware.com/resources/compatibility/
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-04-07 09:16" pubdate>
+              2020-04-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/VMware/">VMware</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/VMware/">VMware</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/03/26/linux_nmcli/" target="_self">
+          <img src="https://th.wallhaven.cc/small/0p/0pl2ej.jpg" srcset="/img/loading.gif" alt="Linux nmcli 使用及网络配置">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/03/26/linux_nmcli/">Linux nmcli 使用及网络配置</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/26/linux_nmcli/">
+          
+          
+            
+          
+          一、nmcli 命令和网络配置文件对应关系
+
+
+nmcli connection modify *
+ifcfg-* 文件
+
+
+
+ipv4.method manual
+BOOTPROTO=none
+
+
+ipv4.method auto
+BOOTPROTO=dhcp
+
+
+ipv4.addresses 192.168.1.1/24
+IPADDR=192.168.2.230,PREFIX=24
+
+
+ipv
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-26 10:42" pubdate>
+              2020-03-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/03/12/linux_lvm/" target="_self">
+          <img src="https://th.wallhaven.cc/small/4l/4l36rl.jpg" srcset="/img/loading.gif" alt="Linux LVM">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/03/12/linux_lvm/">Linux LVM</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/12/linux_lvm/">
+          
+          
+            
+          
+          一、LVM (Logical Volume Manager)LVM是逻辑盘卷管理（Logical Volume Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，LVM 是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分区管理的灵活性。
+二、LVM 特点LVM 将存储虚拟化，使用逻辑卷，不会受限于物理磁盘的大小。另外，和硬件相关的存储设置被其隐藏，能不用停止应用或卸载文件系统
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-12 14:32" pubdate>
+              2020-03-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/03/02/linux_change_ifname/" target="_self">
+          <img src="https://th.wallhaven.cc/small/5d/5dl5m1.jpg" srcset="/img/loading.gif" alt="CentOS 7 更改网卡名称">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/03/02/linux_change_ifname/">CentOS 7 更改网卡名称</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/03/02/linux_change_ifname/">
+          
+          
+            
+          
+          Redhat 7 官方文档介绍命名规则
+CentOS 7 默认网卡名大多为：ens，已经不是我们熟悉的 eth ，从centos7开始，网卡命名会根据固件，拓扑结构和位置信息来确定。
+
+一、修改步骤1.1 编辑网卡的配置文件[root@test ~]# vi /etc/sysconfig/network-scripts/ifcfg-ens18
+NAME=eth0           &lt;---
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-03-02 20:09" pubdate>
+              2020-03-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/02/18/kernel_sys_log_cat/" target="_self">
+          <img src="https://th.wallhaven.cc/small/od/odqlol.jpg" srcset="/img/loading.gif" alt="Linux 内核及系统日志分析">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/02/18/kernel_sys_log_cat/">Linux 内核及系统日志分析</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/02/18/kernel_sys_log_cat/">
+          
+          
+            
+          
+          由系统服务 rsyslogd 统一管理
+软件包：rsyslogd-x.x.x_0.x86_64
+主要程序：/sbin/rsyslogd
+配置文件：/etc/rsyslog.conf
+
+日志消息级别
+0 EMERG （紧急）：导致主机系统不可用的情况
+1 ALERT（警告）：必须马上采取措施解决的问题
+2 CRIT（严重）：比较严重的情况
+3 ERR（错误）：运行出现错误
+4 WARNING（提醒）
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-02-18 22:24" pubdate>
+              2020-02-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+              <a href="/tags/kernel/">kernel</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/02/11/linux_fs/" target="_self">
+          <img src="https://th.wallhaven.cc/small/2e/2e3z7x.jpg" srcset="/img/loading.gif" alt="Linux 文件系统的选择">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/02/11/linux_fs/">Linux 文件系统的选择</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/02/11/linux_fs/">
+          
+          
+            
+          
+          文件系统类型
+ext2：linux 下标准文件系统，无日志记录（inode）功能。
+ext3：在 ext2 基础上增加了日志记录功能（inode），仅支持32000个子目录。
+exit4：ext4 的后续版本，linux 2.6.28 内核开始支持。无限子目录支持，快速 fsck。
+xfs：高性能文件系统，linux3.10 内核开始默认支持。
+
+
+查看 linux 内核版本[root@blog 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-02-11 18:07" pubdate>
+              2020-02-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/11/01/linux_change_pw/" target="_self">
+          <img src="https://th.wallhaven.cc/small/83/83r3k2.jpg" srcset="/img/loading.gif" alt="Redhat/CentOS 7 单用户修改 root 密码">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/11/01/linux_change_pw/">Redhat/CentOS 7 单用户修改 root 密码</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/11/01/linux_change_pw/">
+          
+          
+            
+          
+          修改步骤
+重启系统，在 Grub Boot Loader 倒计时读秒结束前，按下任意键
+
+选择第一项，并按下 e 键，编辑
+
+
+
+
+进入编辑界面后，找到 linux16 开头的行，通过 Ctrl + e 可以快速定位到行末，空格键后输入 rd.break
+
+
+
+编辑好后，按下 Ctrl + x，引导系统，系统将启动到临时内核 shell 界面，输入以下指令即可修改密码
+
+
+注意：修改密码后，首次重
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-01 21:28" pubdate>
+              2019-11-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/10/24/linux_install_tips_and_fault_detect/" target="_self">
+          <img src="https://th.wallhaven.cc/small/kw/kweqx6.jpg" srcset="/img/loading.gif" alt="Linux 运维故障排查与系统调优技巧">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/10/24/linux_install_tips_and_fault_detect/">Linux 运维故障排查与系统调优技巧</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/10/24/linux_install_tips_and_fault_detect/">
+          
+          
+            
+          
+          更改主机名（hostname）在更改主机名时将主机名添加至 /etc/hosts下，做个映射
+127.0.0.1        hostname 
+这样能够避免后续安装应用所出现的问题
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-10-24 17:47" pubdate>
+              2019-10-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/09/17/linux_performance_analysis/" target="_self">
+          <img src="https://th.wallhaven.cc/small/k9/k9y23m.jpg" srcset="/img/loading.gif" alt="Linux 系统性能分析标准">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/09/17/linux_performance_analysis/">Linux 系统性能分析标准</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/09/17/linux_performance_analysis/">
+          
+          
+            
+          
+          
+
+
+影响性能因素
+评判标准
+评判标准
+评判标准
+
+
+
+
+好
+坏
+糟糕
+
+
+CPU
+user% + sys% &lt; 70%
+user% + sys% = 85%
+user% + sys% &gt;= 90%
+
+
+内存
+Swap In(si) &amp; Out(so)=0
+Per CPU with 10 page/s
+more Swap In &amp;Swap Out
+
+
+磁盘
+iowait
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-09-17 09:26" pubdate>
+              2019-09-17
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "An elegant Material-Design theme for Hexo&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

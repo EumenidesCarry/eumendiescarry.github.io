@@ -174,19 +174,26 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/09/02/linux_super_inode_block/" target="_self">
+          <img src="https://th.wallhaven.cc/small/0w/0wv2p6.jpg" srcset="/img/loading.gif" alt="Linux 超级块和 i-node">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
-        <a href="/2020/09/17/hello-world/">Hello World</a>
+        <a href="/2020/09/02/linux_super_inode_block/">Linux 超级块和 i-node</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2020/09/17/hello-world/">
+        <a href="/2020/09/02/linux_super_inode_block/">
           
           
             
           
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
+          一、从物理磁盘到文件系统文件系统用来存储文件内容，文件属性和目录。且在 Linux 里万物为文件
+Linux 文件系统中，是以块为单位存储信息，把硬盘分为三个部分：超级块（Super block），i-节点表（inode table），数据块（data block）。
+要实现文件系统组件，首先需要了解 SimpleFS 磁盘布局。如前所述，此项目假定每个磁盘块的大小为4KB。磁盘的第一个块是描述文
         </a>
       </p>
 
@@ -194,18 +201,589 @@ Quick
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2020-09-17 23:34" pubdate>
-              2020-09-17
+            <time datetime="2020-09-02 10:33" pubdate>
+              2020-09-02
             </time>
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/08/27/zabbix_install/" target="_self">
+          <img src="https://th.wallhaven.cc/small/4d/4dveeg.jpg" srcset="/img/loading.gif" alt="在 CentOS 7 下 搭建 Zabbix 5.0 LTS 日志">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/27/zabbix_install/">在 CentOS 7 下 搭建 Zabbix 5.0 LTS 日志</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/27/zabbix_install/">
+          
+          
+            
+          
+          YUM 安装1.关闭防火墙和 selinux ，重启[root@localhost ~]# sed -i &#x27;s/SELINUX=enforcing/SELINUX=disabled/&#x27; /etc/selinux/config
+[root@localhost ~]# systemctl disable firewalld
+[root@localhost ~]# init 6
+
+2
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-27 10:45" pubdate>
+              2020-08-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Zabbix/">Zabbix</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Zabbix/">Zabbix</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/08/24/HDS_VSP_PIN_DATA/" target="_self">
+          <img src="https://th.wallhaven.cc/small/j8/j8xr7w.jpg" srcset="/img/loading.gif" alt="HDS VSP 双盘故障（存在 pin data）">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/24/HDS_VSP_PIN_DATA/">HDS VSP 双盘故障（存在 pin data）</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/24/HDS_VSP_PIN_DATA/">
+          
+          
+            
+          
+          问题描述接客户邮件，HDS VSP 有故障，到现场查看，有块硬盘故障，操作界面发现 Pinned Track 闪烁，点开如下图：
+
+未理睬，接下来正常换故障硬盘，故障硬盘为 HDD24-08：
+
+换完硬盘后一切顺利，故障盘也有回拷进度条：
+
+告警信息第二天，客户电话联系，HDS VSP 有故障，到现场查看为昨天更换的硬盘位，硬盘状态为 Blocked：
+
+首先以为是备件硬盘质量问题，相继更换不同批
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-24 20:04" pubdate>
+              2020-08-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BF%90%E7%BB%B4/">运维</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/08/18/ip_trouble/" target="_self">
+          <img src="https://th.wallhaven.cc/small/ey/eymzjk.jpg" srcset="/img/loading.gif" alt="IP 地址发生冲突导致网络故障，排查解决">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/18/ip_trouble/">IP 地址发生冲突导致网络故障，排查解决</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/18/ip_trouble/">
+          
+          
+            
+          
+          1、故障摘要一般 IP 冲突（大多为自动分配地址的 PC 入网，与现有固定 IP 发生冲突）造成设备无法上线或者不断上线和下线，网络推流死机等现象
+2、故障具体情况大多为自动分配地址的 PC 入网，与现有固定 IP 发生冲突
+3、故障分析及处理3.1将电脑接入局域网，在终端输入：arp -a ，查看局域网内所有的 IP，当看到有两个 IP 一样的时候，就可以确定冲突的 IP
+3.2当知道冲突 IP
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-18 23:38" pubdate>
+              2020-08-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/08/18/linux_maintenance/" target="_self">
+          <img src="https://th.wallhaven.cc/small/md/mdzdok.jpg" srcset="/img/loading.gif" alt="Linux 运维初级学习笔记">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/08/18/linux_maintenance/">Linux 运维初级学习笔记</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/08/18/linux_maintenance/">
+          
+          
+            
+          
+          了解 LinuxLinux 的基本原则
+由目的单一的小程序组成；组合小程序完成复杂任务
+一切皆文件
+尽量避免捕获用户接口
+配置文件保存为纯文本格式
+
+GUIGraphic User Interface
+Windows
+X-Window
+    Gnome: C
+    RDE: C++
+    XFace
+
+CLICommand-line Interface
+sh
+bash
+csh
+zsh
+ksh
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-08-18 17:03" pubdate>
+              2020-08-18
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/07/26/Huawei_route_base/" target="_self">
+          <img src="/img/Huawei_route_base.jpg" srcset="/img/loading.gif" alt="华为 HCNA 学习笔记">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/26/Huawei_route_base/">华为 HCNA 学习笔记</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/26/Huawei_route_base/">
+          
+          
+            
+          
+          华为认证网络工程师是由华为公司认证与采购部推出的独立认证体系，与之前的华为认证不同，简称HCNA。
+一、基本操作1.1 华为路由/交换视图切换&lt;Huawei&gt; 用户视图 —-&gt; [Huawei] 系统视图
+&lt;Huawei&gt;system-view 
+Enter system view, return user view with Ctrl+Z.
+[Huawei]
+
+1.
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-26 22:21" pubdate>
+              2020-07-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/HCNA/">HCNA</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/07/24/tcp_udp/" target="_self">
+          <img src="/img/tcp_udp_logo.jpg" srcset="/img/loading.gif" alt="TCP UDP 的区别">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/24/tcp_udp/">TCP UDP 的区别</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/24/tcp_udp/">
+          
+          
+            
+          
+          TCP可靠传输、面向连接：速度慢，但是准确性高 
+可靠传输客户端收到报文后，需要发送 TCP 的 ACK 确认包，并告诉服务端接下来要收到的报文的序号。同时该过程确定了两者传输的 “Windows 窗口”大小。
+面向连接如果某应用层协议的四层使用 TCP 端口，那么在正式的数据报文传输之前，需要先建立完连接后才可以传输数据。
+建立连接：三次握手—面向连接的高层协议在正式传输数据之前需要先建立连接，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-24 10:07" pubdate>
+              2020-07-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/07/22/ip_netmask/" target="_self">
+          <img src="/img/ipv4_logo.png" srcset="/img/loading.gif" alt="IP 子网划分">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/22/ip_netmask/">IP 子网划分</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/22/ip_netmask/">
+          
+          
+            
+          
+          IP地址（Internet Protocol）在互联网漫游的计算机的身份ID。唯一标识一台网络设备的身份ID。
+IP 地址为：网络位 + 主机位 -&gt; 子网掩码下详解
+IPV4地址：点分十进制 32bit
+192.168.1.1-&gt;11000000.10101000.00000001.00000001
+
+
+
+1
+1
+1
+1
+1
+1
+1
+1
+
+
+
+27=128
+26=64
+25=32
+2
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-22 12:21" pubdate>
+              2020-07-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/09/Linux_part/" target="_self">
+          <img src="https://th.wallhaven.cc/small/4y/4y1kkd.jpg" srcset="/img/loading.gif" alt="关于 Linux 分区的小事">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/06/09/Linux_part/">关于 Linux 分区的小事</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/06/09/Linux_part/">
+          
+          
+            
+          
+          分区
+分区是为了在逻辑上将某些柱面隔开形成边界。它是以柱面为单位来划分的，但是从CentOS 7开始，是按照扇区进行划分的。
+在磁盘数据量非常大的情况下，划分分区的好处是扫描块位图等更快速：不用再扫描整块磁盘的块位图，只需扫描对应分区的块位图。
+
+分区方法（MBR、GPT）MBRMBR格式的磁盘中，会维护磁盘第一个扇区——MBR扇区，在该扇区中第446字节之后的64字节是分区表，每个分区占用16字
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-09 15:32" pubdate>
+              2020-06-09
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/01/Linux_boot/" target="_self">
+          <img src="https://th.wallhaven.cc/small/xl/xldd5z.jpg" srcset="/img/loading.gif" alt="Linux 开机详细流程">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/06/01/Linux_boot/">Linux 开机详细流程</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/06/01/Linux_boot/">
+          
+          
+            
+          
+          TODO….
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-01 20:50" pubdate>
+              2020-06-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
         
       </div>
     </article>
   </div>
 
 
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+  
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
 
 
 

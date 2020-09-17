@@ -1,0 +1,765 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Linux LVM - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/4l/wallhaven-4l36rl.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-03-12 14:32" pubdate>
+        March 12, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      40
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux LVM</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="一、LVM-Logical-Volume-Manager"><a href="#一、LVM-Logical-Volume-Manager" class="headerlink" title="一、LVM (Logical Volume Manager)"></a>一、LVM (Logical Volume Manager)</h1><p>LVM是逻辑盘卷管理（Logical Volume Manager）的简称，它是Linux环境下对磁盘分区进行管理的一种机制，LVM 是建立在硬盘和分区之上的一个逻辑层，来提高磁盘分区管理的灵活性。</p>
+<h1 id="二、LVM-特点"><a href="#二、LVM-特点" class="headerlink" title="二、LVM 特点"></a>二、LVM 特点</h1><p>LVM 将存储<strong>虚拟化</strong>，使用逻辑卷，不会受限于物理磁盘的大小。另外，和硬件相关的存储设置被其隐藏，能不用停止应用或卸载文件系统来调整卷大小或数据迁移。这样能减少操作成本，LVM最大的特点就是可以对磁盘进行动态管理。因为逻辑卷的大小是可以动态调整的，而且不会丢失现有的数据。如果我们新增加了硬盘，其也不会改变现有上层的逻辑卷。作为一个动态磁盘管理机制，逻辑卷技术大大提高了磁盘管理的灵活性。</p>
+<h1 id="三、LVM-工作机制"><a href="#三、LVM-工作机制" class="headerlink" title="三、LVM 工作机制"></a>三、LVM 工作机制</h1><p>LVM就是通过将底层的物理硬盘抽象的封装起来，然后以逻辑卷的方式呈现给上层应用。在传统的磁盘管理机制中，我们的上层应用是直接访问文件系统，从而对底层的物理硬盘进行读取。而在LVM中，其通过对底层的硬盘进行封装，当我们对底层的物理硬盘进行操作时，其不再是针对于分区进行操作，而是通过一个叫做逻辑卷的东西来对其进行底层的磁盘管理操作。</p>
+<h2 id="3-1-逻辑卷管理"><a href="#3-1-逻辑卷管理" class="headerlink" title="3.1 逻辑卷管理"></a>3.1 逻辑卷管理</h2><h3 id="3-1-1-物理卷（PV，Physical-Volume）"><a href="#3-1-1-物理卷（PV，Physical-Volume）" class="headerlink" title="3.1.1 物理卷（PV，Physical Volume）"></a>3.1.1 物理卷（PV，Physical Volume）</h3><p>物理卷就是指磁盘，磁盘分区或从逻辑上和磁盘分区具有同样功能的设备(如RAID)，是LVM的基本存储逻辑块，但和基本的物理存储介质（如分区、磁盘等）比较，却包含有和LVM相关的管理参数。当前 LVM 允许你在每个物理卷上保存这个物理卷的0至2份元数据拷贝，默认为1，保存在设备的开始处。为2时，在设备结束处保存第二份备份。</p>
+<h3 id="3-1-1-卷组（VG，Volume-Group）"><a href="#3-1-1-卷组（VG，Volume-Group）" class="headerlink" title="3.1.1 卷组（VG，Volume Group）"></a>3.1.1 卷组（VG，Volume Group）</h3><p>LVM 卷组类似于非 LVM 系统中的物理硬盘，其由物理卷组成。能在卷组上创建一个或多LVM分区（逻辑卷）， LVM卷组由一个或多个物理卷组成。</p>
+<h3 id="3-1-1-逻辑卷（LV，Logical-Volume）"><a href="#3-1-1-逻辑卷（LV，Logical-Volume）" class="headerlink" title="3.1.1 逻辑卷（LV，Logical Volume）"></a>3.1.1 逻辑卷（LV，Logical Volume）</h3><p>LVM的逻辑卷类似于非 LVM 系统中的硬盘分区，在逻辑卷之上能建立文件系统(比如/home或/usr等)。</p>
+<p>关系图：</p>
+<p><img src="/img/linux_lvm/linux_lvm_1.jpg" srcset="/img/loading.gif"></p>
+<h1 id="四、创建-LVM"><a href="#四、创建-LVM" class="headerlink" title="四、创建 LVM"></a>四、创建 LVM</h1><h2 id="4-1-检查系统是否安装-LVM-管理工具"><a href="#4-1-检查系统是否安装-LVM-管理工具" class="headerlink" title="4.1 检查系统是否安装 LVM 管理工具"></a>4.1 检查系统是否安装 LVM 管理工具</h2><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># rpm -qa |grep lvm</span>
+lvm2-2.02.186-7.el7_8.2.x86_64
+lvm2-libs-2.02.186-7.el7_8.2.x86_64
+<span class="hljs-comment">#未安装可使用 yum 安装</span>
+[root@localhost ~]<span class="hljs-comment"># yum install lvm*</span></code></pre>
+
+<h2 id="4-2-创建物理卷-PV"><a href="#4-2-创建物理卷-PV" class="headerlink" title="4.2 创建物理卷 PV"></a>4.2 创建物理卷 PV</h2><p>基本 PV 命令：</p>
+<ul>
+<li>pvcreate 将物理分区新建为 PV</li>
+<li>pvs/pvscan 查看系统里有 PV 的磁盘</li>
+<li>pvdisplay 显示系统上 PV 的状态</li>
+<li>pvremove 删除 PV</li>
+</ul>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># lsblk </span>
+NAME            MAJ:MIN RM SIZE RO TYPE MOUNTPOINT
+sdb               8:16   0   2G  0 disk 
+sdc               8:32   0   2G  0 disk 
+sdd               8:48   0   2G  0 disk 
+sde               8:64   0   2G  0 disk 
+sdf               8:80   0   2G  0 disk</code></pre>
+
+<p>准备使用 <strong>sdb</strong>、<strong>sdc</strong> 来创建 LVM：</p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># pvcreate /dev/sdb /dev/sdc</span>
+  Physical volume <span class="hljs-string">&quot;/dev/sdb&quot;</span> successfully created.
+  Physical volume <span class="hljs-string">&quot;/dev/sdc&quot;</span> successfully created.
+<span class="hljs-comment">#查看创建的 pv</span>
+[root@localhost ~]<span class="hljs-comment"># pvs</span>
+  PV         VG     Fmt  Attr PSize   PFree
+  /dev/sdb          lvm2 ---    2.00g 2.00g
+  /dev/sdc          lvm2 ---    2.00g 2.00g</code></pre>
+
+<h2 id="4-3-创建卷组-VG"><a href="#4-3-创建卷组-VG" class="headerlink" title="4.3 创建卷组 VG"></a>4.3 创建卷组 VG</h2><p>基本 VG 命令：</p>
+<ul>
+<li>vgcreat [-s xM] vg_name /dev/sd.. 新建 vg，-s 后面接 pe 的大小（可选），单位是 M、G。可放多块 pv</li>
+<li>vgextend 扩展 vg，就是增加 pv</li>
+<li>vgs/vgscan 查看系统里有 vg 的磁盘</li>
+<li>vgdisplay 显示系统上的 vg 状态</li>
+<li>vgremove 删除 vg</li>
+<li>vgreduce 在 vg 里删除 pv</li>
+</ul>
+<p>创建名为 vg_test ：</p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># vgcreate -s 16M vg_test /dev/sdb</span>
+  Volume group <span class="hljs-string">&quot;vg_test&quot;</span> successfully created
+<span class="hljs-comment">#查看创建好的 vg</span>
+[root@localhost ~]<span class="hljs-comment"># vgs</span>
+  VG      <span class="hljs-comment">#PV #LV #SN Attr   VSize   VFree</span>
+  vg_test   1   0   0 wz--n-   1.98g 1.98g</code></pre>
+
+<h2 id="4-4-创建逻辑卷-lv"><a href="#4-4-创建逻辑卷-lv" class="headerlink" title="4.4 创建逻辑卷 lv"></a>4.4 创建逻辑卷 lv</h2><p>基本 LV 命令：</p>
+<ul>
+<li>lvcreate (-l pe num)/(-L size) -n lv_name vg_name 新建 lv，lv 大小两种可选：1. -l 指定 pe 的个数，创建vg时有指定 pe大小 2.-L直接指定要创建 lv 的容量，单位为 M、G</li>
+<li>lvextend 扩容</li>
+<li>lvs/lvscan 查看系统里有 lv 的磁盘</li>
+<li>lvdisplay 显示系统上 lv 的状态</li>
+<li>lvremove 删除 lv</li>
+<li>lvreduce 在 lv 里减少容量</li>
+</ul>
+<p>创建 lv_test</p>
+<pre><code class="hljs bash"><span class="hljs-comment">#查看 vg_test 状态</span>
+[root@localhost ~]<span class="hljs-comment"># vgdisplay </span>
+  --- Volume group ---
+  VG Name               vg_test
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  1
+  VG Access             <span class="hljs-built_in">read</span>/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                0
+  Open LV               0
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               1.98 GiB
+  PE Size               16.00 MiB
+  Total PE              127
+  Alloc PE / Size       0 / 0   
+  Free  PE / Size       127 / 1.98 GiB
+  VG UUID               Oge6D2-KPLh-RqNA-cRJ8-mc1y-0rkC-aoXmVt
+
+<span class="hljs-comment">#见 pe可用127,我们使用100个 pe</span>
+[root@localhost ~]<span class="hljs-comment"># lvcreate -l 100 -n lv_test vg_test</span>
+  Logical volume <span class="hljs-string">&quot;lv_test&quot;</span> created.
+[root@localhost ~]<span class="hljs-comment"># lvs</span>
+  LV      VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert                                                 
+  lv_test vg_test -wi-a-----   1.56g</code></pre>
+
+<p><strong>格式化刚创建的 lv_test</strong></p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># mkfs.ext4 /dev/vg_test/lv_test </span>
+mke2fs 1.42.9 (28-Dec-2013)
+Discarding device blocks: <span class="hljs-keyword">done</span>                            
+Filesystem label=
+OS <span class="hljs-built_in">type</span>: Linux
+Block size=4096 (<span class="hljs-built_in">log</span>=2)
+Fragment size=4096 (<span class="hljs-built_in">log</span>=2)
+Stride=0 blocks, Stripe width=0 blocks
+102544 inodes, 409600 blocks
+20480 blocks (5.00%) reserved <span class="hljs-keyword">for</span> the super user
+First data block=0
+Maximum filesystem blocks=419430400
+13 block groups
+32768 blocks per group, 32768 fragments per group
+7888 inodes per group
+Superblock backups stored on blocks: 
+        32768, 98304, 163840, 229376, 294912
+
+Allocating group tables: <span class="hljs-keyword">done</span>                            
+Writing inode tables: <span class="hljs-keyword">done</span>                            
+Creating journal (8192 blocks): <span class="hljs-keyword">done</span>
+Writing superblocks and filesystem accounting information: <span class="hljs-keyword">done</span></code></pre>
+
+<p><strong>挂载使用；</strong></p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># mount /dev/vg_test/lv_test /mnt</span>
+[root@localhost ~]<span class="hljs-comment"># mount</span>
+/dev/mapper/vg_test-lv_test on /mnt <span class="hljs-built_in">type</span> ext4 (rw,relatime,seclabel,data=ordered)</code></pre>
+
+<h1 id="五、LVM-在线扩展"><a href="#五、LVM-在线扩展" class="headerlink" title="五、LVM 在线扩展"></a>五、LVM 在线扩展</h1><p>先在 lv_test（/mnt） 下写入数据，测试在线扩展</p>
+<pre><code class="hljs bash">[root@localhost mnt]<span class="hljs-comment"># touch hello_lvm</span>
+[root@localhost mnt]<span class="hljs-comment"># ls</span>
+hello_lvm</code></pre>
+
+<p><font color=red>扩容 lv 分两种情况，第一是在 vg 容量还有的情况下，也就是Free PE Size 够用情况下。第二是在 vg 不够用，得先扩容 vg 的情况</font></p>
+<h2 id="5-1-在-vg-下直接扩容"><a href="#5-1-在-vg-下直接扩容" class="headerlink" title="5.1 在 vg 下直接扩容"></a>5.1 在 vg 下直接扩容</h2><pre><code class="hljs bash"><span class="hljs-comment">#查看 vg 还剩27个 pe</span>
+ [root@localhost ~]<span class="hljs-comment"># vgdisplay </span>
+  Free  PE / Size       27 / 432.00 MiB
+<span class="hljs-comment">#现在 lv 大小</span>
+ [root@localhost ~]<span class="hljs-comment">#lvs</span>
+  LV      VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert                                                  
+  lv_test vg_test -wi-ao----   1.56g   
+
+<span class="hljs-comment">#lv 再扩容 20 个 pe，所以要 -l 120，之前给了 100，再扩容加上20，则120</span>
+[root@localhost ~]<span class="hljs-comment"># lvextend -l 120 /dev/vg_test/lv_test </span>
+  Size of logical volume vg_test/lv_test changed from 1.56 GiB (100 extents) to &lt;1.88 GiB (120 extents).
+  Logical volume vg_test/lv_test successfully resized.
+<span class="hljs-comment">#查看实际的磁盘容量，发现并没改变</span>
+[root@localhost ~]<span class="hljs-comment"># df -Th</span>
+Filesystem                  Type      Size  Used Avail Use% Mounted on
+/dev/mapper/vg_test-lv_test ext4      1.6G  4.7M  1.5G   1% /mnt
+<span class="hljs-comment">#需要对文件系统进行扩容</span>
+[root@localhost ~]<span class="hljs-comment"># resize2fs /dev/vg_test/lv_test </span>
+resize2fs 1.42.9 (28-Dec-2013)
+Filesystem at /dev/vg_test/lv_test is mounted on /mnt; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 1
+The filesystem on /dev/vg_test/lv_test is now 491520 blocks long.
+[root@localhost ~]<span class="hljs-comment"># df -Th</span>
+Filesystem                  Type      Size  Used Avail Use% Mounted on
+/dev/mapper/vg_test-lv_test ext4      1.9G  4.7M  1.8G   1% /mnt</code></pre>
+
+<h4 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h4><ul>
+<li>resize2fs /dev/vg_test/lv_test　　＃更新文件系统的大小，即激活</li>
+<li>resize2fs -f　/dev/vg_test/lv_test　500M　＃强制设置大小</li>
+<li>dump2fs /dev/vgtest/lvtest　　＃查看ext系列文件系统</li>
+</ul>
+<h2 id="5-2-vg-不够用情况，扩容-lv"><a href="#5-2-vg-不够用情况，扩容-lv" class="headerlink" title="5.2 vg 不够用情况，扩容 lv"></a>5.2 vg 不够用情况，扩容 lv</h2><p><strong>vg 空间不够，需先扩展 vg，扩展 vg 就是往 vg 中加 pv</strong></p>
+<p>刚好开始创建 pv 时，多创建了个 sdc，将 pv sdc 加入到 vg_test 里面：</p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># pvs</span>
+  PV         VG      Fmt  Attr PSize   PFree  
+  /dev/sdb   vg_test lvm2 a--    1.98g 112.00m
+  /dev/sdc           lvm2 ---    2.00g   2.00g
+[root@localhost ~]<span class="hljs-comment"># vgextend vg_test /dev/sdc </span>
+  Volume group <span class="hljs-string">&quot;vg_test&quot;</span> successfully extended
+[root@localhost ~]<span class="hljs-comment"># vgextend vg_test /dev/sdc </span>
+  Volume group <span class="hljs-string">&quot;vg_test&quot;</span> successfully extended
+[root@localhost ~]<span class="hljs-comment"># vgdisplay </span>
+  --- Volume group ---
+  VG Name               vg_test
+  System ID             
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  4
+  VG Access             <span class="hljs-built_in">read</span>/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               &lt;3.97 GiB
+  PE Size               16.00 MiB
+  Total PE              254
+  Alloc PE / Size       120 / &lt;1.88 GiB
+  Free  PE / Size       134 / 2.09 GiB          &lt;-----可用容量变多了
+  VG UUID               Oge6D2-KPLh-RqNA-cRJ8-mc1y-0rkC-aoXmVt
+<span class="hljs-comment">#将 pe 数量扩容到 220个</span>
+[root@localhost ~]<span class="hljs-comment"># lvextend -l 220 /dev/vg_test/lv_test </span>
+  Size of logical volume vg_test/lv_test changed from &lt;1.88 GiB (120 extents) to &lt;3.44 GiB (220 extents).
+  Logical volume vg_test/lv_test successfully resized.
+[root@localhost ~]<span class="hljs-comment"># resize2fs /dev/vg_test/lv_test </span>
+resize2fs 1.42.9 (28-Dec-2013)
+Filesystem at /dev/vg_test/lv_test is mounted on /mnt; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 1
+The filesystem on /dev/vg_test/lv_test is now 901120 blocks long.
+
+[root@localhost ~]<span class="hljs-comment"># df -Th</span>
+Filesystem                  Type      Size  Used Avail Use% Mounted on
+/dev/mapper/vg_test-lv_test ext4      3.4G  6.3M  3.2G   1% /mnt
+<span class="hljs-comment">#查看数据是否还存在</span>
+[root@localhost ~]<span class="hljs-comment"># ll /mnt/</span>
+-rw-r--r--. 1 root root     0 Aug 29 15:55 hello_lvm</code></pre>
+
+<h1 id="六、LVM-缩减"><a href="#六、LVM-缩减" class="headerlink" title="六、LVM 缩减"></a>六、LVM 缩减</h1><p>LVM 的缩减需要卸载文件系统–<code>[root@localhost ~]# umount /mnt/</code></p>
+<p><strong>缩减操作：</strong></p>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># lvs</span>
+  LV      VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root    centos  -wi-ao---- &lt;17.00g                                                    
+  swap    centos  -wi-ao----   2.00g                                                    
+  lv_test vg_test -wi-a-----  &lt;3.44g                                                    
+[root@localhost ~]<span class="hljs-comment"># resize2fs /dev/vg_test/lv_test 2G</span>
+resize2fs 1.42.9 (28-Dec-2013)
+Please run <span class="hljs-string">&#x27;e2fsck -f /dev/vg_test/lv_test&#x27;</span> first.
+<span class="hljs-comment">#需要进行文件系统检测</span>
+[root@localhost ~]<span class="hljs-comment"># e2fsck -f /dev/vg_test/lv_test </span>
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+/dev/vg_test/lv_test: 12/220864 files (8.3% non-contiguous), 23666/901120 blocks
+[root@localhost ~]<span class="hljs-comment"># resize2fs /dev/vg_test/lv_test 2G</span>
+resize2fs 1.42.9 (28-Dec-2013)
+Resizing the filesystem on /dev/vg_test/lv_test to 524288 (4k) blocks.
+The filesystem on /dev/vg_test/lv_test is now 524288 blocks long.
+
+[root@localhost ~]<span class="hljs-comment"># lvs</span>
+  LV      VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert                                                 
+  lv_test vg_test -wi-a-----  &lt;3.44g                                                    
+[root@localhost ~]<span class="hljs-comment"># lvreduce -l 150 /dev/vg_test/lv_test </span>
+  WARNING: Reducing active logical volume to 2.34 GiB.
+  THIS MAY DESTROY YOUR DATA (filesystem etc.)
+Do you really want to reduce vg_test/lv_test? [y/n]: y
+  Size of logical volume vg_test/lv_test changed from &lt;3.44 GiB (220 extents) to 2.34 GiB (150 extents).
+  Logical volume vg_test/lv_test successfully resized.
+[root@localhost ~]<span class="hljs-comment"># lvs</span>
+  LV      VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  root    centos  -wi-ao---- &lt;17.00g                                                    
+  swap    centos  -wi-ao----   2.00g                                                    
+  lv_test vg_test -wi-a-----   2.34g                                                    
+[root@localhost ~]<span class="hljs-comment"># mount /dev/vg_test/lv_test /mnt</span>
+[root@localhost ~]<span class="hljs-comment"># df -Th</span>
+Filesystem                  Type      Size  Used Avail Use% Mounted on
+devtmpfs                    devtmpfs  908M     0  908M   0% /dev
+tmpfs                       tmpfs     919M     0  919M   0% /dev/shm
+tmpfs                       tmpfs     919M  8.6M  911M   1% /run
+tmpfs                       tmpfs     919M     0  919M   0% /sys/fs/cgroup
+/dev/mapper/centos-root     xfs        17G  2.4G   15G  14% /
+/dev/sda1                   xfs      1014M  211M  804M  21% /boot
+tmpfs                       tmpfs     184M     0  184M   0% /run/user/0
+/dev/mapper/vg_test-lv_test ext4      2.0G  4.7M  1.9G   1% /mnt
+<span class="hljs-comment">#查看测试问价</span>
+[root@localhost ~]<span class="hljs-comment"># ll /mnt/</span>
+total 16
+-rw-r--r--. 1 root root     0 Aug 29 15:55 hello_lvm</code></pre>
+
+<h1 id="七、删除LVM"><a href="#七、删除LVM" class="headerlink" title="七、删除LVM"></a>七、删除LVM</h1><p>要彻底的来移除LVM的话，需要把创建的步骤反过来操作。</p>
+<ol>
+<li>卸载 文件系统</li>
+<li>删除lv</li>
+<li>删除vg</li>
+<li>删除pv</li>
+</ol>
+<pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># umount /mnt</span>
+[root@localhost ~]<span class="hljs-comment"># lvremove /dev/vg_test/lv_test </span>
+Do you really want to remove active logical volume vg_test/lv_test? [y/n]: y
+  Logical volume <span class="hljs-string">&quot;lv_test&quot;</span> successfully removed
+[root@localhost ~]<span class="hljs-comment"># vgremove /dev/vg_test</span>
+  Volume group <span class="hljs-string">&quot;vg_test&quot;</span> successfully removed
+[root@localhost ~]<span class="hljs-comment"># pvremove /dev/sdb /dev/sdc</span>
+  Labels on physical volume <span class="hljs-string">&quot;/dev/sdb&quot;</span> successfully wiped.
+  Labels on physical volume <span class="hljs-string">&quot;/dev/sdc&quot;</span> successfully wiped.</code></pre>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/26/linux_nmcli/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux nmcli 使用及网络配置</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/02/linux_change_ifname/">
+                        <span class="hidden-mobile">CentOS 7 更改网卡名称</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Linux LVM&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

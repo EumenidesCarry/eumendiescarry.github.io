@@ -1,0 +1,610 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>IP 子网划分 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_pf9vaxs7x7b.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('https://w.wallhaven.cc/full/0j/wallhaven-0jz7gm.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-07-22 12:21" pubdate>
+        July 22, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      920 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">IP 子网划分</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="IP地址（Internet-Protocol）"><a href="#IP地址（Internet-Protocol）" class="headerlink" title="IP地址（Internet Protocol）"></a>IP地址（Internet Protocol）</h2><p>在互联网漫游的计算机的身份ID。唯一标识一台网络设备的身份ID。</p>
+<p>IP 地址为：网络位 + 主机位 -&gt; 子网掩码下详解</p>
+<p>IPV4地址：点分十进制 32bit</p>
+<p>192.168.1.1-&gt;11000000.10101000.00000001.00000001</p>
+<table>
+<thead>
+<tr>
+<th align="center">1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+<th>1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">2<sup>7</sup>=128</td>
+<td>2<sup>6</sup>=64</td>
+<td>2<sup>5</sup>=32</td>
+<td>2<sup>4</sup>=16</td>
+<td>2<sup>3</sup>=8</td>
+<td>2<sup>2</sup>=4</td>
+<td>2<sup>1</sup>=2</td>
+<td>2<sup>0</sup>=1</td>
+</tr>
+<tr>
+<td align="center">128</td>
+<td>192</td>
+<td>224</td>
+<td>240</td>
+<td>248</td>
+<td>252</td>
+<td>254</td>
+<td>255</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<h2 id="子网掩码（Netmask）"><a href="#子网掩码（Netmask）" class="headerlink" title="子网掩码（Netmask）"></a>子网掩码（Netmask）</h2><p>子网掩码是一个32位地址，用于屏蔽IP地址的一部分以区别网络标识和主机标识，并说明该IP地址是在局域网上，还是在广域网上。</p>
+<p><strong>例子：</strong>  </p>
+<p>ip：192.168.1.1</p>
+<p>二进制：11000000.10101000.00000001.00000001</p>
+<p>netmask：255.255.255.0</p>
+<p>二进制：<font color=green > 11111111.11111111.11111111</font>.<font color=blue > 00000000</font></p>
+<p>根据二进制子网掩码，绿色为网络位，蓝色为主机位，即：</p>
+<p>网络位：子网掩码1 bit 对应的位</p>
+<p>主机位：子网掩码0 bit 对应的位</p>
+<p>网络位为：192.168.1-&gt;11000000.10101000.00000001</p>
+<p>主机位：00000001</p>
+<p>主机位全0：子网地址</p>
+<p>主机位全1：子网广播地址</p>
+<p><font color=red >注：主机位全 0 全1 的 ip 地址和掩码的组合是无效的。</font></p>
+<p><strong>例子：</strong></p>
+<p>192.168.1.127 255.255.255.128</p>
+<p>192.168.1.0—1111111</p>
+<p>255.255.255.1—0000000</p>
+<h2 id="网段"><a href="#网段" class="headerlink" title="网段"></a>网段</h2><p>具有<font color=red >相同网络位</font>的ip和掩码的组合称为同一个网段（局域网、子网）</p>
+<p><font color=red >注：同一网段的PC互通不需要网关。</font></p>
+<p><strong>例子：</strong></p>
+<p>已知某个网络的掩码是 255.255.248.0，下面属于同一网段的是:</p>
+<p>A. 10.110.16.1 和 10.110.25.1</p>
+<p>B. 10.76.129.21 和 10.76.137.1</p>
+<p>C.  10.52.57.34 和 10.52.62.2</p>
+<p>D. 10.33.23.2 和 10.33.31.1</p>
+<p>解：</p>
+<p>子网掩码 255.255.248.0 -&gt; </p>
+<p>-&gt;二进制 <font color=green >255.255.11111</font>   <font color=blue >000.0</font></p>
+<p><font color=green >绿色：网络位</font>         <font color=blue >蓝色：主机位</font></p>
+<p>A.</p>
+<p><font color=green >10.110.  00010</font>   <font color=blue >000.1</font><br><font color=green >10.110.  00011</font>   <font color=blue >001.1</font></p>
+<p>B.</p>
+<p><font color=green >10.76.    10000</font>   <font color=blue >001.21</font><br><font color=green >10.76.    10001</font>   <font color=blue >001.1</font>  </p>
+<p>C.</p>
+<p><font color=green >10.52.    00111</font>   <font color=blue >001.34</font><br><font color=green >10.52.    00111</font>   <font color=blue >110.2</font></p>
+<p>D.</p>
+<p><font color=green >10.22.    00010</font>   <font color=blue >111.2</font><br><font color=green >10.33.    00011</font>   <font color=blue >111.1</font></p>
+<p><strong>例子：</strong></p>
+<p>172.16.0.0/16 分成6个子网段：</p>
+<p>2^n&gt;=6 n=3 需要3个 bit 的子网位 </p>
+<p>172.16.<font color=red ><strong>000</strong></font>00000.0</p>
+<ol>
+<li>172.16.<font color=red ><strong>000</strong></font>00000.0 –&gt; 172.16.0.0/19</li>
+<li>172.16.<font color=red ><strong>001</strong></font>00000.0 –&gt; 172.16.32.0/19</li>
+<li>172.16.<font color=red ><strong>010</strong></font>00000.0 –&gt; 172.16.64.0/19</li>
+<li>172.16.<font color=red ><strong>011</strong></font>00000.0 </li>
+<li>172.16.<font color=red ><strong>100</strong></font>00000.0 </li>
+<li>172.16.<font color=red ><strong>101</strong></font>00000.0 </li>
+<li>172.16.<font color=red ><strong>110</strong></font>00000.0 </li>
+<li>172.16.<font color=red ><strong>111</strong></font>00000.0 </li>
+</ol>
+<h2 id="网关（Gateway）"><a href="#网关（Gateway）" class="headerlink" title="网关（Gateway）"></a>网关（Gateway）</h2><p>当 PC 访问不同网段的服务时，需要将数据交给网关处理</p>
+<h2 id="TTL"><a href="#TTL" class="headerlink" title="TTL"></a>TTL</h2><p>time to live：生命周期，指定IP包被路由器丢弃之前允许通过的最大网段数量。</p>
+<h2 id="tracert"><a href="#tracert" class="headerlink" title="tracert"></a>tracert</h2><p>测试本地到达目标所经过的三层设备</p>
+<pre><code class="hljs angelscript">C:\Users\ecarry&gt;tracert www.baidu.com
+
+通过最多 <span class="hljs-number">30</span> 个跃点跟踪
+到 www.a.shifen.com [<span class="hljs-number">14.215</span><span class="hljs-number">.177</span><span class="hljs-number">.39</span>] 的路由:
+
+  <span class="hljs-number">1</span>     *        *       &lt;<span class="hljs-number">1</span> 毫秒 OPENWRT [<span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.3</span>]
+  <span class="hljs-number">2</span>     <span class="hljs-number">1</span> ms    &lt;<span class="hljs-number">1</span> 毫秒   &lt;<span class="hljs-number">1</span> 毫秒 RT-AC1200G+<span class="hljs-number">-3220</span> [<span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.1</span>]
+  <span class="hljs-number">3</span>     <span class="hljs-number">1</span> ms     <span class="hljs-number">1</span> ms    &lt;<span class="hljs-number">1</span> 毫秒 SMBSHARE [<span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>]
+  <span class="hljs-number">4</span>    <span class="hljs-number">15</span> ms    <span class="hljs-number">22</span> ms     <span class="hljs-number">4</span> ms  <span class="hljs-number">100.64</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
+  <span class="hljs-number">5</span>     *        *        *     请求超时。
+  <span class="hljs-number">6</span>     <span class="hljs-number">7</span> ms     <span class="hljs-number">7</span> ms     <span class="hljs-number">6</span> ms  <span class="hljs-number">120.36</span><span class="hljs-number">.57</span><span class="hljs-number">.29</span>
+  <span class="hljs-number">7</span>     *        *        *     请求超时。
+  <span class="hljs-number">8</span>    <span class="hljs-number">22</span> ms    <span class="hljs-number">22</span> ms    <span class="hljs-number">23</span> ms  <span class="hljs-number">113.96</span><span class="hljs-number">.4</span><span class="hljs-number">.126</span>
+  <span class="hljs-number">9</span>    <span class="hljs-number">23</span> ms    <span class="hljs-number">23</span> ms     *     <span class="hljs-number">98.96</span><span class="hljs-number">.135</span><span class="hljs-number">.219</span>.broad.fs.gd.dynamic<span class="hljs-number">.163</span>data.com.cn [<span class="hljs-number">219.135</span><span class="hljs-number">.96</span><span class="hljs-number">.98</span>]
+ <span class="hljs-number">10</span>    <span class="hljs-number">20</span> ms    <span class="hljs-number">20</span> ms    <span class="hljs-number">20</span> ms  <span class="hljs-number">14.29</span><span class="hljs-number">.117</span><span class="hljs-number">.246</span>
+ <span class="hljs-number">11</span>     *        *        *     请求超时。
+ <span class="hljs-number">12</span>     *        *        *     请求超时。
+ <span class="hljs-number">13</span>    <span class="hljs-number">19</span> ms    <span class="hljs-number">19</span> ms    <span class="hljs-number">18</span> ms  <span class="hljs-number">14.215</span><span class="hljs-number">.177</span><span class="hljs-number">.39</span></code></pre>
+
+<h2 id="ARP-Address-Resolution解析-Protocol"><a href="#ARP-Address-Resolution解析-Protocol" class="headerlink" title="ARP(Address Resolution解析 Protocol)"></a>ARP(Address Resolution解析 Protocol)</h2><p>通过目的 IP 地址，请求对方 MAC 地址的过程</p>
+<p><img src="/img/ip_netmask/ip_netmask_0.jpg" srcset="/img/loading.gif"></p>
+<p>一台主机向另外一台主机发送 ARP Request 的目的 MAC 地址为<font color=red >广播 MAC 地址</font>（FFFF.FFFF.FFFF），其请求包（request）结构为</p>
+<p><img src="/img/ip_netmask/ip_netmask_1.jpg" srcset="/img/loading.gif"></p>
+<p>查看 APR 缓存表，通过命令<code>arp -a</code>查看，通过<code>arp -d</code>删除缓存表</p>
+<pre><code class="hljs routeros">PC&gt;arp -a
+  Internet<span class="hljs-built_in"> Address </span>     Physical<span class="hljs-built_in"> Address </span>     Type
+  192.168.1.30          00d0.582e.0b9b        dynamic</code></pre>
+
+<p>ARP 回应包（reply）结构：</p>
+<p><img src="/img/ip_netmask/ip_netmask_2.jpg" srcset="/img/loading.gif"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/24/tcp_udp/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">TCP UDP 的区别</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/09/Linux_part/">
+                        <span class="hidden-mobile">关于 Linux 分区的小事</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "IP 子网划分&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
