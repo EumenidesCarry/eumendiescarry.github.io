@@ -47,7 +47,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>ECarry's blog</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -119,6 +119,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/photo/">
+                <i class="iconfont icon-images"></i>
+                photo
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
@@ -137,7 +149,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('https://w.wallhaven.cc/full/73/wallhaven-73z33y.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -272,10 +284,46 @@
     
       
       
-        <a href="/categories/Linux/" class="list-group-item list-group-item-action">
-          <span class="category-post">More...</span>
+        <a href="/2019/11/01/linux_change_pw/" class="list-group-item list-group-item-action">
+          <span class="category-post">Redhat/CentOS 7 单用户修改 root 密码</span>
         </a>
-        
+      
+    
+      
+      
+        <a href="/2019/10/24/linux_install_tips_and_fault_detect/" class="list-group-item list-group-item-action">
+          <span class="category-post">Linux 运维故障排查与系统调优技巧</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/09/17/linux_performance_analysis/" class="list-group-item list-group-item-action">
+          <span class="category-post">Linux 系统性能分析标准</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/08/17/linux_sys_root_bad/" class="list-group-item list-group-item-action">
+          <span class="category-post">Linux 系统权限不正常导致系统无法启动</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2019/07/15/linux_ulimit_bad/" class="list-group-item list-group-item-action">
+          <span class="category-post">Linux 系统资源 ulimit 设置不正确导致无法登录</span>
+        </a>
+      
+    
+      
+      
+        <a href="/2018/10/20/Linux_RUN_fsck/" class="list-group-item list-group-item-action">
+          <span class="category-post">Unexpected inconsistency run fsck 处理报告</span>
+        </a>
+      
+    
   </div>
 
         
@@ -600,6 +648,30 @@
         <span>Fluid</span></a>
     </div>
     
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
 
     
 
@@ -631,6 +703,8 @@
 
 
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
 
 
 
@@ -645,7 +719,7 @@
         "Category&nbsp;",
       ],
       cursorChar: "_",
-      typeSpeed: 70,
+      typeSpeed: 100,
       loop: false,
     });
     typed.stop();
