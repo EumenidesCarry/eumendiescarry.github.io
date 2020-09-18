@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      126
+      127
        分钟
     </span>
   
@@ -233,23 +233,23 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月17日 晚上
+                  本文最后更新于：2020年9月18日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h1><blockquote>
+              <h1 id="一、分区"><a href="#一、分区" class="headerlink" title="一、分区"></a>一、分区</h1><blockquote>
 <p>分区是为了在逻辑上将某些柱面隔开形成边界。它是以柱面为单位来划分的，但是从CentOS 7开始，是按照扇区进行划分的。</p>
 <p>在磁盘数据量非常大的情况下，划分分区的好处是扫描块位图等更快速：不用再扫描整块磁盘的块位图，只需扫描对应分区的块位图。</p>
 </blockquote>
-<h2 id="分区方法（MBR、GPT）"><a href="#分区方法（MBR、GPT）" class="headerlink" title="分区方法（MBR、GPT）"></a>分区方法（MBR、GPT）</h2><h3 id="MBR"><a href="#MBR" class="headerlink" title="MBR"></a>MBR</h3><p>MBR格式的磁盘中，会维护磁盘第一个扇区——MBR扇区，在该扇区中第446字节之后的64字节是分区表，每个分区占用16字节，所以限制了一块磁盘最多只能有4个主分区(Primary,P)，如果多于4个区，只能将主分区少于4个，通过建立扩展分区(Extend,E)，然后在扩展分区建立逻辑分区(Logical,L)的方式来突破4个分区的限制，逻辑分区的数量不限制。</p>
+<h2 id="1-1-分区方法（MBR、GPT）"><a href="#1-1-分区方法（MBR、GPT）" class="headerlink" title="1.1 分区方法（MBR、GPT）"></a>1.1 分区方法（MBR、GPT）</h2><h3 id="1-1-1-MBR"><a href="#1-1-1-MBR" class="headerlink" title="1.1.1 MBR"></a>1.1.1 MBR</h3><p>MBR格式的磁盘中，会维护磁盘第一个扇区——MBR扇区，在该扇区中第446字节之后的64字节是分区表，每个分区占用16字节，所以限制了一块磁盘最多只能有4个主分区(Primary,P)，如果多于4个区，只能将主分区少于4个，通过建立扩展分区(Extend,E)，然后在扩展分区建立逻辑分区(Logical,L)的方式来突破4个分区的限制，逻辑分区的数量不限制。</p>
 <p>在Linux中，MBR格式的磁盘主分区号从1-4，扩展分区号从2-4，逻辑分区号从5开始。</p>
 <p><strong>例如</strong>，一块盘想分成6个分区，可以：</p>
 <p>1P+5L：sda1+sda5+sda6+sda7+sda8+sda9</p>
 <p>2P+4L：sda1+sda2+sda5+sda6+sda7+sda8</p>
 <p>3P+3L：sda1+sda2+sda3+sda5+sda6+sda7</p>
-<h3 id="GPT"><a href="#GPT" class="headerlink" title="GPT"></a>GPT</h3><p>GPT格式突破了MBR的限制，它不再限制只能存储4个分区表条目，而是使用了类似MBR扩展分区表条目的格式，它允许有128个主分区，这也使得它可以对超过2TB的磁盘进行分区。</p>
-<h2 id="MBR-和-GPT-分区表信息"><a href="#MBR-和-GPT-分区表信息" class="headerlink" title="MBR 和 GPT 分区表信息"></a>MBR 和 GPT 分区表信息</h2><p>在MBR格式分区表中，MBR扇区占用512个字节，前446个字节是主引导记录，即boot loader。中间64字节记录着分区表信息，每个主分区信息占用16字节，因此最多只能有4个主分区，最后2个字节是有效标识位。如果使用扩展分区，则扩展分区对应的16字节记录的是指向扩展分区中扩展分区表的指针。</p>
+<h3 id="1-1-2-GPT"><a href="#1-1-2-GPT" class="headerlink" title="1.1.2 GPT"></a>1.1.2 GPT</h3><p>GPT格式突破了MBR的限制，它不再限制只能存储4个分区表条目，而是使用了类似MBR扩展分区表条目的格式，它允许有128个主分区，这也使得它可以对超过2TB的磁盘进行分区。</p>
+<h2 id="1-2-MBR-和-GPT-分区表信息"><a href="#1-2-MBR-和-GPT-分区表信息" class="headerlink" title="1.2 MBR 和 GPT 分区表信息"></a>1.2 MBR 和 GPT 分区表信息</h2><p>在MBR格式分区表中，MBR扇区占用512个字节，前446个字节是主引导记录，即boot loader。中间64字节记录着分区表信息，每个主分区信息占用16字节，因此最多只能有4个主分区，最后2个字节是有效标识位。如果使用扩展分区，则扩展分区对应的16字节记录的是指向扩展分区中扩展分区表的指针。</p>
 <p><img src="/img/linux_part/linux_part_1.png" srcset="/img/loading.gif"></p>
 <p>在MBR磁盘上，分区和启动信息是保存在一起的，如果这部分数据被覆盖或破坏，只能重建MBR。而GPT在整个磁盘上保存多个这部分信息的副本，因此它更为健壮，并可以恢复被破坏的这部分信息。GPT还为这些信息保存了循环冗余校验码(CRC)以保证其完整和正确，如果数据被破坏，GPT会发现这些破坏，并从磁盘上的其他地方进行恢复。</p>
 <p>下面是GPT格式的分区表信息，大致约占17个字节。</p>
@@ -261,8 +261,8 @@
 <li>GPT分区：最大的区域，由分配给分区的扇区组成。这个区域的起始和结束地址由GPT头定义。</li>
 <li>备份区：备份区域位于磁盘的尾部，包含GPT头和分区表的备份。它占用GPT结束扇区和EFI结束扇区之间的33个扇区。其中最后一个扇区用来备份1号扇区的EFI信息，其余的32个扇区用来备份LBA2～LBA33扇区的分区表。</li>
 </ul>
-<h2 id="添加磁盘"><a href="#添加磁盘" class="headerlink" title="添加磁盘"></a>添加磁盘</h2><p>正常情况下，添加磁盘后需要重启系统才能被内核识别，在 /dev/ 下才有对应的设备号，使用 fdisk -l 才会显示出来。但是有时候不方便重启，所以下面介绍一种磁盘热插拔方式。</p>
-<h3 id="Linux上磁盘热插拔"><a href="#Linux上磁盘热插拔" class="headerlink" title="Linux上磁盘热插拔"></a>Linux上磁盘热插拔</h3><p>获取 SCSI 设备信息：</p>
+<h2 id="1-3-添加磁盘"><a href="#1-3-添加磁盘" class="headerlink" title="1.3 添加磁盘"></a>1.3 添加磁盘</h2><p>正常情况下，添加磁盘后需要重启系统才能被内核识别，在 /dev/ 下才有对应的设备号，使用 fdisk -l 才会显示出来。但是有时候不方便重启，所以下面介绍一种磁盘热插拔方式。</p>
+<h3 id="1-3-1-Linux上磁盘热插拔"><a href="#1-3-1-Linux上磁盘热插拔" class="headerlink" title="1.3.1 Linux上磁盘热插拔"></a>1.3.1 Linux上磁盘热插拔</h3><p>获取 SCSI 设备信息：</p>
 <pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>localhost ~]# lsscsi
 [<span class="hljs-number">1</span>:<span class="hljs-number">0</span>:<span class="hljs-number">0</span>:<span class="hljs-number">0</span>]    cd/dvd  QEMU     QEMU DVD-ROM     <span class="hljs-number">2.5</span>+  /dev/sr0 
 [<span class="hljs-number">2</span>:<span class="hljs-number">0</span>:<span class="hljs-number">0</span>:<span class="hljs-number">0</span>]    disk    WD       Elements SE <span class="hljs-number">25</span>FE <span class="hljs-number">1021</span>  /dev/sdb 
@@ -351,7 +351,7 @@ dh_state        evt_media_change              iodone_cnt                        
 <p>在其中有3个文件：delete、rescan和state。其中state记录了该设备是否正在运行中。而delete和rescan文件则用于删除和重新扫描该设备。</p>
 <p>例如，删除该设备，即热拔：</p>
 <p><code>[root@localhost ~]# echo 1 &gt; /sys/bus/scsi/drivers/sd/2\:0\:0\:0/delete</code></p>
-<h2 id="使用-fdisk-分区工具"><a href="#使用-fdisk-分区工具" class="headerlink" title="使用 fdisk 分区工具"></a>使用 fdisk 分区工具</h2><p>fdisk 工具用来分 MBR 磁盘上的区。要分 GPT 磁盘上的区，可以使用 gdisk。parted工具对这两种格式的磁盘分区都支持。</p>
+<h2 id="1-4-使用-fdisk-分区工具"><a href="#1-4-使用-fdisk-分区工具" class="headerlink" title="1.4 使用 fdisk 分区工具"></a>1.4 使用 fdisk 分区工具</h2><p>fdisk 工具用来分 MBR 磁盘上的区。要分 GPT 磁盘上的区，可以使用 gdisk。parted工具对这两种格式的磁盘分区都支持。</p>
 <p>如果一个存储设备已经分过区，那么它可能是mbr格式的，也可能是gpt格式的，如果已经是mbr格式的，则只能继续使用fdisk进行分区，如果已经是gpt格式的，则只能使用gdisk进行分区。当然，无论什么格式的都可以使用parted进行分区，只不过也只能划分和已存在分区格式一样的分区，因为无论何种格式的分区，它的分区表和分区标识是已经固定的。</p>
 <p>使用fdisk分区，它只能实现MBR格式的分区：</p>
 <pre><code class="hljs sql">[root@localhost ~]<span class="hljs-comment"># fdisk /dev/sda</span>
@@ -411,7 +411,7 @@ dh_state        evt_media_change              iodone_cnt                        
 <p>上面的 fdisk 操作全部是在内存中执行的，必须保存生效。保存后，内核还未识别该分区，可以查看 /proc/partition 目录下存在的文件，这些文件是能被内核识别的分区。运行<strong>partprobe</strong>或<strong>partx</strong>命令重新读取分区表让内核识别新的分区，内核识别后才可以格式化。而且分区结束时按w保存分区表有时候会失败，提示重启，这时候运行partprobe命令可以代替重启就生效。</p>
 <pre><code class="hljs gradle">[root@localhost ~]# partprobe <span class="hljs-regexp">/dev/</span>sdb	#也可指定在 <span class="hljs-regexp">/dev/</span>sdb 上重加载分区表</code></pre>
 
-<h2 id="使用-gdisk-分区工具"><a href="#使用-gdisk-分区工具" class="headerlink" title="使用 gdisk 分区工具"></a>使用 gdisk 分区工具</h2><p>使用 gdsik 需要安装这个工具包：</p>
+<h2 id="1-5-使用-gdisk-分区工具"><a href="#1-5-使用-gdisk-分区工具" class="headerlink" title="1.5 使用 gdisk 分区工具"></a>1.5 使用 gdisk 分区工具</h2><p>使用 gdsik 需要安装这个工具包：</p>
 <pre><code class="hljs autoit">[root<span class="hljs-symbol">@localhost</span> ~]<span class="hljs-meta"># yum -y install gdisk</span></code></pre>
 
 <p>分区的时候直接带上设备即可。以下是对新硬盘划分gpt分区的过程：</p>
@@ -485,7 +485,7 @@ The operation has completed successfully.
 <span class="hljs-comment">#执行partprobe重新读取分区表信息</span>
 [root@localhost ~]<span class="hljs-comment"># partprobe /dev/sdb</span></code></pre>
 
-<h2 id="使用-parted-分区"><a href="#使用-parted-分区" class="headerlink" title="使用 parted 分区"></a>使用 parted 分区</h2><p>parted 支持 mbr 格式和 gpt 格式的磁盘分区。它的强大在于可以一步到位而不需要不断的交互式输入(也可以交互式)。</p>
+<h2 id="1-6-使用-parted-分区"><a href="#1-6-使用-parted-分区" class="headerlink" title="1.6 使用 parted 分区"></a>1.6 使用 parted 分区</h2><p>parted 支持 mbr 格式和 gpt 格式的磁盘分区。它的强大在于可以一步到位而不需要不断的交互式输入(也可以交互式)。</p>
 <p>parted分区工具是实时的，所以每一步操作都是直接写入磁盘而不是写进内存，它不像 fdisk/gdisk 还需要 w 命令将内存中的结果保存到磁盘中。</p>
 <pre><code class="hljs pgsql">[root@localhost ~]# parted /dev/sdc
 GNU Parted <span class="hljs-number">2.1</span>
@@ -588,13 +588,13 @@ Number  Start   End     Size   <span class="hljs-built_in"> Type </span>     Fil
 Information: You may need <span class="hljs-keyword">to</span> update /etc/fstab.  # 提示你要更新/etc/fstab中的配置，说明该工具是可以在线分区的</code></pre>
 
 <p><font color=red>注：虽然parted工具中指定了文件系统，但是并没有意义，它仍需要手动进行格式化并指定分区类型。</font></p>
-<h1 id="格式化分区"><a href="#格式化分区" class="headerlink" title="格式化分区"></a>格式化分区</h1><h2 id="mkfs-工具"><a href="#mkfs-工具" class="headerlink" title="mkfs 工具"></a>mkfs 工具</h2><p>mkfs命令通常用于在设备硬件分区上创建linux文件系统。mkfs 命令支持建立多种 Linux 文件系统，如 ext系列，xfs等等。实际上mkfs是支持多种文件系统构建命令<code>mkfs. TYPE</code>的前部分，mkfs命令通常执行的时候也是调用<code>mkfs. TYPE</code>来执行，如mkfs.ext2，mkfs.vfs，mkfs.vfat等等。</p>
+<h1 id="二、格式化分区"><a href="#二、格式化分区" class="headerlink" title="二、格式化分区"></a>二、格式化分区</h1><h2 id="2-1-mkfs-工具"><a href="#2-1-mkfs-工具" class="headerlink" title="2.1 mkfs 工具"></a>2.1 mkfs 工具</h2><p>mkfs命令通常用于在设备硬件分区上创建linux文件系统。mkfs 命令支持建立多种 Linux 文件系统，如 ext系列，xfs等等。实际上mkfs是支持多种文件系统构建命令<code>mkfs. TYPE</code>的前部分，mkfs命令通常执行的时候也是调用<code>mkfs. TYPE</code>来执行，如mkfs.ext2，mkfs.vfs，mkfs.vfat等等。</p>
 <pre><code class="hljs css"><span class="hljs-selector-attr">[root@localhost ~]</span># <span class="hljs-selector-tag">mkfs</span>
 <span class="hljs-selector-tag">mkfs</span>         <span class="hljs-selector-tag">mkfs</span><span class="hljs-selector-class">.btrfs</span>   <span class="hljs-selector-tag">mkfs</span><span class="hljs-selector-class">.cramfs</span>  <span class="hljs-selector-tag">mkfs</span><span class="hljs-selector-class">.ext2</span>    <span class="hljs-selector-tag">mkfs</span><span class="hljs-selector-class">.ext3</span>    <span class="hljs-selector-tag">mkfs</span><span class="hljs-selector-class">.ext4</span>    <span class="hljs-selector-tag">mkfs</span><span class="hljs-selector-class">.minix</span>   <span class="hljs-selector-tag">mkfs</span><span class="hljs-selector-class">.xfs</span></code></pre>
 
 
 
-<h2 id="mke2fs-工具"><a href="#mke2fs-工具" class="headerlink" title="mke2fs 工具"></a>mke2fs 工具</h2><p>mkfs.ext2、mkfs.ext3、mkfs.ext4 或 mkfs -t extX 其实都是在调用mke2fs工具。</p>
+<h2 id="2-2-mke2fs-工具"><a href="#2-2-mke2fs-工具" class="headerlink" title="2.2 mke2fs 工具"></a>2.2 mke2fs 工具</h2><p>mkfs.ext2、mkfs.ext3、mkfs.ext4 或 mkfs -t extX 其实都是在调用mke2fs工具。</p>
 <p>该工具创建文件系统时，会从 /etc/mke2fs.conf 配置中读取默认的配置项：</p>
 <pre><code class="hljs mipsasm">mke<span class="hljs-symbol">2f</span>s [ -c ] [ -<span class="hljs-keyword">b </span><span class="hljs-keyword">block-size </span>] [ -f fragment-size ] [ -g <span class="hljs-keyword">blocks-per-group </span>] [ -G number-of-groups ] 
        [ -i <span class="hljs-keyword">bytes-per-inode </span>] [ -I inode-size ] [ -<span class="hljs-keyword">j </span>] [ -N number-of-inodes ] [ -m reserved-<span class="hljs-keyword">blocks-percentage </span>] 
@@ -657,7 +657,7 @@ This filesystem will be automatically checked every 39 mounts <span class="hljs-
 
 
 
-<h1 id="查看文件系统状态信息"><a href="#查看文件系统状态信息" class="headerlink" title="查看文件系统状态信息"></a>查看文件系统状态信息</h1><h2 id="lsblk-list-block-devices"><a href="#lsblk-list-block-devices" class="headerlink" title="lsblk(list block devices)"></a>lsblk(list block devices)</h2><blockquote>
+<h1 id="三、查看文件系统状态信息"><a href="#三、查看文件系统状态信息" class="headerlink" title="三、查看文件系统状态信息"></a>三、查看文件系统状态信息</h1><h2 id="3-1-lsblk-list-block-devices"><a href="#3-1-lsblk-list-block-devices" class="headerlink" title="3.1 lsblk(list block devices)"></a>3.1 lsblk(list block devices)</h2><blockquote>
 <p>用于列出设备及其状态，主要列出非空的存储设备。其实它只会列出/sys/dev/block中的主次设备号文件，且默认只列出非空设备。</p>
 </blockquote>
 <pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>localhost ~]# lsblk
@@ -692,7 +692,7 @@ sdb
 sr0             iso9660     CentOS <span class="hljs-number">7</span> x86_64 <span class="hljs-number">2020</span><span class="hljs-number">-04</span><span class="hljs-number">-22</span><span class="hljs-number">-00</span><span class="hljs-number">-54</span><span class="hljs-number">-00</span><span class="hljs-number">-00</span></code></pre>
 
 <p><font color=red>注：每个已经格式化的文件系统都有其类型和uuid，而没有格式化的设备(如/dev/sdb3)，将只显示一个Name结果，表示该设备还未进行格式化。</font></p>
-<h2 id="blkid"><a href="#blkid" class="headerlink" title="blkid"></a>blkid</h2><p>查看文件系统类型和uuid：</p>
+<h2 id="3-2-blkid"><a href="#3-2-blkid" class="headerlink" title="3.2 blkid"></a>3.2 blkid</h2><p>查看文件系统类型和uuid：</p>
 <pre><code class="hljs routeros">[root@localhost ~]# blkid
 /dev/sr0: <span class="hljs-attribute">UUID</span>=<span class="hljs-string">&quot;2020-04-22-00-54-00-00&quot;</span> <span class="hljs-attribute">LABEL</span>=<span class="hljs-string">&quot;CentOS 7 x86_64&quot;</span> <span class="hljs-attribute">TYPE</span>=<span class="hljs-string">&quot;iso9660&quot;</span> <span class="hljs-attribute">PTTYPE</span>=<span class="hljs-string">&quot;dos&quot;</span> 
 /dev/sda1: <span class="hljs-attribute">UUID</span>=<span class="hljs-string">&quot;39b6f37f-531f-41c2-a498-dbe216fcfc4b&quot;</span> <span class="hljs-attribute">TYPE</span>=<span class="hljs-string">&quot;xfs&quot;</span> 
@@ -701,7 +701,7 @@ sr0             iso9660     CentOS <span class="hljs-number">7</span> x86_64 <sp
 /dev/mapper/centos-swap: <span class="hljs-attribute">UUID</span>=<span class="hljs-string">&quot;b83b56ce-37f2-460a-bbd1-8d4da4624493&quot;</span> <span class="hljs-attribute">TYPE</span>=<span class="hljs-string">&quot;swap&quot;</span> 
 /dev/sdb1: <span class="hljs-attribute">UUID</span>=<span class="hljs-string">&quot;2bc92060-a128-4ad5-bfbe-9cfb61dc1870&quot;</span> <span class="hljs-attribute">TYPE</span>=<span class="hljs-string">&quot;ext4&quot;</span></code></pre>
 
-<h2 id="du"><a href="#du" class="headerlink" title="du"></a>du</h2><blockquote>
+<h2 id="3-3-du"><a href="#3-3-du" class="headerlink" title="3.3 du"></a>3.3 du</h2><blockquote>
 <p>du命令用于评估文件的空间占用情况，它会统计每个文件的大小，统计时会递归统计目录中的文件，也就是说，它会遍历整个待统计目录，所以统计速度上可能并不理想。</p>
 </blockquote>
 <pre><code class="hljs jboss-cli">du [OPTION]<span class="hljs-string">...</span> [FILE]<span class="hljs-string">...</span>
@@ -734,7 +734,7 @@ sr0             iso9660     CentOS <span class="hljs-number">7</span> x86_64 <sp
 <span class="hljs-number">8.0</span>K    <span class="hljs-regexp">/tmp/</span>
 </code></pre>
 
-<h2 id="df"><a href="#df" class="headerlink" title="df"></a>df</h2><p>df 用于报告磁盘空间使用率，默认显示的大小是1K大小block数量，也就是以k为单位。</p>
+<h2 id="3-4-df"><a href="#3-4-df" class="headerlink" title="3.4 df"></a>3.4 df</h2><p>df 用于报告磁盘空间使用率，默认显示的大小是1K大小block数量，也就是以k为单位。</p>
 <p>和 du 不同的是，df 是读取每个文件系统的 superblock 信息，所以评估速度非常快。由于是读取 superblock，所以如果目录下挂载了另一个文件系统，是不会将此挂载的文件系统计入目录大小的。<strong>注意，du 和 df 统计的结果是不一样的。</strong></p>
 <p>如果用 df 统计某个文件的空间使用情况，将会转而统计该文件所在文件系统的空间使用情况。</p>
 <pre><code class="hljs angelscript">df [OPTION]... [FILE]...
@@ -767,7 +767,7 @@ tmpfs                    <span class="hljs-number">235193</span>      <span clas
 tmpfs                    <span class="hljs-number">235193</span>       <span class="hljs-number">1</span>  <span class="hljs-number">235192</span>       <span class="hljs-number">1</span>% /run/user/<span class="hljs-number">0</span>
 </code></pre>
 
-<h1 id="挂载和卸载文件系统"><a href="#挂载和卸载文件系统" class="headerlink" title="挂载和卸载文件系统"></a>挂载和卸载文件系统</h1><h2 id="mount"><a href="#mount" class="headerlink" title="mount"></a>mount</h2><blockquote>
+<h1 id="四、挂载和卸载文件系统"><a href="#四、挂载和卸载文件系统" class="headerlink" title="四、挂载和卸载文件系统"></a>四、挂载和卸载文件系统</h1><h2 id="4-1-mount"><a href="#4-1-mount" class="headerlink" title="4.1 mount"></a>4.1 mount</h2><blockquote>
 <p>mount用来显示挂载信息或者进行文件系统挂载，它的功能及其的强大(强大到离谱)，它不仅支持挂载非常多种文件系统，如ext/xfs/nfs/smbfs/cifs (win上的共享目录)等，还支持共享挂载点、继承挂载点(父子关系)、绑定挂载点、移动挂载点等等功能。在本文只介绍其最简单的挂载功能。</p>
 </blockquote>
 <pre><code class="hljs routeros">mount # 将显示当前已挂载信息
@@ -826,7 +826,7 @@ Enter root<span class="hljs-string">&#x27;s password: </span>
 <p>因此，在mount的时候指定cifs(SMB)的版本号为2.0即可：</p>
 <pre><code class="hljs cpp">[root@localhost ~]<span class="hljs-meta"># mount.cifs -o username=<span class="hljs-meta-string">&quot;long3&quot;</span>,password=<span class="hljs-meta-string">&quot;123&quot;</span>,vers=2.0 <span class="hljs-comment">//192.168.100.8/test /mnt</span></span></code></pre>
 
-<h2 id="挂载镜像文件"><a href="#挂载镜像文件" class="headerlink" title="挂载镜像文件"></a>挂载镜像文件</h2><p>有时候需要挂载CentOS的镜像文件，在虚拟机中经常是将镜像放入虚拟机的CD/DVD虚拟光驱中，然后在Linux上对/dev/cdrom进行挂载。其实/dev/cdrom是/dev/sr0的一个软链接，/dev/sr0是Linux中的光驱，所以上面的过程相当于是将镜像文件通过虚拟软件的虚拟光驱和linux的光驱连接起来，这样只需要挂载Linux中的光驱就可以了。但是，在非虚拟环境中没有虚拟光驱，而且在Linux中的一个镜像文件难道一定要拷贝到主机上通过虚拟光驱进行连接吗？</p>
+<h2 id="4-2-挂载镜像文件"><a href="#4-2-挂载镜像文件" class="headerlink" title="4.2 挂载镜像文件"></a>4.2 挂载镜像文件</h2><p>有时候需要挂载CentOS的镜像文件，在虚拟机中经常是将镜像放入虚拟机的CD/DVD虚拟光驱中，然后在Linux上对/dev/cdrom进行挂载。其实/dev/cdrom是/dev/sr0的一个软链接，/dev/sr0是Linux中的光驱，所以上面的过程相当于是将镜像文件通过虚拟软件的虚拟光驱和linux的光驱连接起来，这样只需要挂载Linux中的光驱就可以了。但是，在非虚拟环境中没有虚拟光驱，而且在Linux中的一个镜像文件难道一定要拷贝到主机上通过虚拟光驱进行连接吗？</p>
 <p>mount是一个极其强大的挂载工具，它支持挂载很多种文件类型，其中就支持挂载镜像文件，其实它连挂载目录都支持。</p>
 <pre><code class="hljs angelscript">mount -o loop CentOS<span class="hljs-number">-6.6</span>-x86_64-bin-DVD2.iso /mnt
 
@@ -839,10 +839,10 @@ sda        <span class="hljs-number">8</span>:<span class="hljs-number">0</span>
 └─sda3   <span class="hljs-number">8</span>:<span class="hljs-number">3</span>    <span class="hljs-number">0</span>     <span class="hljs-number">2</span>G  <span class="hljs-number">0</span> part [SWAP]
 sr0       <span class="hljs-number">11</span>:<span class="hljs-number">0</span>    <span class="hljs-number">1</span>  <span class="hljs-number">1024</span>M  <span class="hljs-number">0</span> rom</code></pre>
 
-<h2 id="umount"><a href="#umount" class="headerlink" title="umount"></a>umount</h2><pre><code class="hljs properties"><span class="hljs-attr">umount</span> <span class="hljs-string">设备名或挂载目录</span>
+<h2 id="4-3-umount"><a href="#4-3-umount" class="headerlink" title="4.3 umount"></a>4.3 umount</h2><pre><code class="hljs properties"><span class="hljs-attr">umount</span> <span class="hljs-string">设备名或挂载目录</span>
 <span class="hljs-attr">umount</span> <span class="hljs-string">-lf 强制卸载</span></code></pre>
 
-<h2 id="开机自动挂载-etc-fstab"><a href="#开机自动挂载-etc-fstab" class="headerlink" title="开机自动挂载/etc/fstab"></a>开机自动挂载/etc/fstab</h2><p>通过将挂载选项写入到 /etc/fstab 中，系统会自动挂载该文件中的配置项。但要注意，该文件在开机的前几个过程中就被读取，所以配置错误很可能会导致开机失败。</p>
+<h2 id="4-4-开机自动挂载-etc-fstab"><a href="#4-4-开机自动挂载-etc-fstab" class="headerlink" title="4.4 开机自动挂载/etc/fstab"></a>4.4 开机自动挂载/etc/fstab</h2><p>通过将挂载选项写入到 /etc/fstab 中，系统会自动挂载该文件中的配置项。但要注意，该文件在开机的前几个过程中就被读取，所以配置错误很可能会导致开机失败。</p>
 <pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>localhost ~]# cat /etc/fstab 
 
 #
@@ -860,11 +860,11 @@ UUID=<span class="hljs-number">39</span>b6f37f<span class="hljs-number">-531f</s
 <p>由于能用的备份工具众多，没人会在这里设置备份，所以备份列设置为0。</p>
 <p>最后一列是开机自检设置列，开机自检调用的是fsck程序，所有有些ext类文件系统作为”/“时，可能会设置为1，但是fsck是不支持xfs文件系统的，所以对于xfs文件系统而言，该项必须设置为0。</p>
 <p>其实无需考虑那么多，直接将这两列设置为0就可以了。</p>
-<h2 id="修复错误的-etc-fstab"><a href="#修复错误的-etc-fstab" class="headerlink" title="修复错误的/etc/fstab"></a>修复错误的/etc/fstab</h2><p>万一 /etc/fstab 配置错误，导致开机无法加载。这时提示输入 root 密码进入单人维护模式，只不过单人模式下根文件系统是只读的，哪怕是 root 也无法直接修改 /etc/fstab，所以应该将”/“文件系统进行重新挂载。</p>
+<h2 id="4-5-修复错误的-etc-fstab"><a href="#4-5-修复错误的-etc-fstab" class="headerlink" title="4.5 修复错误的/etc/fstab"></a>4.5 修复错误的/etc/fstab</h2><p>万一 /etc/fstab 配置错误，导致开机无法加载。这时提示输入 root 密码进入单人维护模式，只不过单人模式下根文件系统是只读的，哪怕是 root 也无法直接修改 /etc/fstab，所以应该将”/“文件系统进行重新挂载。</p>
 <p>执行下面的命令，重挂载根分区，并给读写权限，再去修改错误的 fstab 文件记录，再重启。</p>
 <pre><code class="hljs excel">mount -<span class="hljs-built_in">n</span> -o remount,rw /</code></pre>
 
-<h1 id="SWAP-分区"><a href="#SWAP-分区" class="headerlink" title="SWAP 分区"></a>SWAP 分区</h1><h2 id="查看哪个分区在充当-swap-分区"><a href="#查看哪个分区在充当-swap-分区" class="headerlink" title="查看哪个分区在充当 swap 分区"></a>查看哪个分区在充当 swap 分区</h2><pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>localhost ~]# lsblk
+<h1 id="五、SWAP-分区"><a href="#五、SWAP-分区" class="headerlink" title="五、SWAP 分区"></a>五、SWAP 分区</h1><h2 id="5-1-查看哪个分区在充当-swap-分区"><a href="#5-1-查看哪个分区在充当-swap-分区" class="headerlink" title="5.1 查看哪个分区在充当 swap 分区"></a>5.1 查看哪个分区在充当 swap 分区</h2><pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>localhost ~]# lsblk
 NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda               <span class="hljs-number">8</span>:<span class="hljs-number">0</span>    <span class="hljs-number">0</span>   <span class="hljs-number">20</span>G  <span class="hljs-number">0</span> disk 
 ├─sda1            <span class="hljs-number">8</span>:<span class="hljs-number">1</span>    <span class="hljs-number">0</span>    <span class="hljs-number">1</span>G  <span class="hljs-number">0</span> part /boot
@@ -879,7 +879,7 @@ sr0              <span class="hljs-number">11</span>:<span class="hljs-number">0
 /dev/dm<span class="hljs-number">-1</span>                               partition       <span class="hljs-number">2097148</span> <span class="hljs-number">0</span>       <span class="hljs-number">-2</span>
 </code></pre>
 
-<h2 id="添加-swap-分区"><a href="#添加-swap-分区" class="headerlink" title="添加 swap 分区"></a>添加 swap 分区</h2><p>(1).可以新分一个区，在分区时指定其分区的ID号为SWAP类型。</p>
+<h2 id="5-2-添加-swap-分区"><a href="#5-2-添加-swap-分区" class="headerlink" title="5.2 添加 swap 分区"></a>5.2 添加 swap 分区</h2><p>(1).可以新分一个区，在分区时指定其分区的ID号为SWAP类型。</p>
 <p>(2).格式化为swap分区：mkswap</p>
 <pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>localhost ~]# mkswap /dev/sdb5
 Setting up swapspace version <span class="hljs-number">1</span>, size = <span class="hljs-number">1951096</span> KiB
