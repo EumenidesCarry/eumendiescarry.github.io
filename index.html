@@ -187,6 +187,71 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/09/21/linux_ssh/" target="_self">
+          <img src="https://th.wallhaven.cc/small/4x/4x92p3.jpg" srcset="/img/loading.gif" alt="Linux ssh">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/09/21/linux_ssh/">Linux ssh</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/09/21/linux_ssh/">
+          
+          
+            
+          
+          一、 SSH1.1 sshssh：Secure Shell，应用层协议，默认端口 22/tcp
+特点
+通信过程及认证过程是加密的，主机认证
+用户认证过程加密
+数据传输过程加密
+
+认证过程
+基于口令认证
+基于密钥认证
+
+1.2 openSSH1.2.1 用于 linux，C/S 架构：
+服务端：sshd，配置文件 /etc/ssh/sshd_config
+客户端：ssh，配置文件 /etc/ssh/
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-09-21 17:15" pubdate>
+              2020-09-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/09/02/linux_super_inode_block/" target="_self">
           <img src="https://th.wallhaven.cc/small/0w/0wv2p6.jpg" srcset="/img/loading.gif" alt="Linux 超级块和 i-node">
         </a>
@@ -693,7 +758,10 @@ IPV4地址：点分十进制 32bit
 分区是为了在逻辑上将某些柱面隔开形成边界。它是以柱面为单位来划分的，但是从CentOS 7开始，是按照扇区进行划分的。
 在磁盘数据量非常大的情况下，划分分区的好处是扫描块位图等更快速：不用再扫描整块磁盘的块位图，只需扫描对应分区的块位图。
 
-1.1 分区方法（MBR、GPT）1.1.1 MBRMBR格式的磁盘中，会维护磁盘第一个扇区——MBR扇区，在该扇区中第446字节之后的64字节是分
+1.1 分区方法（MBR、GPT）1.1.1 MBRMaster/Main Boot Record
+
+446 bytes: BootLoader
+6
         </a>
       </p>
 
@@ -703,60 +771,6 @@ IPV4地址：点分十进制 32bit
             <i class="iconfont icon-date"></i>
             <time datetime="2020-06-09 15:32" pubdate>
               2020-06-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Linux/">Linux</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Linux/">Linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/06/01/Linux_boot/" target="_self">
-          <img src="https://th.wallhaven.cc/small/xl/xldd5z.jpg" srcset="/img/loading.gif" alt="Linux 开机详细流程">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/06/01/Linux_boot/">Linux 开机详细流程</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/06/01/Linux_boot/">
-          
-          
-            
-          
-          TODO….
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-06-01 20:50" pubdate>
-              2020-06-01
             </time>
           </div>
         

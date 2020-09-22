@@ -17,10 +17,23 @@
   <meta name="description" content="">
   <meta name="author" content="ECarry">
   <meta name="keywords" content="">
-  <title>标签 - Linux - ECarry的博客</title>
+  <title>Linux ssh - ECarry的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+    
+  
+
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -43,7 +56,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -149,7 +162,7 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('https://w.wallhaven.cc/full/j5/wallhaven-j5g55p.jpg') no-repeat center center;
+         style="background: url('https://w.wallhaven.cc/full/4x/wallhaven-4x92p3.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -157,6 +170,43 @@
             <span class="h2" id="subtitle">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-09-21 17:15" pubdate>
+        2020年9月21日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      300 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -169,91 +219,133 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux ssh</h1>
+            
+              <p class="note note-info">
                 
-
-<div class="list-group">
-  <p class="h4">共计 17 篇文章</p>
-  <hr>
-  
-    
-      
-      <p class="h5">2020</p>
-    
-    <a href="/2020/02/11/linux_fs/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux 文件系统的选择</span>
-      <time style="float: right;">02-11</time>
-    </a>
-  
-    
-      
-      <p class="h5">2019</p>
-    
-    <a href="/2019/11/01/linux_change_pw/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Redhat/CentOS 7 单用户修改 root 密码</span>
-      <time style="float: right;">11-01</time>
-    </a>
-  
-    
-    <a href="/2019/10/24/linux_install_tips_and_fault_detect/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux 运维故障排查与系统调优技巧</span>
-      <time style="float: right;">10-24</time>
-    </a>
-  
-    
-    <a href="/2019/09/17/linux_performance_analysis/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux 系统性能分析标准</span>
-      <time style="float: right;">09-17</time>
-    </a>
-  
-    
-    <a href="/2019/08/17/linux_sys_root_bad/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux 系统权限不正常导致系统无法启动</span>
-      <time style="float: right;">08-17</time>
-    </a>
-  
-    
-    <a href="/2019/07/15/linux_ulimit_bad/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Linux 系统资源 ulimit 设置不正确导致无法登录</span>
-      <time style="float: right;">07-15</time>
-    </a>
-  
-    
-      
-      <p class="h5">2018</p>
-    
-    <a href="/2018/10/20/Linux_RUN_fsck/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Unexpected inconsistency run fsck 处理报告</span>
-      <time style="float: right;">10-20</time>
-    </a>
-  
-</div>
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/tags/Linux/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/tags/Linux/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
-
-
-
-              </div>
+                  本文最后更新于：2020年9月21日 晚上
+                
+              </p>
+            
+            <div class="markdown-body" id="post-body">
+              <h1 id="一、-SSH"><a href="#一、-SSH" class="headerlink" title="一、 SSH"></a>一、 SSH</h1><h2 id="1-1-ssh"><a href="#1-1-ssh" class="headerlink" title="1.1 ssh"></a>1.1 ssh</h2><p>ssh：Secure Shell，应用层协议，默认端口 22/tcp</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
+<li>通信过程及认证过程是加密的，主机认证</li>
+<li>用户认证过程加密</li>
+<li>数据传输过程加密</li>
+</ul>
+<h3 id="认证过程"><a href="#认证过程" class="headerlink" title="认证过程"></a>认证过程</h3><ul>
+<li>基于口令认证</li>
+<li>基于密钥认证</li>
+</ul>
+<h2 id="1-2-openSSH"><a href="#1-2-openSSH" class="headerlink" title="1.2 openSSH"></a>1.2 openSSH</h2><h3 id="1-2-1-用于-linux，C-S-架构："><a href="#1-2-1-用于-linux，C-S-架构：" class="headerlink" title="1.2.1 用于 linux，C/S 架构："></a>1.2.1 用于 linux，C/S 架构：</h3><ul>
+<li>服务端：sshd，配置文件 /etc/ssh/sshd_config</li>
+<li>客户端：ssh，配置文件 /etc/ssh/ssh_config</li>
+<li>ssh-keygen：秘钥生成器</li>
+<li>ssh-copy-id：将公钥传输至远程服务器</li>
+<li>scp：跨主机安全复制工具</li>
+</ul>
+<h4 id="ssh-使用"><a href="#ssh-使用" class="headerlink" title="ssh 使用"></a>ssh 使用</h4><ul>
+<li>ssh USERNAME@HOST：用 USERNAME 登录 HOST</li>
+<li>ssh USERNAME@HOST ‘COMMAND’：不登录执行远程主机命令，并打印在屏幕</li>
+</ul>
+<h4 id="scp-使用"><a href="#scp-使用" class="headerlink" title="scp 使用"></a>scp 使用</h4><ul>
+<li>scp SRC DEST<ul>
+<li>-r</li>
+<li>-a</li>
+</ul>
+</li>
+<li>scp /path/to/copy USERNAME@HOST:/path/to/save：将本地文件复制到远程主机上</li>
+<li>scp USERNAME@HOST:/path/to/copy /path/to/save：将远程主机上的文件复制到本机上</li>
+</ul>
+<h4 id="ssh-keygen-使用"><a href="#ssh-keygen-使用" class="headerlink" title="ssh-keygen 使用"></a>ssh-keygen 使用</h4><ul>
+<li>ssh-keygen -t rsa<ul>
+<li>~/.ssh/id_rsa：密钥</li>
+<li><del>/.ssh/id_rsa.pub：公钥，可复制到远程主机 `</del>/.ssh/authorized_keys` 下</li>
+<li>-f /path/to/KEY_FILE：保存密钥到指定目录</li>
+<li>-p ‘’：指定加密密钥的密码，或为空</li>
+</ul>
+</li>
+</ul>
+<h4 id="ssh-copy-id"><a href="#ssh-copy-id" class="headerlink" title="ssh-copy-id"></a>ssh-copy-id</h4><ul>
+<li>ssh-copy-id<ul>
+<li>-i ~/.ssh/id_rsa.pub USERNAME@HOST：将公钥拷贝到远程主机</li>
+</ul>
+</li>
+</ul>
+<h1 id="二、-配置文件"><a href="#二、-配置文件" class="headerlink" title="二、 配置文件"></a>二、 配置文件</h1>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/09/02/linux_super_inode_block/">
+                        <span class="hidden-mobile">Linux 超级块和 i-node</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -361,6 +453,31 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
 
 
   <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
@@ -368,7 +485,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "标签 - Linux&nbsp;",
+        "Linux ssh&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
@@ -382,6 +499,21 @@
   </script>
 
 
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
 
 
 

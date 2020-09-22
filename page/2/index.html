@@ -187,6 +187,60 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/06/01/Linux_boot/" target="_self">
+          <img src="https://th.wallhaven.cc/small/xl/xldd5z.jpg" srcset="/img/loading.gif" alt="Linux 开机详细流程">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/06/01/Linux_boot/">Linux 开机详细流程</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/06/01/Linux_boot/">
+          
+          
+            
+          
+          TODO….
+
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-06-01 20:50" pubdate>
+              2020-06-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/05/13/kernel_modify/" target="_self">
           <img src="https://th.wallhaven.cc/small/od/odqlol.jpg" srcset="/img/loading.gif" alt="Linux 简单内核优化">
         </a>
@@ -501,17 +555,17 @@ NAME=eth0           &lt;---
           
             
           
-          由系统服务 rsyslogd 统一管理
+          一、 由系统服务 rsyslogd 统一管理
 软件包：rsyslogd-x.x.x_0.x86_64
 主要程序：/sbin/rsyslogd
 配置文件：/etc/rsyslog.conf
 
-日志消息级别
+二、 日志消息级别
 0 EMERG （紧急）：导致主机系统不可用的情况
 1 ALERT（警告）：必须马上采取措施解决的问题
 2 CRIT（严重）：比较严重的情况
 3 ERR（错误）：运行出现错误
-4 WARNING（提醒）
+4 WARNI
         </a>
       </p>
 
@@ -694,9 +748,34 @@ xfs：高性能文件系统，linux3.10 内核开始默认支持。
           
             
           
-          更改主机名（hostname）在更改主机名时将主机名添加至 /etc/hosts下，做个映射
-127.0.0.1        hostname 
-这样能够避免后续安装应用所出现的问题
+          一、 排障1.1 排障要点
+确定问题故障特征
+重现故障
+使用工具收集进一步信息
+排除不可能的原因
+定位故障：从简单的问题入手；一次尝试一中方式
+
+1.2 常见故障
+管理员密码忘记
+系统无法正常启动
+
+grub 损坏 （MBR损坏、grub 配置文件丢失）
+
+
+
+系统初始化故障（某文件系统无法正常挂载、驱动不兼容）
+
+
+
+服务故障
+
+
+
+用户无法登陆系统（密码是否正确、bash程序是否故障）
+
+
+
+
         </a>
       </p>
 
@@ -706,88 +785,6 @@ xfs：高性能文件系统，linux3.10 内核开始默认支持。
             <i class="iconfont icon-date"></i>
             <time datetime="2019-10-24 17:47" pubdate>
               2019-10-24
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Linux/">Linux</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Linux/">Linux</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/09/17/linux_performance_analysis/" target="_self">
-          <img src="https://th.wallhaven.cc/small/k9/k9y23m.jpg" srcset="/img/loading.gif" alt="Linux 系统性能分析标准">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2019/09/17/linux_performance_analysis/">Linux 系统性能分析标准</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/09/17/linux_performance_analysis/">
-          
-          
-            
-          
-          
-
-
-影响性能因素
-评判标准
-评判标准
-评判标准
-
-
-
-
-好
-坏
-糟糕
-
-
-CPU
-user% + sys% &lt; 70%
-user% + sys% = 85%
-user% + sys% &gt;= 90%
-
-
-内存
-Swap In(si) &amp; Out(so)=0
-Per CPU with 10 page/s
-more Swap In &amp;Swap Out
-
-
-磁盘
-iowait
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-09-17 09:26" pubdate>
-              2019-09-17
             </time>
           </div>
         

@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      217 字
+      335 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        分钟
     </span>
   
@@ -233,17 +233,17 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月17日 晚上
+                  本文最后更新于：2020年9月21日 下午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="由系统服务-rsyslogd-统一管理"><a href="#由系统服务-rsyslogd-统一管理" class="headerlink" title="由系统服务 rsyslogd 统一管理"></a>由系统服务 rsyslogd 统一管理</h1><ul>
+              <h1 id="一、-由系统服务-rsyslogd-统一管理"><a href="#一、-由系统服务-rsyslogd-统一管理" class="headerlink" title="一、 由系统服务 rsyslogd 统一管理"></a>一、 由系统服务 rsyslogd 统一管理</h1><ul>
 <li>软件包：rsyslogd-x.x.x_0.x86_64</li>
 <li>主要程序：/sbin/rsyslogd</li>
 <li>配置文件：/etc/rsyslog.conf</li>
 </ul>
-<h1 id="日志消息级别"><a href="#日志消息级别" class="headerlink" title="日志消息级别"></a>日志消息级别</h1><ul>
+<h1 id="二、-日志消息级别"><a href="#二、-日志消息级别" class="headerlink" title="二、 日志消息级别"></a>二、 日志消息级别</h1><ul>
 <li>0 EMERG （紧急）：导致主机系统不可用的情况</li>
 <li>1 ALERT（警告）：必须马上采取措施解决的问题</li>
 <li>2 CRIT（严重）：比较严重的情况</li>
@@ -253,9 +253,17 @@
 <li>6 INFO（信息）：一般信息</li>
 <li>7 DEBUG（调试）：程序或系统调试信息等</li>
 </ul>
-<h1 id="日志记录的一般格式"><a href="#日志记录的一般格式" class="headerlink" title="日志记录的一般格式"></a>日志记录的一般格式</h1><pre><code class="hljs shell">[root@localhost ~]# tail -f /var/log/messages
+<h1 id="三、-syslog-服务"><a href="#三、-syslog-服务" class="headerlink" title="三、 syslog 服务"></a>三、 syslog 服务</h1><h2 id="3-1-syslogd"><a href="#3-1-syslogd" class="headerlink" title="3.1 syslogd"></a>3.1 syslogd</h2><p>系统，非内核产生的信息</p>
+<h2 id="3-2-klogd"><a href="#3-2-klogd" class="headerlink" title="3.2 klogd"></a>3.2 klogd</h2><p>内核，专门负责记录内核产生的日志信息</p>
+<h1 id="四、-日志记录"><a href="#四、-日志记录" class="headerlink" title="四、 日志记录"></a>四、 日志记录</h1><h2 id="4-1-dmesg"><a href="#4-1-dmesg" class="headerlink" title="4.1 dmesg"></a>4.1 dmesg</h2><p>设备启动：</p>
+<p>kernel 启动 日志输出到 –&gt; 物理终端（/dev/console） 产生日志 –&gt; /var/log/dmesg</p>
+<h3 id="查看-dmesg-日志"><a href="#查看-dmesg-日志" class="headerlink" title="查看 dmesg 日志"></a>查看 dmesg 日志</h3><ul>
+<li>#dmesg</li>
+<li>cat /var/log/dmesg</li>
+</ul>
+<h2 id="4-2-系统标准错误日志信息"><a href="#4-2-系统标准错误日志信息" class="headerlink" title="4.2 系统标准错误日志信息"></a>4.2 系统标准错误日志信息</h2><p><code>/var/log/messages</code>：系统标准错误日志信息，非内核产生引导信息，各子系统产生的信息</p>
+<pre><code class="hljs shell">[root@localhost ~]# tail -f /var/log/messages
 Jul 19 06:06:33 localhost ModemManager[905]: &lt;warn&gt; Couldn&#x27;t find support for device at &#x27;/sys/devices..&#x27;</code></pre>
-
 
 <table>
 <thead>

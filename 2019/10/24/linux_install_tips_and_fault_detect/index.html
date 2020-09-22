@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      338 字
+      651 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        分钟
     </span>
   
@@ -233,12 +233,67 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月17日 晚上
+                  本文最后更新于：2020年9月22日 上午
                 
               </p>
             
             <div class="markdown-body" id="post-body">
-              <h1 id="更改主机名（hostname）"><a href="#更改主机名（hostname）" class="headerlink" title="更改主机名（hostname）"></a>更改主机名（hostname）</h1><p>在更改主机名时将主机名添加至 <code>/etc/hosts</code>下，做个映射</p>
+              <h1 id="一、-排障"><a href="#一、-排障" class="headerlink" title="一、 排障"></a>一、 排障</h1><h2 id="1-1-排障要点"><a href="#1-1-排障要点" class="headerlink" title="1.1 排障要点"></a>1.1 排障要点</h2><ol>
+<li>确定问题故障特征</li>
+<li>重现故障</li>
+<li>使用工具收集进一步信息</li>
+<li>排除不可能的原因</li>
+<li>定位故障：从简单的问题入手；一次尝试一中方式</li>
+</ol>
+<h2 id="1-2-常见故障"><a href="#1-2-常见故障" class="headerlink" title="1.2 常见故障"></a>1.2 常见故障</h2><ul>
+<li>管理员密码忘记</li>
+<li>系统无法正常启动<ul>
+<li><ol>
+<li>grub 损坏 （MBR损坏、grub 配置文件丢失）</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>系统初始化故障（某文件系统无法正常挂载、驱动不兼容）</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>服务故障</li>
+</ol>
+</li>
+<li><ol start="4">
+<li>用户无法登陆系统（密码是否正确、bash程序是否故障）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>命令无法运行</li>
+<li>编译过程无法继续（开发环境缺少基本组件）</li>
+</ul>
+<h3 id="1-2-1-MBR-grub-损坏"><a href="#1-2-1-MBR-grub-损坏" class="headerlink" title="1.2.1 MBR/grub 损坏"></a>1.2.1 MBR/grub 损坏</h3><h4 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h4><p>将 mbr 分区手动损坏</p>
+<pre><code class="hljs bahs">#先备份 mbr 分区
+[root@test ~]# dd if&#x3D;&#x2F;dev&#x2F;sda of&#x3D;&#x2F;root&#x2F;mbr.backup count&#x3D;1 bs&#x3D;512
+1+0 records in
+1+0 records out
+512 bytes (512 B) copied, 0.000588373 s, 870 kB&#x2F;s
+#往 mbr 写入200 bytes 空数据
+1+0 records in
+1+0 records out
+200 bytes (200 B) copied, 0.000351164 s, 570 kB&#x2F;s
+#同步到磁盘
+[root@test ~]# sync
+#重新启动，系统无法进入</code></pre>
+
+<p><strong>解决办法：</strong></p>
+<p>使用紧急救援模式：使用完整的系统安装光盘</p>
+<ul>
+<li>boot:linux rescue<ul>
+<li>/mnt/sysimage</li>
+</ul>
+</li>
+<li>chroot /mnt/sysroot</li>
+</ul>
+<p>TODO….</p>
+<h3 id="1-2-2"><a href="#1-2-2" class="headerlink" title="1.2.2"></a>1.2.2</h3><h1 id="更改主机名（hostname）"><a href="#更改主机名（hostname）" class="headerlink" title="更改主机名（hostname）"></a>更改主机名（hostname）</h1><p>在更改主机名时将主机名添加至 <code>/etc/hosts</code>下，做个映射</p>
 <p><code>127.0.0.1        hostname</code> </p>
 <p>这样能够避免后续安装应用所出现的问题</p>
 <a id="more"></a>
