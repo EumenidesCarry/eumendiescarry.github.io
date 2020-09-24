@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      651 字
+      682 字
     </span>
   
 
@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月22日 上午
+                  本文最后更新于：2020年9月24日 晚上
                 
               </p>
             
@@ -292,6 +292,13 @@
 </li>
 <li>chroot /mnt/sysroot</li>
 </ul>
+<pre><code class="hljs bash">sh-4.2<span class="hljs-comment"># chroot /mnt/sysimage</span>
+sh-4.2<span class="hljs-comment"># grub2-install /dev/vda</span>
+Installing <span class="hljs-keyword">for</span> i386-pc platform.
+Installation finished. No error reported.
+sh-4.2<span class="hljs-comment"># exit</span>
+sh-4.2<span class="hljs-comment"># reboot</span></code></pre>
+
 <p>TODO….</p>
 <h3 id="1-2-2"><a href="#1-2-2" class="headerlink" title="1.2.2"></a>1.2.2</h3><h1 id="更改主机名（hostname）"><a href="#更改主机名（hostname）" class="headerlink" title="更改主机名（hostname）"></a>更改主机名（hostname）</h1><p>在更改主机名时将主机名添加至 <code>/etc/hosts</code>下，做个映射</p>
 <p><code>127.0.0.1        hostname</code> </p>
