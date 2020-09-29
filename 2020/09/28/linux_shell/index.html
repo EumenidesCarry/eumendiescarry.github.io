@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月29日 上午
+                  本文最后更新于：2020年9月29日 晚上
                 
               </p>
             
@@ -266,7 +266,7 @@
 <h5 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h5><p>熟悉Linux系统常用命令与工具，掌握Shell脚本语言语法结构，能独立编写Shell脚本，完成自动<br>化运维常规任务，提高工作效率，为以后学习其他语言打下坚实的基础。</p>
 <p>目标人群</p>
 <p>运维工程师、开发工程师、Linux系统爱好者或已经具备其他编程语言的人群。</p>
-<h1 id="第一章-Shell-基础知识"><a href="#第一章-Shell-基础知识" class="headerlink" title="第一章 Shell 基础知识"></a>第一章 Shell 基础知识</h1><h2 id="1-1-Shell-简介"><a href="#1-1-Shell-简介" class="headerlink" title="1.1 Shell 简介"></a>1.1 Shell 简介</h2><p>Shell是一个C语言编写的脚本语言，它是用户与Linux的桥梁，用户输入命令交给Shell处理，<br>Shell将相应的操作传递给内核（Kernel），内核把处理的结果输出给用户。<br>下面是流程示意图：</p>
+<h1 id="一、-Shell-基础知识"><a href="#一、-Shell-基础知识" class="headerlink" title="一、 Shell 基础知识"></a>一、 Shell 基础知识</h1><h2 id="1-1-Shell-简介"><a href="#1-1-Shell-简介" class="headerlink" title="1.1 Shell 简介"></a>1.1 Shell 简介</h2><p>Shell是一个C语言编写的脚本语言，它是用户与Linux的桥梁，用户输入命令交给Shell处理，<br>Shell将相应的操作传递给内核（Kernel），内核把处理的结果输出给用户。<br>下面是流程示意图：</p>
 <p><img src="/img/linux_shell/linux_shell_1.jpg" srcset="/img/loading.gif"></p>
 <p>Shell既然是工作在Linux内核之上，那我们也有必要了解下Linux相关知识。<br>Linux是一套免费试用和自由传播的类Unix操作系统，是一个基于POSIX和UNIX的多用户、多任务、支持多线程和多CPU的操作系统。</p>
 <p>1983 年 9 月 27 日，Richard Stallman（理查德-马修-斯托曼）发起GNU计划，它的目标是创建一套完全自由的操作系统。为保证GNU软件可以自由的使用、复制、修改和发布，所有的GNU软件都有一份在禁止其他人添加任何限制的情况下授权所有权利给任何人的协议条款，GNU通用公共许可证（GNU General Plubic License，GPL），说白了就是不能做商业用途。</p>
@@ -493,7 +493,7 @@ Hello world!</code></pre>
 
 <p>单引号是告诉  Shell 忽略特殊字符，而双引号则解释特殊符号原有的意义，比如 $、！。</p>
 <h2 id="1-7-注释"><a href="#1-7-注释" class="headerlink" title="1.7 注释"></a>1.7 注释</h2><p>Shell 注释也很简单，只要在每行前面加个 # 号，即表示 Shell 忽略解释。</p>
-<h1 id="第二章-Shell-字符串处理之"><a href="#第二章-Shell-字符串处理之" class="headerlink" title="第二章 Shell 字符串处理之 ${}"></a>第二章 Shell 字符串处理之 ${}</h1><p>上一章节讲解了为什么用${}引用变量，${}还有一个重要的功能，就是文本处理，单行文本基本上可以满足你所有需求。</p>
+<h1 id="二、-Shell-字符串处理之"><a href="#二、-Shell-字符串处理之" class="headerlink" title="二、 Shell 字符串处理之 ${}"></a>二、 Shell 字符串处理之 ${}</h1><p>上一章节讲解了为什么用${}引用变量，${}还有一个重要的功能，就是文本处理，单行文本基本上可以满足你所有需求。</p>
 <h2 id="2-1-获取字符串长度"><a href="#2-1-获取字符串长度" class="headerlink" title="2.1 获取字符串长度"></a>2.1 获取字符串长度</h2><pre><code class="hljs bash"><span class="hljs-comment"># VAR=&#x27;hello world!&#x27;</span>
 <span class="hljs-comment"># echo $VAR</span>
 hello world!
@@ -680,7 +680,7 @@ hello
 <span class="hljs-keyword">done</span></code></pre>
 
 <p><img src="/img/linux_shell/linux_shell_5.jpg" srcset="/img/loading.gif"></p>
-<h1 id="第三章-Shell表达式与运算符"><a href="#第三章-Shell表达式与运算符" class="headerlink" title="第三章 Shell表达式与运算符"></a>第三章 Shell表达式与运算符</h1><h2 id="3-1-条件表达式"><a href="#3-1-条件表达式" class="headerlink" title="3.1 条件表达式"></a>3.1 条件表达式</h2><table>
+<h1 id="三、-Shell表达式与运算符"><a href="#三、-Shell表达式与运算符" class="headerlink" title="三、 Shell表达式与运算符"></a>三、 Shell表达式与运算符</h1><h2 id="3-1-条件表达式"><a href="#3-1-条件表达式" class="headerlink" title="3.1 条件表达式"></a>3.1 条件表达式</h2><table>
 <thead>
 <tr>
 <th>表达式</th>
@@ -1014,7 +1014,7 @@ ing
 
 <h2 id="3-9-Shell-括号用途总结"><a href="#3-9-Shell-括号用途总结" class="headerlink" title="3.9 Shell 括号用途总结"></a>3.9 Shell 括号用途总结</h2><p>看到这里，想一想里面所讲的小括号、中括号的用途，是不是有点懵逼了。那我们总结一下！</p>
 <p>|( )|用途 1 ：在运算中，先计算小括号里面的内容<br>用途 2 ：数组<br>用途 3 ：匹配分组|<br>|(( ))|用途 1 ：表达式，不支持-eq这类的运算符。不支持-a和-o，支持&lt;=、&gt;=、&lt;、&gt;这类<br>比较符和&amp;&amp;、||<br>用途 2 ：C语言风格的for(())表达式|<br>|$( ) |执行Shell命令，与反撇号等效|<br>|$(( ))|用途 1 ：简单算数运算<br>用途 2 ：支持三目运算符 $(( 表达式?数字:数字 ))|<br>|[ ] |条件表达式，里面不支持逻辑判断符|<br>|[[ ]]|条件表达式，里面不支持-a和-o，不支持&lt;=和&gt;=比较符，支持-eq、&lt;、&gt;这类比较<br>符。支持=~模式匹配，也可以不用双引号也不会影响原意，比[]更加通用|<br>|$[ ]| 简单算数运算|<br>|{ }|对逗号（,）和点点（…）起作用，比如touch {1,2}创建 1 和 2 文件，touch<br>{1..3}创建 1 、 2 和 3 文件|<br>|${ }|用途 1 ：引用变量<br>用途 2 ：字符串处理|</p>
-<h1 id="第四章-Shell-流程控制"><a href="#第四章-Shell-流程控制" class="headerlink" title="第四章 Shell 流程控制"></a>第四章 Shell 流程控制</h1><p>流程控制是改变程序运行顺序的指令。</p>
+<h1 id="四、-Shell-流程控制"><a href="#四、-Shell-流程控制" class="headerlink" title="四、 Shell 流程控制"></a>四、 Shell 流程控制</h1><p>流程控制是改变程序运行顺序的指令。</p>
 <h2 id="4-1-if-语句"><a href="#4-1-if-语句" class="headerlink" title="4.1 if 语句"></a>4.1 if 语句</h2><p>格式：<strong>if list; then list; [ elif list; then list; ] … [ else list; ] fi</strong></p>
 <h3 id="4-1-1-单分支"><a href="#4-1-1-单分支" class="headerlink" title="4.1.1 单分支"></a>4.1.1 单分支</h3><pre><code class="hljs bash"><span class="hljs-keyword">if</span> 条件表达式; <span class="hljs-keyword">then</span>
 命令
@@ -1431,7 +1431,7 @@ mysql 5.6
 Select a number: 3</code></pre>
 
 <p>如果不想用默认的提示符，可以通过重新赋值变量PS3来自定义。这下就比较完美了！</p>
-<h1 id="第五章-Shell-函数与数组"><a href="#第五章-Shell-函数与数组" class="headerlink" title="第五章 Shell 函数与数组"></a>第五章 Shell 函数与数组</h1><h2 id="5-1-函数"><a href="#5-1-函数" class="headerlink" title="5.1 函数"></a>5.1 函数</h2><p><strong>格式：</strong></p>
+<h1 id="五、-Shell-函数与数组"><a href="#五、-Shell-函数与数组" class="headerlink" title="五、 Shell 函数与数组"></a>五、 Shell 函数与数组</h1><h2 id="5-1-函数"><a href="#5-1-函数" class="headerlink" title="5.1 函数"></a>5.1 函数</h2><p><strong>格式：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-function"><span class="hljs-title">func</span></span>() &#123;
 <span class="hljs-built_in">command</span>
 &#125;</code></pre>
@@ -1577,7 +1577,7 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>
 <span class="hljs-keyword">done</span></code></pre>
 
-<h1 id="第六章-Shell正则表达式"><a href="#第六章-Shell正则表达式" class="headerlink" title="第六章 Shell正则表达式"></a>第六章 Shell正则表达式</h1><p>正则表达式在每种语言中都会有，功能就是匹配符合你预期要求的字符串。</p>
+<h1 id="六、-Shell正则表达式"><a href="#六、-Shell正则表达式" class="headerlink" title="六、 Shell正则表达式"></a>六、 Shell正则表达式</h1><p>正则表达式在每种语言中都会有，功能就是匹配符合你预期要求的字符串。</p>
 <p>Shell正则表达式分为<strong>两种</strong>：</p>
 <ul>
 <li>基础正则表达式：BRE（basic regular express）</li>
@@ -1822,7 +1822,7 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
 <td></td>
 </tr>
 </tbody></table>
-<h1 id="第七章-Shell-文本处理三剑客"><a href="#第七章-Shell-文本处理三剑客" class="headerlink" title="第七章 Shell 文本处理三剑客"></a>第七章 Shell 文本处理三剑客</h1><h2 id="7-1-grep"><a href="#7-1-grep" class="headerlink" title="7.1 grep"></a>7.1 grep</h2><p>过滤来自一个文件或标准输入匹配模式内容。</p>
+<h1 id="七、-Shell-文本处理三剑客"><a href="#七、-Shell-文本处理三剑客" class="headerlink" title="七、 Shell 文本处理三剑客"></a>七、 Shell 文本处理三剑客</h1><h2 id="7-1-grep"><a href="#7-1-grep" class="headerlink" title="7.1 grep"></a>7.1 grep</h2><p>过滤来自一个文件或标准输入匹配模式内容。</p>
 <p>除了 grep 外，还有 egrep、fgrep。egrep 是 grep 的扩展，相当于grep -E。fgrep 相当于 grep -<br>f，用的少。</p>
 <p><strong>Usage: grep [OPTION]… PATTERN [FILE]…</strong></p>
 <table>
@@ -4555,7 +4555,7 @@ server 127.0.0.1:82 backup;
 2</code></pre>
 
 <p>其他参考资料：<a target="_blank" rel="noopener" href="http://www.gnu.org/software/gawk/manual/gawk.html">http://www.gnu.org/software/gawk/manual/gawk.html</a></p>
-<h1 id="第八章-Shell标准输入、输出和错误"><a href="#第八章-Shell标准输入、输出和错误" class="headerlink" title="第八章 Shell标准输入、输出和错误"></a>第八章 Shell标准输入、输出和错误</h1><p>文件描述符（fd）：文件描述符是一个非负整数，在打开现存文件或新建文件时，内核会返回一个文件描述符，读写文件也需要使用文件描述符来访问文件。</p>
+<h1 id="八、-Shell标准输入、输出和错误"><a href="#八、-Shell标准输入、输出和错误" class="headerlink" title="八、 Shell标准输入、输出和错误"></a>八、 Shell标准输入、输出和错误</h1><p>文件描述符（fd）：文件描述符是一个非负整数，在打开现存文件或新建文件时，内核会返回一个文件描述符，读写文件也需要使用文件描述符来访问文件。</p>
 <p>内核为每个进程维护该进程打开的文件记录表。文件描述符只适于Unix、Linux操作系统。</p>
 <h2 id="8-1-标准输入、输出和错误"><a href="#8-1-标准输入、输出和错误" class="headerlink" title="8.1 标准输入、输出和错误"></a>8.1 标准输入、输出和错误</h2><table>
 <thead>
@@ -4736,7 +4736,7 @@ abc
 <span class="hljs-comment"># echo 1 2 3 | while read a b c;do echo &quot;$a $b $c&quot;; done</span>
 1 2 3</code></pre>
 
-<h1 id="第九章-Shell信号发送与捕捉"><a href="#第九章-Shell信号发送与捕捉" class="headerlink" title="第九章 Shell信号发送与捕捉"></a>第九章 Shell信号发送与捕捉</h1><h2 id="9-1-Linux信号类型"><a href="#9-1-Linux信号类型" class="headerlink" title="9.1 Linux信号类型"></a>9.1 Linux信号类型</h2><p>信号（Signal）：信号是在软件层次上对中断机制的一种模拟，通过给一个进程发送信号，执行相应的处理函数。</p>
+<h1 id="九、-Shell信号发送与捕捉"><a href="#九、-Shell信号发送与捕捉" class="headerlink" title="九、 Shell信号发送与捕捉"></a>九、 Shell信号发送与捕捉</h1><h2 id="9-1-Linux信号类型"><a href="#9-1-Linux信号类型" class="headerlink" title="9.1 Linux信号类型"></a>9.1 Linux信号类型</h2><p>信号（Signal）：信号是在软件层次上对中断机制的一种模拟，通过给一个进程发送信号，执行相应的处理函数。</p>
 <p>进程可以通过三种方式来响应一个信号：</p>
 <ul>
 <li>1 ）忽略信号，即对信号不做任何处理，其中有两个信号不能忽略：SIGKILL及SIGSTOP。</li>
@@ -5041,7 +5041,7 @@ sleep 1
 6
 ...</code></pre>
 
-<h1 id="第十章-Shell编程时常用的系统文件"><a href="#第十章-Shell编程时常用的系统文件" class="headerlink" title="第十章 Shell编程时常用的系统文件"></a>第十章 Shell编程时常用的系统文件</h1><h2 id="10-1-Linux系统目录结构"><a href="#10-1-Linux系统目录结构" class="headerlink" title="10.1 Linux系统目录结构"></a>10.1 Linux系统目录结构</h2><table>
+<h1 id="十、-Shell编程时常用的系统文件"><a href="#十、-Shell编程时常用的系统文件" class="headerlink" title="十、 Shell编程时常用的系统文件"></a>十、 Shell编程时常用的系统文件</h1><h2 id="10-1-Linux系统目录结构"><a href="#10-1-Linux系统目录结构" class="headerlink" title="10.1 Linux系统目录结构"></a>10.1 Linux系统目录结构</h2><table>
 <thead>
 <tr>
 <th>目录</th>
@@ -5508,7 +5508,7 @@ sun,mon,tue,wed,thu,fri,sat
 </tr>
 </tbody></table>
 <p><strong>参考资料：</strong><br><a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-">https://access.redhat.com/documentation/en-</a><br>US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-proc-dir-sys.html</p>
-<h1 id="第十一章-Shell-常用命令与工具"><a href="#第十一章-Shell-常用命令与工具" class="headerlink" title="第十一章 Shell 常用命令与工具"></a>第十一章 Shell 常用命令与工具</h1><p>本章节学习一些在编写 Shell 时的常用命令或工具及使用技巧。有人说Shell脚本是命令堆积的一个文件，按顺序去执行。还有人说想学好Shell脚本，要把Linux上各种常见的命令或工具掌握了，这些说法都没错。由于Shell语言本身在语法结构上比较简单，是面向过程编程，想实现复杂的功能有点强人所难！而且Shell本身又工作在Linux内核之上，在用户态调用Linux命令会很方面，所以大多数情况下我们都是依靠这些命令来完成脚本中的某些功能，比如文本处理、获取系统状态等等，然后通过Shell语法结构组织代码逻辑。不管是学Linux系统好还是写Shell脚本也好，有些命令都是必须要会的，以下是根据个人经验总结的一些常用的命令。</p>
+<h1 id="十一、-Shell-常用命令与工具"><a href="#十一、-Shell-常用命令与工具" class="headerlink" title="十一、 Shell 常用命令与工具"></a>十一、 Shell 常用命令与工具</h1><p>本章节学习一些在编写 Shell 时的常用命令或工具及使用技巧。有人说Shell脚本是命令堆积的一个文件，按顺序去执行。还有人说想学好Shell脚本，要把Linux上各种常见的命令或工具掌握了，这些说法都没错。由于Shell语言本身在语法结构上比较简单，是面向过程编程，想实现复杂的功能有点强人所难！而且Shell本身又工作在Linux内核之上，在用户态调用Linux命令会很方面，所以大多数情况下我们都是依靠这些命令来完成脚本中的某些功能，比如文本处理、获取系统状态等等，然后通过Shell语法结构组织代码逻辑。不管是学Linux系统好还是写Shell脚本也好，有些命令都是必须要会的，以下是根据个人经验总结的一些常用的命令。</p>
 <p>怎么更好的学习命令呢？</p>
 <p>当然查看官方帮助文档了，可以通过man cmd、cmd –help、help cmd、info cmd等方式查看命令的使用。</p>
 <h2 id="11-1-ls"><a href="#11-1-ls" class="headerlink" title="11.1 ls"></a>11.1 ls</h2><p>功能：列出目录内容</p>
@@ -7313,7 +7313,7 @@ iptables - t nat - A POSTROUTING - s 192.168.1.0/24 - o pppo - j MASQUERADE
 以免把自己关在外面！
 iptables - P INPUT DROP</code></pre>
 
-<h1 id="第十二章-Shell脚本编写实战"><a href="#第十二章-Shell脚本编写实战" class="headerlink" title="第十二章 Shell脚本编写实战"></a>第十二章 Shell脚本编写实战</h1><p><strong>注意事项</strong></p>
+<h1 id="十二、-Shell脚本编写实战"><a href="#十二、-Shell脚本编写实战" class="headerlink" title="十二、 Shell脚本编写实战"></a>十二、 Shell脚本编写实战</h1><p><strong>注意事项</strong></p>
 <ul>
 <li>1 ）开头加解释器：#!/bin/bash</li>
 <li>2 ）语法缩进，使用四个空格；多加注释说明。</li>
