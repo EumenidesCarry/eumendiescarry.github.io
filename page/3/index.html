@@ -187,6 +187,74 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/11/01/linux_change_pw/" target="_self">
+          <img src="https://th.wallhaven.cc/small/83/83r3k2.jpg" srcset="/img/loading.gif" alt="Redhat/CentOS 7 单用户修改 root 密码">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2019/11/01/linux_change_pw/">Redhat/CentOS 7 单用户修改 root 密码</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2019/11/01/linux_change_pw/">
+          
+          
+            
+          
+          修改步骤
+重启系统，在 Grub Boot Loader 倒计时读秒结束前，按下任意键
+
+选择第一项，并按下 e 键，编辑
+
+
+
+
+进入编辑界面后，找到 linux16 开头的行，通过 Ctrl + e 可以快速定位到行末，空格键后输入 rd.break
+
+
+
+编辑好后，按下 Ctrl + x，引导系统，系统将启动到临时内核 shell 界面，输入以下指令即可修改密码
+
+
+注意：修改密码后，首次重
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-11-01 21:28" pubdate>
+              2019-11-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/10/24/linux_install_tips_and_fault_detect/" target="_self">
           <img src="https://th.wallhaven.cc/small/kw/kweqx6.jpg" srcset="/img/loading.gif" alt="Linux 运维故障排查与系统调优技巧">
         </a>
@@ -738,61 +806,6 @@ import pymysql
               <a href="/tags/Python/">Python</a>
             
               <a href="/tags/MySQL/">MySQL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2018/01/19/MySQL/" target="_self">
-          <img src="https://w.wallhaven.cc/full/nk/wallhaven-nkx9d7.jpg" srcset="/img/loading.gif" alt="MySQL从入门到删库跑路">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2018/01/19/MySQL/">MySQL从入门到删库跑路</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2018/01/19/MySQL/">
-          
-          
-            
-          
-          Mysql是最流行的关系型数据库管理系统，在WEB应用方面MySQL是最好的RDBMS(Relational Database Management System：关系数据库管理系统)应用软件之一。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2018-01-19 19:25" pubdate>
-              2018-01-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/MySQL/">MySQL</a>
-            
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
             
           </div>
         
