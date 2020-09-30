@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月29日 晚上
+                  本文最后更新于：2020年9月30日 上午
                 
               </p>
             
@@ -547,12 +547,12 @@ abc</code></pre>
 <p>patterm 前面开头一个正斜杠为只匹配第一个字符串，两个正斜杠为匹配所有字符。</p>
 <h2 id="2-4-字符串截取"><a href="#2-4-字符串截取" class="headerlink" title="2.4 字符串截取"></a>2.4 字符串截取</h2><p><strong>格式：</strong></p>
 <ul>
-<li>${parameter#word} # 删除匹配前缀</li>
+<li>${parameter#word}         # 删除匹配前缀</li>
 <li>${parameter##word}</li>
-<li>${parameter%word} # 删除匹配后缀</li>
+<li>${parameter%word}         # 删除匹配后缀</li>
 <li>${parameter%%word}</li>
-<li># 去掉左边，最短匹配模式，## 最长匹配模式。</li>
-<li>% 去掉右边，最短匹配模式，%% 最长匹配模式。</li>
+<li>#   去掉左边，最短匹配模式，## 最长匹配模式。</li>
+<li>%    去掉右边，最短匹配模式，%% 最长匹配模式。</li>
 </ul>
 <pre><code class="hljs bash"><span class="hljs-comment"># URL=&quot;http://www.baidu.com/baike/user.html&quot;</span>
 以//为分隔符截取右边字符串：
@@ -575,10 +575,10 @@ http://www.baidu.com/baike/user
 html</code></pre>
 
 <h2 id="2-5-变量状态赋值"><a href="#2-5-变量状态赋值" class="headerlink" title="2.5 变量状态赋值"></a>2.5 变量状态赋值</h2><ul>
-<li>${VAR:-string} 如果 VAR 变量为空则返回 string</li>
-<li>${VAR:+string} 如果 VAR 变量不为空则返回 string</li>
-<li>${VAR:=string} 如果 VAR 变量为空则重新赋值VAR变量值为 string</li>
-<li>${VAR:?string} 如果 VAR 变量为空则将 string 输出到 stderr</li>
+<li>${VAR:-string}   如果 VAR 变量为空则返回 string</li>
+<li>${VAR:+string}   如果 VAR 变量不为空则返回 string</li>
+<li>${VAR:=string}   如果 VAR 变量为空则重新赋值VAR变量值为 string</li>
+<li>${VAR:?string}   如果 VAR 变量为空则将 string 输出到 stderr</li>
 </ul>
 <pre><code class="hljs bash">如果变量为空就返回hello world!：
 <span class="hljs-comment"># VAR=</span>
@@ -661,22 +661,22 @@ hello
 <td>\033[1;31;40m # 1是显示方式，可选。31是字体颜色。40m是字体背景颜色。</td>
 </tr>
 <tr>
-<td>\033[0m # 恢复终端默认颜色，即取消颜色设置。</td>
+<td>\033[0m       # 恢复终端默认颜色，即取消颜色设置。</td>
 </tr>
 </tbody></table>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-comment"># 字体颜色</span>
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> &#123;31..37&#125;; <span class="hljs-keyword">do</span>
-<span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[<span class="hljs-variable">$i</span>;40mHello world!\033[0m&quot;</span>
+  <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[<span class="hljs-variable">$i</span>;40mHello world!\033[0m&quot;</span>
 <span class="hljs-keyword">done</span>
 <span class="hljs-comment"># 背景颜色</span>
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> &#123;41..47&#125;; <span class="hljs-keyword">do</span>
-<span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[47;<span class="hljs-variable">$&#123;i&#125;</span>mHello world!\033[0m&quot;</span>
+  <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[47;<span class="hljs-variable">$&#123;i&#125;</span>mHello world!\033[0m&quot;</span>
 <span class="hljs-keyword">done</span>
 <span class="hljs-comment"># 显示方式</span>
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> &#123;1..8&#125;; <span class="hljs-keyword">do</span>
-<span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[<span class="hljs-variable">$i</span>;31;40mHello world!\033[0m&quot;</span>
+  <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[<span class="hljs-variable">$i</span>;31;40mHello world!\033[0m&quot;</span>
 <span class="hljs-keyword">done</span></code></pre>
 
 <p><img src="/img/linux_shell/linux_shell_5.jpg" srcset="/img/loading.gif"></p>
@@ -709,34 +709,34 @@ hello
 </tr>
 </thead>
 <tbody><tr>
-<td>- eq，equal 等于</td>
+<td>- eq，equal</td>
+<td>等于</td>
 <td>[ 1 -eq 1 ]为true</td>
-<td></td>
 </tr>
 <tr>
-<td>- ne，not equal 不等于</td>
+<td>- ne，not equal</td>
+<td>不等于</td>
 <td>[ 1 -ne 1 ]为false</td>
-<td></td>
 </tr>
 <tr>
-<td>- gt，greater than 大于</td>
+<td>- gt，greater than</td>
+<td>大于</td>
 <td>[ 2 -gt 1 ]为true</td>
-<td></td>
 </tr>
 <tr>
-<td>- lt，lesser than 小于</td>
+<td>- lt，lesser than</td>
+<td>小于</td>
 <td>[ 2 -lt 1 ]为false</td>
-<td></td>
 </tr>
 <tr>
-<td>- ge，greater or equal 大于或等于</td>
+<td>- ge，greater or equal</td>
+<td>大于或等于</td>
 <td>[ 2 -ge 1 ]为true</td>
-<td></td>
 </tr>
 <tr>
-<td>- le，lesser or equal 小于或等于</td>
+<td>- le，lesser or equal</td>
+<td>小于或等于</td>
 <td>[ 2 -le 1 ]为false</td>
-<td></td>
 </tr>
 </tbody></table>
 <h2 id="3-3-字符串比较符"><a href="#3-3-字符串比较符" class="headerlink" title="3.3 字符串比较符"></a>3.3 字符串比较符</h2><table>
@@ -865,17 +865,17 @@ yes</code></pre>
 <tbody><tr>
 <td>!</td>
 <td>非关系，条件结果取反</td>
-<td>[! 1 -eq 2 ]为true</td>
+<td>[ ! 1 -eq 2 ] 为true</td>
 </tr>
 <tr>
 <td>- a</td>
-<td>和关系，在[]表达式中使用</td>
-<td>[ 1 -eq 1 -a 2 -eq 2 ]为true</td>
+<td>和关系，在[ ]表达式中使用</td>
+<td>[ 1 -eq 1 -a 2 -eq 2 ] 为true</td>
 </tr>
 <tr>
 <td>- o</td>
-<td>或关系，在[]表达式中使用</td>
-<td>[ 1 -eq 1 -o 2 -eq 1 ]为true</td>
+<td>或关系，在[ ]表达式中使用</td>
+<td>[ 1 -eq 1 -o 2 -eq 1 ] 为true</td>
 </tr>
 </tbody></table>
 <h2 id="3-6-逻辑判断符"><a href="#3-6-逻辑判断符" class="headerlink" title="3.6 逻辑判断符"></a>3.6 逻辑判断符</h2><table>
@@ -888,12 +888,12 @@ yes</code></pre>
 </thead>
 <tbody><tr>
 <td>&amp;&amp;</td>
-<td>逻辑和，在[[]]和(())表达式中<br>或判断表达式是否为真时使用</td>
+<td>逻辑和，在[[ ]]和(( ))表达式中<br>或判断表达式是否为真时使用</td>
 <td>[[ 1 -eq 1 &amp;&amp; 2 -eq 2 ]]为true<br>(( 1 == 1 &amp;&amp; 2 == 2 ))为true<br>[ 1 -eq 1 ] &amp;&amp; echo yes 如果&amp;&amp;前<br>面表达式为true则执行后面的</td>
 </tr>
 <tr>
 <td>||</td>
-<td>逻辑或，在[[]]和(())表达式中<br>或判断表达式是否为真时使用</td>
+<td>逻辑或，在[[ ]]和(( ))表达式中<br>或判断表达式是否为真时使用</td>
 <td>[[ 1 -eq 1</td>
 </tr>
 </tbody></table>
@@ -933,16 +933,16 @@ yes</code></pre>
 </tr>
 </thead>
 <tbody><tr>
-<td>$(())</td>
+<td>$(( ))</td>
 <td>$((1+1))</td>
 </tr>
 <tr>
-<td>$[]</td>
+<td>$[ ]</td>
 <td>$[1+1]</td>
 </tr>
 </tbody></table>
 <p>上面两个都不支持浮点运算。</p>
-<p>$(()) 表达式还有一个用途，三目运算：</p>
+<p>$(( )) 表达式还有一个用途，三目运算：</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># 如果条件为真返回 1 ，否则返回 0</span>
 <span class="hljs-comment"># echo $((1&lt;0))</span>
 0
@@ -971,8 +971,8 @@ yes</code></pre>
 </tr>
 <tr>
 <td>expr</td>
-<td>乘法<em>需要加反斜杠转义\</em></td>
-<td>expr 1 * 2^ 运算符两边必须有空格<br>expr ( 1 + 2 ) * 2 使用双括号时要转义</td>
+<td>乘法\*需要加反斜杠转义\*</td>
+<td>expr 1 \* 2 运算符两边必须有空格<br>expr \( 1 + 2 \) \* 2 使用双括号时要转义</td>
 </tr>
 <tr>
 <td>bc</td>
@@ -1013,7 +1013,50 @@ ing
 3</code></pre>
 
 <h2 id="3-9-Shell-括号用途总结"><a href="#3-9-Shell-括号用途总结" class="headerlink" title="3.9 Shell 括号用途总结"></a>3.9 Shell 括号用途总结</h2><p>看到这里，想一想里面所讲的小括号、中括号的用途，是不是有点懵逼了。那我们总结一下！</p>
-<p>|( )|用途 1 ：在运算中，先计算小括号里面的内容<br>用途 2 ：数组<br>用途 3 ：匹配分组|<br>|(( ))|用途 1 ：表达式，不支持-eq这类的运算符。不支持-a和-o，支持&lt;=、&gt;=、&lt;、&gt;这类<br>比较符和&amp;&amp;、||<br>用途 2 ：C语言风格的for(())表达式|<br>|$( ) |执行Shell命令，与反撇号等效|<br>|$(( ))|用途 1 ：简单算数运算<br>用途 2 ：支持三目运算符 $(( 表达式?数字:数字 ))|<br>|[ ] |条件表达式，里面不支持逻辑判断符|<br>|[[ ]]|条件表达式，里面不支持-a和-o，不支持&lt;=和&gt;=比较符，支持-eq、&lt;、&gt;这类比较<br>符。支持=~模式匹配，也可以不用双引号也不会影响原意，比[]更加通用|<br>|$[ ]| 简单算数运算|<br>|{ }|对逗号（,）和点点（…）起作用，比如touch {1,2}创建 1 和 2 文件，touch<br>{1..3}创建 1 、 2 和 3 文件|<br>|${ }|用途 1 ：引用变量<br>用途 2 ：字符串处理|</p>
+<table>
+<thead>
+<tr>
+<th>括号</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>( )</td>
+<td>用途 1 ：在运算中，先计算小括号里面的内容<br>用途 2 ：数组<br>用途 3 ：匹配分组</td>
+</tr>
+<tr>
+<td>(( ))</td>
+<td>用途 1 ：表达式，不支持-eq这类的运算符。不支持-a和-o，支持&lt;=、&gt;=、&lt;、&gt;这类<br>比较符和&amp;&amp;、||<br>用途 2 ：C语言风格的for(())表达式</td>
+</tr>
+<tr>
+<td>$( )</td>
+<td>执行Shell命令，与反撇号等效</td>
+</tr>
+<tr>
+<td>$(( ))</td>
+<td>用途 1 ：简单算数运算<br>用途 2 ：支持三目运算符 $(( 表达式?数字:数字 ))</td>
+</tr>
+<tr>
+<td>[ ]</td>
+<td>条件表达式，里面不支持逻辑判断符</td>
+</tr>
+<tr>
+<td>[[ ]]</td>
+<td>条件表达式，里面不支持-a和-o，不支持&lt;=和&gt;=比较符，支持-eq、&lt;、&gt;这类比较<br>符。支持=~模式匹配，也可以不用双引号也不会影响原意，比[]更加通用</td>
+</tr>
+<tr>
+<td>$[ ]</td>
+<td>简单算数运算</td>
+</tr>
+<tr>
+<td>{ }</td>
+<td>对逗号（,）和点点（…）起作用，比如touch {1,2}创建 1 和 2 文件，touch<br>{1..3}创建 1 、 2 和 3 文件</td>
+</tr>
+<tr>
+<td>${ }</td>
+<td>用途 1 ：引用变量<br>用途 2 ：字符串处理</td>
+</tr>
+</tbody></table>
 <h1 id="四、-Shell-流程控制"><a href="#四、-Shell-流程控制" class="headerlink" title="四、 Shell 流程控制"></a>四、 Shell 流程控制</h1><p>流程控制是改变程序运行顺序的指令。</p>
 <h2 id="4-1-if-语句"><a href="#4-1-if-语句" class="headerlink" title="4.1 if 语句"></a>4.1 if 语句</h2><p>格式：<strong>if list; then list; [ elif list; then list; ] … [ else list; ] fi</strong></p>
 <h3 id="4-1-1-单分支"><a href="#4-1-1-单分支" class="headerlink" title="4.1.1 单分支"></a>4.1.1 单分支</h3><pre><code class="hljs bash"><span class="hljs-keyword">if</span> 条件表达式; <span class="hljs-keyword">then</span>
