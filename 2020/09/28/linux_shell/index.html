@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年9月30日 上午
+                  本文最后更新于：2020年10月9日 上午
                 
               </p>
             
@@ -971,7 +971,7 @@ yes</code></pre>
 </tr>
 <tr>
 <td>expr</td>
-<td>乘法\*需要加反斜杠转义\*</td>
+<td>乘法\<em>需要加反斜杠转义\\</em></td>
 <td>expr 1 \* 2 运算符两边必须有空格<br>expr \( 1 + 2 \) \* 2 使用双括号时要转义</td>
 </tr>
 <tr>
@@ -1180,7 +1180,7 @@ N=<span class="hljs-variable">$1</span>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 OLD_IFS=<span class="hljs-variable">$IFS</span>
 IFS=<span class="hljs-string">&quot;:&quot;</span>
-<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> $(head - 1 /etc/passwd); <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> $(head -1 /etc/passwd); <span class="hljs-keyword">do</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>
 <span class="hljs-keyword">done</span>
 IFS=<span class="hljs-variable">$OLD_IFS</span> <span class="hljs-comment"># 恢复默认值</span>
@@ -1212,7 +1212,7 @@ root
 
 <p><strong>示例 2 ：检查多个域名是否可以访问</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
-URL=<span class="hljs-string">&quot;www.baidu.com www.sina.com www.jd.com www.jd.com&quot;</span>
+URL=<span class="hljs-string">&quot;www.baidu.com www.sina.com www.jd.com&quot;</span>
 <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> <span class="hljs-variable">$URL</span>; <span class="hljs-keyword">do</span>
   HTTP_CODE=$(curl - o /dev/null - s - w %&#123;http_code&#125; http://<span class="hljs-variable">$url</span>)
   <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> - eq 200 - o <span class="hljs-variable">$HTTP_CODE</span> - eq 301 ]; <span class="hljs-keyword">then</span>
@@ -1254,7 +1254,7 @@ N=0
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;yes&quot;</span>
 <span class="hljs-keyword">done</span></code></pre>
 
-<p>还可以条件表达式用冒号，冒号在Shell中的意思是不做任何操作。但状态是 0 ，因此为true：</p>
+<p>还可以条件表达式用冒号，冒号在 Shell 中的意思是不做任何操作。但状态是 0 ，因此为 true：</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-keyword">while</span> :; <span class="hljs-keyword">do</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;yes&quot;</span>
@@ -1267,11 +1267,11 @@ a b c
 1 2 3
 x y z</code></pre>
 
-<p>要想使用while循环逐行读取a.txt文件，有三种方式：</p>
+<p>要想使用 while 循环逐行读取 a.txt 文件，有三种方式：</p>
 <p><strong>方式 1 ：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 cat ./a.txt | <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> LINE; <span class="hljs-keyword">do</span>
-<span class="hljs-built_in">echo</span> <span class="hljs-variable">$LINE</span>
+                <span class="hljs-built_in">echo</span> <span class="hljs-variable">$LINE</span>
 <span class="hljs-keyword">done</span></code></pre>
 
 <p><strong>方式 2 ：</strong></p>
@@ -1289,15 +1289,15 @@ cat ./a.txt | <span class="hljs-keyword">while</span> <span class="hljs-built_in
 
 <p>与 while 关联的还有一个 until 语句，它与 while 不同之处在于，是当条件表达式为 false 时才循环，实际使用中比较少，这里不再讲解。</p>
 <h2 id="4-4-break-和-continue-语句"><a href="#4-4-break-和-continue-语句" class="headerlink" title="4.4 break 和 continue 语句"></a>4.4 break 和 continue 语句</h2><ul>
-<li>break是终止循环。</li>
-<li>continue是跳出当前循环。</li>
+<li>break    是终止循环。</li>
+<li>continue 是跳出当前循环。</li>
 </ul>
 <p><strong>示例 1 ：在死循环中，满足条件终止循环</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 N=0
 <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span>
   <span class="hljs-built_in">let</span> N++
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> - eq 5 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> -eq 5 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">break</span>
   <span class="hljs-keyword">fi</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$N</span>
@@ -1312,9 +1312,9 @@ N=0
 <p><strong>示例 2 ：举例子说明continue用法</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 N=0
-<span class="hljs-keyword">while</span> [ <span class="hljs-variable">$N</span> - lt 5 ]; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">while</span> [ <span class="hljs-variable">$N</span> -lt 5 ]; <span class="hljs-keyword">do</span>
   <span class="hljs-built_in">let</span> N++
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> - eq 3 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> -eq 3 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">continue</span>
   <span class="hljs-keyword">fi</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$N</span>
@@ -1325,7 +1325,7 @@ N=0
 4
 5</code></pre>
 
-<p>当变量N等于 3 时，continue 跳过了当前循环，没有执行下面的echo。</p>
+<p>当变量 N 等于 3 时，continue 跳过了当前循环，没有执行下面的 echo。</p>
 <p><strong>注意：continue 与 break 语句只能循环语句中使用。</strong></p>
 <h2 id="4-5-case语句"><a href="#4-5-case语句" class="headerlink" title="4.5 case语句"></a>4.5 case语句</h2><p>case 语句一般用于选择性来执行对应部分块命令。</p>
 <p>格式：<strong>case word in [ [(] pattern [ | pattern ] … ) list ;; ] … esac</strong></p>
@@ -1443,14 +1443,14 @@ PS3=<span class="hljs-string">&quot;Select a number: &quot;</span>
       5.1)
         <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;mysql 5.1&quot;</span>
         <span class="hljs-built_in">break</span>
-      ;;
+        ;;
       5.6)
         <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;mysql 5.6&quot;</span>
         <span class="hljs-built_in">break</span>
-      ;;
+        ;;
       quit)
         <span class="hljs-built_in">exit</span>
-      ;;
+        ;;
       *)
          <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Input error, Please enter again!&quot;</span>
       <span class="hljs-built_in">break</span>
@@ -1479,11 +1479,11 @@ Select a number: 3</code></pre>
 <span class="hljs-built_in">command</span>
 &#125;</code></pre>
 
-<p>function 关键字可写，也可不写。</p>
+<p><strong>function</strong> 关键字可写，也可不写。</p>
 <p><strong>示例 1 ：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-function"><span class="hljs-title">func</span></span>() &#123;
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;This is a function.&quot;</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;This is a function.&quot;</span>
 &#125;
 func
 <span class="hljs-comment"># bash test.sh</span>
@@ -1523,11 +1523,12 @@ Hello world</code></pre>
 &#125;
 <span class="hljs-built_in">test</span></code></pre>
 
-<p>执行会一直在调用本身打印 hello，这就形成了闭环。像经典的 fork 炸弹就是函数递归调用：</p>
-<p>:(){ :|:&amp; };: 或 .(){.|.&amp;};.</p>
+<p>执行会一直在调用本身打印 hello，这就形成了闭环。</p>
+<p>像经典的 fork 炸弹就是函数递归调用：</p>
+<p><code>:()&#123; :|:&amp; &#125;;:</code> 或 <code>.()&#123;.|.&amp;&#125;;.</code></p>
 <p>这样看起来不好理解，我们更改下格式：</p>
 <pre><code class="hljs bash">:() &#123;
-:|:&amp;
+  :|:&amp;
 &#125;;
 :</code></pre>
 
@@ -1537,14 +1538,17 @@ Hello world</code></pre>
 &#125;;
 bomb</code></pre>
 
-<p>分析下：<br>:(){ } 定义一个函数，函数名是冒号。</p>
-<p>: 调用自身函数</p>
-<p>| 管道符</p>
-<p>: 再一次递归调用自身函数</p>
-<p>:|: 表示每次调用函数”:”的时候就会生成两份拷贝。</p>
-<p>&amp; 放到后台</p>
-<p>; 分号是继续执行下一个命令，可以理解为换行。</p>
-<p>: 最后一个冒号是调用函数。</p>
+<p>分析下：</p>
+<ul>
+<li>:(){ } 定义一个函数，函数名是冒号。</li>
+<li>: 调用自身函数</li>
+<li>| 管道符</li>
+<li>: 再一次递归调用自身函数</li>
+<li>:|: 表示每次调用函数”:”的时候就会生成两份拷贝。</li>
+<li>&amp; 放到后台</li>
+<li>; 分号是继续执行下一个命令，可以理解为换行。</li>
+<li>: 最后一个冒号是调用函数。</li>
+</ul>
 <p>因此不断生成新进程，直到系统资源崩溃。</p>
 <p>一般递归函数用的也少，了解下即可！</p>
 <h2 id="5-2-数组"><a href="#5-2-数组" class="headerlink" title="5.2 数组"></a>5.2 数组</h2><p>数组是相同类型的元素按一定顺序排列的集合。</p>
@@ -1592,7 +1596,7 @@ b c d e f g
 <span class="hljs-comment"># unset array</span></code></pre>
 
 <p><font color=red>数组下标从 0 开始。</font></p>
-<p>**示例 1 **：讲seq生成的数字序列循环放到数组里面</p>
+<p><strong>示例 1</strong>：讲 seq 生成的数字序列循环放到数组里面</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> $(seq 1 10); <span class="hljs-keyword">do</span>
   array[a]=<span class="hljs-variable">$i</span>
@@ -1613,6 +1617,7 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
 192.168.1.1
 192.168.1.2
 192.168.1.3
+
 方法 2 ：
 <span class="hljs-meta">#!/bin/bash</span>
 IP=(192.168.1.1 192.168.1.2 192.168.1.3)
@@ -1621,12 +1626,12 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
 <span class="hljs-keyword">done</span></code></pre>
 
 <h1 id="六、-Shell-正则表达式"><a href="#六、-Shell-正则表达式" class="headerlink" title="六、 Shell 正则表达式"></a>六、 Shell 正则表达式</h1><p>正则表达式在每种语言中都会有，功能就是匹配符合你预期要求的字符串。</p>
-<p>Shell正则表达式分为<strong>两种</strong>：</p>
+<p>Shell 正则表达式分为<strong>两种</strong>：</p>
 <ul>
 <li>基础正则表达式：BRE（basic regular express）</li>
-<li>扩展正则表达式：ERE（extend regular express），扩展的表达式有+、?、|和()</li>
+<li>扩展正则表达式：ERE（extend regular express），扩展的表达式有+、?、| 和 ()</li>
 </ul>
-<p>下面是一些常用的正则表达式符号，我们先拿grep工具举例说明。</p>
+<p>下面是一些常用的正则表达式符号，我们先拿 grep 工具举例说明。</p>
 <table>
 <thead>
 <tr>
@@ -1778,7 +1783,7 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
 </tr>
 </tbody></table>
 <p><strong>示例：</strong></p>
-<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;1\n12\n123\n1234a&quot;</span> |grep <span class="hljs-string">&#x27;[[:digit:]]&#x27;</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;1\n12\n123\n1234a&quot;</span> |grep <span class="hljs-string">&#x27;[[:digit:]]&#x27;</span></code></pre>
 
 <p>在Shell下使用这些正则表达式处理文本最多的命令有下面几个工具：</p>
 <table>
@@ -1822,7 +1827,7 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
 </tr>
 <tr>
 <td>\b</td>
-<td>匹配字符串开始或结束，等效&lt;和&gt;</td>
+<td>匹配字符串开始或结束，等效\&lt;和\&gt;</td>
 </tr>
 <tr>
 <td>\s</td>
@@ -1841,32 +1846,32 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
 </tr>
 </thead>
 <tbody><tr>
-<td>\n 换行符</td>
-<td></td>
+<td>\n</td>
+<td>换行符</td>
 </tr>
 <tr>
-<td>\r 回车符</td>
-<td></td>
+<td>\r</td>
+<td>回车符</td>
 </tr>
 <tr>
-<td>\t 水平制表符</td>
-<td></td>
+<td>\t</td>
+<td>水平制表符</td>
 </tr>
 <tr>
-<td>\v 垂直制表符</td>
-<td></td>
+<td>\v</td>
+<td>垂直制表符</td>
 </tr>
 <tr>
-<td>\ 0 空值符</td>
-<td></td>
+<td>\ 0</td>
+<td>空值符</td>
 </tr>
 <tr>
-<td>\b 退后一格</td>
-<td></td>
+<td>\b</td>
+<td>退后一格</td>
 </tr>
 </tbody></table>
 <h1 id="七、-Shell-文本处理三剑客"><a href="#七、-Shell-文本处理三剑客" class="headerlink" title="七、 Shell 文本处理三剑客"></a>七、 Shell 文本处理三剑客</h1><h2 id="7-1-grep"><a href="#7-1-grep" class="headerlink" title="7.1 grep"></a>7.1 grep</h2><p>过滤来自一个文件或标准输入匹配模式内容。</p>
-<p>除了 grep 外，还有 egrep、fgrep。egrep 是 grep 的扩展，相当于grep -E。fgrep 相当于 grep -<br>f，用的少。</p>
+<p>除了 grep 外，还有 egrep、fgrep。egrep 是 grep 的扩展，相当于grep -E。fgrep 相当于 grep -f，用的少。</p>
 <p><strong>Usage: grep [OPTION]… PATTERN [FILE]…</strong></p>
 <table>
 <thead>
@@ -1993,34 +1998,34 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
 </tr>
 </tbody></table>
 <p><strong>示例：</strong></p>
-<p>1 ）输出b文件中在a文件相同的行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># grep - f a b</span></code></pre>
+<p>1 ）输出 b 文件中在 a 文件相同的行</p>
+<pre><code class="hljs bash"><span class="hljs-comment"># grep -f a b</span></code></pre>
 
 <p>2 ）输出b文件中在a文件不同的行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># grep - v - f a b</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># grep -v -f a b</span></code></pre>
 
 <p>3 ） 匹配多个模式</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a bc de&quot; |xargs - n1 |grep - e &#x27;a&#x27; - e &#x27;bc&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a bc de&quot; |xargs - n1 |grep -e &#x27;a&#x27; -e &#x27;bc&#x27;</span>
 a
 bc</code></pre>
 
 <p>4 ）去除空格http.conf文件空行或开头#号的行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># grep - E - v &quot;^$|^#&quot; /etc/httpd/conf/httpd.conf</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># grep -E -v &quot;^$|^#&quot; /etc/httpd/conf/httpd.conf</span></code></pre>
 
 <p>5 ） 匹配开头不分大小写的单词</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;A a b c&quot; |xargs - n1 |grep - i a</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;A a b c&quot; |xargs -n1 |grep - i a</span>
 或
-<span class="hljs-comment"># echo &quot;A a b c&quot; |xargs - n1 |grep &#x27;[Aa]&#x27;</span>
+<span class="hljs-comment"># echo &quot;A a b c&quot; |xargs -n1 |grep &#x27;[Aa]&#x27;</span>
 A
 a</code></pre>
 
 <p>6 ）只显示匹配的字符串</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;this is a test&quot; |grep - o &#x27;is&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;this is a test&quot; |grep -o &#x27;is&#x27;</span>
 is
 is</code></pre>
 
 <p>7 ）输出匹配的前五个结果</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 20 |grep - m 5 - E &#x27;[0-9]&#123;2&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 20 |grep -m 5 -E &#x27;[0-9]&#123;2&#125;&#x27;</span>
 10
 11
 12
@@ -2028,78 +2033,80 @@ is</code></pre>
 14</code></pre>
 
 <p>8 ）统计匹配多少行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 20 |grep - c - E &#x27;[0-9]&#123;2&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 20 |grep -c -E &#x27;[0-9]&#123;2&#125;&#x27;</span>
 11</code></pre>
 
 <p>9 ） 匹配b字符开头的行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a bc de&quot; |xargs - n1 |grep &#x27;^b&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a bc de&quot; |xargs -n1 |grep &#x27;^b&#x27;</span>
 bc</code></pre>
 
 <p>10 ） 匹配de字符结尾的行并输出匹配的行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a ab abc abcd abcde&quot; |xargs - n1 |grep - n &#x27;de$&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a ab abc abcd abcde&quot; |xargs -n1 |grep -n &#x27;de$&#x27;</span>
 5:abcde</code></pre>
 
 <p>11 ） 递归搜索/etc目录下包含ip的conf后缀文件</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># grep - r &#x27;192.167.1.1&#x27; /etc --include *.conf</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># grep -r &#x27;192.167.1.1&#x27; /etc --include *.conf</span></code></pre>
 
 <p>12 ） 排除搜索bak后缀的文件</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># grep - r &#x27;192.167.1.1&#x27; /opt --exclude *.bak</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># grep -r &#x27;192.167.1.1&#x27; /opt --exclude *.bak</span></code></pre>
 
 <p>13 ） 排除来自file中的文件</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># grep - r &#x27;192.167.1.1&#x27; /opt --exclude-from file</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># grep -r &#x27;192.167.1.1&#x27; /opt --exclude-from file</span></code></pre>
 
 <p>14 ） 匹配 41 或 42 的数字</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 41 45 |grep - E &#x27;4[12]&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 41 45 |grep -E &#x27;4[12]&#x27;</span>
 41
 42</code></pre>
 
 <p>15 ） 匹配至少 2 个字符</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 13 |grep - E &#x27;[0-9]&#123;2&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 13 |grep -E &#x27;[0-9]&#123;2&#125;&#x27;</span>
 10
 11
 12
 13</code></pre>
 
 <p>16 ） 匹配至少 2 个字符的单词，最多 3 个字符的单词</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a ab abc abcd abcde&quot; |xargs - n1 |grep - E - w - o &#x27;[a-z]&#123;2,3&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a ab abc abcd abcde&quot; |xargs -n1 |grep -E -w -o &#x27;[a-z]&#123;2,3&#125;&#x27;</span>
 ab
 abc</code></pre>
 
 <p>17 ） 匹配所有IP</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># ifconfig |grep - E - o &quot;[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;&quot;</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># ifconfig |grep -E -o &quot;[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;&quot;</span></code></pre>
 
 <p>18 ） 打印匹配结果及后 3 行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 10 |grep 5 - A 3</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 10 |grep 5 -A 3</span>
 5
 6
 7
 8</code></pre>
 
 <p>19 ） 打印匹配结果及前 3 行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 10 |grep 5 - B 3</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 10 |grep 5 -B 3</span>
 2
 3
 4
 5</code></pre>
 
 <p>20 ） 打印匹配结果及前后 3 行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 10 |grep 5 - C 3</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 1 10 |grep 5 -C 3</span>
 2 3 4 5 6 7 8</code></pre>
 
 <p>21 ） 不显示输出</p>
 <pre><code class="hljs bash">不显示错误输出：
 <span class="hljs-comment"># grep &#x27;a&#x27; abc</span>
 grep: abc: No such file or directory
-<span class="hljs-comment"># grep - s &#x27;a&#x27; abc</span>
+<span class="hljs-comment"># grep -s &#x27;a&#x27; abc</span>
 <span class="hljs-comment"># echo $?</span>
 2
 不显示正常输出：
-<span class="hljs-comment"># grep - q &#x27;a&#x27; a.txt</span></code></pre>
+<span class="hljs-comment"># grep -q &#x27;a&#x27; a.txt</span></code></pre>
 
 <p>grep 支持上一章的基础和扩展正则表达式字符。</p>
 <h2 id="7-2-sed"><a href="#7-2-sed" class="headerlink" title="7.2 sed"></a>7.2 sed</h2><p>流编辑器，过滤和替换文本。</p>
 <p><strong>工作原理</strong>：sed命令将当前处理的行读入模式空间进行处理，处理完把结果输出，并清空模式空间。然后再将下一行读入模式空间进行处理输出，以此类推，直到最后一行。还有一个空间叫保持空间，又称暂存空间，可以暂时存放一些处理的数据，但不能直接输出，只能放到模式空间输出。这两个空间其实就是在内存中初始化的一个内存区域，存放正在处理的数据和临时存放的数据。</p>
-<p><strong>Usage:</strong><br>sed [OPTION]… {script-only-if-no-other-script} [input-file]…<br>sed [选项] ‘地址 命令’ file</p>
+<p><strong>Usage:</strong></p>
+<p>sed [OPTION]… {script-only-if-no-other-script} [input-file]…</p>
+<p>sed [选项] ‘地址 命令’ file</p>
 <table>
 <thead>
 <tr>
@@ -2108,23 +2115,23 @@ grep: abc: No such file or directory
 </tr>
 </thead>
 <tbody><tr>
-<td>- n</td>
+<td>-n</td>
 <td>不打印模式空间</td>
 </tr>
 <tr>
-<td>- e</td>
+<td>-e</td>
 <td>执行脚本、表达式来处理</td>
 </tr>
 <tr>
-<td>- f</td>
+<td>-f</td>
 <td>执行动作从文件读取执行</td>
 </tr>
 <tr>
-<td>- i</td>
+<td>-i</td>
 <td>修改原文件</td>
 </tr>
 <tr>
-<td>- r</td>
+<td>-r</td>
 <td>使用扩展正则表达式</td>
 </tr>
 </tbody></table>
@@ -2262,34 +2269,34 @@ grep: abc: No such file or directory
 </tbody></table>
 <p>借助以下文本内容作为示例讲解：</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services</span>
-nimgtw 48003/udp <span class="hljs-comment"># Nimbus Gateway</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service Protocol</span>
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span></code></pre>
+nimgtw        48003/udp   <span class="hljs-comment"># Nimbus Gateway</span>
+3gpp-cbsp     48049/tcp   <span class="hljs-comment"># 3GPP Cell Broadcast Service Protocol</span>
+isnetserv     48128/tcp   <span class="hljs-comment"># Image Systems Network Services</span>
+isnetserv     48128/udp   <span class="hljs-comment"># Image Systems Network Services</span>
+blp5          48129/tcp   <span class="hljs-comment"># Bloomberg locator</span>
+blp5          48129/udp   <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw 48556/tcp   <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw 48556/udp   <span class="hljs-comment"># com-bardac-dw</span>
+iqobject      48619/tcp   <span class="hljs-comment"># iqobject</span>
+iqobject      48619/udp   <span class="hljs-comment"># iqobject</span></code></pre>
 
 <h3 id="7-2-1-匹配打印（p）"><a href="#7-2-1-匹配打印（p）" class="headerlink" title="7.2.1 匹配打印（p）"></a>7.2.1 匹配打印（p）</h3><p>1 ）打印匹配 blp5 开头的行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;/^blp5/p&#x27;</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;/^blp5/p&#x27;</span>
+blp5     48129/tcp     <span class="hljs-comment"># Bloomberg locator</span>
+blp5     48129/udp     <span class="hljs-comment"># Bloomberg locator</span></code></pre>
 
 <p>2 ）打印第一行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;1p&#x27;</span>
-nimgtw 48003/udp <span class="hljs-comment"># Nimbus Gateway</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;1p&#x27;</span>
+nimgtw     48003/udp     <span class="hljs-comment"># Nimbus Gateway</span></code></pre>
 
 <p>3 ）打印第一行至第三行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;1,3p&#x27;</span>
-nimgtw 48003/udp <span class="hljs-comment"># Nimbus Gateway</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service Protocol</span>
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;1,3p&#x27;</span>
+nimgtw         48003/udp     <span class="hljs-comment"># Nimbus Gateway</span>
+3gpp-cbsp      48049/tcp     <span class="hljs-comment"># 3GPP Cell Broadcast Service Protocol</span>
+isnetserv      48128/tcp     <span class="hljs-comment"># Image Systems Network Services</span></code></pre>
 
 <p>4 ）打印奇数行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 10 |sed - n &#x27;1~2p&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 10 |sed -n &#x27;1~2p&#x27;</span>
 1
 3
 5
@@ -2297,86 +2304,86 @@ isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services<
 9</code></pre>
 
 <p>5 ）打印匹配行及后一行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;/blp5/,+1p&#x27;</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;/blp5/,+1p&#x27;</span>
+blp5      48129/tcp     <span class="hljs-comment"># Bloomberg locator</span>
+blp5      48129/udp     <span class="hljs-comment"># Bloomberg locator</span></code></pre>
 
 <p>6 ）打印最后一行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;$p&#x27;</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;$p&#x27;</span>
+iqobject       48619/udp      <span class="hljs-comment"># iqobject</span></code></pre>
 
 <p>7 ）不打印最后一行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;$!p&#x27;</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;$!p&#x27;</span>
+3gpp-cbsp      48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
 Protocol
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span></code></pre>
+isnetserv      48128/tcp     <span class="hljs-comment"># Image Systems Network Services</span>
+isnetserv      48128/udp     <span class="hljs-comment"># Image Systems Network Services</span>
+blp5           48129/tcp     <span class="hljs-comment"># Bloomberg locator</span>
+blp5           48129/udp     <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw  48556/tcp     <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw  48556/udp     <span class="hljs-comment"># com-bardac-dw</span>
+iqobject       48619/tcp     <span class="hljs-comment"># iqobject</span>
+iqobject       48619/udp     <span class="hljs-comment"># iqobject</span></code></pre>
 
 <p>感叹号也就是对后面的命令取反。</p>
 <p>8 ）匹配范围</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;/^blp5/,/^com/p&#x27;</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;/^blp5/,/^com/p&#x27;</span>
+blp5            48129/tcp       <span class="hljs-comment"># Bloomberg locator</span>
+blp5            48129/udp       <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw   48556/tcp       <span class="hljs-comment"># com-bardac-dw</span></code></pre>
 
 <p>匹配开头行到最后一行：</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;/blp5/,$p&#x27;</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;/blp5/,$p&#x27;</span>
+blp5          48129/tcp     <span class="hljs-comment"># Bloomberg locator</span>
+blp5          48129/udp     <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw 48556/tcp     <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw 48556/udp     <span class="hljs-comment"># com-bardac-dw</span>
+iqobject      48619/tcp     <span class="hljs-comment"># iqobject</span>
+iqobject      48619/udp     <span class="hljs-comment"># iqobject</span></code></pre>
 
 <p>以逗号分开两个样式选择某个范围。</p>
 <p>9 ）引用系统变量，用引号</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># a=1</span>
-<span class="hljs-comment"># tail /etc/services |sed - n &#x27;&#x27;$a&#x27;,3p&#x27;</span>
+<span class="hljs-comment"># tail /etc/services |sed -n &#x27;&#x27;$a&#x27;,3p&#x27;</span>
 或
-<span class="hljs-comment"># tail /etc/services |sed - n &quot;$a,3p&quot;</span></code></pre>
+<span class="hljs-comment"># tail /etc/services |sed -n &quot;$a,3p&quot;</span></code></pre>
 
 <p>sed 命令用单引号时，里面变量用单引号引起来，或者 sed 命令用双引号，因为双引号解释特殊符号原有意义。</p>
 <h3 id="7-2-2-匹配删除（d）"><a href="#7-2-2-匹配删除（d）" class="headerlink" title="7.2.2 匹配删除（d）"></a>7.2.2 匹配删除（d）</h3><p>删除与打印使用方法类似，简单举几个例子。</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed &#x27;/blp5/d&#x27;</span>
-nimgtw 48003/udp <span class="hljs-comment"># Nimbus Gateway</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
+nimgtw            48003/udp    <span class="hljs-comment"># Nimbus Gateway</span>
+3gpp-cbsp         48049/tcp    <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
+isnetserv         48128/tcp    <span class="hljs-comment"># Image Systems Network Services</span>
+isnetserv         48128/udp    <span class="hljs-comment"># Image Systems Network Services</span>
+com-bardac-dw     48556/tcp    <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw     48556/udp    <span class="hljs-comment"># com-bardac-dw</span>
+iqobject          48619/tcp    <span class="hljs-comment"># iqobject</span>
+iqobject          48619/udp    <span class="hljs-comment"># iqobject</span>
 <span class="hljs-comment"># tail /etc/services |sed &#x27;1d&#x27;</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
+3gpp-cbsp        48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
 Protocol
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
+isnetserv        48128/tcp     <span class="hljs-comment"># Image Systems Network Services</span>
+isnetserv        48128/udp     <span class="hljs-comment"># Image Systems Network Services</span>
+blp5             48129/tcp     <span class="hljs-comment"># Bloomberg locator</span>
+blp5             48129/udp     <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw    48556/tcp     <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw    48556/udp     <span class="hljs-comment"># com-bardac-dw</span>
+iqobject         48619/tcp     <span class="hljs-comment"># iqobject</span>
+iqobject         48619/udp     <span class="hljs-comment"># iqobject</span>
 <span class="hljs-comment"># tail /etc/services |sed &#x27;1~2d&#x27;</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
+3gpp-cbsp         48049/tcp     <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
+isnetserv         48128/udp     <span class="hljs-comment"># Image Systems Network Services</span>
+blp5              48129/udp     <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw     48556/udp     <span class="hljs-comment"># com-bardac-dw</span>
+iqobject          48619/udp     <span class="hljs-comment"># iqobject</span>
 <span class="hljs-comment"># tail /etc/services |sed &#x27;1,3d&#x27;</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span></code></pre>
+isnetserv         48128/udp     <span class="hljs-comment"># Image Systems Network Services</span>
+blp5              48129/tcp     <span class="hljs-comment"># Bloomberg locator</span>
+blp5              48129/udp     <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw     48556/tcp     <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw     48556/udp     <span class="hljs-comment"># com-bardac-dw</span>
+iqobject          48619/tcp     <span class="hljs-comment"># iqobject</span>
+iqobject          48619/udp     <span class="hljs-comment"># iqobject</span></code></pre>
 
 <p>去除空格 http.conf 文件空行或开头 # 号的行：</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># sed &#x27;/^#/d;/^$/d&#x27; /etc/httpd/conf/httpd.conf</span></code></pre>
@@ -2384,54 +2391,54 @@ iqobject 48619/udp <span class="hljs-comment"># iqobject</span></code></pre>
 <p>打印是把匹配的打印出来，删除是把匹配的删除，删除只是不用 -n 选项。</p>
 <h3 id="7-2-3-替换（s-）"><a href="#7-2-3-替换（s-）" class="headerlink" title="7.2.3 替换（s///）"></a>7.2.3 替换（s///）</h3><p>1 ）替换 blp5 字符串为 test</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed &#x27;s/blp5/test/&#x27;</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-<span class="hljs-built_in">test</span> 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-<span class="hljs-built_in">test</span> 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
-matahari 49000/tcp <span class="hljs-comment"># Matahari Broker</span></code></pre>
+3gpp-cbsp          48049/tcp     <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
+isnetserv          48128/tcp     <span class="hljs-comment"># Image Systems Network Services</span>
+isnetserv          48128/udp     <span class="hljs-comment"># Image Systems Network Services</span>
+<span class="hljs-built_in">test</span>               48129/tcp     <span class="hljs-comment"># Bloomberg locator</span>
+<span class="hljs-built_in">test</span>               48129/udp     <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw      48556/tcp     <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw      48556/udp     <span class="hljs-comment"># com-bardac-dw</span>
+iqobject           48619/tcp     <span class="hljs-comment"># iqobject</span>
+iqobject           48619/udp     <span class="hljs-comment"># iqobject</span>
+matahari           49000/tcp     <span class="hljs-comment"># Matahari Broker</span></code></pre>
 
 <p>全局替换加g：</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed &#x27;s/blp5/test/g&#x27;</span></code></pre>
 
-<p>2 ）替换开头是blp5的字符串并打印</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - n &#x27;s/^blp5/test/p&#x27;</span>
-<span class="hljs-built_in">test</span> 481 29/tcp <span class="hljs-comment"># Bloomberg locator</span>
-<span class="hljs-built_in">test</span> 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre>
+<p>2 ）替换开头是 blp5 的字符串并打印</p>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -n &#x27;s/^blp5/test/p&#x27;</span>
+<span class="hljs-built_in">test</span>          481 29/tcp      <span class="hljs-comment"># Bloomberg locator</span>
+<span class="hljs-built_in">test</span>          48129/udp       <span class="hljs-comment"># Bloomberg locator</span></code></pre>
 
-<p>3 ）使用&amp;命令引用匹配内容并替换</p>
+<p>3 ）使用 &amp; 命令引用匹配内容并替换</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed &#x27;s/48049/&amp;.0/&#x27;</span>
-3gpp-cbsp 48049.0/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-blp5 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
-matahari 49000/tcp <span class="hljs-comment"># Matahari Broker</span></code></pre>
+3gpp-cbsp             48049.0/tcp     <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
+isnetserv             48128/tcp       <span class="hljs-comment"># Image Systems Network Services</span>
+isnetserv             48128/udp       <span class="hljs-comment"># Image Systems Network Services</span>
+blp5                  48129/tcp       <span class="hljs-comment"># Bloomberg locator</span>
+blp5                  48129/udp       <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw         48556/tcp       <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw         48556/udp       <span class="hljs-comment"># com-bardac-dw</span>
+iqobject              48619/tcp       <span class="hljs-comment"># iqobject</span>
+iqobject              48619/udp       <span class="hljs-comment"># iqobject</span>
+matahari              49000/tcp       <span class="hljs-comment"># Matahari Broker</span></code></pre>
 
 <p>IP加单引号：</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &#x27;10.10.10.1 10.10.10.2 10.10.10.3&#x27; |sed - r &#x27;s/[^ ]+/&quot;&amp;&quot;/g&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &#x27;10.10.10.1 10.10.10.2 10.10.10.3&#x27; |sed -r &#x27;s/[^ ]+/&quot;&amp;&quot;/g&#x27;</span>
 <span class="hljs-string">&quot;10.10.10.1&quot;</span> <span class="hljs-string">&quot;10.10.10.2&quot;</span> <span class="hljs-string">&quot;10.10.10.3&quot;</span></code></pre>
 
-<p>4 ）对 1 - 4 行的blp5进行替换</p>
+<p>4 ）对 1 - 4 行的 blp5 进行替换</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services | sed &#x27;1,4s/blp5/test/&#x27;</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-<span class="hljs-built_in">test</span> 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
-blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
-matahari 49000/tcp <span class="hljs-comment"># Matahari Broker</span></code></pre>
+3gpp-cbsp           48049/tcp       <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
+isnetserv           48128/tcp       <span class="hljs-comment"># Image Systems Network Services</span>
+isnetserv           48128/udp       <span class="hljs-comment"># Image Systems Network Services</span>
+<span class="hljs-built_in">test</span>                48129/tcp       <span class="hljs-comment"># Bloomberg locator</span>
+blp5                48129/udp       <span class="hljs-comment"># Bloomberg locator</span>
+com-bardac-dw       48556/tcp       <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw       48556/udp       <span class="hljs-comment"># com-bardac-dw</span>
+iqobject            48619/tcp       <span class="hljs-comment"># iqobject</span>
+iqobject            48619/udp       <span class="hljs-comment"># iqobject</span>
+matahari            49000/tcp       <span class="hljs-comment"># Matahari Broker</span></code></pre>
 
 <p>5 ）对匹配行进行替换</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services | sed &#x27;/48129\/tcp/s/blp5/test/&#x27;</span>
@@ -2460,7 +2467,7 @@ iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
 matahari 49000/tcp <span class="hljs-comment"># Matahari Broker</span></code></pre>
 
 <p>7 ）分组使用，在每个字符串后面添加 123</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - r &#x27;s/(.*) (.*)(#.*)/\ 1 \2test \3/&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -r &#x27;s/(.*) (.*)(#.*)/\ 1 \2test \3/&#x27;</span>
 3gpp-cbsp 48049/tcp <span class="hljs-built_in">test</span> <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
 isnetserv 48128/tcp <span class="hljs-built_in">test</span> <span class="hljs-comment"># Image Systems Network Services</span>
 isnetserv 48128/udp <span class="hljs-built_in">test</span> <span class="hljs-comment"># Image Systems Network Services</span>
@@ -2474,7 +2481,7 @@ matahari 49000/tcp <span class="hljs-built_in">test</span> <span class="hljs-com
 
 <p>第一列是第一个小括号匹配，第二列第二个小括号匹配，第三列一样。将不变的字符串匹配分组，再通过\数字按分组顺序反向引用。</p>
 <p>8 ）将协议与端口号位置调换</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - r &#x27;s/(.*)(\&lt;[0-9]+\&gt;)\/(tcp|udp)(.*)/\ 1 \ 3 \/\ 2 \4/&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -r &#x27;s/(.*)(\&lt;[0-9]+\&gt;)\/(tcp|udp)(.*)/\ 1 \ 3 \/\ 2 \4/&#x27;</span>
 3gpp-cbsp tcp/48049 <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
 isnetserv tcp/48128 <span class="hljs-comment"># Image Systems Network Services</span>
 isnetserv udp/48128 <span class="hljs-comment"># Image Systems Network Services</span>
@@ -2488,10 +2495,10 @@ matahari tcp/49000 <span class="hljs-comment"># Matahari Broker</span></code></p
 
 <p>9 ）位置调换</p>
 <pre><code class="hljs bash">替换x字符为大写：
-<span class="hljs-comment"># echo &quot;abc cde xyz&quot; |sed - r &#x27;s/(.*)x/\1X/&#x27;</span>
+<span class="hljs-comment"># echo &quot;abc cde xyz&quot; |sed -r &#x27;s/(.*)x/\1X/&#x27;</span>
 abc cde Xyz
 456 与cde调换：
-<span class="hljs-comment"># echo &quot;abc:cde;123:456&quot; |sed - r &#x27;s/([^:]+)(;.*:)([^:]+$)/\ 3 \ 2 \1/&#x27;</span>
+<span class="hljs-comment"># echo &quot;abc:cde;123:456&quot; |sed -r &#x27;s/([^:]+)(;.*:)([^:]+$)/\ 3 \ 2 \1/&#x27;</span>
 abc:456;123:cde</code></pre>
 
 <p>10 ）注释匹配行后的多少行</p>
@@ -2508,19 +2515,19 @@ abc:456;123:cde</code></pre>
 10</code></pre>
 
 <p>11 ）注释指定多行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed - r &#x27;s/^3|^4/&amp;#/&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed -r &#x27;s/^3|^4/&amp;#/&#x27;</span>
 1
 2
 3<span class="hljs-comment">#</span>
 4<span class="hljs-comment">#</span>
 5
-<span class="hljs-comment"># seq 5 |sed - r &#x27;/^3|^4/s/^/#/&#x27;</span>
+<span class="hljs-comment"># seq 5 |sed -r &#x27;/^3|^4/s/^/#/&#x27;</span>
 1
 2
 <span class="hljs-comment">#3</span>
 <span class="hljs-comment">#4</span>
 5
-<span class="hljs-comment"># seq 5 |sed - r &#x27;s/^3|^4/#\0/&#x27;</span>
+<span class="hljs-comment"># seq 5 |sed -r &#x27;s/^3|^4/#\0/&#x27;</span>
 1
 2
 <span class="hljs-comment">#3</span>
@@ -2531,7 +2538,7 @@ abc:456;123:cde</code></pre>
 <pre><code class="hljs bash"><span class="hljs-comment"># echo &quot; 1 2 3 &quot; |sed &#x27;s/^[ \t]*//;s/[ \t]*$//&#x27;</span>
 1 2 3</code></pre>
 
-<h3 id="7-2-4-多重编辑（-e）"><a href="#7-2-4-多重编辑（-e）" class="headerlink" title="7.2.4 多重编辑（-e）"></a>7.2.4 多重编辑（-e）</h3><pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed - e &#x27;1,2d&#x27; - e &#x27;s/blp5/test/&#x27;</span>
+<h3 id="7-2-4-多重编辑（-e）"><a href="#7-2-4-多重编辑（-e）" class="headerlink" title="7.2.4 多重编辑（-e）"></a>7.2.4 多重编辑（-e）</h3><pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |sed -e &#x27;1,2d&#x27; -e &#x27;s/blp5/test/&#x27;</span>
 isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
 <span class="hljs-built_in">test</span> 48129/tcp <span class="hljs-comment"># Bloomberg locator</span>
 <span class="hljs-built_in">test</span> 48129/udp <span class="hljs-comment"># Bloomberg locator</span>
@@ -2656,11 +2663,11 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 <li>N 追加下一行内容到模式空间，并以换行符\n分隔。</li>
 </ul>
 <p><strong>1 ）</strong>打印匹配的下一行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed - n &#x27;/3/&#123;n;p&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed -n &#x27;/3/&#123;n;p&#125;&#x27;</span>
 4</code></pre>
 
 <p><strong>2 ）</strong>打印偶数</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed - n &#x27;n;p&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed -n &#x27;n;p&#x27;</span>
 2
 4
 6</code></pre>
@@ -2673,7 +2680,7 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 5</code></pre>
 
 <p>sed先读取第一行 1 ，此时模式空间是 1 ，并打印模式空间 1 ，执行n命令，获取下一行 2 ，执行d命令，删除模式空间的 2 ，sed再读取 3 ，此时模式空间是 3 ，并打印模式空间，再执行n命令，获取下一行 4 ，执行d命令，删除模式空间的 3 ，以此类推。</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed - n &#x27;p;n&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed -n &#x27;p;n&#x27;</span>
 1
 3
 5</code></pre>
@@ -2724,12 +2731,12 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 
 <p>第一个命令：sed读取第一行 1 ，N命令读取下一行 2 ，并以\n2追加，此时模式空间是 1 \n2，再执行q退出。</p>
 <p>为了进一步说明N的功能，看第二个命令：执行N命令后，此时模式空间是 1 \n2，再执行把\n替换为空，此时模式空间是 12 ，并打印。</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed - n &#x27;N;p&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed -n &#x27;N;p&#x27;</span>
 1
 2
 3
 4
-<span class="hljs-comment"># seq 6 |sed - n &#x27;N;p&#x27;</span>
+<span class="hljs-comment"># seq 6 |sed -n &#x27;N;p&#x27;</span>
 1
 2
 3
@@ -2740,7 +2747,7 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 <p>为什么第一个不打印 5 呢？</p>
 <p>因为N命令是读取下一行追加到sed读取的当前行，当N读取下一行没有内容时，则退出，也不会执行p命令打印当前行。<br>当行数为偶数时，N始终就能读到下一行，所以也会执行p命令。</p>
 <p><strong>7 ）</strong>打印奇数行数时的最后一行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed - n &#x27;$!N;p&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed -n &#x27;$!N;p&#x27;</span>
 1
 2
 3
@@ -2755,7 +2762,7 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 </li>
 </ul>
 <p><strong>1 ）</strong>打印奇数</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed - n &#x27;N;P&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed -n &#x27;N;P&#x27;</span>
 1
 3
 5</code></pre>
@@ -2773,7 +2780,7 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 <li>x 模式空间与保持空间内容互换</li>
 </ul>
 <p><strong>1 ）</strong>将匹配的内容覆盖到另一个匹配</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed - e &#x27;/3/&#123;h;d&#125;&#x27; - e &#x27;/5/g&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed -e &#x27;/3/&#123;h;d&#125;&#x27; -e &#x27;/5/g&#x27;</span>
 1
 2
 4
@@ -2782,7 +2789,7 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 
 <p>h命令把匹配的 3 复制到保持空间，d命令删除模式空间的 3 。后面命令再对模式空间匹配 5 ，并用g命令把保持空间 3 覆盖模式空间 5 。</p>
 <p><strong>2 ）</strong>将匹配的内容放到最后</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed - e &#x27;/3/&#123;h;d&#125;&#x27; - e &#x27;$G&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed -e &#x27;/3/&#123;h;d&#125;&#x27; -e &#x27;$G&#x27;</span>
 1 
 2 
 4 
@@ -2790,7 +2797,7 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 6 
 3</code></pre>
 <p><strong>3 ）</strong>交换模式空间和保持空间</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed - e &#x27;/3/&#123;h;d&#125;&#x27; - e &#x27;/5/x&#x27; - e &#x27;$G&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 6 |sed -e &#x27;/3/&#123;h;d&#125;&#x27; -e &#x27;/5/x&#x27; -e &#x27;$G&#x27;</span>
 1 
 2 
 4 
@@ -2829,24 +2836,24 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 5</code></pre>
 
 <p><strong>6 ）</strong>打印匹配行的上一行内容</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed - n &#x27;/3/&#123;x;p&#125;;h&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed -n &#x27;/3/&#123;x;p&#125;;h&#x27;</span>
 2</code></pre>
 
 <p>读取第一行 1 ，没有匹配到 3 ，不执行{x;p}，执行h命令将模式空间内容 1 覆盖到保持空间。<br>读取第二行 2 ，没有匹配到 3 ，不执行{x;p}，执行h命令将模式空间内容 2 覆盖到保持空间。<br>读取第三行 3 ，匹配到 3 ，执行x命令把模式空间 3 与保持空间 2 交换，再执行p打印模式空间2.<br>以此类推。</p>
 <p>7 ）打印匹配行到最后一行或下一行到最后一行</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed - n &#x27;/3/,$p&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |sed -n &#x27;/3/,$p&#x27;</span>
 3
 4
 5
-<span class="hljs-comment"># seq 5 |sed - n &#x27;/3/,$&#123;h;x;p&#125;&#x27;</span>
+<span class="hljs-comment"># seq 5 |sed -n &#x27;/3/,$&#123;h;x;p&#125;&#x27;</span>
 3
 4
 5
-<span class="hljs-comment"># seq 5 |sed - n &#x27;/3/&#123;:a;N;$!ba;p&#125;&#x27;</span>
+<span class="hljs-comment"># seq 5 |sed -n &#x27;/3/&#123;:a;N;$!ba;p&#125;&#x27;</span>
 3
 4
 5
-<span class="hljs-comment"># seq 5 |sed - n &#x27;/3/&#123;n;:a;N;$!ba;p&#125;&#x27;</span>
+<span class="hljs-comment"># seq 5 |sed -n &#x27;/3/&#123;n;:a;N;$!ba;p&#125;&#x27;</span>
 4
 5</code></pre>
 
@@ -2885,21 +2892,21 @@ blp5 48129/udp <span class="hljs-comment"># Bloomberg locator</span></code></pre
 
 <p>可以看到，不加$!是没有替换，因为循环到N命令没有读到行就退出了，后面的替换也就没执行。</p>
 <p><strong>2 ）</strong>每三个数字加个一个逗号</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;123456789&quot; |sed - r &#x27;s/([0-9]+)([0-9]+&#123;3&#125;)/\1,\2/&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;123456789&quot; |sed -r &#x27;s/([0-9]+)([0-9]+&#123;3&#125;)/\1,\2/&#x27;</span>
 123456,789
-<span class="hljs-comment"># echo &quot;123456789&quot; |sed - r &#x27;:a;s/([0-9]+)([0-9]+&#123;3&#125;)/\1,\2/;t a&#x27;</span>
+<span class="hljs-comment"># echo &quot;123456789&quot; |sed -r &#x27;:a;s/([0-9]+)([0-9]+&#123;3&#125;)/\1,\2/;t a&#x27;</span>
 123,456,789
-<span class="hljs-comment"># echo &quot;123456789&quot; |sed - r &#x27;:a;s/([0-9]+)([0-9]+&#123;2&#125;)/\1,\2/;t a&#x27;</span>
+<span class="hljs-comment"># echo &quot;123456789&quot; |sed -r &#x27;:a;s/([0-9]+)([0-9]+&#123;2&#125;)/\1,\2/;t a&#x27;</span>
 1,23,45,67,89</code></pre>
 
 <p>执行第一次时，替换最后一个，跳转后，再对 123456 匹配替换，直到匹配替换不成功，不执行t命令。</p>
-<h3 id="7-2-12-忽略大小写匹配（I）"><a href="#7-2-12-忽略大小写匹配（I）" class="headerlink" title="7.2.12 忽略大小写匹配（I）"></a>7.2.12 忽略大小写匹配（I）</h3><pre><code class="hljs bash"><span class="hljs-comment"># echo - e &quot;a\nA\nb\nc&quot; |sed &#x27;s/a/1/Ig&#x27;</span>
+<h3 id="7-2-12-忽略大小写匹配（I）"><a href="#7-2-12-忽略大小写匹配（I）" class="headerlink" title="7.2.12 忽略大小写匹配（I）"></a>7.2.12 忽略大小写匹配（I）</h3><pre><code class="hljs bash"><span class="hljs-comment"># echo -e &quot;a\nA\nb\nc&quot; |sed &#x27;s/a/1/Ig&#x27;</span>
 1
 1
 b
 c</code></pre>
 
-<h3 id="7-2-13-获取总行数（-）"><a href="#7-2-13-获取总行数（-）" class="headerlink" title="7.2.13 获取总行数（#）"></a>7.2.13 获取总行数（#）</h3><pre><code class="hljs bash"><span class="hljs-comment"># seq 10 |sed - n &#x27;$=&#x27;</span></code></pre>
+<h3 id="7-2-13-获取总行数（-）"><a href="#7-2-13-获取总行数（-）" class="headerlink" title="7.2.13 获取总行数（#）"></a>7.2.13 获取总行数（#）</h3><pre><code class="hljs bash"><span class="hljs-comment"># seq 10 |sed -n &#x27;$=&#x27;</span></code></pre>
 
 <h2 id="7-3-awk"><a href="#7-3-awk" class="headerlink" title="7.3 awk"></a>7.3 awk</h2><p>awk是一个处理文本的编程语言工具，能用简短的程序处理标准输入或文件、数据排序、计算以及生成报表等等。</p>
 <p>在Linux系统下默认awk是gawk，它是awk的GNU版本。可以通过命令查看应用的版本：<code>ls -l/bin/awk</code></p>
@@ -2929,15 +2936,15 @@ c</code></pre>
 <td>变量赋值</td>
 </tr>
 <tr>
-<td>–posix</td>
+<td>- -posix</td>
 <td>兼容POSIX正则表达式</td>
 </tr>
 <tr>
-<td>–dump-variables=[file]</td>
+<td>- -dump-variables=[file]</td>
 <td>把awk命令时的全局变量写入文件，<br>默认文件是awkvars.out</td>
 </tr>
 <tr>
-<td>–profile=[file]</td>
+<td>- -profile=[file]</td>
 <td>格式化awk语句到文件，默认是awkprof.out</td>
 </tr>
 </tbody></table>
@@ -2983,19 +2990,19 @@ c</code></pre>
 <p><strong>1 ）</strong>从文件读取awk程序处理文件</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># vi test.awk</span>
 &#123;<span class="hljs-built_in">print</span> <span class="hljs-variable">$2</span>&#125;
-<span class="hljs-comment"># tail - n3 /etc/services |awk - f test.awk</span>
+<span class="hljs-comment"># tail - n3 /etc/services |awk -f test.awk</span>
 48049/tcp
 48128/tcp
 49000/tcp</code></pre>
 
 <p><strong>2 ）</strong>指定分隔符，打印指定字段</p>
 <pre><code class="hljs bash">打印第二字段，默认以空格分隔：
-<span class="hljs-comment"># tail - n3 /etc/services |awk &#x27;&#123;print $2&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n3 /etc/services |awk &#x27;&#123;print $2&#125;&#x27;</span>
 48049/tcp
 48128/tcp
 48128/udp
 指定冒号为分隔符打印第一字段：
-<span class="hljs-comment"># awk - F &#x27;:&#x27; &#x27;&#123;print $1&#125;&#x27; /etc/passwd</span>
+<span class="hljs-comment"># awk -F &#x27;:&#x27; &#x27;&#123;print $1&#125;&#x27; /etc/passwd</span>
 root
 bin
 daemon
@@ -3005,34 +3012,34 @@ sync
 ......</code></pre>
 
 <p>还可以指定多个分隔符，作为同一个分隔符处理：</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail - n3 /etc/services |awk - F&#x27;[/#]&#x27; &#x27;&#123;print $3&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail -n3 /etc/services |awk -F&#x27;[/#]&#x27; &#x27;&#123;print $3&#125;&#x27;</span>
 iqobject
 iqobject
 Matahari Broker
-<span class="hljs-comment"># tail - n3 /etc/services |awk - F&#x27;[/#]&#x27; &#x27;&#123;print $1&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n3 /etc/services |awk -F&#x27;[/#]&#x27; &#x27;&#123;print $1&#125;&#x27;</span>
 iqobject 48619
 iqobject 48619
 matahari 49000
-<span class="hljs-comment"># tail - n3 /etc/services |awk - F&#x27;[/#]&#x27; &#x27;&#123;print $2&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n3 /etc/services |awk -F&#x27;[/#]&#x27; &#x27;&#123;print $2&#125;&#x27;</span>
 tcp
 udp
 tcp
-<span class="hljs-comment"># tail - n3 /etc/services |awk - F&#x27;[/#]&#x27; &#x27;&#123;print $3&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n3 /etc/services |awk -F&#x27;[/#]&#x27; &#x27;&#123;print $3&#125;&#x27;</span>
 iqobject
 iqobject
 Matahari Broker
-<span class="hljs-comment"># tail - n3 /etc/services |awk - F&#x27;[ /]+&#x27; &#x27;&#123;print $2&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n3 /etc/services |awk -F&#x27;[ /]+&#x27; &#x27;&#123;print $2&#125;&#x27;</span>
 48619
 48619
 49000</code></pre>
 
 <p>[]元字符的意思是符号其中任意一个字符，也就是说每遇到一个/或#时就分隔一个字段，当用多个分隔符时，就能更方面处理字段了。</p>
 <p><strong>3 ）</strong>变量赋值</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># awk - v a=123 &#x27;BEGIN&#123;print a&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># awk -v a=123 &#x27;BEGIN&#123;print a&#125;&#x27;</span>
 123
 系统变量作为awk变量的值：
 <span class="hljs-comment"># a=123</span>
-<span class="hljs-comment"># awk - v a=$a &#x27;BEGIN&#123;print a&#125;&#x27;</span>
+<span class="hljs-comment"># awk -v a=$a &#x27;BEGIN&#123;print a&#125;&#x27;</span>
 123
 或使用单引号
 <span class="hljs-comment"># awk &#x27;BEGIN&#123;print &#x27;$a&#x27;&#125;&#x27;</span>
@@ -3265,16 +3272,16 @@ com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span></code>
 </tr>
 </tbody></table>
 <p><strong>示例：</strong></p>
-<p><strong>1 ）</strong>FS和OFS</p>
+<p><strong>1 ）</strong> FS 和 OFS</p>
 <p>在程序开始前重新赋值FS变量，改变默认分隔符为冒号，与-F一样。</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># awk &#x27;BEGIN&#123;FS=&quot;:&quot;&#125;&#123;print $1,$2&#125;&#x27; /etc/passwd |head - n5</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># awk &#x27;BEGIN&#123;FS=&quot;:&quot;&#125;&#123;print $1,$2&#125;&#x27; /etc/passwd |head -n5</span>
 root x
 bin x
 daemon x
 adm x
 lp x
 也可以使用-v来重新赋值这个变量：
-<span class="hljs-comment"># awk - vFS=&#x27;:&#x27; &#x27;&#123;print $1,$2&#125;&#x27; /etc/passwd |head - n5 # 中间逗号被换成了OFS的默</span>
+<span class="hljs-comment"># awk -vFS=&#x27;:&#x27; &#x27;&#123;print $1,$2&#125;&#x27; /etc/passwd |head -n5 # 中间逗号被换成了OFS的默</span>
 认值
 root x
 bin x
@@ -3282,29 +3289,29 @@ daemon x
 adm x
 lp x
 由于OFS默认以空格分隔，反向引用多个字段分隔的也是空格，如果想指定输出分隔符这样：
-<span class="hljs-comment"># awk &#x27;BEGIN&#123;FS=&quot;:&quot;;OFS=&quot;:&quot;&#125;&#123;print $1,$2&#125;&#x27; /etc/passwd |head - n5</span>
+<span class="hljs-comment"># awk &#x27;BEGIN&#123;FS=&quot;:&quot;;OFS=&quot;:&quot;&#125;&#123;print $1,$2&#125;&#x27; /etc/passwd |head -n5</span>
 root:x
 bin:x
 daemon:x
 adm:x
 lp:x
 也可以通过字符串拼接实现分隔：
-<span class="hljs-comment"># awk &#x27;BEGIN&#123;FS=&quot;:&quot;&#125;&#123;print $1&quot;#&quot;$2&#125;&#x27; /etc/passwd |head - n5</span>
+<span class="hljs-comment"># awk &#x27;BEGIN&#123;FS=&quot;:&quot;&#125;&#123;print $1&quot;#&quot;$2&#125;&#x27; /etc/passwd |head -n5</span>
 root<span class="hljs-comment">#x</span>
 bin<span class="hljs-comment">#x</span>
 daemon<span class="hljs-comment">#x</span>
 adm<span class="hljs-comment">#x</span>
 lp<span class="hljs-comment">#x</span></code></pre>
 
-<p><strong>2 ）</strong>RS和ORS</p>
-<p>RS默认是\n分隔每行，如果想指定以某个字符作为分隔符来处理记录：</p>
+<p><strong>2 ）</strong> RS 和 ORS</p>
+<p>RS 默认是 \n 分隔每行，如果想指定以某个字符作为分隔符来处理记录：</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;www.baidu.com/user/test.html&quot; |awk &#x27;BEGIN&#123;RS=&quot;/&quot;&#125;&#123;print $0&#125;&#x27;</span>
 www.baidu.com
 user
 test.html
 
 RS也支持正则，简单演示下：
-<span class="hljs-comment"># seq - f &quot;str%02g&quot; 10 |sed &#x27;n;n;a\-----&#x27; |awk &#x27;BEGIN&#123;RS=&quot;-+&quot;&#125;&#123;print $1&#125;&#x27;</span>
+<span class="hljs-comment"># seq -f &quot;str%02g&quot; 10 |sed &#x27;n;n;a\-----&#x27; |awk &#x27;BEGIN&#123;RS=&quot;-+&quot;&#125;&#123;print $1&#125;&#x27;</span>
 str01
 str04
 str07
@@ -3315,12 +3322,12 @@ str10
 1+2+3+4+5+6+7+8+9+10+
 
 替换某个字符：
-<span class="hljs-comment"># tail - n2 /etc/services |awk &#x27;BEGIN&#123;RS=&quot;/&quot;;ORS=&quot;#&quot;&#125;&#123;print $0&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n2 /etc/services |awk &#x27;BEGIN&#123;RS=&quot;/&quot;;ORS=&quot;#&quot;&#125;&#123;print $0&#125;&#x27;</span>
 iqobject 48619<span class="hljs-comment">#udp # iqobject</span>
 matahari 49000<span class="hljs-comment">#tcp # Matahari Broker</span></code></pre>
 
 <p><strong>3 ）</strong>NF</p>
-<p>NF是字段个数。</p>
+<p>NF 是字段个数。</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a b c d e f&quot; |awk &#x27;&#123;print NF&#125;&#x27;</span>
 6
 打印最后一个字段：
@@ -3336,31 +3343,31 @@ a b c d
 <span class="hljs-comment"># echo &quot;a b c d e f&quot; |awk &#x27;&#123;$1=&quot;&quot;;print $0&#125;&#x27;</span>
 b c d e f</code></pre>
 
-<p><strong>4 ）</strong>NR和FNR</p>
-<p>NR统计记录编号，每处理一行记录，编号就会+1，FNR不同的是在统计第二个文件时会重新计数。</p>
+<p><strong>4 ）</strong> NR 和 FNR</p>
+<p>NR 统计记录编号，每处理一行记录，编号就会 +1，FNR 不同的是在统计第二个文件时会重新计数。</p>
 <pre><code class="hljs bash">打印行数：
-<span class="hljs-comment"># tail - n5 /etc/services |awk &#x27;&#123;print NR,$0&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n5 /etc/services |awk &#x27;&#123;print NR,$0&#125;&#x27;</span>
 1 com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
 2 com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
 3 iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
 4 iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
 5 matahari 49000/tcp <span class="hljs-comment"># Matahari Broker</span>
 打印总行数：
-<span class="hljs-comment"># tail - n5 /etc/services |awk &#x27;END&#123;print NR&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n5 /etc/services |awk &#x27;END&#123;print NR&#125;&#x27;</span>
 5
 打印第三行：
-<span class="hljs-comment"># tail - n5 /etc/services |awk &#x27;NR==3&#x27;</span>
+<span class="hljs-comment"># tail -n5 /etc/services |awk &#x27;NR==3&#x27;</span>
 iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
 打印第三行第二个字段：
-<span class="hljs-comment"># tail - n5 /etc/services |awk &#x27;NR==3&#123;print $2&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n5 /etc/services |awk &#x27;NR==3&#123;print $2&#125;&#x27;</span>
 48619/tcp
 打印前三行：
-<span class="hljs-comment"># tail - n5 /etc/services |awk &#x27;NR&lt;=3&#123;print NR,$0&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n5 /etc/services |awk &#x27;NR&lt;=3&#123;print NR,$0&#125;&#x27;</span>
 1 com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
 2 com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
 3 iqobject 48619/tcp <span class="hljs-comment"># iqobject</span></code></pre>
 
-<p>看下NR和FNR的区别：</p>
+<p>看下 NR 和 FNR 的区别：</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># cat a</span>
 a
 b
@@ -3377,7 +3384,7 @@ e
 5 2 d
 6 3 e</code></pre>
 
-<p>可以看出NR每处理一行就会+1，而FNR在处理第二个文件时，编号重新计数。同时也知道awk处理两个文件时，是合并到一起处理。</p>
+<p>可以看出 NR 每处理一行就会 +1，而 FNR 在处理第二个文件时，编号重新计数。同时也知道 awk 处理两个文件时，是合并到一起处理。</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># awk &#x27;FNR==NR&#123;print $0&quot;1&quot;&#125;FNR!=NR&#123;print $0&quot;2&quot;&#125;&#x27; a b</span>
 a1
 b1
@@ -3386,10 +3393,10 @@ c2
 d2
 e2</code></pre>
 
-<p>当FNR==NR时，说明在处理第一个文件内容，不等于时说明在处理第二个文件内容。<br>一般FNR在处理多个文件时会用到，下面会讲解。</p>
+<p>当 FNR==NR 时，说明在处理第一个文件内容，不等于时说明在处理第二个文件内容。<br>一般 FNR 在处理多个文件时会用到，下面会讲解。</p>
 <p><strong>5 ）</strong>ARGC和ARGV</p>
-<p>ARGC是命令行参数数量</p>
-<p>ARGV是将命令行参数存到数组，元素由ARGC指定，数组下标从 0 开始</p>
+<p>ARGC 是命令行参数数量</p>
+<p>ARGV 是将命令行参数存到数组，元素由 ARGC 指定，数组下标从 0 开始</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># awk &#x27;BEGIN&#123;print ARGC&#125;&#x27; 1 2 3</span>
 4
 <span class="hljs-comment"># awk &#x27;BEGIN&#123;print ARGV[0]&#125;&#x27;</span>
@@ -3400,7 +3407,7 @@ awk
 2</code></pre>
 
 <p><strong>6 ）</strong>ARGIND</p>
-<p>ARGIND是当前正在处理的文件索引值，第一个文件是 1 ，第二个文件是 2 ，以此类推，从而可以通过这种方式判断正在处理哪个文件。</p>
+<p>ARGIND 是当前正在处理的文件索引值，第一个文件是 1 ，第二个文件是 2 ，以此类推，从而可以通过这种方式判断正在处理哪个文件。</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># awk &#x27;&#123;print ARGIND,$0&#125;&#x27; a b</span>
 1 a
 1 b
@@ -3417,10 +3424,10 @@ b-&gt;d
 b-&gt;e</code></pre>
 
 <p><strong>7 ）</strong>ENVIRON</p>
-<p>ENVIRON调用系统变量。</p>
+<p>ENVIRON 调用系统变量。</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># awk &#x27;BEGIN&#123;print ENVIRON[&quot;HOME&quot;]&#125;&#x27;</span>
 /root
-如果是设置的环境变量，还需要用<span class="hljs-built_in">export</span>导入到系统变量才可以调用：
+如果是设置的环境变量，还需要用 <span class="hljs-built_in">export</span> 导入到系统变量才可以调用：
 <span class="hljs-comment"># awk &#x27;BEGIN&#123;print ENVIRON[&quot;a&quot;]&#125;&#x27;</span>
 
 <span class="hljs-comment"># export a</span>
@@ -3438,7 +3445,7 @@ b-&gt;d
 b-&gt;e</code></pre>
 
 <p>9 ）忽略大小写</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;A a b c&quot; |xargs - n1 |awk &#x27;BEGIN&#123;IGNORECASE=1&#125;/a/&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;A a b c&quot; |xargs -n1 |awk &#x27;BEGIN&#123;IGNORECASE=1&#125;/a/&#x27;</span>
 A
 a</code></pre>
 
@@ -3515,14 +3522,14 @@ a</code></pre>
 
 <p><strong>示例：</strong></p>
 <p><strong>1 ）</strong>截取整数</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;123abc abc123 123abc123&quot; |xargs - n1 | awk &#x27;&#123;print +$0&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;123abc abc123 123abc123&quot; |xargs -n1 | awk &#x27;&#123;print +$0&#125;&#x27;</span>
 123
 0
 123
-<span class="hljs-comment"># echo &quot;123abc abc123 123abc123&quot; |xargs - n1 | awk &#x27;&#123;print - $0&#125;&#x27;</span>
-- 123
+<span class="hljs-comment"># echo &quot;123abc abc123 123abc123&quot; |xargs -n1 | awk &#x27;&#123;print -$0&#125;&#x27;</span>
+-123
 0
-- 123</code></pre>
+-123</code></pre>
 
 <p><strong>2 ）</strong>感叹号</p>
 <pre><code class="hljs bash">打印奇数行：
@@ -3539,14 +3546,14 @@ a</code></pre>
 <p>读取第一行：i是未定义变量，也就是i=!0，!取反意思。感叹号右边是个布尔值， 0 或空字符串为假，非 0 或非空字符串为真，!0就是真，因此i=1，条件为真打印当前记录。<br>没有print为什么会打印呢？因为模式后面没有动作，默认会打印整条记录。<br>读取第二行：因为上次i的值由 0 变成了 1 ，此时就是i=!1，条件为假不打印。<br>读取第三行：上次条件又为假，i恢复初始值 0 ，取反，继续打印。以此类推…<br>可以看出，运算时并没有判断行内容，而是利用布尔值真假判断输出当前行。</p>
 <p><strong>3 ）</strong>不匹配某行</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |awk &#x27;!/blp5/&#123;print $0&#125;&#x27;</span>
-3gpp-cbsp 48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
-isnetserv 48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
-isnetserv 48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
-com-bardac-dw 48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
-com-bardac-dw 48556/udp <span class="hljs-comment"># com-bardac-dw</span>
-iqobject 48619/tcp <span class="hljs-comment"># iqobject</span>
-iqobject 48619/udp <span class="hljs-comment"># iqobject</span>
-matahari 49000/tcp <span class="hljs-comment"># Matahari Broker</span></code></pre>
+3gpp-cbsp       48049/tcp <span class="hljs-comment"># 3GPP Cell Broadcast Service</span>
+isnetserv       48128/tcp <span class="hljs-comment"># Image Systems Network Services</span>
+isnetserv       48128/udp <span class="hljs-comment"># Image Systems Network Services</span>
+com-bardac-dw   48556/tcp <span class="hljs-comment"># com-bardac-dw</span>
+com-bardac-dw   48556/udp <span class="hljs-comment"># com-bardac-dw</span>
+iqobject        48619/tcp <span class="hljs-comment"># iqobject</span>
+iqobject        48619/udp <span class="hljs-comment"># iqobject</span>
+matahari        49000/tcp <span class="hljs-comment"># Matahari Broker</span></code></pre>
 
 <p><strong>4 ）</strong>乘法和除法</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># seq 5 |awk &#x27;&#123;print $0*2&#125;&#x27;</span>
@@ -3680,11 +3687,10 @@ no
 1 2 3
 4 5 6
 7 8 9
-<span class="hljs-comment"># awk &#x27;&#123;if($1==4)&#123;print &quot;1&quot;&#125; else if($2==5)&#123;print &quot;2&quot;&#125; else if($3==6)&#123;print &quot;3&quot;&#125; else</span>
-&#123;<span class="hljs-built_in">print</span> <span class="hljs-string">&quot;no&quot;</span>&#125;&#125;<span class="hljs-string">&#x27; file</span>
-<span class="hljs-string">no</span>
-<span class="hljs-string">1</span>
-<span class="hljs-string">no</span></code></pre>
+<span class="hljs-comment"># awk &#x27;&#123;if($1==4)&#123;print &quot;1&quot;&#125; else if($2==5)&#123;print &quot;2&quot;&#125; else if($3==6)&#123;print &quot;3&quot;&#125; else &#123;print &quot;no&quot;&#125;&#125;&#x27; file</span>
+no
+1
+no</code></pre>
 
 <p><strong>2 ）while语句</strong></p>
 <p>格式：while (condition) statement</p>
@@ -3701,7 +3707,7 @@ no
 9
 awk是按行处理的，每次读取一行，并遍历打印每个字段。</code></pre>
 
-<p><strong>3 ）for语句C语言风格</strong></p>
+<p><strong>3 ）for 语句 C 语言风格</strong></p>
 <p>格式：for (expr1; expr2; expr3) statement</p>
 <pre><code class="hljs bash">遍历打印所有字段：
 <span class="hljs-comment"># cat file</span>
@@ -3751,22 +3757,20 @@ awk是按行处理的，每次读取一行，并遍历打印每个字段。</cod
 4 5
 7 8
 IP加单引号：
-<span class="hljs-comment"># echo &#x27;10.10.10.1 10.10.10.2 10.10.10.3&#x27; |awk &#x27;&#123;for(i=1;i&lt;=NF;i++)printf</span>
-<span class="hljs-string">&quot;\047&quot;</span><span class="hljs-variable">$i</span><span class="hljs-string">&quot;\047&quot;</span>&#125;
-<span class="hljs-string">&#x27;10.10.10.1&#x27;</span> <span class="hljs-string">&#x27;10.10.10.2&#x27;</span> <span class="hljs-string">&#x27;10.10.10.3&#x27;</span>
-\ 047 是ASCII码，可以通过showkey - a命令查看。</code></pre>
+<span class="hljs-comment"># echo &#x27;10.10.10.1 10.10.10.2 10.10.10.3&#x27; |awk &#x27;&#123;for(i=1;i&lt;=NF;i++)printf&quot;\047&quot;$i&quot;\047&quot;&#125;&#x27;10.10.10.1&#x27; &#x27;10.10.10.2&#x27; &#x27;10.10.10.3&#x27;</span>
+\047 是ASCII码，可以通过 showkey -a 命令查看。</code></pre>
 
 <p><strong>4 ）for语句遍历数组</strong></p>
 <p>格式：for (var in array) statement</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq - f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[NR]=$0&#125;END&#123;for(v in a)print v,a[v]&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq -f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[NR]=$0&#125;END&#123;for(v in a)print v,a[v]&#125;&#x27;</span>
 4 str4
 5 str5
 1 str1
 2 str2
 3 str3</code></pre>
 
-<p><strong>5 ）break和continue语句</strong></p>
-<p>break跳过所有循环，continue跳过当前循环。</p>
+<p><strong>5 ）break 和 continue 语句</strong></p>
+<p>break跳过所有循环，continue 跳过当前循环。</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># awk &#x27;BEGIN&#123;for(i=1;i&lt;=5;i++)&#123;if(i==3)&#123;break&#125;;print i&#125;&#125;&#x27;</span>
 1
 2
@@ -3780,9 +3784,9 @@ IP加单引号：
 <p>格式：</p>
 <p>delete array[index] 删除数组元素</p>
 <p>delete array 删除数组</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># seq - f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[NR]=$0&#125;END&#123;delete a;for(v in a)print v,a[v]&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># seq -f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[NR]=$0&#125;END&#123;delete a;for(v in a)print v,a[v]&#125;&#x27;</span>
 空的...
-<span class="hljs-comment"># seq - f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[NR]=$0&#125;END&#123;delete a[3];for(v in a)print v,a[v]&#125;&#x27;</span>
+<span class="hljs-comment"># seq -f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[NR]=$0&#125;END&#123;delete a[3];for(v in a)print v,a[v]&#125;&#x27;</span>
 4 str4
 5 str5
 1 str1
@@ -3803,21 +3807,21 @@ IP加单引号：
 <span class="hljs-built_in">test</span></code></pre>
 
 <p><strong>2 ）通过NR设置记录下标，下标从 1 开始</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail - n3 /etc/passwd |awk - F: &#x27;&#123;a[NR]=$1&#125;END&#123;print a[1]&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail -n3 /etc/passwd |awk -F: &#x27;&#123;a[NR]=$1&#125;END&#123;print a[1]&#125;&#x27;</span>
 systemd-network
-<span class="hljs-comment"># tail - n3 /etc/passwd |awk - F: &#x27;&#123;a[NR]=$1&#125;END&#123;print a[2]&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n3 /etc/passwd |awk -F: &#x27;&#123;a[NR]=$1&#125;END&#123;print a[2]&#125;&#x27;</span>
 zabbix
-<span class="hljs-comment"># tail - n3 /etc/passwd |awk - F: &#x27;&#123;a[NR]=$1&#125;END&#123;print a[3]&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n3 /etc/passwd |awk -F: &#x27;&#123;a[NR]=$1&#125;END&#123;print a[3]&#125;&#x27;</span>
 user</code></pre>
 
 <p><strong>3 ）通过for循环遍历数组</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail - n 5 /etc/passwd |awk - F: &#x27;&#123;a[NR]=$1&#125;END&#123;for(v in a)print a[v],v&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail -n5 /etc/passwd |awk -F: &#x27;&#123;a[NR]=$1&#125;END&#123;for(v in a)print a[v],v&#125;&#x27;</span>
 zabbix 4
 user 5
 admin 1
 systemd-bus-proxy 2
 systemd-network 3
-<span class="hljs-comment"># tail - n5 /etc/passwd |awk - F: &#x27;&#123;a[NR]=$1&#125;END&#123;for(i=1;i&lt;=NR;i++)print a[i],i&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n5 /etc/passwd |awk -F: &#x27;&#123;a[NR]=$1&#125;END&#123;for(i=1;i&lt;=NR;i++)print a[i],i&#125;&#x27;</span>
 admin 1
 systemd-bus-proxy 2
 systemd-network 3
@@ -3826,7 +3830,7 @@ user 5</code></pre>
 
 <p>上面打印的i是数组的下标。<br>第一种for循环的结果是乱序的，刚说过，数组是无序存储。<br>第二种for循环通过下标获取的情况是排序正常。<br>所以当下标是数字序列时，还是用for(expr1;expr2;expr3)循环表达式比较好，保持顺序不变。</p>
 <p><strong>4 ）通过++方式作为下标</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail - n5 /etc/passwd |awk - F: &#x27;&#123;a[x++]=$1&#125;END&#123;for(i=0;i&lt;=x-1;i++)print a[i],i&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail -n5 /etc/passwd |awk -F: &#x27;&#123;a[x++]=$1&#125;END&#123;for(i=0;i&lt;=x-1;i++)print a[i],i&#125;&#x27;</span>
 admin 0
 systemd-bus-proxy 1
 systemd-network 2
@@ -3835,7 +3839,7 @@ user 4</code></pre>
 
 <p>x被awk初始化值是 0 ，没循环一次+1</p>
 <p><strong>5 ）使用字段作为下标</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail - n5 /etc/passwd |awk - F: &#x27;&#123;a[$1]=$7&#125;END&#123;for(v in a)print a[v],v&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail -n5 /etc/passwd |awk -F: &#x27;&#123;a[$1]=$7&#125;END&#123;for(v in a)print a[v],v&#125;&#x27;</span>
 /sbin/nologin admin
 /bin/bash user
 /sbin/nologin systemd-network
@@ -3862,7 +3866,7 @@ user 4</code></pre>
 
 <p>第一个字段作为下标，值被++初始化是 0 ，每次遇到下标（第一个字段）一样时，对应的值就会被+1，因此实现了统计出现次数。<br>想要实现去重的的话就简单了，只要打印下标即可。</p>
 <p><strong>7 ）统计TCP连接状态</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># netstat - antp |awk &#x27;/^tcp/&#123;a[$6]++&#125;END&#123;for(v in a)print a[v],v&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># netstat -antp |awk &#x27;/^tcp/&#123;a[$6]++&#125;END&#123;for(v in a)print a[v],v&#125;&#x27;</span>
 9 LISTEN
 6 ESTABLISHED
 6 TIME_WAIT</code></pre>
@@ -3917,7 +3921,7 @@ iqobject
 matahari</code></pre>
 
 <p><strong>10 ）统计每个相同字段的某字段总数：</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |awk - F&#x27;[ /]+&#x27; &#x27;&#123;a[$1]+=$2&#125;END&#123;for(v in a)print v, a[v]&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail /etc/services |awk -F&#x27;[ /]+&#x27; &#x27;&#123;a[$1]+=$2&#125;END&#123;for(v in a)print v, a[v]&#125;&#x27;</span>
 com-bardac-dw 97112
 3gpp-cbsp 48049
 iqobject 97238
@@ -3952,7 +3956,7 @@ D 192.168.1.4 NGINX
 <p><strong>示例：</strong></p>
 <p><strong>1 ）int()</strong></p>
 <pre><code class="hljs bash">截断为整数：
-<span class="hljs-comment"># echo - e &quot;123abc\nabc123\n123abc123&quot; | awk &#x27;&#123;print int($0)&#125;&#x27;</span>
+<span class="hljs-comment"># echo -e &quot;123abc\nabc123\n123abc123&quot; | awk &#x27;&#123;print int($0)&#125;&#x27;</span>
 123
 0
 123
@@ -3977,25 +3981,23 @@ D 192.168.1.4 NGINX
 4</code></pre>
 
 <p>如果想更完美生成随机数，还得做相应的处理！</p>
-<p><strong>4 ）asort()和asorti()</strong></p>
+<p><strong>4 ）asort() 和 asorti()</strong></p>
 <pre><code class="hljs bash">排序数组：
-<span class="hljs-comment"># seq - f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[x++]=$0&#125;END&#123;s=asort(a,b);for(i=1;i&lt;=s;i++)print</span>
-b[i],i&#125;<span class="hljs-string">&#x27;</span>
-<span class="hljs-string">str1 1</span>
-<span class="hljs-string">str2 2</span>
-<span class="hljs-string">str3 3</span>
-<span class="hljs-string">str4 4</span>
-<span class="hljs-string">str5 5</span>
-<span class="hljs-string"># seq - f &quot;str%.g&quot; 5 |awk &#x27;</span>&#123;a[x++]=<span class="hljs-variable">$0</span>&#125;END&#123;s=asorti(a,b);<span class="hljs-keyword">for</span>(i=1;i&lt;=s;i++)<span class="hljs-built_in">print</span>
-b[i],i&#125;<span class="hljs-string">&#x27;</span>
-<span class="hljs-string">0 1</span>
-<span class="hljs-string">1 2</span>
-<span class="hljs-string">2 3</span>
-<span class="hljs-string">3 4</span>
-<span class="hljs-string">4 5</span></code></pre>
+<span class="hljs-comment"># seq -f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[x++]=$0&#125;END&#123;s=asort(a,b);for(i=1;i&lt;=s;i++)print b[i],i&#125;&#x27;</span>
+str1 1
+str2 2
+str3 3
+str4 4
+str5 5
+<span class="hljs-comment"># seq -f &quot;str%.g&quot; 5 |awk &#x27;&#123;a[x++]=$0&#125;END&#123;s=asorti(a,b);for(i=1;i&lt;=s;i++)print b[i],i&#125;&#x27;</span>
+0 1
+1 2
+2 3
+3 4
+4 5</code></pre>
 
-<p>asort将a数组的值放到数组b，a下标丢弃，并将数组b的总行号赋值给s，新数组b下标从 1 开始，然后遍历。</p>
-<p><strong>5 ）sub()和gsub()</strong></p>
+<p>asort 将 a 数组的值放到数组 b，a 下标丢弃，并将数组b的总行号赋值给 s，新数组 b 下标从 1 开始，然后遍历。</p>
+<p><strong>5 ）sub() 和 gsub()</strong></p>
 <pre><code class="hljs bash">替换正则匹配的字符串：
 <span class="hljs-comment"># tail /etc/services |awk &#x27;/blp5/&#123;sub(/tcp/,&quot;icmp&quot;);print $0&#125;&#x27;</span>
 blp5 48129/icmp <span class="hljs-comment"># Bloomberg locator</span>
@@ -4026,7 +4028,7 @@ txt
 
 <p><strong>6 ）index()</strong></p>
 <pre><code class="hljs bash">获取字段索引起始位置：
-<span class="hljs-comment"># tail - n 5 /etc/services |awk &#x27;&#123;print index($2,&quot;tcp&quot;)&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n 5 /etc/services |awk &#x27;&#123;print index($2,&quot;tcp&quot;)&#125;&#x27;</span>
 7
 0
 7
@@ -4035,14 +4037,14 @@ txt
 
 <p><strong>7 ）length()</strong></p>
 <pre><code class="hljs bash">统计字段长度：
-<span class="hljs-comment"># tail - n 5 /etc/services |awk &#x27;&#123;print length($2)&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n 5 /etc/services |awk &#x27;&#123;print length($2)&#125;&#x27;</span>
 9
 9
 9
 9
 9
 统计数组的长度：
-<span class="hljs-comment"># tail - n 5 /etc/services |awk &#x27;&#123;a[$1]=$2&#125;END&#123;print length(a)&#125;&#x27;</span>
+<span class="hljs-comment"># tail -n 5 /etc/services |awk &#x27;&#123;a[$1]=$2&#125;END&#123;print length(a)&#125;&#x27;</span>
 3</code></pre>
 
 <p><strong>8 ）match</strong></p>
@@ -4058,11 +4060,11 @@ txt
 
 <p><strong>9 ）split()</strong></p>
 <pre><code class="hljs bash">切分记录为数组a：
-<span class="hljs-comment"># echo - e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;split($0,a);for(v in a)print a[v],v&#125;&#x27;</span>
+<span class="hljs-comment"># echo -e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;split($0,a);for(v in a)print a[v],v&#125;&#x27;</span>
 123<span class="hljs-comment">#456#789 1</span>
 abc<span class="hljs-comment">#cde#fgh 1</span>
 以<span class="hljs-comment">#号切分记录为数据a：</span>
-<span class="hljs-comment"># echo - e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;split($0,a,&quot;#&quot;);for(v in a)print a[v],v&#125;&#x27;</span>
+<span class="hljs-comment"># echo -e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;split($0,a,&quot;#&quot;);for(v in a)print a[v],v&#125;&#x27;</span>
 123 1
 456 2
 789 3
@@ -4072,21 +4074,21 @@ fgh 3</code></pre>
 
 <p><strong>10 ）substr()</strong></p>
 <pre><code class="hljs bash">截取字符串索引 4 到最后：
-<span class="hljs-comment"># echo - e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;printsubstr($0,4)&#125;&#x27;</span>
+<span class="hljs-comment"># echo -e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;printsubstr($0,4)&#125;&#x27;</span>
 <span class="hljs-comment">#456#789</span>
 <span class="hljs-comment">#cde#fgh</span>
 截取字符串索引 4 到长度 5 ：
-<span class="hljs-comment"># echo - e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;print substr($0,4,5)&#125;&#x27;</span>
+<span class="hljs-comment"># echo -e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;print substr($0,4,5)&#125;&#x27;</span>
 <span class="hljs-comment">#456#</span>
 <span class="hljs-comment">#cde#</span></code></pre>
 
 <p><strong>11 ）tolower()和toupper()</strong></p>
 <pre><code class="hljs bash">转换小写：
-<span class="hljs-comment"># echo - e &quot;123#456#789\nABC#cde#fgh&quot; |awk &#x27;&#123;print tolower($0)&#125;&#x27;</span>
+<span class="hljs-comment"># echo -e &quot;123#456#789\nABC#cde#fgh&quot; |awk &#x27;&#123;print tolower($0)&#125;&#x27;</span>
 123<span class="hljs-comment">#456#789</span>
 abc<span class="hljs-comment">#cde#fgh</span>
 转换大写：
-<span class="hljs-comment"># echo - e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;print toupper($0)&#125;&#x27;</span>
+<span class="hljs-comment"># echo -e &quot;123#456#789\nabc#cde#fgh&quot; |awk &#x27;&#123;print toupper($0)&#125;&#x27;</span>
 123<span class="hljs-comment">#456#789</span>
 ABC<span class="hljs-comment">#CDE#FGH</span></code></pre>
 
@@ -4098,7 +4100,7 @@ ABC<span class="hljs-comment">#CDE#FGH</span></code></pre>
 <span class="hljs-comment"># echo &quot;1483297766&quot; |awk &#x27;&#123;print strftime(&quot;%Y-%m-%d %H:%M:%S&quot;,$0)&#125;&#x27;</span>
 2017 - 01 - 01 14:09:26</code></pre>
 
-<h3 id="7-3-8-I-O语句"><a href="#7-3-8-I-O语句" class="headerlink" title="7.3.8 I/O语句"></a>7.3.8 I/O语句</h3><table>
+<h3 id="7-3-8-I-O-语句"><a href="#7-3-8-I-O-语句" class="headerlink" title="7.3.8 I/O 语句"></a>7.3.8 I/O 语句</h3><table>
 <thead>
 <tr>
 <th>语句</th>
@@ -4238,12 +4240,11 @@ hello 3 c</code></pre>
 
 <p><strong>5 ）system()</strong></p>
 <pre><code class="hljs bash">执行shell命令判断返回值：
-<span class="hljs-comment"># awk &#x27;BEGIN&#123;if(system(&quot;grep root /etc/passwd &amp;&gt;/dev/null&quot;)==0)print &quot;yes&quot;;else print</span>
-<span class="hljs-string">&quot;no&quot;</span>&#125;<span class="hljs-string">&#x27;</span>
-<span class="hljs-string">yes</span></code></pre>
+<span class="hljs-comment"># awk &#x27;BEGIN&#123;if(system(&quot;grep root /etc/passwd &amp;&gt;/dev/null&quot;)==0)print &quot;yes&quot;;else print &quot;no&quot;&#125;&#x27;</span>
+yes</code></pre>
 
 <p><strong>6 ）打印结果写到文件</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># tail - n5 /etc/services |awk &#x27;&#123;print $2 &gt; &quot;a.txt&quot;&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># tail -n5 /etc/services |awk &#x27;&#123;print $2 &gt; &quot;a.txt&quot;&#125;&#x27;</span>
 <span class="hljs-comment"># cat a.txt</span>
 48049/tcp
 48128/tcp
@@ -4339,12 +4340,12 @@ BEGIN&#123;
 <span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;|%-20s|%-20s|\n&quot;</span>,<span class="hljs-string">&quot;Name&quot;</span>,<span class="hljs-string">&quot;Number&quot;</span>;
 <span class="hljs-built_in">print</span> <span class="hljs-string">&quot;+--------------------+--------------------+&quot;</span>;
 &#125;
-<span class="hljs-comment"># awk - f test.awk</span>
+<span class="hljs-comment"># awk -f test.awk</span>
 +--------------------+--------------------+
 |Name |Number |
 +--------------------+--------------------+
 格式化输出：
-<span class="hljs-comment"># awk - F: &#x27;BEGIN&#123;printf &quot;UserName\t\tShell\n-----------------------------\n&quot;&#125;&#123;printf&quot;%-20s %-20s\n&quot;,$1,$7&#125;END&#123;print &quot;END...\n&quot;&#125;&#x27; /etc/passwd</span>
+<span class="hljs-comment"># awk -F: &#x27;BEGIN&#123;printf &quot;UserName\t\tShell\n-----------------------------\n&quot;&#125;&#123;printf&quot;%-20s %-20s\n&quot;,$1,$7&#125;END&#123;print &quot;END...\n&quot;&#125;&#x27; /etc/passwd</span>
 打印十六进制：
 <span class="hljs-comment"># awk &#x27;BEGIN&#123;printf &quot;%x %X&quot;,123,123&#125;&#x27;</span>
 7b 7B</code></pre>
@@ -4362,16 +4363,16 @@ BEGIN&#123;
 统计访问访问大于 100 次的IP：
 <span class="hljs-comment"># awk &#x27;&#123;a[$1]++&#125;END&#123;for(v in a)&#123;if(a[v]&gt;100)print v,a[v]&#125;&#125;&#x27; access.log</span>
 统计访问IP次数并排序取前 10 ：
-<span class="hljs-comment"># awk &#x27;&#123;a[$1]++&#125;END&#123;for(v in a)print v,a[v] |&quot;sort - k2 - nr |head - 10&quot;&#125;&#x27; access.log</span>
+<span class="hljs-comment"># awk &#x27;&#123;a[$1]++&#125;END&#123;for(v in a)print v,a[v] |&quot;sort -k2 -nr |head -10&quot;&#125;&#x27; access.log</span>
 统计时间段访问最多的IP：
 <span class="hljs-comment"># awk &#x27;$4&gt;=&quot;[02/Jan/2017:00:02:00&quot; &amp;&amp; $4&lt;=&quot;[02/Jan/2017:00:03:00&quot;&#123;a[$1]++&#125;END&#123;for(v ina)print v,a[v]&#125;&#x27; access.log</span>
 
 统计上一分钟访问量：
-<span class="hljs-comment"># date=$(date - d &#x27;- 1 minute&#x27; +%d/%d/%Y:%H:%M)</span>
+<span class="hljs-comment"># date=$(date -d &#x27;-1 minute&#x27; +%d/%d/%Y:%H:%M)</span>
 <span class="hljs-comment"># awk - vdate=$date &#x27;$4~date&#123;c++&#125;END&#123;print c&#125;&#x27; access.log</span>
 
 统计访问最多的 10 个页面：
-<span class="hljs-comment"># awk &#x27;&#123;a[$7]++&#125;END&#123;for(v in a)print v,a[v] |&quot;sort - k1 - nr|head -n10&quot;&#125;&#x27; access.log</span>
+<span class="hljs-comment"># awk &#x27;&#123;a[$7]++&#125;END&#123;for(v in a)print v,a[v] |&quot;sort -k1 -nr|head -n10&quot;&#125;&#x27; access.log</span>
 
 统计每个URL数量和返回内容总大小：
 <span class="hljs-comment"># awk &#x27;&#123;a[$7]++;size[$7]+=$10&#125;END&#123;for(v in a)print a[v],v,size[v]&#125;&#x27; access.log</span>
@@ -4485,9 +4486,9 @@ wangwu 29 man</code></pre>
 <p><strong>5 ）字符串拆分，统计出现的次数</strong></p>
 <p>字符串拆分：</p>
 <pre><code class="hljs bash">方法 1 ：
-<span class="hljs-comment"># echo &quot;hello world&quot; |awk - F &#x27;&#x27; &#x27;&#123;print $1&#125;&#x27;</span>
+<span class="hljs-comment"># echo &quot;hello world&quot; |awk -F &#x27;&#x27; &#x27;&#123;print $1&#125;&#x27;</span>
 h
-<span class="hljs-comment"># echo &quot;hello&quot; |awk - F &#x27;&#x27; &#x27;&#123;for(i=1;i&lt;=NF;i++)print $i&#125;&#x27;</span>
+<span class="hljs-comment"># echo &quot;hello&quot; |awk -F &#x27;&#x27; &#x27;&#123;for(i=1;i&lt;=NF;i++)print $i&#125;&#x27;</span>
 h
 e
 l
@@ -4502,7 +4503,7 @@ e
 l</code></pre>
 
 <p>统计字符串中每个字母出现的次数：</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a.b.c,c.d.e&quot; |awk - F &#x27;[.,]&#x27; &#x27;&#123;for(i=1;i&lt;=NF;i++)a[$i]++&#125;END&#123;for(v in a)printv,a[v]&#125;&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a.b.c,c.d.e&quot; |awk -F &#x27;[.,]&#x27; &#x27;&#123;for(i=1;i&lt;=NF;i++)a[$i]++&#125;END&#123;for(v in a)printv,a[v]&#125;&#x27;</span>
 a 1
 b 1
 c 2
@@ -4741,17 +4742,17 @@ abc
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">获取用户输入保存到变量：
-<span class="hljs-comment"># read - p &quot;Please input your name: &quot; VAR</span>
+<span class="hljs-comment"># read -p &quot;Please input your name: &quot; VAR</span>
 Please input your name: lizhenliang
 <span class="hljs-comment"># echo $VAR</span>
 lizhenliang
 用户输入保存为数组：
-<span class="hljs-comment"># read - p &quot;Please input your name: &quot; - a ARRAY</span>
+<span class="hljs-comment"># read -p &quot;Please input your name: &quot; -a ARRAY</span>
 Please input your name: a b c
 <span class="hljs-comment"># echo $&#123;ARRAY[*]&#125;</span>
 a b c
 遇到e字符返回：
-<span class="hljs-comment"># read - d e VAR</span>
+<span class="hljs-comment"># read -d e VAR</span>
 123
 456
 e
