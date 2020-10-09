@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月9日 上午
+                  本文最后更新于：2020年10月9日 晚上
                 
               </p>
             
@@ -795,19 +795,19 @@ hello
 </tbody></table>
 <p>需要注意的是，使用 -z 或 -n 判断字符串长度时，变量要加双引号。</p>
 <p><strong>举例说明：</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># [ - z $a ] &amp;&amp; echo yes || echo no</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># [ -z $a ] &amp;&amp; echo yes || echo no</span>
 yes
-<span class="hljs-comment"># [ - n $a ] &amp;&amp; echo yes || echo no</span>
+<span class="hljs-comment"># [ -n $a ] &amp;&amp; echo yes || echo no</span>
 yes
 <span class="hljs-comment"># 加了双引号才能正常判断是否为空</span>
-<span class="hljs-comment"># [ - z &quot;$a&quot; ] &amp;&amp; echo yes || echo no</span>
+<span class="hljs-comment"># [ -z &quot;$a&quot; ] &amp;&amp; echo yes || echo no</span>
 yes
-<span class="hljs-comment"># [ - n &quot;$a&quot; ] &amp;&amp; echo yes || echo no</span>
+<span class="hljs-comment"># [ -n &quot;$a&quot; ] &amp;&amp; echo yes || echo no</span>
 no
 <span class="hljs-comment"># 使用了双中括号就不用了双引号</span>
-<span class="hljs-comment"># [[ - n $a ]] &amp;&amp; echo yes || echo no</span>
+<span class="hljs-comment"># [[ -n $a ]] &amp;&amp; echo yes || echo no</span>
 no
-<span class="hljs-comment"># [[ - z $a ]] &amp;&amp; echo yes || echo no</span>
+<span class="hljs-comment"># [[ -z $a ]] &amp;&amp; echo yes || echo no</span>
 yes</code></pre>
 
 <h2 id="3-4-文件测试"><a href="#3-4-文件测试" class="headerlink" title="3.4 文件测试"></a>3.4 文件测试</h2><table>
@@ -990,9 +990,9 @@ yes</code></pre>
 <span class="hljs-comment"># echo &quot;1.2 != 2.2&quot; |bc</span>
 1
 看出规律了嘛？运算如果为真返回 1 ，否则返回 0 ，写一个例子：
-<span class="hljs-comment"># [ $(echo &quot;2.2 &gt; 2&quot; |bc) - eq 1 ] &amp;&amp; echo yes || echo no</span>
+<span class="hljs-comment"># [ $(echo &quot;2.2 &gt; 2&quot; |bc) -eq 1 ] &amp;&amp; echo yes || echo no</span>
 yes
-<span class="hljs-comment"># [ $(echo &quot;2.2 &lt; 2&quot; |bc) - eq 1 ] &amp;&amp; echo yes || echo no</span>
+<span class="hljs-comment"># [ $(echo &quot;2.2 &lt; 2&quot; |bc) -eq 1 ] &amp;&amp; echo yes || echo no</span>
 no</code></pre>
 
 <p>expr还可以对字符串操作,获取字符串长度：</p>
@@ -1066,7 +1066,7 @@ ing
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 N=10
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> - gt 5 ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> -gt 5 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> yes
 <span class="hljs-keyword">fi</span>
 <span class="hljs-comment"># bash test.sh</span>
@@ -1081,7 +1081,7 @@ yes</code></pre>
 <p><strong>示例 1 ：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 N=10
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> - lt 5 ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> -lt 5 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> yes
 <span class="hljs-keyword">else</span>
   <span class="hljs-built_in">echo</span> no
@@ -1092,8 +1092,8 @@ no</code></pre>
 <p><strong>示例 2 ：判断crond进程是否运行</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 NAME=crond
-NUM=$(ps - ef |grep <span class="hljs-variable">$NAME</span> |grep - vc grep)
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$NUM</span> - eq 1 ]; <span class="hljs-keyword">then</span>
+NUM=$(ps -ef |grep <span class="hljs-variable">$NAME</span> |grep -vc grep)
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$NUM</span> -eq 1 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> running.&quot;</span>
 <span class="hljs-keyword">else</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> is not running!&quot;</span>
@@ -1101,7 +1101,7 @@ NUM=$(ps - ef |grep <span class="hljs-variable">$NAME</span> |grep - vc grep)
 
 <p><strong>示例 3 ：检查主机是否存活</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
-<span class="hljs-keyword">if</span> ping - c 1 192.168.1. 1 &gt;/dev/null; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> ping -c 1 192.168.1. 1 &gt;/dev/null; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;OK.&quot;</span>
 <span class="hljs-keyword">else</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;NO!&quot;</span>
@@ -1120,11 +1120,11 @@ NUM=$(ps - ef |grep <span class="hljs-variable">$NAME</span> |grep - vc grep)
 <p><strong>示例 1 ：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 N=<span class="hljs-variable">$1</span>
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> - eq 3 ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$N</span> -eq 3 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;eq 3&quot;</span>
-<span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$N</span> - eq 5 ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$N</span> -eq 5 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;eq 5&quot;</span>
-<span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$N</span> - eq 8 ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$N</span> -eq 8 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;eq 8&quot;</span>
 <span class="hljs-keyword">else</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;no&quot;</span>
@@ -1133,10 +1133,10 @@ N=<span class="hljs-variable">$1</span>
 <p>如果第一个条件符合就不再向下匹配。</p>
 <p><strong>示例 2 ：根据Linux不同发行版使用不同的命令安装软件</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
-<span class="hljs-keyword">if</span> [ - e /etc/redhat-release ]; <span class="hljs-keyword">then</span>
-  yum install wget - y
-<span class="hljs-keyword">elif</span> [ $(cat /etc/issue |cut - d<span class="hljs-string">&#x27; &#x27;</span> - f 1 ) == <span class="hljs-string">&quot;Ubuntu&quot;</span> ]; <span class="hljs-keyword">then</span>
-  apt-get install wget - y
+<span class="hljs-keyword">if</span> [ -e /etc/redhat-release ]; <span class="hljs-keyword">then</span>
+  yum install wget -y
+<span class="hljs-keyword">elif</span> [ $(cat /etc/issue |cut -d<span class="hljs-string">&#x27; &#x27;</span> -f 1 ) == <span class="hljs-string">&quot;Ubuntu&quot;</span> ]; <span class="hljs-keyword">then</span>
+  apt-get install wget -y
 <span class="hljs-keyword">else</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;perating system does not support.&#x27;</span>
   <span class="hljs-built_in">exit</span>
@@ -1203,7 +1203,7 @@ root
 <p><strong>示例 1 ：检查多个主机是否存活</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-keyword">for</span> ip <span class="hljs-keyword">in</span> 192.168.1.&#123;1..254&#125;; <span class="hljs-keyword">do</span>
-  <span class="hljs-keyword">if</span> ping - c 1 <span class="hljs-variable">$ip</span> &gt;/dev/null; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> ping -c 1 <span class="hljs-variable">$ip</span> &gt;/dev/null; <span class="hljs-keyword">then</span>
    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$ip</span> OK.&quot;</span>
   <span class="hljs-keyword">else</span>
    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$ip</span> NO!&quot;</span>
@@ -1214,8 +1214,8 @@ root
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 URL=<span class="hljs-string">&quot;www.baidu.com www.sina.com www.jd.com&quot;</span>
 <span class="hljs-keyword">for</span> url <span class="hljs-keyword">in</span> <span class="hljs-variable">$URL</span>; <span class="hljs-keyword">do</span>
-  HTTP_CODE=$(curl - o /dev/null - s - w %&#123;http_code&#125; http://<span class="hljs-variable">$url</span>)
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> - eq 200 - o <span class="hljs-variable">$HTTP_CODE</span> - eq 301 ]; <span class="hljs-keyword">then</span>
+  HTTP_CODE=$(curl -o /dev/null -s -w %&#123;http_code&#125; http://<span class="hljs-variable">$url</span>)
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> -eq 200 -o <span class="hljs-variable">$HTTP_CODE</span> -eq 301 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$url</span> OK.&quot;</span>
   <span class="hljs-keyword">else</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$url</span> NO!&quot;</span>
@@ -1230,7 +1230,7 @@ URL=<span class="hljs-string">&quot;www.baidu.com www.sina.com www.jd.com&quot;<
 <p><strong>示例 1 ：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 N=0
-<span class="hljs-keyword">while</span> [ <span class="hljs-variable">$N</span> - lt 5 ]; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">while</span> [ <span class="hljs-variable">$N</span> -lt 5 ]; <span class="hljs-keyword">do</span>
   <span class="hljs-built_in">let</span> N++
   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$N</span>
 <span class="hljs-keyword">done</span>
@@ -1244,7 +1244,7 @@ N=0
 <p>当条件表达式为false时，终止循环。</p>
 <p><strong>示例 2 ：条件表达式为true，将会产生死循环</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
-<span class="hljs-keyword">while</span> [ 1 - eq 1 ]; <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">while</span> [ 1 -eq 1 ]; <span class="hljs-keyword">do</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;yes&quot;</span>
 <span class="hljs-keyword">done</span></code></pre>
 
@@ -2005,7 +2005,7 @@ IP=(192.168.1.1 192.168.1.2 192.168.1.3)
 <pre><code class="hljs bash"><span class="hljs-comment"># grep -v -f a b</span></code></pre>
 
 <p>3 ） 匹配多个模式</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a bc de&quot; |xargs - n1 |grep -e &#x27;a&#x27; -e &#x27;bc&#x27;</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;a bc de&quot; |xargs -n1 |grep -e &#x27;a&#x27; -e &#x27;bc&#x27;</span>
 a
 bc</code></pre>
 
@@ -2013,7 +2013,7 @@ bc</code></pre>
 <pre><code class="hljs bash"><span class="hljs-comment"># grep -E -v &quot;^$|^#&quot; /etc/httpd/conf/httpd.conf</span></code></pre>
 
 <p>5 ） 匹配开头不分大小写的单词</p>
-<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;A a b c&quot; |xargs -n1 |grep - i a</span>
+<pre><code class="hljs bash"><span class="hljs-comment"># echo &quot;A a b c&quot; |xargs -n1 |grep -i a</span>
 或
 <span class="hljs-comment"># echo &quot;A a b c&quot; |xargs -n1 |grep &#x27;[Aa]&#x27;</span>
 A
@@ -2990,7 +2990,7 @@ c</code></pre>
 <p><strong>1 ）</strong>从文件读取awk程序处理文件</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># vi test.awk</span>
 &#123;<span class="hljs-built_in">print</span> <span class="hljs-variable">$2</span>&#125;
-<span class="hljs-comment"># tail - n3 /etc/services |awk -f test.awk</span>
+<span class="hljs-comment"># tail -n3 /etc/services |awk -f test.awk</span>
 48049/tcp
 48128/tcp
 49000/tcp</code></pre>
@@ -5796,9 +5796,9 @@ dir2
 sort
 <span class="hljs-comment"># basename include/stdio.h .h</span>
 stdio
-<span class="hljs-comment"># basename - s .h include/stdio.h</span>
+<span class="hljs-comment"># basename -s .h include/stdio.h</span>
 stdio
-<span class="hljs-comment"># basename - a any/str1 any/str2</span>
+<span class="hljs-comment"># basename -a any/str1 any/str2</span>
 str1
 str2</code></pre>
 
@@ -5816,9 +5816,9 @@ str2</code></pre>
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">查看目录大小：
-<span class="hljs-comment"># du - sh /opt</span>
+<span class="hljs-comment"># du -sh /opt</span>
 排除目录某个文件：
-<span class="hljs-comment"># du - sh --exclude=test /opt</span></code></pre>
+<span class="hljs-comment"># du -sh --exclude=test /opt</span></code></pre>
 
 <h2 id="11-15-cut"><a href="#11-15-cut" class="headerlink" title="11.15 cut"></a>11.15 cut</h2><p>功能：选取文件的每一行数据</p>
 <p><strong>常用选项：</strong></p>
@@ -5850,16 +5850,16 @@ b</code></pre>
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">替换SET1没有SET2的字符：
-<span class="hljs-comment"># echo &quot;aaabbbccc&quot; | tr - c c 1</span>
+<span class="hljs-comment"># echo &quot;aaabbbccc&quot; | tr -c c 1</span>
 111111ccc
 去重字符：
-<span class="hljs-comment"># echo &quot;aaacccddd&quot; | tr - s &#x27;[a-z]&#x27;</span>
+<span class="hljs-comment"># echo &quot;aaacccddd&quot; | tr -s &#x27;[a-z]&#x27;</span>
 acd
 删除字符：
-<span class="hljs-comment"># echo &quot;aaabbbccc&quot; | tr - d bbb</span>
+<span class="hljs-comment"># echo &quot;aaabbbccc&quot; | tr -d bbb</span>
 aaaccc
 删除换行符：
-<span class="hljs-comment"># echo - e &quot;a\nb\nc&quot; | tr - d &#x27;\n&#x27;</span>
+<span class="hljs-comment"># echo -e &quot;a\nb\nc&quot; | tr -d &#x27;\n&#x27;</span>
 abc
 替换字符：
 <span class="hljs-comment"># echo &quot;aaabbbccc&quot; | tr &#x27;[a-z]&#x27; &#x27;[A-Z]&#x27;</span>
@@ -5877,7 +5877,7 @@ AAABBBCCC</code></pre>
 <pre><code class="hljs bash">显示文件信息：
 <span class="hljs-comment"># stat file</span>
 只显示文件修改时间：
-<span class="hljs-comment"># stat - c %y file</span></code></pre>
+<span class="hljs-comment"># stat -c %y file</span></code></pre>
 
 <h2 id="11-18-seq"><a href="#11-18-seq" class="headerlink" title="11.18 seq"></a>11.18 seq</h2><p>功能：打印序列化数字</p>
 <p><strong>常用选项：</strong></p>
@@ -5909,10 +5909,10 @@ AAABBBCCC</code></pre>
 3
 5
 以冒号分隔序列：
-<span class="hljs-comment"># seq - s &quot;+&quot; 5</span>
+<span class="hljs-comment"># seq -s &quot;+&quot; 5</span>
 1+2+3+4+5
 等宽并在数字前面加字符串：
-<span class="hljs-comment"># seq - f &quot;str%02g&quot; 3 # %g是默认数字位数， 02 是数字不足 2 位时用 0 填充。</span>
+<span class="hljs-comment"># seq -f &quot;str%02g&quot; 3 # %g是默认数字位数， 02 是数字不足 2 位时用 0 填充。</span>
 str01
 str02
 str03</code></pre>
@@ -5931,7 +5931,7 @@ str03</code></pre>
 5
 4
 3
-<span class="hljs-comment"># shuf - i 5 - 10</span>
+<span class="hljs-comment"># shuf -i 5-10</span>
 8
 10
 7
@@ -5961,23 +5961,23 @@ str03</code></pre>
 倒序排序：
 <span class="hljs-comment"># seq 5 |shuf |sort - r</span>
 分隔后的字段排序：
-<span class="hljs-comment"># cat /etc/passwd |sort - t : - k 3 - n</span>
+<span class="hljs-comment"># cat /etc/passwd |sort -t : -k 3 -n</span>
 去重重复行：
-<span class="hljs-comment"># echo - e &quot;1\n1\n2\n3\n3&quot; |sort - u</span>
+<span class="hljs-comment"># echo -e &quot;1\n1\n2\n3\n3&quot; |sort -u</span>
 大小单位排序：
-<span class="hljs-comment"># du - h |sort - k 1 - h - r</span>
+<span class="hljs-comment"># du -h |sort -k 1 -h -r</span>
 分隔后第一个字段的第二个字符排序：
-<span class="hljs-comment"># echo - e &quot;fa:1\neb:2\ncc:3&quot; |sort - t : - k 1.2</span>
+<span class="hljs-comment"># echo -e &quot;fa:1\neb:2\ncc:3&quot; |sort -t : -k 1.2</span>
 tab作为分隔符：
-<span class="hljs-comment"># sort - t $&quot;\t&quot;</span>
+<span class="hljs-comment"># sort -t $&quot;\t&quot;</span>
 file文件内容：
 zhangsan 6 100
 lisi 8 80
 wangwu 7 90
 zhaoliu 9 70
 对file文件的第二列正序排序，再次基础再对第三列倒序排序（多列排序）：
-<span class="hljs-comment"># sort - k 2,2 - n - k 3,3 - nr file</span>
-<span class="hljs-comment"># sort - k 2 - n - k 3 - nr file</span>
+<span class="hljs-comment"># sort -k 2,2 -n -k 3,3 -nr file</span>
+<span class="hljs-comment"># sort -k 2 -n -k 3 -nr file</span>
 zhaoliu 9 70
 lisi 8 80
 wangwu 7 90
@@ -6013,25 +6013,25 @@ abd
 cde
 xyz
 打印每行重复次数：
-<span class="hljs-comment"># sort file |uniq - c</span>
+<span class="hljs-comment"># sort file |uniq -c</span>
 1 abc
 1 abd
 2 cde
 2 xyz
 打印不重复行：
-<span class="hljs-comment"># sort file |uniq - u</span>
+<span class="hljs-comment"># sort file |uniq -u</span>
 abc
 abd
 打印重复行：
-<span class="hljs-comment"># sort file |uniq - d</span>
+<span class="hljs-comment"># sort file |uniq -d</span>
 cde
 xyz
 打印重复行并统计出现次数：
-<span class="hljs-comment"># sort file |uniq - d - c</span>
+<span class="hljs-comment"># sort file |uniq -d -c</span>
 2 cde
 2 xyz
 根据前几个字符去重：
-<span class="hljs-comment"># sort file |uniq - w 2</span>
+<span class="hljs-comment"># sort file |uniq -w 2</span>
 abc
 cde
 xyz</code></pre>
@@ -6043,7 +6043,7 @@ xyz</code></pre>
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">打印并追加到文件：
-<span class="hljs-comment"># echo 123 |tee - a a.log</span></code></pre>
+<span class="hljs-comment"># echo 123 |tee -a a.log</span></code></pre>
 
 <h2 id="11-23-join"><a href="#11-23-join" class="headerlink" title="11.23 join"></a>11.23 join</h2><p>功能：连接两个文件</p>
 <p><strong>常用选项：</strong></p>
@@ -6067,11 +6067,11 @@ xyz</code></pre>
 2 b y
 3 c z
 打印file1第二列和file2第二列：
-<span class="hljs-comment"># join - o 1.2 2.2 file1 file2</span>
+<span class="hljs-comment"># join -o 1.2 2.2 file1 file2</span>
 a x
 b y
 c z
-<span class="hljs-comment"># join - t &#x27;:&#x27; - o 1.1 2.1 /etc/passwd /etc/shadow</span>
+<span class="hljs-comment"># join -t &#x27;:&#x27; -o 1.1 2.1 /etc/passwd /etc/shadow</span>
 user1:user1</code></pre>
 
 <h2 id="11-24-paste"><a href="#11-24-paste" class="headerlink" title="11.24 paste"></a>11.24 paste</h2><p>功能：合并文件</p>
@@ -6089,12 +6089,12 @@ user1:user1</code></pre>
 2 5
 3 6
 两个文件合并，+号分隔：
-<span class="hljs-comment"># paste - d &quot;+&quot; file1 file2</span>
+<span class="hljs-comment"># paste -d &quot;+&quot; file1 file2</span>
 1+4
 2+5
 3+6
 文件内容平行显示：
-<span class="hljs-comment"># paste - s file1 file2</span>
+<span class="hljs-comment"># paste -s file1 file2</span>
 1 2 3
 4 5 6</code></pre>
 
@@ -6106,7 +6106,7 @@ user1:user1</code></pre>
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">打印文件前 50 行：
-<span class="hljs-comment"># head - n 50 file</span></code></pre>
+<span class="hljs-comment"># head -n 50 file</span></code></pre>
 
 <h2 id="11-26-tail"><a href="#11-26-tail" class="headerlink" title="11.26 tail"></a>11.26 tail</h2><p>功能：输出文件的后几行</p>
 <p><strong>常用选项：</strong></p>
@@ -6119,9 +6119,9 @@ user1:user1</code></pre>
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">打印文件后 50 行：
-<span class="hljs-comment"># tail - n 50 file</span>
+<span class="hljs-comment"># tail -n 50 file</span>
 实时输出新增行：
-<span class="hljs-comment"># tail - f file</span></code></pre>
+<span class="hljs-comment"># tail -f file</span></code></pre>
 
 <h2 id="11-27-find"><a href="#11-27-find" class="headerlink" title="11.27 find"></a>11.27 find</h2><p>功能：目录层次结构中搜索文件</p>
 <p>格式：find path -option actions</p>
@@ -6155,34 +6155,34 @@ user1:user1</code></pre>
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">查找文件名：
-<span class="hljs-comment"># find / - name &quot;*http*&quot;</span>
+<span class="hljs-comment"># find / -name &quot;*http*&quot;</span>
 查找文件名并且文件类型：
-<span class="hljs-comment"># find /tmp - name core - type f - print</span>
+<span class="hljs-comment"># find /tmp -name core -type f -print</span>
 查找文件名并且文件类型删除：
-<span class="hljs-comment"># find /tmp - name core - type f - delete</span>
+<span class="hljs-comment"># find /tmp -name core -type f -delete</span>
 查找当前目录常规文件并查看文件类型：
-<span class="hljs-comment"># find. - type f - exec file &#x27;&#123;&#125;&#x27; \;</span>
+<span class="hljs-comment"># find. -type f -exec file &#x27;&#123;&#125;&#x27; \;</span>
 查找文件权限是 664 ：
-<span class="hljs-comment"># find. - perm 664</span>
+<span class="hljs-comment"># find. -perm 664</span>
 查找大于1024k的文件：
-<span class="hljs-comment"># find. - size - 1024k</span>
+<span class="hljs-comment"># find. -size -1024k</span>
 查找 3 天内修改的文件：
-<span class="hljs-comment"># find /bin - ctime - 3</span>
+<span class="hljs-comment"># find /bin -ctime -3</span>
 查找 3 分钟前修改的文件：
-<span class="hljs-comment"># find /bin - cmin + 3</span>
+<span class="hljs-comment"># find /bin -cmin +3</span>
 排除多个类型的文件：
-<span class="hljs-comment"># find.! - name &quot;*.sql&quot;! - name &quot;*.txt&quot;</span>
+<span class="hljs-comment"># find.! -name &quot;*.sql&quot;! -name &quot;*.txt&quot;</span>
 或条件查找多个类型的文件：
-<span class="hljs-comment"># find. - name &#x27;*.sh&#x27; - o - name &#x27;*.bak&#x27;</span>
-<span class="hljs-comment"># find. - regex &quot;.*\.sh\|.*\.bak&quot;</span>
-<span class="hljs-comment"># find. - regex &quot;.*\.\(sh\|bak\)&quot;</span>
+<span class="hljs-comment"># find. -name &#x27;*.sh&#x27; -o -name &#x27;*.bak&#x27;</span>
+<span class="hljs-comment"># find. -regex &quot;.*\.sh\|.*\.bak&quot;</span>
+<span class="hljs-comment"># find. -regex &quot;.*\.\(sh\|bak\)&quot;</span>
 并且条件查找文件：
-<span class="hljs-comment"># find. - name &quot;*.sql&quot; - a - size +1024k</span>
+<span class="hljs-comment"># find. -name &quot;*.sql&quot; -a -size +1024k</span>
 只显示第一级目录：
-<span class="hljs-comment"># find /etc - type d - maxdepth 1</span>
+<span class="hljs-comment"># find /etc -type d -maxdepth 1</span>
 通过inode编号删除文件：
-<span class="hljs-comment"># rm `find. - inum 671915`</span>
-<span class="hljs-comment"># find. - inum 8651577 - exec rm - i &#123;&#125; \;</span></code></pre>
+<span class="hljs-comment"># rm `find. -inum 671915`</span>
+<span class="hljs-comment"># find. -inum 8651577 -exec rm -i &#123;&#125; \;</span></code></pre>
 
 <h2 id="11-28-xargs"><a href="#11-28-xargs" class="headerlink" title="11.28 xargs"></a>11.28 xargs</h2><p>功能：从标准输入执行命令</p>
 <p><strong>常用选项：</strong></p>
@@ -6199,23 +6199,23 @@ user1:user1</code></pre>
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">删除/tmp下名字是core的文件：
-<span class="hljs-comment"># find /tmp - name core - type f - print | xargs /bin/rm - f</span>
-<span class="hljs-comment"># find /tmp - name core - type f - print0 | xargs - 0 /bin/rm - f</span>
+<span class="hljs-comment"># find /tmp -name core -type f -print | xargs /bin/rm -f</span>
+<span class="hljs-comment"># find /tmp -name core -type f -print0 | xargs -0 /bin/rm -f</span>
 列转行（去除换行符 ）：
-<span class="hljs-comment"># cut - d: - f1 &lt; /etc/passwd | sort | xargs echo</span>
+<span class="hljs-comment"># cut -d: -f1 &lt; /etc/passwd | sort | xargs echo</span>
 行转列：
-<span class="hljs-comment"># echo &quot;1 2 3 4 5&quot; |xargs - n1</span>
+<span class="hljs-comment"># echo &quot;1 2 3 4 5&quot; |xargs -n1</span>
 最长两列显示：
-<span class="hljs-comment"># echo &quot;1 2 3 4 5&quot; |xargs - n2</span>
+<span class="hljs-comment"># echo &quot;1 2 3 4 5&quot; |xargs -n2</span>
 创建未来十天时间：
-<span class="hljs-comment"># seq 1 10 |xargs - i date - d &quot;&#123;&#125; days &quot; +%Y-%m-%d</span>
+<span class="hljs-comment"># seq 1 10 |xargs -i date -d &quot;&#123;&#125; days &quot; +%Y-%m-%d</span>
 复制多个目录：
-<span class="hljs-comment"># echo dir1 dir2 |xargs - n1 cp a.txt</span>
+<span class="hljs-comment"># echo dir1 dir2 |xargs -n1 cp a.txt</span>
 清空所有日志：
-<span class="hljs-comment"># find ./ - name &quot;*.log&quot; |xargs - i tee &#123;&#125; # echo &quot;&quot;&gt; &#123;&#125; 这样不行，&gt;把命令中断了</span>
+<span class="hljs-comment"># find ./ -name &quot;*.log&quot; |xargs -i tee &#123;&#125; # echo &quot;&quot;&gt; &#123;&#125; 这样不行，&gt;把命令中断了</span>
 rm在删除大量的文件时，会提示参数过长，那么可以使用xargs删除：
-<span class="hljs-comment"># ls |xargs rm – rf</span>
-或分配删除 rm [a-n]* - rf <span class="hljs-comment"># getconf ARG_MAX 获取系统最大参数限制</span></code></pre>
+<span class="hljs-comment"># ls |xargs rm –rf</span>
+或分配删除 rm [a-n]* -rf <span class="hljs-comment"># getconf ARG_MAX 获取系统最大参数限制</span></code></pre>
 
 <h2 id="11-29-nl"><a href="#11-29-nl" class="headerlink" title="11.29 nl"></a>11.29 nl</h2><p>功能：打印文件行号</p>
 <p><strong>常用选项：</strong></p>
@@ -6228,9 +6228,9 @@ rm在删除大量的文件时，会提示参数过长，那么可以使用xargs�
 <pre><code class="hljs bash">打印行号，空行不显示：
 <span class="hljs-comment"># nl a.txt</span>
 左对齐打印行号：
-<span class="hljs-comment"># nl - n ln a.txt</span>
+<span class="hljs-comment"># nl -n ln a.txt</span>
 行号右移动五个空格：
-<span class="hljs-comment"># nl - w 5 a.txt</span></code></pre>
+<span class="hljs-comment"># nl -w 5 a.txt</span></code></pre>
 
 <h2 id="11-30-date"><a href="#11-30-date" class="headerlink" title="11.30 date"></a>11.30 date</h2><p>功能：打印或设置系统日期和时间</p>
 <p><strong>常用选项：</strong></p>
@@ -6288,30 +6288,30 @@ rm在删除大量的文件时，会提示参数过长，那么可以使用xargs�
 </ul>
 <pre><code class="hljs bash">
 设置系统日期和时间：
-<span class="hljs-comment"># date - s &quot;2016- 12 - 15 00:00:00&quot;</span>
+<span class="hljs-comment"># date -s &quot;2016-12-15 00:00:00&quot;</span>
 查看当前系统时间戳：
 <span class="hljs-comment"># date +%s</span>
 查看当前系统时间：
 <span class="hljs-comment"># date +&#x27;%F %T&#x27;</span>
 把日期和时间转换成时间戳：
-<span class="hljs-comment"># date - d &quot;2016- 12 - 15 18:00:00&quot; +%s</span>
+<span class="hljs-comment"># date -d &quot;2016-12 -15 18:00:00&quot; +%s</span>
 把时间戳转成时间：
-<span class="hljs-comment"># date - d &#x27;@1481842800&#x27; &#x27;+%F %T&#x27;</span>
+<span class="hljs-comment"># date -d &#x27;@1481842800&#x27; &#x27;+%F %T&#x27;</span>
 时间加减：
-显示前 30 秒：date - d <span class="hljs-string">&#x27;- 30 second&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
-显示前一分钟：date - d <span class="hljs-string">&#x27;- 1 minute&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
-显示前一个时间：date - d <span class="hljs-string">&#x27;- 1 hour&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
-显示前一个天：date - d <span class="hljs-string">&#x27;- 1 day&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
-显示上一周：date - d <span class="hljs-string">&#x27;- 1 week&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
-显示上一个月日期：date - d <span class="hljs-string">&#x27;- 1 month&#x27;</span> +%F
-显示上一年日期：date - d <span class="hljs-string">&#x27;- 1 year&#x27;</span> +%F
+显示前 30 秒：date -d <span class="hljs-string">&#x27;- 30 second&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
+显示前一分钟：date -d <span class="hljs-string">&#x27;- 1 minute&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
+显示前一个时间：date -d <span class="hljs-string">&#x27;- 1 hour&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
+显示前一个天：date -d <span class="hljs-string">&#x27;- 1 day&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
+显示上一周：date -d <span class="hljs-string">&#x27;- 1 week&#x27;</span> +<span class="hljs-string">&#x27;%F %T&#x27;</span>
+显示上一个月日期：date -d <span class="hljs-string">&#x27;- 1 month&#x27;</span> +%F
+显示上一年日期：date -d <span class="hljs-string">&#x27;- 1 year&#x27;</span> +%F
 或
-显示前一天日期：date - d yesterday +%F
-显示后一天日期：date - d tomorrow +%F
+显示前一天日期：date -d yesterday +%F
+显示后一天日期：date -d tomorrow +%F
 时间比较：
 NOW_DATE=$(date +%s)
-AGO_DATE=$(date - d <span class="hljs-string">&quot;2016- 12 - 15 18:00:00&quot;</span> +%s)
-[ <span class="hljs-variable">$NOW_DATE</span> - gt <span class="hljs-variable">$AGO_DATE</span> ] &amp;&amp; <span class="hljs-built_in">echo</span> yes || <span class="hljs-built_in">echo</span> no</code></pre>
+AGO_DATE=$(date -d <span class="hljs-string">&quot;2016-12-15 18:00:00&quot;</span> +%s)
+[ <span class="hljs-variable">$NOW_DATE</span> -gt <span class="hljs-variable">$AGO_DATE</span> ] &amp;&amp; <span class="hljs-built_in">echo</span> yes || <span class="hljs-built_in">echo</span> no</code></pre>
 
 <h2 id="11-31-wget"><a href="#11-31-wget" class="headerlink" title="11.31 wget"></a>11.31 wget</h2><p>功能：非交互式网络下载，类似于HTTP客户端</p>
 <p><strong>常用选项：</strong></p>
@@ -6375,24 +6375,23 @@ AGO_DATE=$(date - d <span class="hljs-string">&quot;2016- 12 - 15 18:00:00&quot;
 <pre><code class="hljs bash">下载单个文件到当前目录：
 <span class="hljs-comment"># wget http://nginx.org/download/nginx-1.11.7.tar.gz</span>
 放到后台下载：
-<span class="hljs-comment"># wget - b http://nginx.org/download/nginx-1.11.7.tar.gz</span>
+<span class="hljs-comment"># wget -b http://nginx.org/download/nginx-1.11.7.tar.gz</span>
 对于网络不稳定的用户使用-c和--tries参数，保证下载完成，并下载到指定目录：
 
 
-<span class="hljs-comment"># wget - t 3 - c http://nginx.org/download/nginx-1.11.7.tar.gz - P down</span>
+<span class="hljs-comment"># wget -t 3 -c http://nginx.org/download/nginx-1.11.7.tar.gz -P down</span>
 不下载任何内容，判断URL是否可以访问：
 <span class="hljs-comment"># wget --spider http://nginx.org/download/nginx-1.11.7.tar.gz</span>
 下载内容写到文件：
-<span class="hljs-comment"># wget http://www.baidu.com/index.html - O index.html</span>
+<span class="hljs-comment"># wget http://www.baidu.com/index.html -O index.html</span>
 从文件中读取URL下载：
-<span class="hljs-comment"># wget - i url.list</span>
+<span class="hljs-comment"># wget -i url.list</span>
 下载ftp文件：
-<span class="hljs-comment"># wget --ftp-user=admin --ftp-password=admin ftp://192.168.1.10/ISO/CentOS-6.5-i386-</span>
-minimal.iso
+<span class="hljs-comment"># wget --ftp-user=admin --ftp-password=admin ftp://192.168.1.10/ISO/CentOS-6.5-i386-minimal.iso</span>
 伪装客户端，指定user-agent和referer下载：
-<span class="hljs-comment"># wget - U &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36&quot; --referer &quot;http://nginx.org/en/download.html&quot;http://nginx.org/download/nginx-1.11.7.tar.gz</span>
+<span class="hljs-comment"># wget -U &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36&quot; --referer &quot;http://nginx.org/en/download.html&quot;http://nginx.org/download/nginx-1.11.7.tar.gz</span>
 查看HTTP头信息：
-<span class="hljs-comment"># wget - S http://nginx.org/download/nginx-1.11.7.tar.gz</span>
+<span class="hljs-comment"># wget -S http://nginx.org/download/nginx-1.11.7.tar.gz</span>
 <span class="hljs-comment"># wget --debug http://nginx.org/download/nginx-1.11.7.tar.gz</span></code></pre>
 
 <h2 id="11-32-curl"><a href="#11-32-curl" class="headerlink" title="11.32 curl"></a>11.32 curl</h2><p>功能：发送数据到URL，类似于HTTP客户端</p>
@@ -6429,27 +6428,27 @@ minimal.iso
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">下载页面：
-<span class="hljs-comment"># curl - o badu.html http://www.baidu.com</span>
+<span class="hljs-comment"># curl -o badu.html http://www.baidu.com</span>
 不输出下载信息：
-<span class="hljs-comment"># curl - s - o baidu.html http://www.baidu.com</span>
+<span class="hljs-comment"># curl -s -o baidu.html http://www.baidu.com</span>
 伪装客户端，指定user-agent和referer下载：
-<span class="hljs-comment"># curl - A &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36&quot; - e &quot;baike.baidu.com&quot; http://127.0.0.1</span>
+<span class="hljs-comment"># curl -A &quot;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36&quot; - e &quot;baike.baidu.com&quot; http://127.0.0.1</span>
 模拟用户登录，并保存cookies到文件：
-<span class="hljs-comment"># curl - c ./cookies.txt - F NAME=user - F PWD=123 http://www.example.com/login.html</span>
+<span class="hljs-comment"># curl -c ./cookies.txt -F NAME=user -F PWD=123 http://www.example.com/login.html</span>
 使用cookie访问：
-<span class="hljs-comment"># curl - b cookies.txt http://www.baidu.com</span>
+<span class="hljs-comment"># curl -b cookies.txt http://www.baidu.com</span>
 访问HTTP认证页面：
-<span class="hljs-comment"># curl - u user:pass http://www.example.com</span>
+<span class="hljs-comment"># curl -u user:pass http://www.example.com</span>
 FTP上传文件：
-<span class="hljs-comment"># curl - T filename ftp://user:pass@ip/a.txt</span>
-<span class="hljs-comment"># curl ftp://ip - u user:pass-T filename</span>
+<span class="hljs-comment"># curl -T filename ftp://user:pass@ip/a.txt</span>
+<span class="hljs-comment"># curl ftp://ip -u user:pass-T filename</span>
 FTP下载文件：
-<span class="hljs-comment"># curl - O ftp://user:pass@ip/a.txt</span>
-<span class="hljs-comment"># curl ftp://ip/filename - u user:pass - o filename</span>
+<span class="hljs-comment"># curl -O ftp://user:pass@ip/a.txt</span>
+<span class="hljs-comment"># curl ftp://ip/filename -u user:pass -o filename</span>
 FTP下载多个文件：
 <span class="hljs-comment"># curl ftp://ip/img/[1,3,5].jpg</span>
 查看HTTP头信息：
-<span class="hljs-comment"># curl - I http://www.baidu.com</span></code></pre>
+<span class="hljs-comment"># curl -I http://www.baidu.com</span></code></pre>
 
 <h2 id="11-33-scp"><a href="#11-33-scp" class="headerlink" title="11.33 scp"></a>11.33 scp</h2><p>功能：基于SSH的安全远程服务器文件拷贝</p>
 <p><strong>常用选项：</strong></p>
@@ -6467,9 +6466,9 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">本地目录推送到远程主机：
-<span class="hljs-comment"># scp - P 22 - r src_dir root@192.168.1.10:/dst_dir</span>
+<span class="hljs-comment"># scp -P 22 - r src_dir root@192.168.1.10:/dst_dir</span>
 远程主机目录拉取到本地：
-<span class="hljs-comment"># scp - P 22 - r root@192.168.1.10:dst_dir src_dir</span>
+<span class="hljs-comment"># scp -P 22 - r root@192.168.1.10:dst_dir src_dir</span>
 同步文件方式一样，不用加-r参数</code></pre>
 
 <h2 id="11-34-rsync"><a href="#11-34-rsync" class="headerlink" title="11.34 rsync"></a>11.34 rsync</h2><p>功能：远程或本地文件同步工具</p>
@@ -6493,17 +6492,17 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs baash">本地复制目录：
-# rsync - avz abc &#x2F;opt
+# rsync -avz abc &#x2F;opt
 本地目录推送到远程主机：
-# rsync - avz SRC root@192.168.1.120:DST
+# rsync -avz SRC root@192.168.1.120:DST
 远程主机目录拉取到本地：
-# rsync - avz root@192.168.1.10:SRC DST
+# rsync -avz root@192.168.1.10:SRC DST
 保持远程主机目录与本地一样：
-# rsync - avz --delete SRC root@192.168.1.120:DST
+# rsync -avz --delete SRC root@192.168.1.120:DST
 排除某个目录：
-# rsync - avz --exclude&#x3D;no_dir SRC root@192.168.1.120:DST
+# rsync -avz --exclude&#x3D;no_dir SRC root@192.168.1.120:DST
 指定SSH端口：
-# rsync - avz &#x2F;etc&#x2F;hosts - e &quot;ssh - p22&quot; root@192.168.1.120:&#x2F;opt</code></pre>
+# rsync -avz &#x2F;etc&#x2F;hosts -e &quot;ssh - p22&quot; root@192.168.1.120:&#x2F;opt</code></pre>
 
 <h2 id="11-35-nohup"><a href="#11-35-nohup" class="headerlink" title="11.35 nohup"></a>11.35 nohup</h2><p>功能：运行程序，忽略挂起信号</p>
 <p><strong>示例：</strong></p>
@@ -6521,11 +6520,11 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">将文件内容转换UTF8：
-<span class="hljs-comment"># iconv - f gbk - t utf8 old.txt - o new.txt</span>
+<span class="hljs-comment"># iconv -f gbk -t utf8 old.txt -o new.txt</span>
 将csv文件转换GBK：
-<span class="hljs-comment"># iconv - f utf8 - t gbk old.txt - o new.txt</span>
+<span class="hljs-comment"># iconv -f utf8 -t gbk old.txt -o new.txt</span>
 解决邮件乱码：
-<span class="hljs-comment"># echo $(echo &quot;content&quot; | iconv - f utf8 - t gbk) | mail - s &quot;$(echo &quot;title&quot; | iconv - f utf8 - t gbk)&quot; example@mail.com</span></code></pre>
+<span class="hljs-comment"># echo $(echo &quot;content&quot; | iconv -f utf8 -t gbk) | mail -s &quot;$(echo &quot;title&quot; | iconv -f utf8 -t gbk)&quot; example@mail.com</span></code></pre>
 
 <h2 id="11-37-uname"><a href="#11-37-uname" class="headerlink" title="11.37 uname"></a>11.37 uname</h2><p>功能：输出系统信息</p>
 <p><strong>常用选项：</strong></p>
@@ -6542,13 +6541,13 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">输出所有系统信息：
-<span class="hljs-comment"># uname - a</span>
+<span class="hljs-comment"># uname -a</span>
 输出主机名：
-<span class="hljs-comment"># uname - a</span>
+<span class="hljs-comment"># uname -a</span>
 输出内核版本：
-<span class="hljs-comment"># uname - r</span>
+<span class="hljs-comment"># uname -r</span>
 输出操作系统：
-<span class="hljs-comment"># uname - o</span></code></pre>
+<span class="hljs-comment"># uname -o</span></code></pre>
 
 <h2 id="11-38-sshpass"><a href="#11-38-sshpass" class="headerlink" title="11.38 sshpass"></a>11.38 sshpass</h2><p>功能：非交互SSH登录（需要安装）</p>
 <p><strong>常用选项：</strong></p>
@@ -6560,11 +6559,11 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">免交互SSH登录：
-<span class="hljs-comment"># sshpass - p 123456 ssh root@192.168.1.10</span>
+<span class="hljs-comment"># sshpass -p 123456 ssh root@192.168.1.10</span>
 免交互传输文件：
-<span class="hljs-comment"># sshpass - p 123456 scp a.txt 192.168.1.10:/root</span>
+<span class="hljs-comment"># sshpass -p 123456 scp a.txt 192.168.1.10:/root</span>
 密码传入系统变量：
-<span class="hljs-comment"># SSHPASS=123456 rsync - avz /etc/hosts - e &quot;sshpass - e ssh&quot; root@192.168.1.221:/opt</span></code></pre>
+<span class="hljs-comment"># SSHPASS=123456 rsync -avz /etc/hosts -e &quot;sshpass -e ssh&quot; root@192.168.1.221:/opt</span></code></pre>
 
 <h2 id="11-39-tar"><a href="#11-39-tar" class="headerlink" title="11.39 tar"></a>11.39 tar</h2><p>功能：归档目录或文件</p>
 <p><strong>常用选项：</strong></p>
@@ -6582,19 +6581,19 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">创建归档文件来自foo和bar：
-<span class="hljs-comment"># tar - cf archive.tar foo bar</span>
+<span class="hljs-comment"># tar -cf archive.tar foo bar</span>
 提取归档的所有文件：
-<span class="hljs-comment"># tar - xf archive.tar</span>
+<span class="hljs-comment"># tar -xf archive.tar</span>
 列出所有归档文件内容：
-<span class="hljs-comment"># tar - tvf archive.tar</span>
+<span class="hljs-comment"># tar -tvf archive.tar</span>
 创建归档并gzip压缩：
-<span class="hljs-comment"># tar - zcvf archive.tar.gz log</span>
+<span class="hljs-comment"># tar -zcvf archive.tar.gz log</span>
 提取归档文件并gzip解压：
-<span class="hljs-comment"># tar - zxvf log.tar.gz</span>
+<span class="hljs-comment"># tar -zxvf log.tar.gz</span>
 创建归档并bzip2压缩：
-<span class="hljs-comment"># tar - jcvf log.tar.bz log</span>
+<span class="hljs-comment"># tar -jcvf log.tar.bz log</span>
 提取归档并解压到指定目录：
-<span class="hljs-comment"># tar - zxvf log.tar.gz - C /opt</span></code></pre>
+<span class="hljs-comment"># tar -zxvf log.tar.gz -C /opt</span></code></pre>
 
 <h2 id="11-40-logger"><a href="#11-40-logger" class="headerlink" title="11.40 logger"></a>11.40 logger</h2><p>功能：系统日志的shell命令行接口</p>
 <p><strong>常用选项：</strong></p>
@@ -6605,7 +6604,7 @@ FTP下载多个文件：
 <li>-t 添加标签</li>
 </ul>
 <p><strong>示例：</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># logger - i - t &quot;my_test&quot; - p local3.notice &quot;test_info&quot;</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># logger -i -t &quot;my_test&quot; -p local3.notice &quot;test_info&quot;</span></code></pre>
 
 <h2 id="11-41-netstat"><a href="#11-41-netstat" class="headerlink" title="11.41 netstat"></a>11.41 netstat</h2><p>功能：打印网络连接、路由表、接口统计信息、伪装连接和多播成员</p>
 <p><strong>常用选项：</strong></p>
@@ -6624,13 +6623,13 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">显示所有监听：
-<span class="hljs-comment"># netstat - anltu</span>
+<span class="hljs-comment"># netstat -anltu</span>
 显示所有TCP连接：
-<span class="hljs-comment"># netstat - antp</span>
+<span class="hljs-comment"># netstat -antp</span>
 显示所有UDP连接：
-<span class="hljs-comment"># netstat - anup</span>
+<span class="hljs-comment"># netstat -anup</span>
 显示路由表：
-<span class="hljs-comment"># netstat - r</span></code></pre>
+<span class="hljs-comment"># netstat -r</span></code></pre>
 
 <h2 id="11-42-ss"><a href="#11-42-ss" class="headerlink" title="11.42 ss"></a>11.42 ss</h2><p>功能：比netstat更强大的socket查看工具</p>
 <p>格式：ss [options] [ FILTER ]</p>
@@ -6663,17 +6662,17 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">显示所有TCP连接：
-<span class="hljs-comment"># ss - t - a</span>
+<span class="hljs-comment"># ss -t -a</span>
 显示所有UDP连接：
-<span class="hljs-comment"># ss - u – a</span>
+<span class="hljs-comment"># ss -u –a</span>
 显示socket使用汇总：
-<span class="hljs-comment"># ss - s</span>
+<span class="hljs-comment"># ss -s</span>
 显示所有建立的连接：
-<span class="hljs-comment"># ss - o state established</span>
+<span class="hljs-comment"># ss -o state established</span>
 显示所有的TIME-WAIT状态：
-<span class="hljs-comment"># ss - o state TIME-WAIT</span>
+<span class="hljs-comment"># ss -o state TIME-WAIT</span>
 搜索所有本地进程连接到X Server：
-<span class="hljs-comment"># ss - x src /tmp/.X11-unix/*</span></code></pre>
+<span class="hljs-comment"># ss -x src /tmp/.X11-unix/*</span></code></pre>
 
 <h2 id="11-43-lsof"><a href="#11-43-lsof" class="headerlink" title="11.43 lsof"></a>11.43 lsof</h2><p>功能：列出打开的文件</p>
 <p><strong>常用选项：</strong></p>
@@ -6690,25 +6689,25 @@ FTP下载多个文件：
 查看哪个进程占用文件：
 <span class="hljs-comment"># lsof /etc/passwd</span>
 列出所有打开的监听地址和unix域socket文件：
-<span class="hljs-comment"># lsof - i - U</span>
+<span class="hljs-comment"># lsof -i -U</span>
 列出 80 端口监听的进程：
-<span class="hljs-comment"># lsof - i:80</span>
+<span class="hljs-comment"># lsof -i:80</span>
 列出端口 1 - 1024 之间的所有进程：
-<span class="hljs-comment"># lsof - i:1- 1024</span>
+<span class="hljs-comment"># lsof -i:1-1024</span>
 列出所有TCP网络连接：
-<span class="hljs-comment"># lsof - i tcp</span>
+<span class="hljs-comment"># lsof -i tcp</span>
 列出所有UDP网络连接：
-<span class="hljs-comment"># lsof - i udp</span>
+<span class="hljs-comment"># lsof -i udp</span>
 根据文件描述符列出打开的文件：
-<span class="hljs-comment"># lsof - d 1</span>
+<span class="hljs-comment"># lsof -d 1</span>
 列出某个目录被打开的文件：
 <span class="hljs-comment"># lsof +D /var/log</span>
 列出进程ID打开的文件：
-<span class="hljs-comment"># lsof - p 5373</span>
+<span class="hljs-comment"># lsof -p 5373</span>
 打开所有登录用户名abc或user id 1234 ，或PID 123 或PID 456 ：
-<span class="hljs-comment"># lsof - p 123,456 - u 123,abc</span>
+<span class="hljs-comment"># lsof -p 123,456 -u 123,abc</span>
 列出COMMAND列中包含字符串sshd：
-<span class="hljs-comment"># lsof - c sshd</span></code></pre>
+<span class="hljs-comment"># lsof -c sshd</span></code></pre>
 
 <h2 id="11-44-ps"><a href="#11-44-ps" class="headerlink" title="11.44 ps"></a>11.44 ps</h2><p>功能：报告当前进程的快照</p>
 <p><strong>常用选项：</strong></p>
@@ -6745,18 +6744,18 @@ FTP下载多个文件：
 
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">打印系统上所有进程标准语法：
-<span class="hljs-comment"># ps - ef</span>
+<span class="hljs-comment"># ps -ef</span>
 打印系统上所有进程BSD语法：
 <span class="hljs-comment"># ps aux</span>
 打印进程树：
-<span class="hljs-comment"># ps axjf 或 ps - ejH</span>
+<span class="hljs-comment"># ps axjf 或 ps -ejH</span>
 查看进程启动的线程：
-<span class="hljs-comment"># ps - Lfp PID</span>
+<span class="hljs-comment"># ps -Lfp PID</span>
 查看当前用户的进程数：
-<span class="hljs-comment"># ps uxm 或 ps - U root - u root u</span>
+<span class="hljs-comment"># ps uxm 或 ps -U root -u root u</span>
 自定义格式显示并对CPU排序：
-<span class="hljs-comment"># ps - eo user,pid,pcpu,pmem,nice,lstart,time,args --sort=-pcpu</span>
-或 ps - eo <span class="hljs-string">&quot;%U %p %C %n %x %a&quot;</span></code></pre>
+<span class="hljs-comment"># ps -eo user,pid,pcpu,pmem,nice,lstart,time,args --sort=-pcpu</span>
+或 ps -eo <span class="hljs-string">&quot;%U %p %C %n %x %a&quot;</span></code></pre>
 
 <p>USER PID %CPU %MEM VSZ RSS TTY STAT START TIME COMMAND</p>
 <ul>
@@ -6795,9 +6794,9 @@ FTP下载多个文件：
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">刷新一次并输出到文件：
-<span class="hljs-comment"># top - b - n 1 &gt; top.log</span>
+<span class="hljs-comment"># top -b -n 1 &gt; top.log</span>
 只显示指定进程的线程：
-<span class="hljs-comment"># top - Hp 123</span>
+<span class="hljs-comment"># top -Hp 123</span>
 top - 09:31:08 up 16:49,  0 users,  load average: 0.03, 0.19, 0.22
 Threads:   0 total,   0 running,   0 sleeping,   0 stopped,   0 zombie
 %Cpu(s): 12.6 us,  1.0 sy,  0.0 ni, 86.2 id,  0.0 wa,  0.0 hi,  0.2 si,  0.0 st
@@ -6838,9 +6837,9 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.  7275176 avail Mem
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">查看物理内存：
-<span class="hljs-comment"># free - m</span>
+<span class="hljs-comment"># free -m</span>
 易读单位显示：
-<span class="hljs-comment"># free - h</span></code></pre>
+<span class="hljs-comment"># free -h</span></code></pre>
 
 <h2 id="11-47-df"><a href="#11-47-df" class="headerlink" title="11.47 df"></a>11.47 df</h2><p>功能：查看文件系统的磁盘空间使用情况</p>
 <p><strong>常用选项：</strong></p>
@@ -6854,9 +6853,9 @@ KiB Swap:  2097148 total,  2097148 free,        0 used.  7275176 avail Mem
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">查看所有文件系统：
-<span class="hljs-comment"># df - ah</span>
+<span class="hljs-comment"># df -ah</span>
 输出指定文件系统：
-<span class="hljs-comment"># df - t xfs</span></code></pre>
+<span class="hljs-comment"># df -t xfs</span></code></pre>
 
 <h2 id="11-48-vmstat"><a href="#11-48-vmstat" class="headerlink" title="11.48 vmstat"></a>11.48 vmstat</h2><p>功能：报告虚拟内存、swap、io、上下文和CPU统计信息。</p>
 <p>分析了这些文件：</p>
@@ -6921,9 +6920,9 @@ procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">显示CPU使用率：
-<span class="hljs-comment"># iostat - c 1 3</span>
+<span class="hljs-comment"># iostat -c 1 3</span>
 显示I/O磁盘统计信息：
-<span class="hljs-comment"># iostat - d - x - k 1 3 # 间隔 1 秒，输出 3 次</span></code></pre>
+<span class="hljs-comment"># iostat -d -x -k 1 3 # 间隔 1 秒，输出 3 次</span></code></pre>
 
 <h2 id="11-50-sar"><a href="#11-50-sar" class="headerlink" title="11.50 sar"></a>11.50 sar</h2><p>功能：查看系统资源综合方面利用率</p>
 <p><strong>常用选项：</strong></p>
@@ -6937,9 +6936,9 @@ procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
 <li>-o, output to file</li>
 </ul>
 <p><strong>示例：</strong></p>
-<pre><code class="hljs bash"><span class="hljs-comment"># sar - u 2 3 #每两秒执行一次，采集三次</span>
-<span class="hljs-comment"># sar - u 2 3 - o cpu.out</span>
-<span class="hljs-comment"># sar - f cpu.out #读取文件</span></code></pre>
+<pre><code class="hljs bash"><span class="hljs-comment"># sar -u 2 3 #每两秒执行一次，采集三次</span>
+<span class="hljs-comment"># sar -u 2 3 -o cpu.out</span>
+<span class="hljs-comment"># sar -f cpu.out #读取文件</span></code></pre>
 
 <h2 id="11-51-dstat"><a href="#11-51-dstat" class="headerlink" title="11.51 dstat"></a>11.51 dstat</h2><p>功能：查看系统资源综合方面利用率（需要安装）</p>
 <p><strong>常用选项：</strong></p>
@@ -6967,7 +6966,7 @@ procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">查看CPU利用率：
-<span class="hljs-comment"># dstat - c</span>
+<span class="hljs-comment"># dstat -c</span>
 查看TCP连接状态：
 <span class="hljs-comment"># dstat --tcp</span></code></pre>
 
@@ -7004,9 +7003,9 @@ procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
 <pre><code class="hljs bash">查看网络设备地址：
 <span class="hljs-comment"># ip addr</span>
 查看网卡统计信息：
-<span class="hljs-comment"># ip - s link</span>
+<span class="hljs-comment"># ip -s link</span>
 查看单个网卡统计信息：
-<span class="hljs-comment"># ip - s link ls eth0</span>
+<span class="hljs-comment"># ip -s link ls eth0</span>
 查看ARP缓存表：
 <span class="hljs-comment"># ip neighbour</span>
 查看路由表：
@@ -7043,25 +7042,25 @@ procs -----------memory---------- ---swap-- -----io---- -system-- ------cpu-----
 </ul>
 <p><strong>示例：</strong></p>
 <pre><code class="hljs bash">端口扫描：
-<span class="hljs-comment"># nc - z 192.168.1.10 1 - 65535</span>
+<span class="hljs-comment"># nc -z 192.168.1.10 1-65535</span>
 TCP协议连接到目标端口：
-<span class="hljs-comment"># nc - p 31337 - w 5 192.168.1.10 22</span>
+<span class="hljs-comment"># nc -p 31337 -w 5 192.168.1.10 22</span>
 UDP协议连接到目的端口：
-<span class="hljs-comment"># nc - u 192.168.1.10 53</span>
+<span class="hljs-comment"># nc -u 192.168.1.10 53</span>
 指定本地IP连接：
-<span class="hljs-comment"># nc - s 192.168.1.9 192.168.1.10 22</span>
+<span class="hljs-comment"># nc -s 192.168.1.9 192.168.1.10 22</span>
 探测端口是否开启：
-<span class="hljs-comment"># nc - z - w 2 192.168.1.10 22</span>
+<span class="hljs-comment"># nc -z -w 2 192.168.1.10 22</span>
 创建监听Unix域Socket：
-<span class="hljs-comment"># nc - lU /var/tmp/ncsocket</span>
+<span class="hljs-comment"># nc -lU /var/tmp/ncsocket</span>
 通过HTTP代理连接主机：
-<span class="hljs-comment"># nc - x10.2.3.4:8080 - Xconnect 10.0.0.10 22</span>
+<span class="hljs-comment"># nc -x10.2.3.4:8080 -Xconnect 10.0.0.10 22</span>
 监听端口捕获输出到文件：
-<span class="hljs-comment"># nc - l 1234 &gt; filename.out</span>
+<span class="hljs-comment"># nc -l 1234 &gt; filename.out</span>
 从文件读入到指定端口：
 <span class="hljs-comment"># nc host.example.com 1234 &lt; filename.in</span>
 收发信息：
-<span class="hljs-comment"># nc - l 1234</span>
+<span class="hljs-comment"># nc -l 1234</span>
 <span class="hljs-comment"># nc 127.0.0.1 1234</span>
 执行memcahced命令：<span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;stats\n&quot;</span> |nc 127.0.0.1 11211
 发送邮件：
@@ -7074,7 +7073,7 @@ Body of email
 .
 QUIT
 EOF
-<span class="hljs-comment"># echo - n &quot;GET / HTTP/1.0\r\n\r\n&quot; | nc host.example.com 80</span></code></pre>
+<span class="hljs-comment"># echo -n &quot;GET / HTTP/1.0\r\n\r\n&quot; | nc host.example.com 80</span></code></pre>
 
 <h2 id="11-54-time"><a href="#11-54-time" class="headerlink" title="11.54 time"></a>11.54 time</h2><p>功能：执行脚本时间</p>
 <p><strong>示例：</strong></p>
@@ -7322,40 +7321,37 @@ B的 2222 端口，主机B的 2222 端口把数据转发到主机C的 22 端口�
 </tr>
 </tbody></table>
 <p><strong>示例：常用的规则配置方法</strong></p>
-<pre><code class="hljs bash">iptables - F <span class="hljs-comment"># 清空表规则，默认filter表</span>
-iptables - t nat - F <span class="hljs-comment"># 清空nat表</span>
-iptables - A INPUT - p tcp --dport 22 - j ACCEPT <span class="hljs-comment"># 允许TCP的 22 端口访问</span>
-iptables - I INPUT - p udp --dport 53 - j ACCEPT <span class="hljs-comment"># 允许UDP的 53 端口访问，插入在第一条</span>
-iptables - A INPUT - p tcp --dport 22:25 - j ACCEPT <span class="hljs-comment"># 允许端口范围访问</span>
-iptables - D INPUT - p tcp --dport 22:25 - j ACCEPT <span class="hljs-comment"># 删除这条规则</span>
+<pre><code class="hljs bash">iptables -F <span class="hljs-comment"># 清空表规则，默认filter表</span>
+iptables -t nat - F <span class="hljs-comment"># 清空nat表</span>
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT <span class="hljs-comment"># 允许TCP的 22 端口访问</span>
+iptables -I INPUT -p udp --dport 53 -j ACCEPT <span class="hljs-comment"># 允许UDP的 53 端口访问，插入在第一条</span>
+iptables -A INPUT -p tcp --dport 22:25 -j ACCEPT <span class="hljs-comment"># 允许端口范围访问</span>
+iptables -D INPUT -p tcp --dport 22:25 -j ACCEPT <span class="hljs-comment"># 删除这条规则</span>
 <span class="hljs-comment"># 允许多个TCP端口访问</span>
-iptables - A INPUT - p tcp - m multiport --dports 22,80,8080 - j ACCEPT
-iptables - A INPUT - s 192.168.1.0/24 - j ACCEPT <span class="hljs-comment"># 允许192.168.1.0段IP访问</span>
-iptables - A INPUT - s 192.168.1.10 - j DROP <span class="hljs-comment"># 对1.10数据包丢弃</span>
-iptables - A INPUT - i eth0 - p icmp - j DROP <span class="hljs-comment"># eth0网卡ICMP数据包丢弃，也就是禁ping</span>
+iptables -A INPUT -p tcp -m multiport --dports 22,80,8080 -j ACCEPT
+iptables -A INPUT -s 192.168.1.0/24 -j ACCEPT <span class="hljs-comment"># 允许192.168.1.0段IP访问</span>
+iptables -A INPUT -s 192.168.1.10 -j DROP <span class="hljs-comment"># 对1.10数据包丢弃</span>
+iptables -A INPUT -i eth0 -p icmp -j DROP <span class="hljs-comment"># eth0网卡ICMP数据包丢弃，也就是禁ping</span>
 <span class="hljs-comment"># 允许来自lo接口，如果没有这条规则，将不能通过127.0.0.1访问本地服务</span>
-iptables - A INPUT - i lo - j ACCEPT
+iptables -A INPUT -i lo -j ACCEPT
 <span class="hljs-comment"># 限制并发连接数，超过 30 个拒绝</span>
-iptables - I INPUT - p tcp --syn --dport 80 - m connlimit --connlimit-above 30 - j
-REJECT
+iptables -I INPUT -p tcp --syn --dport 80 -m connlimit --connlimit-above 30 -j REJECT
 <span class="hljs-comment"># 限制每个IP每秒并发连接数最大 3 个</span>
-iptables - I INPUT - p tcp --syn - m <span class="hljs-built_in">limit</span> --<span class="hljs-built_in">limit</span> 1/s --limit-burst 3 - j
-ACCEPT
-iptables - A FORWARD - p tcp --syn - m <span class="hljs-built_in">limit</span> --<span class="hljs-built_in">limit</span> 1/s - j ACCEPT
+iptables -I INPUT -p tcp --syn -m <span class="hljs-built_in">limit</span> --<span class="hljs-built_in">limit</span> 1/s --limit-burst 3 -j ACCEPT
+iptables -A FORWARD -p tcp --syn -m <span class="hljs-built_in">limit</span> --<span class="hljs-built_in">limit</span> 1/s -j ACCEPT
 <span class="hljs-comment"># iptables服务器作为网关时，内网访问公网</span>
-iptables – t nat - A POSTROUTING - s [内网IP或网段] - j SNAT --to [公网IP]
+iptables –t nat -A POSTROUTING -s [内网IP或网段] -j SNAT --to [公网IP]
 <span class="hljs-comment"># 访问iptables公网IP端口，转发到内网服务器端口</span>
-iptables – t nat - A PREROUTING - d [对外IP] - p tcp --dport [对外端口] - j DNAT --to [内
-网IP:内网端口]
+iptables –t nat -A PREROUTING -d [对外IP] -p tcp --dport [对外端口] -j DNAT --to [内网IP:内网端口]
 <span class="hljs-comment"># 本地 80 端口转发到本地 8080 端口</span>
-iptables - t nat - A PREROUTING - p tcp --dport 80 - j REDIRECT --to-ports 8080
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
 <span class="hljs-comment"># 允许已建立及该链接相关联的数据包通过</span>
-iptables - A INPUT - m state --state ESTABLISHED,RELATED - j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 <span class="hljs-comment"># ASDL拨号上网</span>
-iptables - t nat - A POSTROUTING - s 192.168.1.0/24 - o pppo - j MASQUERADE
+iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o pppo -j MASQUERADE
 <span class="hljs-comment"># 设置INPUT链缺省操作丢弃所有数据包，只要不符合规则的数据包都丢弃。注意要在最后设置，</span>
 以免把自己关在外面！
-iptables - P INPUT DROP</code></pre>
+iptables -P INPUT DROP</code></pre>
 
 <h1 id="十二、-Shell-脚本编写实战"><a href="#十二、-Shell-脚本编写实战" class="headerlink" title="十二、 Shell 脚本编写实战"></a>十二、 Shell 脚本编写实战</h1><p><strong>注意事项</strong></p>
 <ul>
@@ -7368,43 +7364,43 @@ iptables - P INPUT DROP</code></pre>
 </ul>
 <h2 id="12-1-获取随机字符串或数字"><a href="#12-1-获取随机字符串或数字" class="headerlink" title="12.1 获取随机字符串或数字"></a>12.1 获取随机字符串或数字</h2><p>获取随机 8 位字符串：</p>
 <pre><code class="hljs bash">方法 1 ：
-<span class="hljs-comment"># echo $RANDOM |md5sum |cut - c 1 - 8</span>
+<span class="hljs-comment"># echo $RANDOM |md5sum |cut -c 1-8</span>
 471b94f2
 方法 2 ：
-<span class="hljs-comment"># openssl rand - base64 4</span>
+<span class="hljs-comment"># openssl rand -base64 4</span>
 vg3BEg==
 方法 3 ：
-<span class="hljs-comment"># cat /proc/sys/kernel/random/uuid |cut - c 1 - 8</span>
+<span class="hljs-comment"># cat /proc/sys/kernel/random/uuid |cut -c 1-8</span>
 ed9e032c</code></pre>
 
 <p>获取随机 8 位数字：</p>
 <pre><code class="hljs bash">方法 1 ：
-<span class="hljs-comment"># echo $RANDOM |cksum |cut - c 1 - 8</span>
+<span class="hljs-comment"># echo $RANDOM |cksum |cut -c 1-8</span>
 23648321
 方法 2 ：
-<span class="hljs-comment"># openssl rand - base64 4 |cksum |cut - c 1 - 8</span>
+<span class="hljs-comment"># openssl rand -base64 4 |cksum |cut -c 1-8</span>
 38571131
 方法 3 ：
-<span class="hljs-comment"># date +%N |cut - c 1 - 8</span>
+<span class="hljs-comment"># date +%N |cut -c 1-8</span>
 69024815</code></pre>
 
 <p>cksum：打印CRC效验和统计字节</p>
 <h2 id="12-2-定义一个颜色输出字符串函数"><a href="#12-2-定义一个颜色输出字符串函数" class="headerlink" title="12.2 定义一个颜色输出字符串函数"></a>12.2 定义一个颜色输出字符串函数</h2><pre><code class="hljs bash">方法 1 ：
 <span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">echo_color</span></span>() &#123;
   <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$1</span> == <span class="hljs-string">&quot;green&quot;</span> ]; <span class="hljs-keyword">then</span>
-    <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[32;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
+    <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\033[32;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
   <span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$1</span> == <span class="hljs-string">&quot;red&quot;</span> ]; <span class="hljs-keyword">then</span>
-    <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[31;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
+    <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\033[31;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
   <span class="hljs-keyword">fi</span>
 &#125;
 方法 2 ：
 <span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">echo_color</span></span>() &#123;
   <span class="hljs-keyword">case</span> <span class="hljs-variable">$1</span> <span class="hljs-keyword">in</span>
     green)
-      <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[32;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
+      <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\033[32;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
     ;;
     red)
-      <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[31;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
+      <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\033[31;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
     ;;
     *)
       <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Example: echo_color red string&quot;</span>
@@ -7418,25 +7414,25 @@ DATE=$(date +%F_%T)
 USER_FILE=user.txt
 <span class="hljs-function"><span class="hljs-title">echo_color</span></span>()&#123;
   <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$1</span> == <span class="hljs-string">&quot;green&quot;</span> ]; <span class="hljs-keyword">then</span>
-    <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[32;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
+    <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\033[32;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
   <span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$1</span> == <span class="hljs-string">&quot;red&quot;</span> ]; <span class="hljs-keyword">then</span>
-    <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;\033[31;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
+    <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;\033[31;40m<span class="hljs-variable">$2</span>\033[0m&quot;</span>
   <span class="hljs-keyword">fi</span>
 &#125;
 <span class="hljs-comment"># 如果用户文件存在并且大小大于 0 就备份</span>
-<span class="hljs-keyword">if</span> [ - s <span class="hljs-variable">$USER_FILE</span> ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ -s <span class="hljs-variable">$USER_FILE</span> ]; <span class="hljs-keyword">then</span>
   mv <span class="hljs-variable">$USER_FILE</span> <span class="hljs-variable">$&#123;USER_FILE&#125;</span>-<span class="hljs-variable">$&#123;DATE&#125;</span>.bak
   echo_color green <span class="hljs-string">&quot;<span class="hljs-variable">$USER_FILE</span> exist, rename <span class="hljs-variable">$&#123;USER_FILE&#125;</span>-<span class="hljs-variable">$&#123;DATE&#125;</span>.bak&quot;</span>
 <span class="hljs-keyword">fi</span>
-<span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;User\tPassword&quot;</span> &gt;&gt; <span class="hljs-variable">$USER_FILE</span>
+<span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;User\tPassword&quot;</span> &gt;&gt; <span class="hljs-variable">$USER_FILE</span>
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;----------------&quot;</span> &gt;&gt; <span class="hljs-variable">$USER_FILE</span>
 
 <span class="hljs-keyword">for</span> USER <span class="hljs-keyword">in</span> user&#123;1..10&#125;; <span class="hljs-keyword">do</span>
   <span class="hljs-keyword">if</span> ! id <span class="hljs-variable">$USER</span> &amp;&gt;/dev/null; <span class="hljs-keyword">then</span>
-    PASS=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$RANDOM</span> |md5sum |cut - c 1 - 8)
+    PASS=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$RANDOM</span> |md5sum |cut -c 1-8)
     useradd <span class="hljs-variable">$USER</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PASS</span> |passwd --stdin <span class="hljs-variable">$USER</span> &amp;&gt;/dev/null
-    <span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot;<span class="hljs-variable">$USER</span>\t<span class="hljs-variable">$PASS</span>&quot;</span> &gt;&gt; <span class="hljs-variable">$USER_FILE</span>
+    <span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;<span class="hljs-variable">$USER</span>\t<span class="hljs-variable">$PASS</span>&quot;</span> &gt;&gt; <span class="hljs-variable">$USER_FILE</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$USER</span> User create successful.&quot;</span>
   <span class="hljs-keyword">else</span>
     echo_color red <span class="hljs-string">&quot;<span class="hljs-variable">$USER</span> User already exists!&quot;</span>
@@ -7444,16 +7440,16 @@ USER_FILE=user.txt
 <span class="hljs-keyword">done</span></code></pre>
 
 <h2 id="12-4-检查软件包是否安装"><a href="#12-4-检查软件包是否安装" class="headerlink" title="12.4 检查软件包是否安装"></a>12.4 检查软件包是否安装</h2><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
-<span class="hljs-keyword">if</span> rpm - q sysstat &amp;&gt;/dev/null; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> rpm -q sysstat &amp;&gt;/dev/null; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;sysstat is already installed.&quot;</span>
 <span class="hljs-keyword">else</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;sysstat is not installed!&quot;</span>
 <span class="hljs-keyword">fi</span></code></pre>
 
 <h2 id="12-5-检查服务状态"><a href="#12-5-检查服务状态" class="headerlink" title="12.5 检查服务状态"></a>12.5 检查服务状态</h2><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
-PORT_C=$(ss - anu |grep - c 123)
-PS_C=$(ps - ef |grep ntpd |grep - vc grep)
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$PORT_C</span> - eq 0 - o <span class="hljs-variable">$PS_C</span> - eq 0 ]; <span class="hljs-keyword">then</span>
+PORT_C=$(ss -anu |grep -c 123)
+PS_C=$(ps -ef |grep ntpd |grep -vc grep)
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$PORT_C</span> -eq 0 -o <span class="hljs-variable">$PS_C</span> -eq 0 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;内容&quot;</span> | mail - s <span class="hljs-string">&quot;主题&quot;</span> dst@example.com
 <span class="hljs-keyword">fi</span></code></pre>
 
@@ -7462,8 +7458,8 @@ PS_C=$(ps - ef |grep ntpd |grep - vc grep)
 IP_LIST=<span class="hljs-string">&quot;192.168.18.1 192.168.1.1 192.168.18.2&quot;</span>
 <span class="hljs-keyword">for</span> IP <span class="hljs-keyword">in</span> <span class="hljs-variable">$IP_LIST</span>; <span class="hljs-keyword">do</span>
   NUM=1
-  <span class="hljs-keyword">while</span> [ <span class="hljs-variable">$NUM</span> - le 3 ]; <span class="hljs-keyword">do</span>
-    <span class="hljs-keyword">if</span> ping - c 1 <span class="hljs-variable">$IP</span> &gt; /dev/null; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">while</span> [ <span class="hljs-variable">$NUM</span> -le 3 ]; <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">if</span> ping -c 1 <span class="hljs-variable">$IP</span> &gt; /dev/null; <span class="hljs-keyword">then</span>
       <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span> Ping is successful.&quot;</span>
       <span class="hljs-built_in">break</span>
     <span class="hljs-keyword">else</span>
@@ -7472,7 +7468,7 @@ IP_LIST=<span class="hljs-string">&quot;192.168.18.1 192.168.1.1 192.168.18.2&qu
       <span class="hljs-built_in">let</span> NUM++
     <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;#FAIL_COUNT[*]&#125;</span> - eq 3 ];<span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;#FAIL_COUNT[*]&#125;</span> -eq 3 ];<span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;FAIL_COUNT[1]&#125;</span> Ping is failure!&quot;</span>
     <span class="hljs-built_in">unset</span> FAIL_COUNT[*]
   <span class="hljs-keyword">fi</span>
@@ -7492,7 +7488,7 @@ IP_LIST=<span class="hljs-string">&quot;192.168.18.1 192.168.1.1 192.168.18.2&qu
       <span class="hljs-built_in">let</span> FAIL_COUNT++
     <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$FAIL_COUNT</span> - eq 3 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$FAIL_COUNT</span> -eq 3 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span> Ping is failure!&quot;</span>
   <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span></code></pre>
@@ -7500,7 +7496,7 @@ IP_LIST=<span class="hljs-string">&quot;192.168.18.1 192.168.1.1 192.168.18.2&qu
 <p>方法 3 ：利用for循环将ping通就跳出循环继续，如果不跳出就会走到打印ping失败</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-function"><span class="hljs-title">ping_success_status</span></span>() &#123;
-  <span class="hljs-keyword">if</span> ping - c 1 <span class="hljs-variable">$IP</span> &gt;/dev/null; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> ping -c 1 <span class="hljs-variable">$IP</span> &gt;/dev/null; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span> Ping is successful.&quot;</span>
     <span class="hljs-built_in">continue</span>
   <span class="hljs-keyword">fi</span>
@@ -7517,7 +7513,7 @@ IP_LIST=<span class="hljs-string">&quot;192.168.18.1 192.168.1.1 192.168.18.2&qu
 <p>借助vmstat工具来分析CPU统计信息。</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 DATE=$(date +%F<span class="hljs-string">&quot; &quot;</span>%H:%M)
-IP=$(ifconfig eth0 |awk - F <span class="hljs-string">&#x27;[ :]+&#x27;</span> <span class="hljs-string">&#x27;/inet addr/&#123;print $4&#125;&#x27;</span>) <span class="hljs-comment"># 只支持CentOS6</span>
+IP=$(ifconfig eth0 |awk -F <span class="hljs-string">&#x27;[ :]+&#x27;</span> <span class="hljs-string">&#x27;/inet addr/&#123;print $4&#125;&#x27;</span>) <span class="hljs-comment"># 只支持CentOS6</span>
 MAIL=<span class="hljs-string">&quot;example@mail.com&quot;</span>
 <span class="hljs-keyword">if</span> ! <span class="hljs-built_in">which</span> vmstat &amp;&gt;/dev/null; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;vmstat command no found, Please install procps package.&quot;</span>
@@ -7528,49 +7524,49 @@ SY=$(vmstat |awk <span class="hljs-string">&#x27;NR==3&#123;print $14&#125;&#x27
 IDLE=$(vmstat |awk <span class="hljs-string">&#x27;NR==3&#123;print $15&#125;&#x27;</span>)
 WAIT=$(vmstat |awk <span class="hljs-string">&#x27;NR==3&#123;print $16&#125;&#x27;</span>)
 USE=$((<span class="hljs-variable">$US</span>+<span class="hljs-variable">$SY</span>))
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$USE</span> - ge 50 ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$USE</span> -ge 50 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;</span>
 <span class="hljs-string">  Date: <span class="hljs-variable">$DATE</span></span>
 <span class="hljs-string">  Host: <span class="hljs-variable">$IP</span></span>
 <span class="hljs-string">  Problem: CPU utilization <span class="hljs-variable">$USE</span></span>
-<span class="hljs-string">  &quot;</span> | mail - s <span class="hljs-string">&quot;CPU Monitor&quot;</span> <span class="hljs-variable">$MAIL</span>
+<span class="hljs-string">  &quot;</span> | mail -s <span class="hljs-string">&quot;CPU Monitor&quot;</span> <span class="hljs-variable">$MAIL</span>
 <span class="hljs-keyword">fi</span></code></pre>
 
 <p><strong>2 ）内存</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 DATE=$(date +%F<span class="hljs-string">&quot; &quot;</span>%H:%M)
-IP=$(ifconfig eth0 |awk - F <span class="hljs-string">&#x27;[ :]+&#x27;</span> <span class="hljs-string">&#x27;/inet addr/&#123;print $4&#125;&#x27;</span>)
+IP=$(ifconfig eth0 |awk -F <span class="hljs-string">&#x27;[ :]+&#x27;</span> <span class="hljs-string">&#x27;/inet addr/&#123;print $4&#125;&#x27;</span>)
 MAIL=<span class="hljs-string">&quot;example@mail.com&quot;</span>
-TOTAL=$(free - m |awk <span class="hljs-string">&#x27;/Mem/&#123;print $2&#125;&#x27;</span>)
-USE=$(free - m |awk <span class="hljs-string">&#x27;/Mem/&#123;print $3-$6-$7&#125;&#x27;</span>)
+TOTAL=$(free -m |awk <span class="hljs-string">&#x27;/Mem/&#123;print $2&#125;&#x27;</span>)
+USE=$(free -m |awk <span class="hljs-string">&#x27;/Mem/&#123;print $3-$6-$7&#125;&#x27;</span>)
 FREE=$((<span class="hljs-variable">$TOTAL</span>-<span class="hljs-variable">$USE</span>))
 <span class="hljs-comment"># 内存小于1G发送报警邮件</span>
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$FREE</span> - lt 1024 ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$FREE</span> -lt 1024 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;</span>
 <span class="hljs-string">  Date: <span class="hljs-variable">$DATE</span></span>
 <span class="hljs-string">  Host: <span class="hljs-variable">$IP</span></span>
 <span class="hljs-string">  Problem: Total=<span class="hljs-variable">$TOTAL</span>,Use=<span class="hljs-variable">$USE</span>,Free=<span class="hljs-variable">$FREE</span></span>
-<span class="hljs-string">  &quot;</span> | mail - s <span class="hljs-string">&quot;Memory Monitor&quot;</span> <span class="hljs-variable">$MAIL</span>
+<span class="hljs-string">  &quot;</span> | mail -s <span class="hljs-string">&quot;Memory Monitor&quot;</span> <span class="hljs-variable">$MAIL</span>
 <span class="hljs-keyword">fi</span></code></pre>
 
 <p><strong>3 ）硬盘</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 DATE=$(date +%F<span class="hljs-string">&quot; &quot;</span>%H:%M)
-IP=$(ifconfig eth0 |awk - F <span class="hljs-string">&#x27;[ :]+&#x27;</span> <span class="hljs-string">&#x27;/inet addr/&#123;print $4&#125;&#x27;</span>)
+IP=$(ifconfig eth0 |awk -F <span class="hljs-string">&#x27;[ :]+&#x27;</span> <span class="hljs-string">&#x27;/inet addr/&#123;print $4&#125;&#x27;</span>)
 MAIL=<span class="hljs-string">&quot;example@mail.com&quot;</span>
-TOTAL=$(fdisk - l |awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;BEGIN&#123;OFS=&quot;=&quot;&#125;/^Disk \/dev/&#123;printf &quot;%s=%sG,&quot;,$2,$3&#125;&#x27;</span>)
-PART_USE=$(df - h |awk <span class="hljs-string">&#x27;BEGIN&#123;OFS=&quot;=&quot;&#125;/^\/dev/&#123;print $1,int($5),$6&#125;&#x27;</span>)
+TOTAL=$(fdisk -l |awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;BEGIN&#123;OFS=&quot;=&quot;&#125;/^Disk \/dev/&#123;printf &quot;%s=%sG,&quot;,$2,$3&#125;&#x27;</span>)
+PART_USE=$(df -h |awk <span class="hljs-string">&#x27;BEGIN&#123;OFS=&quot;=&quot;&#125;/^\/dev/&#123;print $1,int($5),$6&#125;&#x27;</span>)
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-variable">$PART_USE</span>; <span class="hljs-keyword">do</span>
-  PART=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span> |cut - d<span class="hljs-string">&quot;=&quot;</span> - f1)
-  USE=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span> |cut - d<span class="hljs-string">&quot;=&quot;</span> - f2)
-  MOUNT=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span> |cut - d<span class="hljs-string">&quot;=&quot;</span> - f3)
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$USE</span> - gt 80 ]; <span class="hljs-keyword">then</span>
+  PART=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span> |cut -d<span class="hljs-string">&quot;=&quot;</span> -f1)
+  USE=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span> |cut -d<span class="hljs-string">&quot;=&quot;</span> -f2)
+  MOUNT=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span> |cut -d<span class="hljs-string">&quot;=&quot;</span> -f3)
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$USE</span> -gt 80 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;</span>
 <span class="hljs-string">    Date: <span class="hljs-variable">$DATE</span></span>
 <span class="hljs-string">    Host: <span class="hljs-variable">$IP</span></span>
 <span class="hljs-string">    Total: <span class="hljs-variable">$TOTAL</span></span>
 <span class="hljs-string">    Problem: <span class="hljs-variable">$PART</span>=<span class="hljs-variable">$USE</span>(<span class="hljs-variable">$MOUNT</span>)</span>
-<span class="hljs-string">    &quot;</span> | mail - s <span class="hljs-string">&quot;Disk Monitor&quot;</span> <span class="hljs-variable">$MAIL</span>
+<span class="hljs-string">    &quot;</span> | mail -s <span class="hljs-string">&quot;Disk Monitor&quot;</span> <span class="hljs-variable">$MAIL</span>
   <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span></code></pre>
 
@@ -7579,10 +7575,10 @@ PART_USE=$(df - h |awk <span class="hljs-string">&#x27;BEGIN&#123;OFS=&quot;=&qu
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 HOST_INFO=host.info
 <span class="hljs-keyword">for</span> IP <span class="hljs-keyword">in</span> $(awk <span class="hljs-string">&#x27;/^[^#]/&#123;print $1&#125;&#x27;</span> <span class="hljs-variable">$HOST_INFO</span>); <span class="hljs-keyword">do</span>
-  USER=$(awk - v ip=<span class="hljs-variable">$IP</span> <span class="hljs-string">&#x27;ip==$1&#123;print $2&#125;&#x27;</span> <span class="hljs-variable">$HOST_INFO</span>)
-  PORT=$(awk - v ip=<span class="hljs-variable">$IP</span> <span class="hljs-string">&#x27;ip==$1&#123;print $3&#125;&#x27;</span> <span class="hljs-variable">$HOST_INFO</span>)
+  USER=$(awk -v ip=<span class="hljs-variable">$IP</span> <span class="hljs-string">&#x27;ip==$1&#123;print $2&#125;&#x27;</span> <span class="hljs-variable">$HOST_INFO</span>)
+  PORT=$(awk -v ip=<span class="hljs-variable">$IP</span> <span class="hljs-string">&#x27;ip==$1&#123;print $3&#125;&#x27;</span> <span class="hljs-variable">$HOST_INFO</span>)
   TMP_FILE=/tmp/disk.tmp
-  ssh - p <span class="hljs-variable">$PORT</span> <span class="hljs-variable">$USER</span>@<span class="hljs-variable">$IP</span> <span class="hljs-string">&#x27;df - h&#x27;</span> &gt; <span class="hljs-variable">$TMP_FILE</span>
+  ssh -p <span class="hljs-variable">$PORT</span> <span class="hljs-variable">$USER</span>@<span class="hljs-variable">$IP</span> <span class="hljs-string">&#x27;df -h&#x27;</span> &gt; <span class="hljs-variable">$TMP_FILE</span>
   USE_RATE_LIST=$( awk <span class="hljs-string">&#x27;BEGIN&#123;OFS=&quot;=&quot;&#125;/^\/dev/&#123;print $1,int($5)&#125;&#x27;</span> <span class="hljs-variable">$TMP_FILE</span>)
   <span class="hljs-keyword">for</span> USE_RATE <span class="hljs-keyword">in</span> <span class="hljs-variable">$USE_RATE_LIST</span>; <span class="hljs-keyword">do</span>
     PART_NAME=<span class="hljs-variable">$&#123;USE_RATE%=*&#125;</span>
@@ -7596,14 +7592,14 @@ HOST_INFO=host.info
 <h2 id="12-9-检查网站可用性"><a href="#12-9-检查网站可用性" class="headerlink" title="12.9 检查网站可用性"></a>12.9 检查网站可用性</h2><p><strong>1 ）检查URL可用性</strong></p>
 <pre><code class="hljs bash">方法 1 ：
 <span class="hljs-function"><span class="hljs-title">check_url</span></span>() &#123;
-HTTP_CODE=$(curl - o /dev/null --connect-timeout 3 - s - w <span class="hljs-string">&quot;%&#123;http_code&#125;&quot;</span> <span class="hljs-variable">$1</span>)
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> - ne 200 ]; <span class="hljs-keyword">then</span>
+HTTP_CODE=$(curl -o /dev/null --connect-timeout 3 -s -w <span class="hljs-string">&quot;%&#123;http_code&#125;&quot;</span> <span class="hljs-variable">$1</span>)
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> -ne 200 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Warning: <span class="hljs-variable">$1</span> Access failure!&quot;</span>
 <span class="hljs-keyword">fi</span>
 &#125;
 方法 2 ：
 <span class="hljs-function"><span class="hljs-title">check_url</span></span>() &#123;
-<span class="hljs-keyword">if</span> ! wget - T 10 --tries=1 --spider <span class="hljs-variable">$1</span> &gt;/dev/null 2&gt;&amp;1; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> ! wget -T 10 --tries=1 --spider <span class="hljs-variable">$1</span> &gt;/dev/null 2&gt;&amp;1; <span class="hljs-keyword">then</span>
   <span class="hljs-comment">#-T超时时间，--tries尝试 1 次，--spider爬虫模式</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Warning: <span class="hljs-variable">$1</span> Access failure!&quot;</span>
 <span class="hljs-keyword">fi</span>
@@ -7615,8 +7611,8 @@ HTTP_CODE=$(curl - o /dev/null --connect-timeout 3 - s - w <span class="hljs-str
 <pre><code class="hljs bash">方法 1 ：利用循环技巧，如果成功就跳出当前循环，否则执行到最后一行
 <span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-function"><span class="hljs-title">check_url</span></span>() &#123;
-  HTTP_CODE=$(curl - o /dev/null --connect-timeout 3 - s - w <span class="hljs-string">&quot;%&#123;http_code&#125;&quot;</span> <span class="hljs-variable">$1</span>)
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> - eq 200 ]; <span class="hljs-keyword">then</span>
+  HTTP_CODE=$(curl -o /dev/null --connect-timeout 3 -s -w <span class="hljs-string">&quot;%&#123;http_code&#125;&quot;</span> <span class="hljs-variable">$1</span>)
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> -eq 200 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">continue</span>
   <span class="hljs-keyword">fi</span>
 &#125;
@@ -7634,14 +7630,14 @@ URL_LIST=<span class="hljs-string">&quot;www.baidu.com www.agasgf.com&quot;</spa
 <span class="hljs-keyword">for</span> URL <span class="hljs-keyword">in</span> <span class="hljs-variable">$URL_LIST</span>; <span class="hljs-keyword">do</span>
   FAIL_COUNT=0
   <span class="hljs-keyword">for</span> ((i=1;i&lt;=3;i++)); <span class="hljs-keyword">do</span>
-    HTTP_CODE=$(curl - o /dev/null --connect-timeout 3 - s - w <span class="hljs-string">&quot;%&#123;http_code&#125;&quot;</span> <span class="hljs-variable">$URL</span>)
-    <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> - ne 200 ]; <span class="hljs-keyword">then</span>
+    HTTP_CODE=$(curl -o /dev/null --connect-timeout 3 -s -w <span class="hljs-string">&quot;%&#123;http_code&#125;&quot;</span> <span class="hljs-variable">$URL</span>)
+    <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> -ne 200 ]; <span class="hljs-keyword">then</span>
       <span class="hljs-built_in">let</span> FAIL_COUNT++
     <span class="hljs-keyword">else</span>
       <span class="hljs-built_in">break</span>
     <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$FAIL_COUNT</span> - eq 3 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$FAIL_COUNT</span> -eq 3 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Warning: <span class="hljs-variable">$URL</span> Access failure!&quot;</span>
   <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span>
@@ -7651,16 +7647,16 @@ URL_LIST=<span class="hljs-string">&quot;www.baidu.com www.agasgf.com&quot;</spa
 URL_LIST=<span class="hljs-string">&quot;www.baidu.com www.agasgf.com&quot;</span>
 <span class="hljs-keyword">for</span> URL <span class="hljs-keyword">in</span> <span class="hljs-variable">$URL_LIST</span>; <span class="hljs-keyword">do</span>
   NUM=1
-  <span class="hljs-keyword">while</span> [ <span class="hljs-variable">$NUM</span> - le 3 ]; <span class="hljs-keyword">do</span>
-    HTTP_CODE=$(curl - o /dev/null --connect-timeout 3 - s - w <span class="hljs-string">&quot;%&#123;http_code&#125;&quot;</span> <span class="hljs-variable">$URL</span>)
-    <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> - ne 200 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">while</span> [ <span class="hljs-variable">$NUM</span> -le 3 ]; <span class="hljs-keyword">do</span>
+    HTTP_CODE=$(curl -o /dev/null --connect-timeout 3 -s -w <span class="hljs-string">&quot;%&#123;http_code&#125;&quot;</span> <span class="hljs-variable">$URL</span>)
+    <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$HTTP_CODE</span> -ne 200 ]; <span class="hljs-keyword">then</span>
       FAIL_COUNT[<span class="hljs-variable">$NUM</span>]=<span class="hljs-variable">$IP</span> <span class="hljs-comment">#创建数组，以$NUM下标，$IP元素</span>
       <span class="hljs-built_in">let</span> NUM++
     <span class="hljs-keyword">else</span>
       <span class="hljs-built_in">break</span>
     <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;#FAIL_COUNT[*]&#125;</span> - eq 3 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$&#123;#FAIL_COUNT[*]&#125;</span> -eq 3 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Warning: <span class="hljs-variable">$URL</span> Access failure!&quot;</span>
     <span class="hljs-built_in">unset</span> FAIL_COUNT[*] <span class="hljs-comment">#清空数组</span>
   <span class="hljs-keyword">fi</span>
@@ -7669,7 +7665,7 @@ URL_LIST=<span class="hljs-string">&quot;www.baidu.com www.agasgf.com&quot;</spa
 <h2 id="12-10-检查MySQL主从同步状态"><a href="#12-10-检查MySQL主从同步状态" class="headerlink" title="12.10 检查MySQL主从同步状态"></a>12.10 检查MySQL主从同步状态</h2><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 USER=bak
 PASSWD=123 456
-IO_SQL_STATUS=$(mysql - u<span class="hljs-variable">$USER</span> - p<span class="hljs-variable">$PASSWD</span> - e <span class="hljs-string">&#x27;show slave status\G&#x27;</span> |awk - F:<span class="hljs-string">&#x27;/Slave_.*_Running/&#123;gsub(&quot;: &quot;,&quot;:&quot;);print $0&#125;&#x27;</span>) <span class="hljs-comment">#gsub去除冒号后面的空格</span>
+IO_SQL_STATUS=$(mysql -u<span class="hljs-variable">$USER</span> -p<span class="hljs-variable">$PASSWD</span> -e <span class="hljs-string">&#x27;show slave status\G&#x27;</span> |awk -F:<span class="hljs-string">&#x27;/Slave_.*_Running/&#123;gsub(&quot;: &quot;,&quot;:&quot;);print $0&#125;&#x27;</span>) <span class="hljs-comment">#gsub去除冒号后面的空格</span>
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-variable">$IO_SQL_STATUS</span>; <span class="hljs-keyword">do</span>
   THREAD_STATUS_NAME=<span class="hljs-variable">$&#123;i%:*&#125;</span>
   THREAD_STATUS=<span class="hljs-variable">$&#123;i#*:&#125;</span>
@@ -7682,19 +7678,19 @@ IO_SQL_STATUS=$(mysql - u<span class="hljs-variable">$USER</span> - p<span class
 <h2 id="12-11-屏蔽网站访问频繁的IP"><a href="#12-11-屏蔽网站访问频繁的IP" class="headerlink" title="12. 11 屏蔽网站访问频繁的IP"></a>12. 11 屏蔽网站访问频繁的IP</h2><p><strong>1 ）屏蔽每分钟访问超过 200 的IP</strong></p>
 <pre><code class="hljs bash">方法 1 ：以Nginx日志作为测试
 DATE=$(date +%d/%b/%Y:%H:%M)
-ABNORMAL_IP=$(tail - n5000 access.log |grep <span class="hljs-variable">$DATE</span> |awk <span class="hljs-string">&#x27;&#123;a[$1]++&#125;END&#123;for(i in a)if(a[i]&gt;100)print i&#125;&#x27;</span>)
+ABNORMAL_IP=$(tail -n5000 access.log |grep <span class="hljs-variable">$DATE</span> |awk <span class="hljs-string">&#x27;&#123;a[$1]++&#125;END&#123;for(i in a)if(a[i]&gt;100)print i&#125;&#x27;</span>)
 <span class="hljs-comment">#先tail防止文件过大，读取慢，数字可调整每分钟最大的访问量。awk不能直接过滤日志，因为包含特殊字符。</span>
 <span class="hljs-keyword">for</span> IP <span class="hljs-keyword">in</span> <span class="hljs-variable">$ABNORMAL_IP</span>; <span class="hljs-keyword">do</span>
-  <span class="hljs-keyword">if</span> [ $(iptables - vnL |grep - c <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span>&quot;</span>) - eq 0 ]; <span class="hljs-keyword">then</span>
-    iptables - I INPUT - s <span class="hljs-variable">$IP</span> - j DROP
+  <span class="hljs-keyword">if</span> [ $(iptables -vnL |grep -c <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span>&quot;</span>) -eq 0 ]; <span class="hljs-keyword">then</span>
+    iptables -I INPUT -s <span class="hljs-variable">$IP</span> -j DROP
   <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span>
 方法 2 ：通过建立连接数
-ABNORMAL_IP=$(netstat - an |awk <span class="hljs-string">&#x27;$4~/:80$/ &amp;&amp; $6~/ESTABLISHED/&#123;gsub(/:[0-9]+/,&quot;&quot;,$5);&#123;a[$5]++&#125;&#125;END&#123;for(i in a)if(a[i]&gt;100)print i&#125;&#x27;</span>)
+ABNORMAL_IP=$(netstat -an |awk <span class="hljs-string">&#x27;$4~/:80$/ &amp;&amp; $6~/ESTABLISHED/&#123;gsub(/:[0-9]+/,&quot;&quot;,$5);&#123;a[$5]++&#125;&#125;END&#123;for(i in a)if(a[i]&gt;100)print i&#125;&#x27;</span>)
 <span class="hljs-comment">#gsub是将第五列（客户端IP）的冒号和端口去掉</span>
 <span class="hljs-keyword">for</span> IP <span class="hljs-keyword">in</span> <span class="hljs-variable">$ABNORMAL_IP</span>; <span class="hljs-keyword">do</span>
-  <span class="hljs-keyword">if</span> [ $(iptables - vnL |grep - c <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span>&quot;</span>) - eq 0 ]; <span class="hljs-keyword">then</span>
-    iptables - I INPUT - s <span class="hljs-variable">$IP</span> - j DROP
+  <span class="hljs-keyword">if</span> [ $(iptables -vnL |grep -c <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span>&quot;</span>) -eq 0 ]; <span class="hljs-keyword">then</span>
+    iptables -I INPUT -s <span class="hljs-variable">$IP</span> -j DROP
   <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span></code></pre>
 
@@ -7703,26 +7699,26 @@ ABNORMAL_IP=$(netstat - an |awk <span class="hljs-string">&#x27;$4~/:80$/ &amp;&
 DATE=$(date +<span class="hljs-string">&quot;%a %b %e %H:%M&quot;</span>) <span class="hljs-comment">#星期月天时分 %e单数字时显示 7 ，而%d显示 07</span>
 ABNORMAL_IP=$(lastb |grep <span class="hljs-string">&quot;<span class="hljs-variable">$DATE</span>&quot;</span> |awk <span class="hljs-string">&#x27;&#123;a[$3]++&#125;END&#123;for(i in a)if(a[i]&gt;10)print i&#125;&#x27;</span>)
 <span class="hljs-keyword">for</span> IP <span class="hljs-keyword">in</span> <span class="hljs-variable">$ABNORMAL_IP</span>; <span class="hljs-keyword">do</span>
-  <span class="hljs-keyword">if</span> [ $(iptables - vnL |grep - c <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span>&quot;</span>) - eq 0 ]; <span class="hljs-keyword">then</span>
-    iptables - I INPUT - s <span class="hljs-variable">$IP</span> - j DROP
+  <span class="hljs-keyword">if</span> [ $(iptables -vnL |grep -c <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span>&quot;</span>) -eq 0 ]; <span class="hljs-keyword">then</span>
+    iptables -I INPUT -s <span class="hljs-variable">$IP</span> -j DROP
   <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span>
 
 方法 2 ：通过日志获取登录状态
 DATE=$(date +<span class="hljs-string">&quot;%b %d %H&quot;</span>)
-ABNORMAL_IP=<span class="hljs-string">&quot;<span class="hljs-subst">$(tail - n10000 /var/log/auth.log |grep <span class="hljs-string">&quot;<span class="hljs-variable">$DATE</span>&quot;</span> |awk &#x27;/Failed/&#123;a[$(NF-3)</span>]++&#125;END&#123;for(i in a)if(a[i]&gt;5)print i&#125;&#x27;)&quot;</span>
+ABNORMAL_IP=<span class="hljs-string">&quot;<span class="hljs-subst">$(tail -n10000 /var/log/auth.log |grep <span class="hljs-string">&quot;<span class="hljs-variable">$DATE</span>&quot;</span> |awk &#x27;/Failed/&#123;a[$(NF-3)</span>]++&#125;END&#123;for(i in a)if(a[i]&gt;5)print i&#125;&#x27;)&quot;</span>
 <span class="hljs-keyword">for</span> IP <span class="hljs-keyword">in</span> <span class="hljs-variable">$ABNORMAL_IP</span>; <span class="hljs-keyword">do</span>
-  <span class="hljs-keyword">if</span> [ $(iptables - vnL |grep - c <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span>&quot;</span>) - eq 0 ]; <span class="hljs-keyword">then</span>
-    iptables - A INPUT - s <span class="hljs-variable">$IP</span> - j DROP
-    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(date +<span class="hljs-string">&quot;%F %T&quot;</span>)</span> - iptables - A INPUT - s <span class="hljs-variable">$IP</span> - j DROP&quot;</span> &gt;&gt;~/ssh-login-limit.log
+  <span class="hljs-keyword">if</span> [ $(iptables -vnL |grep -c <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span>&quot;</span>) -eq 0 ]; <span class="hljs-keyword">then</span>
+    iptables -A INPUT -s <span class="hljs-variable">$IP</span> -j DROP
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(date +<span class="hljs-string">&quot;%F %T&quot;</span>)</span> - iptables -A INPUT -s <span class="hljs-variable">$IP</span> -j DROP&quot;</span> &gt;&gt;~/ssh-login-limit.log
   <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">done</span></code></pre>
 
 <h2 id="12-12-判断输入是否为IP"><a href="#12-12-判断输入是否为IP" class="headerlink" title="12.12 判断输入是否为IP"></a>12.12 判断输入是否为IP</h2><p><strong>方法1:</strong></p>
 <pre><code class="hljs bash"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">check_ip</span></span>()&#123;
   IP=<span class="hljs-variable">$1</span>
-  VALID_CHECK=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|awk - F. <span class="hljs-string">&#x27;$1&lt;=255&amp;&amp;$2&lt;=255&amp;&amp;$3&lt;=255&amp;&amp;$4&lt;=255&#123;print &quot;yes&quot;&#125;&#x27;</span>)
-  <span class="hljs-keyword">if</span> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|grep - E <span class="hljs-string">&quot;^[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;$&quot;</span>&gt;/dev/null;<span class="hljs-keyword">then</span>
+  VALID_CHECK=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|awk -F. <span class="hljs-string">&#x27;$1&lt;=255&amp;&amp;$2&lt;=255&amp;&amp;$3&lt;=255&amp;&amp;$4&lt;=255&#123;print &quot;yes&quot;&#125;&#x27;</span>)
+  <span class="hljs-keyword">if</span> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|grep -E <span class="hljs-string">&quot;^[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;$&quot;</span>&gt;/dev/null;<span class="hljs-keyword">then</span>
     <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$VALID_CHECK</span> == <span class="hljs-string">&quot;yes&quot;</span> ]; <span class="hljs-keyword">then</span>
       <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span> available.&quot;</span>
     <span class="hljs-keyword">else</span>
@@ -7739,11 +7735,11 @@ check_ip 256.1.1.1
 <span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">check_ip</span></span>()&#123;
 IP=<span class="hljs-variable">$1</span>
 <span class="hljs-keyword">if</span> [[ <span class="hljs-variable">$IP</span> =~ ^[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;$ ]]; <span class="hljs-keyword">then</span>
-  FIELD1=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|cut - d. - f1)
-  FIELD2=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|cut - d. - f2)
-  FIELD3=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|cut - d. - f3)
-  FIELD4=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|cut - d. - f4)
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$FIELD1</span> - le 255 - a <span class="hljs-variable">$FIELD2</span> - le 255 - a <span class="hljs-variable">$FIELD3</span> - le 255 - a <span class="hljs-variable">$FIELD4</span> - le 255 ]; <span class="hljs-keyword">then</span>
+  FIELD1=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|cut -d. -f1)
+  FIELD2=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|cut -d. -f2)
+  FIELD3=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|cut -d. -f3)
+  FIELD4=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|cut -d. -f4)
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$FIELD1</span> -le 255 -a <span class="hljs-variable">$FIELD2</span> -le 255 -a <span class="hljs-variable">$FIELD3</span> -le 255 -a <span class="hljs-variable">$FIELD4</span> -le 255 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span> available.&quot;</span>
   <span class="hljs-keyword">else</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$IP</span> not available!&quot;</span>
@@ -7758,8 +7754,8 @@ check_ip 256.1.1.1</code></pre>
 <p>增加版：加个死循环，如果IP可用就退出，不可用提示继续输入，并使用awk判断</p>
 <pre><code class="hljs bash"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">check_ip</span></span>()&#123;
 <span class="hljs-built_in">local</span> IP=<span class="hljs-variable">$1</span>
-VALID_CHECK=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|awk - F. <span class="hljs-string">&#x27;$1&lt;=255&amp;&amp;$2&lt;=255&amp;&amp;$3&lt;=255&amp;&amp;$4&lt;=255&#123;print &quot;yes&quot;&#125;&#x27;</span>)
-<span class="hljs-keyword">if</span> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|grep - E <span class="hljs-string">&quot;^[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[ 0 - 9]&#123;1,3&#125;$&quot;</span> &gt;/dev/null;<span class="hljs-keyword">then</span>
+VALID_CHECK=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|awk -F. <span class="hljs-string">&#x27;$1&lt;=255&amp;&amp;$2&lt;=255&amp;&amp;$3&lt;=255&amp;&amp;$4&lt;=255&#123;print &quot;yes&quot;&#125;&#x27;</span>)
+<span class="hljs-keyword">if</span> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$IP</span>|grep -E <span class="hljs-string">&quot;^[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;\.[0-9]&#123;1,3&#125;$&quot;</span> &gt;/dev/null;<span class="hljs-keyword">then</span>
   <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$VALID_CHECK</span> == <span class="hljs-string">&quot;yes&quot;</span> ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">return</span> 0
   <span class="hljs-keyword">else</span>
@@ -7772,9 +7768,9 @@ VALID_CHECK=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable
 <span class="hljs-keyword">fi</span>
 &#125;
 <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span>
-  <span class="hljs-built_in">read</span> - p <span class="hljs-string">&quot;Please enter IP: &quot;</span> IP
+  <span class="hljs-built_in">read</span> -p <span class="hljs-string">&quot;Please enter IP: &quot;</span> IP
   check_ip <span class="hljs-variable">$IP</span>
-  [ $? - eq 0 ] &amp;&amp; <span class="hljs-built_in">break</span> || <span class="hljs-built_in">continue</span>
+  [ $? -eq 0 ] &amp;&amp; <span class="hljs-built_in">break</span> || <span class="hljs-built_in">continue</span>
 <span class="hljs-keyword">done</span></code></pre>
 
 <h2 id="12-13-判断输入是否为数字"><a href="#12-13-判断输入是否为数字" class="headerlink" title="12.13 判断输入是否为数字"></a>12.13 判断输入是否为数字</h2><pre><code class="hljs bash">方法 1 ：
@@ -7785,7 +7781,7 @@ VALID_CHECK=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable
 <span class="hljs-keyword">fi</span>
 
 方法 2 ：
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$1</span> - gt 0 ] 2&gt;/dev/null; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$1</span> -gt 0 ] 2&gt;/dev/null; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Is Number.&quot;</span>
 <span class="hljs-keyword">else</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;No Number.&quot;</span>
@@ -7797,7 +7793,7 @@ VALID_CHECK=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable
 <h2 id="12-14-找出包含关键字的文件"><a href="#12-14-找出包含关键字的文件" class="headerlink" title="12.14 找出包含关键字的文件"></a>12.14 找出包含关键字的文件</h2><pre><code class="hljs bash">DIR=<span class="hljs-variable">$1</span>
 KEY=<span class="hljs-variable">$2</span>
 
-<span class="hljs-keyword">for</span> FILE <span class="hljs-keyword">in</span> $(find <span class="hljs-variable">$DIR</span> - <span class="hljs-built_in">type</span> f); <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span> FILE <span class="hljs-keyword">in</span> $(find <span class="hljs-variable">$DIR</span> -<span class="hljs-built_in">type</span> f); <span class="hljs-keyword">do</span>
   <span class="hljs-keyword">if</span> grep <span class="hljs-variable">$KEY</span> <span class="hljs-variable">$FILE</span> &amp;&gt;/dev/null; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;--&gt; <span class="hljs-variable">$FILE</span>&quot;</span>
   <span class="hljs-keyword">fi</span>
@@ -7806,7 +7802,7 @@ KEY=<span class="hljs-variable">$2</span>
 <h2 id="12-15-监控目录，将新创建的文件名追加到日志中"><a href="#12-15-监控目录，将新创建的文件名追加到日志中" class="headerlink" title="12.15 监控目录，将新创建的文件名追加到日志中"></a>12.15 监控目录，将新创建的文件名追加到日志中</h2><p>需安装 <code>inotify-tools</code> 软件包。</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 MON_DIR=/opt
-inotifywait - mq --format %f - e create <span class="hljs-variable">$MON_DIR</span> |\
+inotifywait -mq --format %f -e create <span class="hljs-variable">$MON_DIR</span> |\
 <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> files; <span class="hljs-keyword">do</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-variable">$files</span> &gt;&gt; test.log
 <span class="hljs-keyword">done</span></code></pre>
@@ -7815,17 +7811,17 @@ inotifywait - mq --format %f - e create <span class="hljs-variable">$MON_DIR</sp
   <span class="hljs-built_in">local</span> NUM ARRAY_LENGTH
   NUM=0
   <span class="hljs-keyword">for</span> NIC_NAME <span class="hljs-keyword">in</span> $(ls /sys/class/net|grep - vE <span class="hljs-string">&quot;lo|docker0&quot;</span>); <span class="hljs-keyword">do</span>
-    NIC_IP=$(ifconfig <span class="hljs-variable">$NIC_NAME</span> |awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/inet addr/&#123;print $4&#125;&#x27;</span>)
-    <span class="hljs-keyword">if</span> [ - n <span class="hljs-string">&quot;<span class="hljs-variable">$NIC_IP</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+    NIC_IP=$(ifconfig <span class="hljs-variable">$NIC_NAME</span> |awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/inet addr/&#123;print $4&#125;&#x27;</span>)
+    <span class="hljs-keyword">if</span> [ -n <span class="hljs-string">&quot;<span class="hljs-variable">$NIC_IP</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
       NIC_IP_ARRAY[<span class="hljs-variable">$NUM</span>]=<span class="hljs-string">&quot;<span class="hljs-variable">$NIC_NAME</span>:<span class="hljs-variable">$NIC_IP</span>&quot;</span> <span class="hljs-comment">#将网卡名和对应IP放到数组</span>
       <span class="hljs-built_in">let</span> NUM++
     <span class="hljs-keyword">fi</span>
   <span class="hljs-keyword">done</span>
   ARRAY_LENGTH=<span class="hljs-variable">$&#123;#NIC_IP_ARRAY[*]&#125;</span>
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$ARRAY_LENGTH</span> - eq 1 ]; <span class="hljs-keyword">then</span> <span class="hljs-comment">#如果数组里面只有一条记录说明就一个网卡</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$ARRAY_LENGTH</span> -eq 1 ]; <span class="hljs-keyword">then</span> <span class="hljs-comment">#如果数组里面只有一条记录说明就一个网卡</span>
     NIC=<span class="hljs-variable">$&#123;NIC_IP_ARRAY[0]%:*&#125;</span>
     <span class="hljs-built_in">return</span> 0
-  <span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$ARRAY_LENGTH</span> - eq 0 ]; <span class="hljs-keyword">then</span> <span class="hljs-comment">#如果没有记录说明没有网卡</span>
+  <span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$ARRAY_LENGTH</span> -eq 0 ]; <span class="hljs-keyword">then</span> <span class="hljs-comment">#如果没有记录说明没有网卡</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;No available network card!&quot;</span>
     <span class="hljs-built_in">exit</span> 1
   <span class="hljs-keyword">else</span>
@@ -7834,7 +7830,7 @@ inotifywait - mq --format %f - e create <span class="hljs-variable">$MON_DIR</sp
       <span class="hljs-built_in">echo</span> <span class="hljs-variable">$NIC</span>
     <span class="hljs-keyword">done</span>
     <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span>
-      <span class="hljs-built_in">read</span> - p <span class="hljs-string">&quot;Please enter local use to network card name: &quot;</span> INPUT_NIC_NAME
+      <span class="hljs-built_in">read</span> -p <span class="hljs-string">&quot;Please enter local use to network card name: &quot;</span> INPUT_NIC_NAME
       COUNT=0
       <span class="hljs-keyword">for</span> NIC <span class="hljs-keyword">in</span> <span class="hljs-variable">$&#123;NIC_IP_ARRAY[*]&#125;</span>; <span class="hljs-keyword">do</span>
         NIC_NAME=<span class="hljs-variable">$&#123;NIC%:*&#125;</span>
@@ -7856,20 +7852,20 @@ local_nic</code></pre>
 <span class="hljs-comment"># Description: Only CentOS6</span>
 <span class="hljs-function"><span class="hljs-title">traffic_unit_conv</span></span>() &#123;
   <span class="hljs-built_in">local</span> traffic=<span class="hljs-variable">$1</span>
-  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$traffic</span> - gt 1024000 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$traffic</span> -gt 1024000 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%.1f%s&quot;</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(($traffic/1024/1024)</span>)&quot;</span> <span class="hljs-string">&quot;MB/s&quot;</span>
-  <span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$traffic</span> - lt 1024000 ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">elif</span> [ <span class="hljs-variable">$traffic</span> -lt 1024000 ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">printf</span> <span class="hljs-string">&quot;%.1f%s&quot;</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(($traffic/1024)</span>)&quot;</span> <span class="hljs-string">&quot;KB/s&quot;</span>
   <span class="hljs-keyword">fi</span>
 &#125;
 NIC=<span class="hljs-variable">$1</span>
-<span class="hljs-built_in">echo</span> - e <span class="hljs-string">&quot; In ------ Out&quot;</span>
+<span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot; In ------ Out&quot;</span>
 <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span>
-  OLD_IN=$(awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;$0~&quot;&#x27;</span><span class="hljs-variable">$NIC</span><span class="hljs-string">&#x27;&quot;&#123;print $3&#125;&#x27;</span> /proc/net/dev)
-  OLD_OUT=$(awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;$0~&quot;&#x27;</span><span class="hljs-variable">$NIC</span><span class="hljs-string">&#x27;&quot;&#123;print $11&#125;&#x27;</span> /proc/net/dev)
+  OLD_IN=$(awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;$0~&quot;&#x27;</span><span class="hljs-variable">$NIC</span><span class="hljs-string">&#x27;&quot;&#123;print $3&#125;&#x27;</span> /proc/net/dev)
+  OLD_OUT=$(awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;$0~&quot;&#x27;</span><span class="hljs-variable">$NIC</span><span class="hljs-string">&#x27;&quot;&#123;print $11&#125;&#x27;</span> /proc/net/dev)
   sleep 1
-  NEW_IN=$(awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;$0~&quot;&#x27;</span><span class="hljs-variable">$NIC</span><span class="hljs-string">&#x27;&quot;&#123;print $3&#125;&#x27;</span> /proc/net/dev)
-  NEW_OUT=$(awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;$0~&quot;&#x27;</span><span class="hljs-variable">$NIC</span><span class="hljs-string">&#x27;&quot;&#123;print $11&#125;&#x27;</span> /proc/net/dev)
+  NEW_IN=$(awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;$0~&quot;&#x27;</span><span class="hljs-variable">$NIC</span><span class="hljs-string">&#x27;&quot;&#123;print $3&#125;&#x27;</span> /proc/net/dev)
+  NEW_OUT=$(awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;$0~&quot;&#x27;</span><span class="hljs-variable">$NIC</span><span class="hljs-string">&#x27;&quot;&#123;print $11&#125;&#x27;</span> /proc/net/dev)
   IN=$((<span class="hljs-variable">$NEW_IN</span>-<span class="hljs-variable">$OLD_IN</span>))
   OUT=$((<span class="hljs-variable">$NEW_OUT</span>-<span class="hljs-variable">$OLD_OUT</span>))
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(traffic_unit_conv $IN)</span> <span class="hljs-subst">$(traffic_unit_conv $OUT)</span>&quot;</span>
@@ -7878,11 +7874,11 @@ NIC=<span class="hljs-variable">$1</span>
 
 <span class="hljs-comment"># 也可以通过ficonfig命令获取收发流量</span>
 <span class="hljs-keyword">while</span> <span class="hljs-literal">true</span>; <span class="hljs-keyword">do</span>
-  OLD_IN=$(ifconfig <span class="hljs-variable">$NIC</span> |awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/bytes/&#123;print $4&#125;&#x27;</span>)
-  OLD_OUT=$(ifconfig <span class="hljs-variable">$NIC</span> |awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/bytes/&#123;print $9&#125;&#x27;</span>)
+  OLD_IN=$(ifconfig <span class="hljs-variable">$NIC</span> |awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/bytes/&#123;print $4&#125;&#x27;</span>)
+  OLD_OUT=$(ifconfig <span class="hljs-variable">$NIC</span> |awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/bytes/&#123;print $9&#125;&#x27;</span>)
   sleep 1
-  NEW_IN=$(ifconfig <span class="hljs-variable">$NIC</span> |awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/bytes/&#123;print $4&#125;&#x27;</span>)
-  NEW_OUT=$(ifconfig <span class="hljs-variable">$NIC</span> |awk - F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/bytes/&#123;print $9&#125;&#x27;</span>)
+  NEW_IN=$(ifconfig <span class="hljs-variable">$NIC</span> |awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/bytes/&#123;print $4&#125;&#x27;</span>)
+  NEW_OUT=$(ifconfig <span class="hljs-variable">$NIC</span> |awk -F<span class="hljs-string">&#x27;[: ]+&#x27;</span> <span class="hljs-string">&#x27;/bytes/&#123;print $9&#125;&#x27;</span>)
   IN=$((<span class="hljs-variable">$NEW_IN</span>-<span class="hljs-variable">$OLD_IN</span>))
   OUT=$((<span class="hljs-variable">$NEW_OUT</span>-<span class="hljs-variable">$OLD_OUT</span>))
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(traffic_unit_conv $IN)</span> <span class="hljs-subst">$(traffic_unit_conv $OUT)</span>&quot;</span>
@@ -7903,12 +7899,12 @@ BAK_FILE=<span class="hljs-variable">$&#123;DB&#125;</span>_full_<span class="hl
 <span class="hljs-keyword">if</span> mysqldump - h<span class="hljs-variable">$HOST</span> - u<span class="hljs-variable">$USER</span> - p<span class="hljs-variable">$PASS</span> --single-transaction --routines --triggers - B <span class="hljs-variable">$DB</span> &gt; <span class="hljs-variable">$SQL_FILE</span>; <span class="hljs-keyword">then</span>
   zip <span class="hljs-variable">$BAK_FILE</span> <span class="hljs-variable">$SQL_FILE</span> &amp;&amp; rm - f <span class="hljs-variable">$SQL_FILE</span>
   <span class="hljs-keyword">if</span> [! - s <span class="hljs-variable">$BAK_FILE</span> ]; <span class="hljs-keyword">then</span>
-    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DATE</span> 内容&quot;</span> | mail - s <span class="hljs-string">&quot;主题&quot;</span> <span class="hljs-variable">$MAIL</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DATE</span> 内容&quot;</span> | mail -s <span class="hljs-string">&quot;主题&quot;</span> <span class="hljs-variable">$MAIL</span>
   <span class="hljs-keyword">fi</span>
 <span class="hljs-keyword">else</span>
-  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DATE</span> 内容&quot;</span> | mail - s <span class="hljs-string">&quot;主题&quot;</span> <span class="hljs-variable">$MAIL</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$DATE</span> 内容&quot;</span> | mail -s <span class="hljs-string">&quot;主题&quot;</span> <span class="hljs-variable">$MAIL</span>
 <span class="hljs-keyword">fi</span>
-find <span class="hljs-variable">$BACKUP_DIR</span> - name <span class="hljs-string">&#x27;*.zip&#x27;</span> - ctime +14 - <span class="hljs-built_in">exec</span> rm &#123;&#125; \;</code></pre>
+find <span class="hljs-variable">$BACKUP_DIR</span> -name <span class="hljs-string">&#x27;*.zip&#x27;</span> -ctime +14 -<span class="hljs-built_in">exec</span> rm &#123;&#125; \;</code></pre>
 
 <h2 id="12-19-Nginx启动脚本"><a href="#12-19-Nginx启动脚本" class="headerlink" title="12.19 Nginx启动脚本"></a>12.19 Nginx启动脚本</h2><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-comment"># Description: Only support RedHat system</span>
@@ -7919,33 +7915,33 @@ DAEMON=<span class="hljs-variable">$WORD_DIR</span>/sbin/nginx
 CONF=<span class="hljs-variable">$WORD_DIR</span>/conf/nginx.conf
 NAME=nginx
 
-PID=$(awk - F<span class="hljs-string">&#x27;[; ]+&#x27;</span> <span class="hljs-string">&#x27;/^[^#]/&#123;if($0~/pid;/)print $2&#125;&#x27;</span> <span class="hljs-variable">$CONF</span>)
-<span class="hljs-keyword">if</span> [ - z <span class="hljs-string">&quot;<span class="hljs-variable">$PID</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
+PID=$(awk -F<span class="hljs-string">&#x27;[; ]+&#x27;</span> <span class="hljs-string">&#x27;/^[^#]/&#123;if($0~/pid;/)print $2&#125;&#x27;</span> <span class="hljs-variable">$CONF</span>)
+<span class="hljs-keyword">if</span> [ -z <span class="hljs-string">&quot;<span class="hljs-variable">$PID</span>&quot;</span> ]; <span class="hljs-keyword">then</span>
   PID=<span class="hljs-variable">$WORD_DIR</span>/logs/nginx.pid
 <span class="hljs-keyword">else</span>
   PID=<span class="hljs-variable">$WORD_DIR</span>/<span class="hljs-variable">$PID</span>
 <span class="hljs-keyword">fi</span>
 
 <span class="hljs-function"><span class="hljs-title">stop</span></span>() &#123;
-  <span class="hljs-variable">$DAEMON</span> - s stop
+  <span class="hljs-variable">$DAEMON</span> -s stop
   sleep 1
-  [! - f <span class="hljs-variable">$PID</span> ] &amp;&amp; action <span class="hljs-string">&quot;* Stopping <span class="hljs-variable">$NAME</span>&quot;</span> /bin/<span class="hljs-literal">true</span> || action <span class="hljs-string">&quot;* Stopping <span class="hljs-variable">$NAME</span>&quot;</span> /bin/<span class="hljs-literal">false</span>
+  [! -f <span class="hljs-variable">$PID</span> ] &amp;&amp; action <span class="hljs-string">&quot;* Stopping <span class="hljs-variable">$NAME</span>&quot;</span> /bin/<span class="hljs-literal">true</span> || action <span class="hljs-string">&quot;* Stopping <span class="hljs-variable">$NAME</span>&quot;</span> /bin/<span class="hljs-literal">false</span>
 &#125;
 <span class="hljs-function"><span class="hljs-title">start</span></span>() &#123;
   <span class="hljs-variable">$DAEMON</span>
   sleep 1
-  [ - f <span class="hljs-variable">$PID</span> ] &amp;&amp; action <span class="hljs-string">&quot;* Starting <span class="hljs-variable">$NAME</span>&quot;</span> /bin/<span class="hljs-literal">true</span> || action <span class="hljs-string">&quot;* Starting <span class="hljs-variable">$NAME</span>&quot;</span> /bin/<span class="hljs-literal">false</span>
+  [ -f <span class="hljs-variable">$PID</span> ] &amp;&amp; action <span class="hljs-string">&quot;* Starting <span class="hljs-variable">$NAME</span>&quot;</span> /bin/<span class="hljs-literal">true</span> || action <span class="hljs-string">&quot;* Starting <span class="hljs-variable">$NAME</span>&quot;</span> /bin/<span class="hljs-literal">false</span>
 &#125;
 <span class="hljs-function"><span class="hljs-title">reload</span></span>() &#123;
-  <span class="hljs-variable">$DAEMON</span> - s reload
+  <span class="hljs-variable">$DAEMON</span> -s reload
 &#125;
 <span class="hljs-function"><span class="hljs-title">test_config</span></span>() &#123;
-  <span class="hljs-variable">$DAEMON</span> - t
+  <span class="hljs-variable">$DAEMON</span> -t
 &#125;
 
 <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> <span class="hljs-keyword">in</span>
   start)
-  <span class="hljs-keyword">if</span> [! - f <span class="hljs-variable">$PID</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [! -f <span class="hljs-variable">$PID</span> ]; <span class="hljs-keyword">then</span>
     start
   <span class="hljs-keyword">else</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> is running...&quot;</span>
@@ -7953,7 +7949,7 @@ PID=$(awk - F<span class="hljs-string">&#x27;[; ]+&#x27;</span> <span class="hlj
   <span class="hljs-keyword">fi</span>
   ;;
   stop)
-  <span class="hljs-keyword">if</span> [ - f <span class="hljs-variable">$PID</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [ -f <span class="hljs-variable">$PID</span> ]; <span class="hljs-keyword">then</span>
     stop
   <span class="hljs-keyword">else</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> not running!&quot;</span>
@@ -7961,7 +7957,7 @@ PID=$(awk - F<span class="hljs-string">&#x27;[; ]+&#x27;</span> <span class="hlj
   <span class="hljs-keyword">fi</span>
   ;;
   restart)
-  <span class="hljs-keyword">if</span> [! - f <span class="hljs-variable">$PID</span> ]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">if</span> [! -f <span class="hljs-variable">$PID</span> ]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> not running!&quot;</span>
     start
   <span class="hljs-keyword">else</span>
@@ -7976,7 +7972,7 @@ PID=$(awk - F<span class="hljs-string">&#x27;[; ]+&#x27;</span> <span class="hlj
   test_config
   ;;
   status)
-  [ - f <span class="hljs-variable">$PID</span> ] &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> is running...&quot;</span> || <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> not running!&quot;</span>
+  [ -f <span class="hljs-variable">$PID</span> ] &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> is running...&quot;</span> || <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$NAME</span> not running!&quot;</span>
   ;;
   *)
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Usage: $ 0 &#123;start|stop|restart|reload|testconfig|status&#125;&quot;</span>
@@ -7996,7 +7992,7 @@ HOST_FILE=host
     PORT=$(awk - v NAME=<span class="hljs-variable">$&#123;NAME&#125;</span> <span class="hljs-string">&#x27;$1==NAME&#123;print $4&#125;&#x27;</span> <span class="hljs-variable">$HOST_FILE</span>)
     <span class="hljs-keyword">if</span> [ <span class="hljs-variable">$IP</span> ]; <span class="hljs-keyword">then</span>
       <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Name: <span class="hljs-variable">$NAME</span>, IP: <span class="hljs-variable">$IP</span>&quot;</span>
-      ssh - o StrictHostKeyChecking=no - p <span class="hljs-variable">$PORT</span> - i id_rsa <span class="hljs-variable">$USER</span>@<span class="hljs-variable">$IP</span> <span class="hljs-comment"># 密钥登录</span>
+      ssh -o StrictHostKeyChecking=no -p <span class="hljs-variable">$PORT</span> -i id_rsa <span class="hljs-variable">$USER</span>@<span class="hljs-variable">$IP</span> <span class="hljs-comment"># 密钥登录</span>
       <span class="hljs-built_in">break</span>
     <span class="hljs-keyword">else</span>
       <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Input error, Please enter again!&quot;</span>
@@ -8006,12 +8002,12 @@ HOST_FILE=host
 <span class="hljs-keyword">done</span></code></pre>
 
 <h2 id="12-21-FTP-下载文件"><a href="#12-21-FTP-下载文件" class="headerlink" title="12.21 FTP 下载文件"></a>12.21 FTP 下载文件</h2><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
-<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$#</span> - ne 1 ]; <span class="hljs-keyword">then</span>
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$#</span> -ne 1 ]; <span class="hljs-keyword">then</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Usage: <span class="hljs-variable">$0</span> filename&quot;</span>
 <span class="hljs-keyword">fi</span>
 dir=$(dirname <span class="hljs-variable">$1</span>)
 file=$(basename <span class="hljs-variable">$1</span>)
-ftp - n - v &lt;&lt; EOF <span class="hljs-comment"># - n 自动登录</span>
+ftp -n -v &lt;&lt; EOF <span class="hljs-comment"># -n 自动登录</span>
 open 192.168.1.10
 user admin adminpass
 binary <span class="hljs-comment"># 设置ftp传输模式为二进制，避免MD5值不同或.tar.gz压缩包格式错误</span>
@@ -8024,18 +8020,18 @@ SUM=0
 MIN=0
 MAX=100
 
-<span class="hljs-keyword">while</span> [ <span class="hljs-variable">$COUNT</span> - le 5 ]; <span class="hljs-keyword">do</span>
-  <span class="hljs-built_in">read</span> - p <span class="hljs-string">&quot;请输入 1 - 10 个整数：&quot;</span> INT
+<span class="hljs-keyword">while</span> [ <span class="hljs-variable">$COUNT</span> -le 5 ]; <span class="hljs-keyword">do</span>
+  <span class="hljs-built_in">read</span> -p <span class="hljs-string">&quot;请输入 1 - 10 个整数：&quot;</span> INT
   <span class="hljs-keyword">if</span> [[! <span class="hljs-variable">$INT</span> =~ ^[0-9]+$ ]]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;输入必须是整数！&quot;</span>
     <span class="hljs-built_in">exit</span> 1
-  <span class="hljs-keyword">elif</span> [[ <span class="hljs-variable">$INT</span> - gt 100 ]]; <span class="hljs-keyword">then</span>
+  <span class="hljs-keyword">elif</span> [[ <span class="hljs-variable">$INT</span> -gt 100 ]]; <span class="hljs-keyword">then</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;输入必须是 100 以内！&quot;</span>
     <span class="hljs-built_in">exit</span> 1
   <span class="hljs-keyword">fi</span>
 SUM=$((<span class="hljs-variable">$SUM</span>+<span class="hljs-variable">$INT</span>))
-[ <span class="hljs-variable">$MIN</span> - lt <span class="hljs-variable">$INT</span> ] &amp;&amp; MIN=<span class="hljs-variable">$INT</span>
-[ <span class="hljs-variable">$MAX</span> - gt <span class="hljs-variable">$INT</span> ] &amp;&amp; MAX=<span class="hljs-variable">$INT</span>
+[ <span class="hljs-variable">$MIN</span> -lt <span class="hljs-variable">$INT</span> ] &amp;&amp; MIN=<span class="hljs-variable">$INT</span>
+[ <span class="hljs-variable">$MAX</span> -gt <span class="hljs-variable">$INT</span> ] &amp;&amp; MAX=<span class="hljs-variable">$INT</span>
 <span class="hljs-built_in">let</span> COUNT++
 <span class="hljs-keyword">done</span>
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;SUM: <span class="hljs-variable">$SUM</span>&quot;</span>
@@ -8077,7 +8073,7 @@ article_1.html article_2.html article_3.html</code></pre>
 <span class="hljs-keyword">done</span>
 
 方法 2 ：
-<span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> $(find. - maxdepth 1 - name <span class="hljs-string">&quot;*html&quot;</span>); <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span> file <span class="hljs-keyword">in</span> $(find. -maxdepth 1 -name <span class="hljs-string">&quot;*html&quot;</span>); <span class="hljs-keyword">do</span>
   mv <span class="hljs-variable">$file</span> bbs_<span class="hljs-variable">$&#123;file#*_&#125;</span>
 <span class="hljs-keyword">done</span>
 
@@ -8085,15 +8081,15 @@ article_1.html article_2.html article_3.html</code></pre>
 <span class="hljs-comment"># rename article bbs *.html</span></code></pre>
 
 <h2 id="12-25-统计当前目录中以-html-结尾的文件总大小"><a href="#12-25-统计当前目录中以-html-结尾的文件总大小" class="headerlink" title="12.25 统计当前目录中以 .html 结尾的文件总大小"></a>12.25 统计当前目录中以 .html 结尾的文件总大小</h2><pre><code class="hljs bash">方法 1 ：
-<span class="hljs-comment"># find. - name &quot;*.html&quot; - maxdepth 1 - exec du - b &#123;&#125; \; |awk &#x27;&#123;sum+=$1&#125;END&#123;print sum&#125;&#x27;</span>
+<span class="hljs-comment"># find. -name &quot;*.html&quot; -maxdepth 1 -exec du -b &#123;&#125; \; |awk &#x27;&#123;sum+=$1&#125;END&#123;print sum&#125;&#x27;</span>
 
 方法 2 ：
-<span class="hljs-keyword">for</span> size <span class="hljs-keyword">in</span> $(ls - l *.html |awk <span class="hljs-string">&#x27;&#123;print $5&#125;&#x27;</span>); <span class="hljs-keyword">do</span>
+<span class="hljs-keyword">for</span> size <span class="hljs-keyword">in</span> $(ls -l *.html |awk <span class="hljs-string">&#x27;&#123;print $5&#125;&#x27;</span>); <span class="hljs-keyword">do</span>
   sum=$((<span class="hljs-variable">$sum</span>+<span class="hljs-variable">$size</span>))
 <span class="hljs-keyword">done</span>
 <span class="hljs-built_in">echo</span> <span class="hljs-variable">$sum</span>
 递归统计：
-<span class="hljs-comment"># find. - name &quot;*.html&quot; - exec du - k &#123;&#125; \; |awk &#x27;&#123;sum+=$1&#125;END&#123;print sum&#125;&#x27;</span></code></pre>
+<span class="hljs-comment"># find. -name &quot;*.html&quot; -exec du -k &#123;&#125; \; |awk &#x27;&#123;sum+=$1&#125;END&#123;print sum&#125;&#x27;</span></code></pre>
 
 <h2 id="12-26-扫描主机端口状态"><a href="#12-26-扫描主机端口状态" class="headerlink" title="12.26 扫描主机端口状态"></a>12.26 扫描主机端口状态</h2><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 HOST=<span class="hljs-variable">$1</span>
@@ -8277,26 +8273,26 @@ NEW_INFO=new_info
   <span class="hljs-keyword">case</span> <span class="hljs-variable">$option</span> <span class="hljs-keyword">in</span>
   f)
     FILE=<span class="hljs-variable">$OPTARG</span>
-    [! - f <span class="hljs-variable">$FILE</span> ] &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$FILE</span> File not exist!&quot;</span> &amp;&amp; <span class="hljs-built_in">exit</span>
+    [! -f <span class="hljs-variable">$FILE</span> ] &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$FILE</span> File not exist!&quot;</span> &amp;&amp; <span class="hljs-built_in">exit</span>
   ;;
   n)
-    sed - n <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;OPTARG&#125;</span>p&quot;</span> <span class="hljs-variable">$FILE</span>
+    sed -n <span class="hljs-string">&quot;<span class="hljs-variable">$&#123;OPTARG&#125;</span>p&quot;</span> <span class="hljs-variable">$FILE</span>
   ;;
   ?)
-    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Usage: <span class="hljs-variable">$0</span> - f &lt;file_path&gt; - n &lt;line_number&gt;&quot;</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Usage: <span class="hljs-variable">$0</span> -f &lt;file_path&gt; -n &lt;line_number&gt;&quot;</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;-f, --file specified file&quot;</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;-n, --line-number print specified line&quot;</span>
     <span class="hljs-built_in">exit</span> 1
   ;;
   <span class="hljs-keyword">esac</span>
 <span class="hljs-keyword">done</span>
-<span class="hljs-comment"># bash test.sh - h</span>
-Usage: test.sh - f &lt;file_path&gt; - n &lt;line_number&gt;
+<span class="hljs-comment"># bash test.sh -h</span>
+Usage: test.sh -f &lt;file_path&gt; -n &lt;line_number&gt;
 
-- f, --file specified file
-- n, --line-number <span class="hljs-built_in">print</span> specified line
+-f, --file specified file
+-n, --line-number <span class="hljs-built_in">print</span> specified line
 
-<span class="hljs-comment"># bash test.sh - f /etc/passwd - n 1</span>
+<span class="hljs-comment"># bash test.sh -f /etc/passwd -n 1</span>
 root:x:0:0:root:/root:/bin/bash</code></pre>
 
 <p>思路扩展：限定脚本参数，将参数保存变量，下面调用变量继续操作。</p>
