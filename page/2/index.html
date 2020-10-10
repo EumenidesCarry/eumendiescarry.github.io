@@ -187,6 +187,62 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/07/24/tcp_udp/" target="_self">
+          <img src="https://w.wallhaven.cc/full/42/wallhaven-42j6q6.jpg" srcset="/img/loading.gif" alt="TCP UDP 的区别">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        <a href="/2020/07/24/tcp_udp/">TCP UDP 的区别</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/07/24/tcp_udp/">
+          
+          
+            
+          
+          TCP可靠传输、面向连接：速度慢，但是准确性高 
+可靠传输客户端收到报文后，需要发送 TCP 的 ACK 确认包，并告诉服务端接下来要收到的报文的序号。同时该过程确定了两者传输的 “Windows 窗口”大小。
+面向连接如果某应用层协议的四层使用 TCP 端口，那么在正式的数据报文传输之前，需要先建立完连接后才可以传输数据。
+建立连接：三次握手—面向连接的高层协议在正式传输数据之前需要先建立连接，
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-07-24 10:07" pubdate>
+              2020-07-24
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/07/22/ip_netmask/" target="_self">
           <img src="https://w.wallhaven.cc/full/0j/wallhaven-0jz7gm.jpg" srcset="/img/loading.gif" alt="IP 子网划分">
         </a>
@@ -727,67 +783,6 @@ NAME=eth0           &lt;---
               <a href="/tags/Linux/">Linux</a>
             
               <a href="/tags/kernel/">kernel</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/02/11/linux_fs/" target="_self">
-          <img src="https://th.wallhaven.cc/small/2e/2e3z7x.jpg" srcset="/img/loading.gif" alt="Linux 文件系统的选择">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        <a href="/2020/02/11/linux_fs/">Linux 文件系统的选择</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/02/11/linux_fs/">
-          
-          
-            
-          
-          文件系统类型
-ext2：linux 下标准文件系统，无日志记录功能。
-ext3：在 ext2 基础上增加了日志记录功能，仅支持32000个子目录。
-exit4：ext4 的后续版本，linux 2.6.28 内核开始支持。无限子目录支持，快速 fsck。
-xfs：高性能文件系统，linux3.10 内核开始默认支持。
-
-
-查看 linux 内核版本[root@blog ~]# uname -a
-L
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-02-11 18:07" pubdate>
-              2020-02-11
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Linux/">Linux</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Linux/">Linux</a>
             
           </div>
         

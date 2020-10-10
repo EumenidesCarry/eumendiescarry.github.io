@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Zabbix 5.0 LTS 添加主机及监控</title>
+    <link href="/2020/10/10/zabbix_host/"/>
+    <url>/2020/10/10/zabbix_host/</url>
+    
+    <content type="html"><![CDATA[<p>服务端及客户端安装配置文档：<a href="https://ecarry.cc/2020/08/27/zabbix_install/">在 CentOS 7 下 搭建 Zabbix 5.0 LTS 日志</a></p><hr>]]></content>
+    
+    
+    <categories>
+      
+      <category>Zabbix</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Zabbix</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Shell 从入门到精通</title>
     <link href="/2020/09/28/linux_shell/"/>
     <url>/2020/09/28/linux_shell/</url>
