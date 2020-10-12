@@ -177,7 +177,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-12 20:37" pubdate>
+      <time datetime="2020-10-12 21:04" pubdate>
         2020年10月12日 晚上
       </time>
     </span>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.3k 字
+      3.8k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      47
+      53
        分钟
     </span>
   
@@ -605,14 +605,25 @@ IMAGE               CREATED             CREATED BY                              
 &lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  CMD [&quot;bash&quot;]                 0B                  
 &lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span> ADD file:e7407f2294ad23634…   69.2MB</code></pre>
 
-<p>镜像文件分层结构的好处–<strong>共享资源</strong></p>
-<p>比如：有多个镜像都从相同的 base 镜像构建而来，那么宿主机只需在磁盘上保存一份base镜像，同时内存中也只需加载一份 base 镜像，就可以为所有容器服务了。而且镜像的每一层都可以被共享。</p>
-<h2 id="4-2-镜像与容器的联系"><a href="#4-2-镜像与容器的联系" class="headerlink" title="4.2 镜像与容器的联系"></a>4.2 镜像与容器的联系</h2><p><img src="/img/Docker/Docker_4.jpg" srcset="/img/loading.gif"></p>
+<h3 id="4-1-1-UnionFS"><a href="#4-1-1-UnionFS" class="headerlink" title="4.1.1 UnionFS"></a>4.1.1 UnionFS</h3><p>UnionFS（联合文件系统）：Union文件系统（UnionFS）是一种<strong>分层</strong>、<strong>轻量级</strong>并且<strong>高性能</strong>的文件系统，它支持对文件系统的修改作为<font color=red>一次提交来一层层的叠加</font>，同时可以将不同目录挂载到同一个虚拟文件系统下(unite several directories into a single virtual filesystem)。Union 文件系统是 Docker 镜像的基础。镜像可以通过分层来进行继承，基于基础镜像（没有父镜像），可以制作各种具体的应用镜像。</p>
+<p><strong>特性</strong>：一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统，联合加载会把各层文件系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录</p>
+<p>镜像文件分层结构的好处–<strong>共享资源</strong>。比如：有多个镜像都从相同的 base 镜像构建而来，那么宿主机只需在磁盘上保存一份base镜像，同时内存中也只需加载一份 base 镜像，就可以为所有容器服务了。而且镜像的每一层都可以被共享。</p>
+<h3 id="4-1-2-Docker-镜像加载原理"><a href="#4-1-2-Docker-镜像加载原理" class="headerlink" title="4.1.2 Docker 镜像加载原理"></a>4.1.2 Docker 镜像加载原理</h3><p>docker的镜像实际上由一层一层的文件系统组成，这种层级的文件系统UnionFS。</p>
+<p>bootfs(boot file system)主要包含 <strong>bootloader</strong> 和 <strong>kernel</strong> , <strong>bootloader</strong> 主要是引导加载 kernel, Linux 刚启动时会加载 bootfs 文件系统，<font color=red>在 Docker 镜像的最底层是 bootfs</font>。这一层与我们典型的 Linux/Unix 系统是一样的，包含 boot 加载器和内核。当 boot 加载完成之后整个内核就都在内存中了，此时内存的使用权已由 bootfs 转交给内核，此时系统也会卸载 bootfs。</p>
+<p>rootfs (root file system) ，在 bootfs 之上。包含的就是典型 Linux 系统中的 /dev, /proc, /bin, /etc 等标准目录和文件。rootfs 就是各种不同的操作系统发行版，比如 Ubuntu，Centos 等等。 </p>
+<p><img src="/img/Docker/Docker_5.jpg" srcset="/img/loading.gif"></p>
+<h2 id="4-2-镜像特点"><a href="#4-2-镜像特点" class="headerlink" title="4.2 镜像特点"></a>4.2 镜像特点</h2><p>Docker 镜像都是只读的，当容器启动时，一个新的可写层被加载到镜像的顶部。这一层通常被称为“容器层”，“容器层”下都叫“镜像层”。</p>
+<h2 id="4-3-镜像与容器的联系"><a href="#4-3-镜像与容器的联系" class="headerlink" title="4.3 镜像与容器的联系"></a>4.3 镜像与容器的联系</h2><p><img src="/img/Docker/Docker_4.jpg" srcset="/img/loading.gif"></p>
 <p>如图，容器其实是在镜像的最上面加了一层读写层，在运行容器里文件改动时，会先从镜像里要写的文件复制到容器自己的文件系统中（读写层）。如果容器删除了，最上面的读写层也就删除了，改动也就丢失了。所以无论多少个容器共享一个镜像，所做的写操作都是从镜像的文件系统中复制过来操作的，<font color=red>并不会修改镜像的源文件</font>，这种方式<font color=red>提高磁盘利用率</font>。<br>若想持久化这些改动，可以通过 <code>docker commit</code> 将容器保存成一个新镜像。</p>
 <ul>
 <li>一个镜像创建多个容器</li>
 <li>镜像增量式存储</li>
 <li>创建的容器里面修改不会影响到镜像</li>
+</ul>
+<h2 id="4-4-镜像-commit-操作"><a href="#4-4-镜像-commit-操作" class="headerlink" title="4.4 镜像 commit 操作"></a>4.4 镜像 commit 操作</h2><p><code>docker commit [options]</code> ：提交容器副本使之成为一个新的镜像</p>
+<ul>
+<li>-m ：提交的描述信息</li>
+<li>-a ：作者</li>
 </ul>
 <h1 id="五、-Docker-容器数据卷"><a href="#五、-Docker-容器数据卷" class="headerlink" title="五、 Docker 容器数据卷"></a>五、 Docker 容器数据卷</h1><h1 id="六、-DockerFile"><a href="#六、-DockerFile" class="headerlink" title="六、 DockerFile"></a>六、 DockerFile</h1><h1 id="七、-Docker-安装常用服务"><a href="#七、-Docker-安装常用服务" class="headerlink" title="七、 Docker 安装常用服务"></a>七、 Docker 安装常用服务</h1>
             </div>
