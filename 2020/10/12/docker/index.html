@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-12 08:42" pubdate>
-        2020年10月12日 早上
+      <time datetime="2020-10-12 20:22" pubdate>
+        2020年10月12日 晚上
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      181 字
+      3.2k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      46
        分钟
     </span>
   
@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月12日 早上
+                  本文最后更新于：2020年10月12日 晚上
                 
               </p>
             
@@ -252,16 +252,367 @@
 <li>Docker Registry：镜像仓库</li>
 </ul>
 <p><img src="https://docs.docker.com/engine/images/architecture.svg" srcset="/img/loading.gif"></p>
-<h2 id="1-3-应用场景"><a href="#1-3-应用场景" class="headerlink" title="1.3 应用场景"></a>1.3 应用场景</h2><ul>
+<h2 id="1-3-容器-VS-VM"><a href="#1-3-容器-VS-VM" class="headerlink" title="1.3 容器 VS VM"></a>1.3 容器 VS VM</h2><p><img src="/img/Docker/Docker_1.jpg" srcset="/img/loading.gif"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>容器</th>
+<th>VM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>启动速度</td>
+<td>秒级</td>
+<td>分钟级</td>
+</tr>
+<tr>
+<td>运行性能</td>
+<td>接近原生</td>
+<td>5%左右损失</td>
+</tr>
+<tr>
+<td>磁盘占用</td>
+<td>MB</td>
+<td>GB</td>
+</tr>
+<tr>
+<td>数量</td>
+<td>成百上千</td>
+<td>一般几十台</td>
+</tr>
+<tr>
+<td>隔离性</td>
+<td>进程隔离</td>
+<td>系统级（彻底）</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>只支持 Linux</td>
+<td>所有</td>
+</tr>
+<tr>
+<td>封装进度</td>
+<td>只打包项目代码和依赖关系，共享宿主机内核</td>
+<td>完整的操作系统</td>
+</tr>
+</tbody></table>
+<h2 id="1-4-应用场景"><a href="#1-4-应用场景" class="headerlink" title="1.4 应用场景"></a>1.4 应用场景</h2><ul>
 <li>应用程序打包和发布</li>
 <li>应用程序隔离</li>
 <li>持续的集成</li>
 <li>部署微服务</li>
 <li>快速搭建测试环境</li>
 <li>提供 PaaS（Platform as a Service），指平台即服务</li>
-<li></li>
 </ul>
-<h1 id="二、-Docker-安装"><a href="#二、-Docker-安装" class="headerlink" title="二、 Docker 安装"></a>二、 Docker 安装</h1><h1 id="三、-Docker-常用命令"><a href="#三、-Docker-常用命令" class="headerlink" title="三、 Docker 常用命令"></a>三、 Docker 常用命令</h1><h1 id="四、-Docker-镜像"><a href="#四、-Docker-镜像" class="headerlink" title="四、 Docker 镜像"></a>四、 Docker 镜像</h1><h1 id="五、-Docker-容器数据卷"><a href="#五、-Docker-容器数据卷" class="headerlink" title="五、 Docker 容器数据卷"></a>五、 Docker 容器数据卷</h1><h1 id="六、-DockerFile"><a href="#六、-DockerFile" class="headerlink" title="六、 DockerFile"></a>六、 DockerFile</h1><h1 id="七、-Docker-安装常用服务"><a href="#七、-Docker-安装常用服务" class="headerlink" title="七、 Docker 安装常用服务"></a>七、 Docker 安装常用服务</h1>
+<h1 id="二、-Docker-安装"><a href="#二、-Docker-安装" class="headerlink" title="二、 Docker 安装"></a>二、 Docker 安装</h1><h2 id="2-1-CentOS-7-安装（使用-yum-安装）"><a href="#2-1-CentOS-7-安装（使用-yum-安装）" class="headerlink" title="2.1 CentOS 7 安装（使用 yum 安装）"></a>2.1 CentOS 7 安装（使用 yum 安装）</h2><h3 id="官方安装手册"><a href="#官方安装手册" class="headerlink" title="官方安装手册"></a>官方安装手册</h3><p>地址：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/">https://docs.docker.com/engine/install/centos/</a></p>
+<h3 id="阿里源安装手册（推荐）"><a href="#阿里源安装手册（推荐）" class="headerlink" title="阿里源安装手册（推荐）"></a>阿里源安装手册（推荐）</h3><p>使用<a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/docker-ce?spm=a2c6h.13651102.0.0.3e221b11q3kwWA">阿里源</a>安装 Docker</p>
+<p>删除旧版本的 docker：</p>
+<pre><code class="hljs latex"><span class="hljs-formula">$ sudo yum remove docker <span class="hljs-tag">\</span></span>
+<span class="hljs-formula">                  docker-client <span class="hljs-tag">\</span></span>
+<span class="hljs-formula">                  docker-client-latest <span class="hljs-tag">\</span></span>
+<span class="hljs-formula">                  docker-common <span class="hljs-tag">\</span></span>
+<span class="hljs-formula">                  docker-latest <span class="hljs-tag">\</span></span>
+<span class="hljs-formula">                  docker-latest-logrotate <span class="hljs-tag">\</span></span>
+<span class="hljs-formula">                  docker-logrotate <span class="hljs-tag">\</span></span>
+<span class="hljs-formula">                  docker-engine</span></code></pre>
+
+<p>安装步骤：</p>
+<pre><code class="hljs vala"><span class="hljs-meta"># step 1: 安装必要的一些系统工具</span>
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+<span class="hljs-meta"># Step 2: 添加软件源信息</span>
+sudo yum-config-manager --add-repo https:<span class="hljs-comment">//mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span>
+<span class="hljs-meta"># Step 3: 更新 yum 软件包索引并安装Docker-CE</span>
+sudo yum makecache fast
+sudo yum -y install docker-ce
+<span class="hljs-meta"># Step 4: 开启Docker服务</span>
+sudo service docker start
+
+<span class="hljs-meta"># 注意：</span>
+<span class="hljs-meta"># 官方软件源默认启用了最新的软件，您可以通过编辑软件源的方式获取各个版本的软件包。例如官方并没有将测试版本的软件源置为可用，您可以通过以下方式开启。同理可以开启各种测试版本等。</span>
+<span class="hljs-meta"># vim /etc/yum.repos.d/docker-ee.repo</span>
+<span class="hljs-meta">#   将[docker-ce-test]下方的enabled=0修改为enabled=1</span>
+<span class="hljs-meta">#</span>
+<span class="hljs-meta"># 安装指定版本的Docker-CE:</span>
+<span class="hljs-meta"># Step 1: 查找Docker-CE的版本:</span>
+<span class="hljs-meta"># yum list docker-ce.x86_64 --showduplicates | sort -r</span>
+<span class="hljs-meta">#   Loading mirror speeds from cached hostfile</span>
+<span class="hljs-meta">#   Loaded plugins: branch, fastestmirror, langpacks</span>
+<span class="hljs-meta">#   docker-ce.x86_64            17.03.1.ce-1.el7.centos            docker-ce-stable</span>
+<span class="hljs-meta">#   docker-ce.x86_64            17.03.1.ce-1.el7.centos            @docker-ce-stable</span>
+<span class="hljs-meta">#   docker-ce.x86_64            17.03.0.ce-1.el7.centos            docker-ce-stable</span>
+<span class="hljs-meta">#   Available Packages</span>
+<span class="hljs-meta"># Step2: 安装指定版本的Docker-CE: (VERSION例如上面的17.03.0.ce.1-1.el7.centos)</span>
+<span class="hljs-meta"># sudo yum -y install docker-ce-[VERSION]</span></code></pre>
+
+<p>校验安装：</p>
+<pre><code class="hljs yaml">[<span class="hljs-string">root@test</span> <span class="hljs-string">~</span>]<span class="hljs-comment"># docker version</span>
+<span class="hljs-attr">Client:</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Engine</span> <span class="hljs-bullet">-</span> <span class="hljs-string">Community</span>
+ <span class="hljs-attr">Version:</span>           <span class="hljs-number">19.03</span><span class="hljs-number">.13</span>
+ <span class="hljs-attr">API version:</span>       <span class="hljs-number">1.40</span>
+ <span class="hljs-attr">Go version:</span>        <span class="hljs-string">go1.13.15</span>
+ <span class="hljs-attr">Git commit:</span>        <span class="hljs-string">4484c46d9d</span>
+ <span class="hljs-attr">Built:</span>             <span class="hljs-string">Wed</span> <span class="hljs-string">Sep</span> <span class="hljs-number">16</span> <span class="hljs-number">17</span><span class="hljs-string">:03:45</span> <span class="hljs-number">2020</span>
+ <span class="hljs-attr">OS/Arch:</span>           <span class="hljs-string">linux/amd64</span>
+ <span class="hljs-attr">Experimental:</span>      <span class="hljs-literal">false</span>
+
+<span class="hljs-attr">Server:</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Engine</span> <span class="hljs-bullet">-</span> <span class="hljs-string">Community</span>
+ <span class="hljs-attr">Engine:</span>
+  <span class="hljs-attr">Version:</span>          <span class="hljs-number">19.03</span><span class="hljs-number">.13</span>
+  <span class="hljs-attr">API version:</span>      <span class="hljs-number">1.40</span> <span class="hljs-string">(minimum</span> <span class="hljs-string">version</span> <span class="hljs-number">1.12</span><span class="hljs-string">)</span>
+  <span class="hljs-attr">Go version:</span>       <span class="hljs-string">go1.13.15</span>
+  <span class="hljs-attr">Git commit:</span>       <span class="hljs-string">4484c46d9d</span>
+  <span class="hljs-attr">Built:</span>            <span class="hljs-string">Wed</span> <span class="hljs-string">Sep</span> <span class="hljs-number">16</span> <span class="hljs-number">17</span><span class="hljs-string">:02:21</span> <span class="hljs-number">2020</span>
+  <span class="hljs-attr">OS/Arch:</span>          <span class="hljs-string">linux/amd64</span>
+  <span class="hljs-attr">Experimental:</span>     <span class="hljs-literal">false</span>
+ <span class="hljs-attr">containerd:</span>
+  <span class="hljs-attr">Version:</span>          <span class="hljs-number">1.3</span><span class="hljs-number">.7</span>
+  <span class="hljs-attr">GitCommit:</span>        <span class="hljs-string">8fba4e9a7d01810a393d5d25a3621dc101981175</span>
+ <span class="hljs-attr">runc:</span>
+  <span class="hljs-attr">Version:</span>          <span class="hljs-number">1.0</span><span class="hljs-number">.0</span><span class="hljs-string">-rc10</span>
+  <span class="hljs-attr">GitCommit:</span>        <span class="hljs-string">dc9208a3303feef5b3839f4323d9beb36df0a9dd</span>
+ <span class="hljs-attr">docker-init:</span>
+  <span class="hljs-attr">Version:</span>          <span class="hljs-number">0.18</span><span class="hljs-number">.0</span>
+  <span class="hljs-attr">GitCommit:</span>        <span class="hljs-string">fec3683</span></code></pre>
+
+<p>运行 <strong>HELLO WORLD</strong>:</p>
+<pre><code class="hljs livescript">[root@test ~]<span class="hljs-comment"># docker run hello-world</span>
+<span class="hljs-comment">#由于本地没有 hello-world 这个镜像，所以会下载一个 hello-world 的镜像，并在容器中运行</span>
+Unable <span class="hljs-keyword">to</span> find image <span class="hljs-string">&#x27;hello-world:latest&#x27;</span> locally
+latest: Pulling <span class="hljs-keyword">from</span> library/hello-world
+<span class="hljs-number">0e</span>03bdcc26d7: Pull complete 
+Digest: sha256:<span class="hljs-number">4cf</span>9c47f86df71d48364001ede3a4fcd85ae80ce02ebad74156906caff5378bc
+Status: Downloaded newer image <span class="hljs-keyword">for</span> hello-world:latest
+
+<span class="hljs-comment">#上面安装，下面运行</span>
+Hello <span class="hljs-keyword">from</span> Docker!
+This message shows <span class="hljs-literal">that</span> your installation appears <span class="hljs-keyword">to</span> be working correctly.
+
+To generate <span class="hljs-built_in">this</span> message, Docker took the following steps:
+ <span class="hljs-number">1.</span> The Docker client contacted the Docker daemon.
+ <span class="hljs-number">2.</span> The Docker daemon pulled the <span class="hljs-string">&quot;hello-world&quot;</span> image <span class="hljs-keyword">from</span> the Docker Hub.
+    (amd64)
+ <span class="hljs-number">3.</span> The Docker daemon created a <span class="hljs-keyword">new</span> container <span class="hljs-keyword">from</span> <span class="hljs-literal">that</span> image which runs the
+    executable <span class="hljs-literal">that</span> produces the output you are currently reading.
+ <span class="hljs-number">4.</span> The Docker daemon streamed <span class="hljs-literal">that</span> output <span class="hljs-keyword">to</span> the Docker client, which sent <span class="hljs-literal">it</span>
+    <span class="hljs-keyword">to</span> your terminal.
+
+To <span class="hljs-keyword">try</span> something more ambitious, you can run an Ubuntu container with:
+ $ docker run -<span class="hljs-literal">it</span> ubuntu bash
+
+Share images, automate workflows, <span class="hljs-keyword">and</span> more <span class="hljs-keyword">with</span> a free Docker ID:
+ https:<span class="hljs-regexp">//hub.docker.com/</span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp">For more examples and ideas, visit:</span>
+<span class="hljs-regexp"> https://</span>docs.docker.com/get-started/</code></pre>
+
+<p><strong>run</strong> 启动流程：</p>
+<p><img src="/img/Docker/Docker_2.jpg" srcset="/img/loading.gif"></p>
+<h2 id="2-2-获取镜像"><a href="#2-2-获取镜像" class="headerlink" title="2.2 获取镜像"></a>2.2 获取镜像</h2><h3 id="Docker-Hub-官方镜像"><a href="#Docker-Hub-官方镜像" class="headerlink" title="Docker Hub 官方镜像"></a>Docker Hub 官方镜像</h3><p>官方镜像地址：<a target="_blank" rel="noopener" href="https://hub.docker.com/explore">https://hub.docker.com/explore</a></p>
+<h3 id="Docker-镜像加速"><a href="#Docker-镜像加速" class="headerlink" title="Docker 镜像加速"></a>Docker 镜像加速</h3><p>国内从 DockerHub 拉取镜像有时会遇到困难，此时可以配置镜像加速器。Docker 官方和国内很多云服务商都提供了国内加速器服务，例如：</p>
+<ul>
+<li>网易：<a target="_blank" rel="noopener" href="https://hub-mirror.c.163.com/">https://hub-mirror.c.163.com/</a></li>
+<li>阿里云：https://&lt;你的ID&gt;.mirror.aliyuncs.com</li>
+</ul>
+<p>阿里云镜像获取地址：<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors%EF%BC%8C%E7%99%BB%E5%BD%95%E5%90%8E%E5%8F%AF%E8%A7%81%E5%8A%A0%E9%80%9F%E5%9C%B0%E5%9D%80%E3%80%82">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors，登录后可见加速地址。</a></p>
+<p><img src="/img/Docker/Docker_3.jpg" srcset="/img/loading.gif"></p>
+<p>通过修改 <code>/etc/docker/daemon.json</code> 文件配置镜像加速器：</p>
+<pre><code class="hljs awk"><span class="hljs-comment">#-p 确保目录名称存在，不存在的就建一个。</span>
+sudo mkdir -p <span class="hljs-regexp">/etc/</span>docker
+<span class="hljs-comment">#下面加速二选一，如果效果不理想，试着切换</span>
+<span class="hljs-comment">#163加速</span>
+sudo tee <span class="hljs-regexp">/etc/</span>docker/daemon.json &lt;&lt;-<span class="hljs-string">&#x27;EOF&#x27;</span>
+&#123;
+  &#123;<span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;http://hub-mirror.c.163.com&quot;</span>] &#125;
+&#125;
+EOF
+<span class="hljs-comment">#阿里源加速</span>
+sudo tee <span class="hljs-regexp">/etc/</span>docker/daemon.json &lt;&lt;-<span class="hljs-string">&#x27;EOF&#x27;</span>
+&#123;
+  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://0hm4nl4c.mirror.aliyuncs.com&quot;</span>]
+&#125;
+EOF
+
+cat daemon.json 
+&#123;
+  <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://0hm4nl4c.mirror.aliyuncs.com&quot;</span>]
+&#125;
+sudo systemctl daemon-reload
+sudo systemctl restart docker</code></pre>
+
+<h1 id="三、-Docker-常用命令"><a href="#三、-Docker-常用命令" class="headerlink" title="三、 Docker 常用命令"></a>三、 Docker 常用命令</h1><h2 id="3-1-帮助命令"><a href="#3-1-帮助命令" class="headerlink" title="3.1 帮助命令"></a>3.1 帮助命令</h2><h3 id="3-1-1-docker-version"><a href="#3-1-1-docker-version" class="headerlink" title="3.1.1 docker version"></a>3.1.1 docker version</h3><pre><code class="hljs yaml">[<span class="hljs-string">root@test</span> <span class="hljs-string">~</span>]<span class="hljs-comment"># docker version</span>
+<span class="hljs-attr">Client:</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Engine</span> <span class="hljs-bullet">-</span> <span class="hljs-string">Community</span>
+ <span class="hljs-attr">Version:</span>           <span class="hljs-number">19.03</span><span class="hljs-number">.13</span>
+ <span class="hljs-attr">API version:</span>       <span class="hljs-number">1.40</span>
+ <span class="hljs-attr">Go version:</span>        <span class="hljs-string">go1.13.15</span>
+ <span class="hljs-attr">Git commit:</span>        <span class="hljs-string">4484c46d9d</span>
+ <span class="hljs-attr">Built:</span>             <span class="hljs-string">Wed</span> <span class="hljs-string">Sep</span> <span class="hljs-number">16</span> <span class="hljs-number">17</span><span class="hljs-string">:03:45</span> <span class="hljs-number">2020</span>
+ <span class="hljs-attr">OS/Arch:</span>           <span class="hljs-string">linux/amd64</span>
+ <span class="hljs-attr">Experimental:</span>      <span class="hljs-literal">false</span>
+
+<span class="hljs-attr">Server:</span> <span class="hljs-string">Docker</span> <span class="hljs-string">Engine</span> <span class="hljs-bullet">-</span> <span class="hljs-string">Community</span>
+ <span class="hljs-attr">Engine:</span>
+  <span class="hljs-attr">Version:</span>          <span class="hljs-number">19.03</span><span class="hljs-number">.13</span>
+  <span class="hljs-attr">API version:</span>      <span class="hljs-number">1.40</span> <span class="hljs-string">(minimum</span> <span class="hljs-string">version</span> <span class="hljs-number">1.12</span><span class="hljs-string">)</span>
+  <span class="hljs-attr">Go version:</span>       <span class="hljs-string">go1.13.15</span>
+  <span class="hljs-attr">Git commit:</span>       <span class="hljs-string">4484c46d9d</span>
+  <span class="hljs-attr">Built:</span>            <span class="hljs-string">Wed</span> <span class="hljs-string">Sep</span> <span class="hljs-number">16</span> <span class="hljs-number">17</span><span class="hljs-string">:02:21</span> <span class="hljs-number">2020</span>
+  <span class="hljs-attr">OS/Arch:</span>          <span class="hljs-string">linux/amd64</span>
+  <span class="hljs-attr">Experimental:</span>     <span class="hljs-literal">false</span>
+ <span class="hljs-attr">containerd:</span>
+  <span class="hljs-attr">Version:</span>          <span class="hljs-number">1.3</span><span class="hljs-number">.7</span>
+  <span class="hljs-attr">GitCommit:</span>        <span class="hljs-string">8fba4e9a7d01810a393d5d25a3621dc101981175</span>
+ <span class="hljs-attr">runc:</span>
+  <span class="hljs-attr">Version:</span>          <span class="hljs-number">1.0</span><span class="hljs-number">.0</span><span class="hljs-string">-rc10</span>
+  <span class="hljs-attr">GitCommit:</span>        <span class="hljs-string">dc9208a3303feef5b3839f4323d9beb36df0a9dd</span>
+ <span class="hljs-attr">docker-init:</span>
+  <span class="hljs-attr">Version:</span>          <span class="hljs-number">0.18</span><span class="hljs-number">.0</span>
+  <span class="hljs-attr">GitCommit:</span>        <span class="hljs-string">fec3683</span></code></pre>
+
+<h3 id="3-1-2-docker-info"><a href="#3-1-2-docker-info" class="headerlink" title="3.1.2 docker info"></a>3.1.2 docker info</h3><h3 id="3-1-3-docker-–help"><a href="#3-1-3-docker-–help" class="headerlink" title="3.1.3 docker –help"></a>3.1.3 docker –help</h3><h2 id="3-2-镜像命令"><a href="#3-2-镜像命令" class="headerlink" title="3.2 镜像命令"></a>3.2 镜像命令</h2><h3 id="3-2-1-docker-images"><a href="#3-2-1-docker-images" class="headerlink" title="3.2.1 docker images"></a>3.2.1 docker images</h3><p>显示本地镜像：</p>
+<pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>test ~]# docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              <span class="hljs-number">992e3</span>b7be046        <span class="hljs-number">6</span> days ago          <span class="hljs-number">133</span>MB
+hello-world         latest              bf756fb1ae65        <span class="hljs-number">9</span> months ago        <span class="hljs-number">13.3</span>kB</code></pre>
+<h4 id="options"><a href="#options" class="headerlink" title="options:"></a>options:</h4><ul>
+<li>-a ：列出本地所有镜像</li>
+<li>-q ：只显示镜像 ID</li>
+<li>–digests ：显示镜像的摘要信息</li>
+<li>–no-trunc ：显示完整的镜像信息</li>
+</ul>
+<h3 id="3-2-2-docker-search"><a href="#3-2-2-docker-search" class="headerlink" title="3.2.2 docker search"></a>3.2.2 docker search</h3><p><code>docker search 指定镜像名</code></p>
+<pre><code class="hljs routeros">[root@test ~]# docker search nginx
+NAME                               DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED
+nginx                              Official build of Nginx.                        13838               [OK]                
+jwilder/nginx-proxy                Automated Nginx reverse<span class="hljs-built_in"> proxy </span><span class="hljs-keyword">for</span> docker con…   1893                                    [OK]
+richarvey/nginx-php-fpm            Container running Nginx + PHP-FPM capable of…   790                                     [OK]
+linuxserver/nginx                  An Nginx container, brought <span class="hljs-keyword">to</span> you by LinuxS…   127                                     
+jc21/nginx-proxy-manager           Docker container <span class="hljs-keyword">for</span> managing Nginx<span class="hljs-built_in"> proxy </span>ho…   96                                      
+tiangolo/nginx-rtmp                Docker image with Nginx using the nginx-rtmp…   95                                      [OK]</code></pre>
+<h4 id="options-1"><a href="#options-1" class="headerlink" title="options:"></a>options:</h4><p>docker search [options] 镜像名字</p>
+<ul>
+<li>–no-trunc ：显示完整的镜像描述</li>
+<li>-s ：列出收藏数不小于指定值的镜像</li>
+<li>–automated ：只列出 automated build 类型镜像</li>
+</ul>
+<h3 id="3-2-3-docker-pull"><a href="#3-2-3-docker-pull" class="headerlink" title="3.2.3 docker pull"></a>3.2.3 docker pull</h3><p><code>docker pull 镜像名[:TAG]</code> ：下载镜像，不加 TAG 默认下载 latest</p>
+<pre><code class="hljs routeros">[root@test ~]# docker pull nginx
+Using<span class="hljs-built_in"> default </span>tag: latest
+latest: Pulling <span class="hljs-keyword">from</span> library/nginx</code></pre>
+
+<h3 id="3-2-4-docker-rmi"><a href="#3-2-4-docker-rmi" class="headerlink" title="3.2.4 docker rmi"></a>3.2.4 docker rmi</h3><p><code>docker rmi 镜像ID</code> ：删除镜像</p>
+<ul>
+<li>docker rmi -f 镜像ID ：删除单个</li>
+<li>docker rmi -f 镜像1ID 镜像2ID ：删除多个镜像</li>
+<li>docker rmi -f $(docker images -qa) ：删除所有镜像</li>
+</ul>
+<h2 id="3-3-容器命令"><a href="#3-3-容器命令" class="headerlink" title="3.3 容器命令"></a>3.3 容器命令</h2><p><font color=red>有镜像才能够创建容器</font>，下载 CentOS 镜像演示：<code>docker pull centos</code></p>
+<h3 id="3-3-1-新建并启动容器"><a href="#3-3-1-新建并启动容器" class="headerlink" title="3.3.1 新建并启动容器"></a>3.3.1 新建并启动容器</h3><p><code>docker run [options] image [command] [arg]</code></p>
+<h4 id="options-2"><a href="#options-2" class="headerlink" title="options"></a>options</h4><ul>
+<li>–name=”new name” ：为容器指定一个名称</li>
+<li>-d ：后台运行容器，并返回容器ID，也即启动守护式容器</li>
+<li>-i ：以交互模式运行容器，通常与 -t 同时使用</li>
+<li>-t ：为容器重新分配一个伪终端，通常与 -i 同时使用</li>
+<li>-P ：随机端口映射</li>
+<li>-p ：指定端口映射，有以下四种格式<ul>
+<li>ip:hostPort:containerPort</li>
+<li>ip::containerPort</li>
+<li>hostPort:containerPort</li>
+<li>containerPort</li>
+</ul>
+</li>
+</ul>
+<pre><code class="hljs gradle">#使用镜像centos:latest以交互模式启动一个容器，在容器内执行<span class="hljs-regexp">/bin/</span>bash命令
+[root@test ~]# docker run -it centos <span class="hljs-regexp">/bin/</span>bash
+[root@<span class="hljs-number">7808</span>a5311ae1 <span class="hljs-regexp">/]# cat /</span>etc/redhat-release 
+CentOS Linux release <span class="hljs-number">8.2</span>.<span class="hljs-number">2004</span> (Core)</code></pre>
+
+<h3 id="3-3-2-列出当前运行的容器"><a href="#3-3-2-列出当前运行的容器" class="headerlink" title="3.3.2 列出当前运行的容器"></a>3.3.2 列出当前运行的容器</h3><p><code>docker ps [options]</code></p>
+<h4 id="options-3"><a href="#options-3" class="headerlink" title="options"></a>options</h4><ul>
+<li>-a ：列出当前所有正在运行的容器和历史上运行过的</li>
+<li>-l ：显示最新创建的容器</li>
+<li>-q ：静默模式，只显示容器编号</li>
+<li>–no-trunc ：不截断输出</li>
+</ul>
+<h3 id="3-3-3-退出容器"><a href="#3-3-3-退出容器" class="headerlink" title="3.3.3 退出容器"></a>3.3.3 退出容器</h3><h4 id="容器停止并退出"><a href="#容器停止并退出" class="headerlink" title="容器停止并退出"></a>容器停止并退出</h4><p><code>exit</code></p>
+<h4 id="容器不停止退出"><a href="#容器不停止退出" class="headerlink" title="容器不停止退出"></a>容器不停止退出</h4><p><code>ctrl+P+Q</code></p>
+<h3 id="3-3-4-启动容器"><a href="#3-3-4-启动容器" class="headerlink" title="3.3.4 启动容器"></a>3.3.4 启动容器</h3><p><code>docker start 容器ID或者容器名</code></p>
+<h3 id="3-3-5-重启容器"><a href="#3-3-5-重启容器" class="headerlink" title="3.3.5 重启容器"></a>3.3.5 重启容器</h3><p><code>docker restart 容器ID或者容器名</code></p>
+<h3 id="3-3-6-停止容器"><a href="#3-3-6-停止容器" class="headerlink" title="3.3.6 停止容器"></a>3.3.6 停止容器</h3><p><code>docker stop 容器ID或者容器名</code></p>
+<h3 id="3-3-7-强制停止容器"><a href="#3-3-7-强制停止容器" class="headerlink" title="3.3.7 强制停止容器"></a>3.3.7 强制停止容器</h3><p><code>docker kill 容器ID或者容器名</code></p>
+<h3 id="3-3-8-删除已停止的容器"><a href="#3-3-8-删除已停止的容器" class="headerlink" title="3.3.8 删除已停止的容器"></a>3.3.8 删除已停止的容器</h3><p><code>docker rm 容器ID</code></p>
+<p>一次性删除多个容器：</p>
+<ul>
+<li><code>docker rm -f $(docker pa -a -q)</code></li>
+<li><code>docker ps -a -q | xargs docker rm</code></li>
+</ul>
+<h2 id="3-4-比较重要的命令"><a href="#3-4-比较重要的命令" class="headerlink" title="3.4 比较重要的命令"></a>3.4 比较重要的命令</h2><h3 id="3-4-1-启动守护式容器"><a href="#3-4-1-启动守护式容器" class="headerlink" title="3.4.1 启动守护式容器"></a>3.4.1 启动守护式容器</h3><p><code>docker run -d 容器名</code></p>
+<p>使用镜像centos:latest以后台模式启动一个容器<code>docker run -d centos</code></p>
+<p><strong>问题</strong>：<br>然后 <code>docker ps -a</code> 进行查看, 会发现容器已经退出。很重要的要说明的一点: <font color=red>Docker容器后台运行，就必须有一个前台进程。</font>容器运行的命令如果不是那些<font color=red>一直挂起的命令</font>（比如运行top，tail），就是会自动退出的。<br>这个是 docker 的机制问题，比如你的 web 容器，我们以 nginx 为例，正常情况下，我们配置启动服务只需要启动响应的 service 即可。例如 <code>service nginx start</code>，但是，这样做，nginx 为后台进程模式运行，就导致 docker 前台没有运行的应用，这样的容器后台启动后，会立即自杀因为他觉得他没事可做了。所以，最佳的解决方案是,将你要运行的程序以前台进程的形式运行</p>
+<h3 id="3-4-2-查看容器日志"><a href="#3-4-2-查看容器日志" class="headerlink" title="3.4.2 查看容器日志"></a>3.4.2 查看容器日志</h3><p><code>docker logs -f -t --tail 容器ID</code></p>
+<ul>
+<li>-t ：加入时间戳</li>
+<li>-f ：跟随最新的日志打印</li>
+<li>–tail 数字 显示最后几条</li>
+</ul>
+<h3 id="3-4-3-查看容器内运行的进程"><a href="#3-4-3-查看容器内运行的进程" class="headerlink" title="3.4.3 查看容器内运行的进程"></a>3.4.3 查看容器内运行的进程</h3><p><code>docker top 容器ID</code></p>
+<h3 id="3-4-4-查看容器内部细节"><a href="#3-4-4-查看容器内部细节" class="headerlink" title="3.4.4 查看容器内部细节"></a>3.4.4 查看容器内部细节</h3><p><code>docker inspect 容器ID</code></p>
+<h3 id="3-4-5-进入正在运行的容器并以命令行交互"><a href="#3-4-5-进入正在运行的容器并以命令行交互" class="headerlink" title="3.4.5 进入正在运行的容器并以命令行交互"></a>3.4.5 进入正在运行的容器并以命令行交互</h3><h4 id="docker-exec"><a href="#docker-exec" class="headerlink" title="docker exec"></a>docker exec</h4><p><code>docker exec -it 容器ID /bin/bash</code>，在容器中打开终端，并且可以启动新的进程</p>
+<pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>test ~]# docker ps -a 
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+<span class="hljs-number">150f</span>cfbacdfa        centos              <span class="hljs-string">&quot;/bin/bash&quot;</span>              <span class="hljs-number">3</span> minutes ago       Up <span class="hljs-number">3</span> minutes                                    flamboyant_driscoll
+[<span class="hljs-symbol">root@</span>test ~]# docker exec -it <span class="hljs-number">150f</span>cfbacdfa /bin/bash
+[<span class="hljs-symbol">root@</span><span class="hljs-number">150f</span>cfbacdfa /]# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         <span class="hljs-number">1</span>     <span class="hljs-number">0</span>  <span class="hljs-number">0</span> <span class="hljs-number">12</span>:<span class="hljs-number">08</span> pts/<span class="hljs-number">0</span>    <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> /bin/bash
+root        <span class="hljs-number">14</span>     <span class="hljs-number">0</span>  <span class="hljs-number">0</span> <span class="hljs-number">12</span>:<span class="hljs-number">13</span> pts/<span class="hljs-number">1</span>    <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> /bin/bash
+root        <span class="hljs-number">27</span>    <span class="hljs-number">14</span>  <span class="hljs-number">0</span> <span class="hljs-number">12</span>:<span class="hljs-number">13</span> pts/<span class="hljs-number">1</span>    <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> ps -ef</code></pre>
+
+<h4 id="docker-attach"><a href="#docker-attach" class="headerlink" title="docker attach"></a>docker attach</h4><p><code>docker attach 容器ID</code>，直接进入容器启动命令终端，不会启动新的进程</p>
+<h3 id="3-4-6-从容器内拷贝文件到主机上"><a href="#3-4-6-从容器内拷贝文件到主机上" class="headerlink" title="3.4.6 从容器内拷贝文件到主机上"></a>3.4.6 从容器内拷贝文件到主机上</h3><p><code>docker cp 容器ID:容器内路径 目的主机路径</code></p>
+<pre><code class="hljs autoit"><span class="hljs-meta">#在容器内创建 hello 文件</span>
+[root<span class="hljs-symbol">@b7394537e333</span> ~]<span class="hljs-meta"># pwd</span>
+/root
+[root<span class="hljs-symbol">@b7394537e333</span> ~]<span class="hljs-meta"># ls</span>
+hello
+<span class="hljs-meta">#将容器内 /root/hello 文件拷贝到主机 /tmp 下</span>
+[root<span class="hljs-symbol">@test</span> ~]<span class="hljs-meta"># docker cp b7394537e333:/root/hello /tmp/</span>
+[root<span class="hljs-symbol">@test</span> ~]<span class="hljs-meta"># ls /tmp/</span>
+hello</code></pre>
+
+<h1 id="四、-Docker-镜像"><a href="#四、-Docker-镜像" class="headerlink" title="四、 Docker 镜像"></a>四、 Docker 镜像</h1><h2 id="4-1-镜像是什么"><a href="#4-1-镜像是什么" class="headerlink" title="4.1 镜像是什么"></a>4.1 镜像是什么</h2><ul>
+<li>一个分层存储的文件</li>
+<li>一个软件的环境</li>
+<li>一个镜像可以创建 N 个容器</li>
+<li>一种标准化的交付</li>
+<li>一个不包含 Linux 内核而又精简的 Linux 操作系统</li>
+</ul>
+<p>镜像不是一个单一的文件，而是有多层结构。我们可以通过 <code>docker history &lt;ID/NAME&gt;</code> 查看镜像中各层内容及大小，每层对应着 Dockerfile 中的一条指令。Docker 镜像默认存储在 `/var/lib/docker/&lt;storage-driver&gt;中。</p>
+<pre><code class="hljs leaf">[root@docker ~]# docker history nginx
+IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
+7e4d58f0e5f3        4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  CMD [&quot;nginx&quot; &quot;-g&quot; &quot;daemon…   0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  STOPSIGNAL SIGTERM           0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  EXPOSE 80                    0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  ENTRYPOINT [&quot;/docker-entr…   0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span> COPY file:0fd5fca330dcd6a7…   1.04kB              
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span> COPY file:1d0a4127e78a26c1…   1.96kB              
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span> COPY file:e7e183879c35719c…   1.2kB               
+&lt;missing&gt;           4 weeks ago         /bin/sh -c set -x     &amp;&amp; addgroup --system -…   63.4MB              
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  ENV PKG_RELEASE=1~buster     0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  ENV NJS_VERSION=0.4.3        0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  ENV NGINX_VERSION=1.19.2     0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  LABEL maintainer=NGINX Do…   0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  CMD [&quot;bash&quot;]                 0B                  
+&lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span> ADD file:e7407f2294ad23634…   69.2MB</code></pre>
+
+<h2 id="4-2-镜像与容器的联系"><a href="#4-2-镜像与容器的联系" class="headerlink" title="4.2 镜像与容器的联系"></a>4.2 镜像与容器的联系</h2><p><img src="/img/Docker/Docker_4.jpg" srcset="/img/loading.gif"></p>
+<p>如图，容器其实是在镜像的最上面加了一层读写层，在运行容器里文件改动时，会先从镜像里要写的文件复制到容器自己的文件系统中（读写层）。如果容器删除了，最上面的读写层也就删除了，改动也就丢失了。所以无论多少个容器共享一个镜像，所做的写操作都是从镜像的文件系统中复制过来操作的，<font color=red>并不会修改镜像的源文件</font>，这种方式<font color=red>提高磁盘利用率</font>。<br>若想持久化这些改动，可以通过 <code>docker commit</code> 将容器保存成一个新镜像。</p>
+<ul>
+<li>一个镜像创建多个容器</li>
+<li>镜像增量式存储</li>
+<li>创建的容器里面修改不会影响到镜像</li>
+</ul>
+<h1 id="五、-Docker-容器数据卷"><a href="#五、-Docker-容器数据卷" class="headerlink" title="五、 Docker 容器数据卷"></a>五、 Docker 容器数据卷</h1><h1 id="六、-DockerFile"><a href="#六、-DockerFile" class="headerlink" title="六、 DockerFile"></a>六、 DockerFile</h1><h1 id="七、-Docker-安装常用服务"><a href="#七、-Docker-安装常用服务" class="headerlink" title="七、 Docker 安装常用服务"></a>七、 Docker 安装常用服务</h1>
             </div>
             <hr>
             <div>
