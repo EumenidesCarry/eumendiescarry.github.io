@@ -177,7 +177,7 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-12 20:22" pubdate>
+      <time datetime="2020-10-12 20:37" pubdate>
         2020年10月12日 晚上
       </time>
     </span>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.2k 字
+      3.3k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      46
+      47
        分钟
     </span>
   
@@ -414,7 +414,7 @@ Share images, automate workflows, <span class="hljs-keyword">and</span> more <sp
 <li>网易：<a target="_blank" rel="noopener" href="https://hub-mirror.c.163.com/">https://hub-mirror.c.163.com/</a></li>
 <li>阿里云：https://&lt;你的ID&gt;.mirror.aliyuncs.com</li>
 </ul>
-<p>阿里云镜像获取地址：<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors%EF%BC%8C%E7%99%BB%E5%BD%95%E5%90%8E%E5%8F%AF%E8%A7%81%E5%8A%A0%E9%80%9F%E5%9C%B0%E5%9D%80%E3%80%82">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors，登录后可见加速地址。</a></p>
+<p>阿里云镜像获取地址：<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors</a> ，登录后可见加速地址。</p>
 <p><img src="/img/Docker/Docker_3.jpg" srcset="/img/loading.gif"></p>
 <p>通过修改 <code>/etc/docker/daemon.json</code> 文件配置镜像加速器：</p>
 <pre><code class="hljs awk"><span class="hljs-comment">#-p 确保目录名称存在，不存在的就建一个。</span>
@@ -605,6 +605,8 @@ IMAGE               CREATED             CREATED BY                              
 &lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span>  CMD [&quot;bash&quot;]                 0B                  
 &lt;missing&gt;           4 weeks ago         /bin/sh -c <span class="hljs-function"><span class="hljs-keyword">#</span><span class="hljs-params">(<span class="hljs-variable">nop</span>)</span></span> ADD file:e7407f2294ad23634…   69.2MB</code></pre>
 
+<p>镜像文件分层结构的好处–<strong>共享资源</strong></p>
+<p>比如：有多个镜像都从相同的 base 镜像构建而来，那么宿主机只需在磁盘上保存一份base镜像，同时内存中也只需加载一份 base 镜像，就可以为所有容器服务了。而且镜像的每一层都可以被共享。</p>
 <h2 id="4-2-镜像与容器的联系"><a href="#4-2-镜像与容器的联系" class="headerlink" title="4.2 镜像与容器的联系"></a>4.2 镜像与容器的联系</h2><p><img src="/img/Docker/Docker_4.jpg" srcset="/img/loading.gif"></p>
 <p>如图，容器其实是在镜像的最上面加了一层读写层，在运行容器里文件改动时，会先从镜像里要写的文件复制到容器自己的文件系统中（读写层）。如果容器删除了，最上面的读写层也就删除了，改动也就丢失了。所以无论多少个容器共享一个镜像，所做的写操作都是从镜像的文件系统中复制过来操作的，<font color=red>并不会修改镜像的源文件</font>，这种方式<font color=red>提高磁盘利用率</font>。<br>若想持久化这些改动，可以通过 <code>docker commit</code> 将容器保存成一个新镜像。</p>
 <ul>
