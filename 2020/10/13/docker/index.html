@@ -678,7 +678,7 @@ IMAGE               CREATED             CREATED BY                              
 <h3 id="4-1-2-Docker-镜像加载原理"><a href="#4-1-2-Docker-镜像加载原理" class="headerlink" title="4.1.2 Docker 镜像加载原理"></a>4.1.2 Docker 镜像加载原理</h3><p>docker的镜像实际上由一层一层的文件系统组成，这种层级的文件系统UnionFS。</p>
 <p>bootfs(boot file system)主要包含 <strong>bootloader</strong> 和 <strong>kernel</strong> , <strong>bootloader</strong> 主要是引导加载 kernel, Linux 刚启动时会加载 bootfs 文件系统，<font color=red>在 Docker 镜像的最底层是 bootfs</font>。这一层与我们典型的 Linux/Unix 系统是一样的，包含 boot 加载器和内核。当 boot 加载完成之后整个内核就都在内存中了，此时内存的使用权已由 bootfs 转交给内核，此时系统也会卸载 bootfs。</p>
 <p>rootfs (root file system) ，在 bootfs 之上。包含的就是典型 Linux 系统中的 /dev, /proc, /bin, /etc 等标准目录和文件。rootfs 就是各种不同的操作系统发行版，比如 Ubuntu，Centos 等等。 </p>
-<p><img src="/img/Docker/Docker_5.jpg" srcset="/img/loading.gif"></p>
+<p><img src="/img/Docker/Docker_5.png" srcset="/img/loading.gif"></p>
 <h2 id="4-2-镜像特点"><a href="#4-2-镜像特点" class="headerlink" title="4.2 镜像特点"></a>4.2 镜像特点</h2><p>Docker 镜像都是只读的，当容器启动时，一个新的可写层被加载到镜像的顶部。这一层通常被称为“容器层”，“容器层”下都叫“镜像层”。</p>
 <h2 id="4-3-镜像与容器的联系"><a href="#4-3-镜像与容器的联系" class="headerlink" title="4.3 镜像与容器的联系"></a>4.3 镜像与容器的联系</h2><p><img src="/img/Docker/Docker_4.jpg" srcset="/img/loading.gif"></p>
 <p>如图，容器其实是在镜像的最上面加了一层读写层，在运行容器里文件改动时，会先从镜像里要写的文件复制到容器自己的文件系统中（读写层）。如果容器删除了，最上面的读写层也就删除了，改动也就丢失了。所以无论多少个容器共享一个镜像，所做的写操作都是从镜像的文件系统中复制过来操作的，<font color=red>并不会修改镜像的源文件</font>，这种方式<font color=red>提高磁盘利用率</font>。<br>若想持久化这些改动，可以通过 <code>docker commit</code> 将容器保存成一个新镜像。</p>
