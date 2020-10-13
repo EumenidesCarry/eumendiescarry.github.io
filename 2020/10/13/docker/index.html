@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.1k 字
+      5.9k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      56
+      80
        分钟
     </span>
   
@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月13日 下午
+                  本文最后更新于：2020年10月13日 晚上
                 
               </p>
             
@@ -693,7 +693,249 @@ IMAGE               CREATED             CREATED BY                              
 <li>-a ：作者</li>
 </ul>
 <p><code>docker commit -m &quot;xxxx&quot; -a &quot;xxx&quot; 容器ID new_image_name:[tag] </code> ：将容器打包成新的镜像</p>
-<h1 id="五、-Docker-容器数据卷"><a href="#五、-Docker-容器数据卷" class="headerlink" title="五、 Docker 容器数据卷"></a>五、 Docker 容器数据卷</h1><h1 id="六、-DockerFile"><a href="#六、-DockerFile" class="headerlink" title="六、 DockerFile"></a>六、 DockerFile</h1><h1 id="七、-Docker-安装常用服务"><a href="#七、-Docker-安装常用服务" class="headerlink" title="七、 Docker 安装常用服务"></a>七、 Docker 安装常用服务</h1>
+<h1 id="五、-Docker-容器"><a href="#五、-Docker-容器" class="headerlink" title="五、 Docker 容器"></a>五、 Docker 容器</h1><h2 id="5-1-容器资源限制"><a href="#5-1-容器资源限制" class="headerlink" title="5.1 容器资源限制"></a>5.1 容器资源限制</h2><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-m,-memory</td>
+<td>容器可以使用的最大内存</td>
+</tr>
+<tr>
+<td>-memory-swap</td>
+<td>允许交换到磁盘的内存量</td>
+</tr>
+<tr>
+<td>-memory-swappiness=&lt;0-100&gt;</td>
+<td>容器使用SWAP分区交换的百分比（0-100，默认为-1）</td>
+</tr>
+<tr>
+<td>-oom-kill-disable</td>
+<td>禁用OOM Killer</td>
+</tr>
+<tr>
+<td>-cpus</td>
+<td>可使用的CPU数量</td>
+</tr>
+<tr>
+<td>-cpuset-cpus</td>
+<td>限制容器使用特定的CPU核心，如（0-3）</td>
+</tr>
+<tr>
+<td>-cpu-shares</td>
+<td>CPU共享（相对权重）</td>
+</tr>
+</tbody></table>
+<h3 id="5-1-1-内存限额"><a href="#5-1-1-内存限额" class="headerlink" title="5.1.1 内存限额"></a>5.1.1 内存限额</h3><p>允许容器最多使用 500MB 内存和 100MB 的 Swap，并禁用 OOM Killer：</p>
+<p><code>docker run -d --name nginx01 --memory=&quot;500m&quot; --memory-swap=&quot;600m --oom-kill-disable nginx</code></p>
+<h3 id="5-1-2-CPU-限制"><a href="#5-1-2-CPU-限制" class="headerlink" title="5.1.2 CPU 限制"></a>5.1.2 CPU 限制</h3><p>允许容器使用两个 CPU：</p>
+<p><code>docker run -d --name nginx02 --cpus=&quot;2&quot; nginx</code></p>
+<p>允许容器最多使用 50% 的 CPU：</p>
+<p><code>docker run -d --name nginx03 --cpus=&quot;.5&quot; nginx</code></p>
+<h3 id="5-1-3-正在运行的容器限制"><a href="#5-1-3-正在运行的容器限制" class="headerlink" title="5.1.3 正在运行的容器限制"></a>5.1.3 正在运行的容器限制</h3><p><code>docker update</code></p>
+<h2 id="5-2-将数据从宿主机挂载到容器中的三种方式"><a href="#5-2-将数据从宿主机挂载到容器中的三种方式" class="headerlink" title="5.2 将数据从宿主机挂载到容器中的三种方式"></a>5.2 将数据从宿主机挂载到容器中的三种方式</h2><p>Docker提供三种方式将数据从宿主机挂载到容器中：</p>
+<ul>
+<li>volumes：Docker 管理宿主机文件系统的一部分（/var/lib/docker/volumes）。保存数据的最佳方式。</li>
+<li>bind mounts：将宿主机上的任意位置的文件或者目录挂载到容器中。</li>
+<li>tmpfs：挂载存储在主机系统的内存中，而不会写入主机的文件系统。如果不希望将数据持久存储在任何位置，可以使用 tmpfs，同时避免写入容器可写层提高性能。</li>
+</ul>
+<p><img src="/img/Docker/Docker_6.jpg" srcset="/img/loading.gif"></p>
+<h3 id="5-2-1-Volume"><a href="#5-2-1-Volume" class="headerlink" title="5.2.1 Volume"></a>5.2.1 Volume</h3><p><strong>管理卷</strong></p>
+<ul>
+<li><code>docker volume create volume_name</code> ：创建一个数据卷</li>
+<li><code>docker volume ls</code> ：列出已创建的数据卷</li>
+<li><code>docker volume inspect volume_mame</code> ：显示所创建数据卷的信息</li>
+<li><code>docker volume rm volume_name</code> ：删除一个或者多个数据卷</li>
+</ul>
+<h4 id="创建数据卷"><a href="#创建数据卷" class="headerlink" title="创建数据卷"></a>创建数据卷</h4><pre><code class="hljs csharp">[<span class="hljs-meta">root@test volumes</span>]<span class="hljs-meta"># docker volume create nginx_vol</span>
+nginx_vol
+[<span class="hljs-meta">root@test volumes</span>]<span class="hljs-meta"># docker volume ls</span>
+DRIVER              VOLUME NAME
+local               nginx_vol
+<span class="hljs-meta">#查看所创建的数据卷</span>
+[<span class="hljs-meta">root@test volumes</span>]<span class="hljs-meta"># docker volume inspect nginx_vol</span>
+[<span class="hljs-meta"></span>
+<span class="hljs-meta">    &#123;</span>
+<span class="hljs-meta">        <span class="hljs-meta-string">&quot;CreatedAt&quot;</span>: <span class="hljs-meta-string">&quot;2020-10-13T20:55:56+08:00&quot;</span>,</span>
+<span class="hljs-meta">        <span class="hljs-meta-string">&quot;Driver&quot;</span>: <span class="hljs-meta-string">&quot;local&quot;</span>,</span>
+<span class="hljs-meta">        <span class="hljs-meta-string">&quot;Labels&quot;</span>: &#123;&#125;,</span>
+<span class="hljs-meta">        <span class="hljs-meta-string">&quot;Mountpoint&quot;</span>: <span class="hljs-meta-string">&quot;/var/lib/docker/volumes/nginx_vol/_data&quot;</span>,</span>
+<span class="hljs-meta">        <span class="hljs-meta-string">&quot;Name&quot;</span>: <span class="hljs-meta-string">&quot;nginx_vol&quot;</span>,</span>
+<span class="hljs-meta">        <span class="hljs-meta-string">&quot;Options&quot;</span>: &#123;&#125;,</span>
+<span class="hljs-meta">        <span class="hljs-meta-string">&quot;Scope&quot;</span>: <span class="hljs-meta-string">&quot;local&quot;</span></span>
+<span class="hljs-meta">    &#125;</span>
+<span class="hljs-meta"></span>]
+<span class="hljs-meta">#数据卷在宿主机上的目录</span>
+[<span class="hljs-meta">root@test volumes</span>]<span class="hljs-meta"># pwd</span>
+/<span class="hljs-keyword">var</span>/lib/docker/volumes
+[<span class="hljs-meta">root@test volumes</span>]<span class="hljs-meta"># tree</span>
+.
+└── nginx_vol
+    └── _data</code></pre>
+
+<p><strong>容器中重要数据可以存放到数据卷当中，当容器删除，存放在数据卷中的数据将不会丢失，且能够实现数据共享</strong></p>
+<h4 id="将数据卷挂载到将要创建的容器中"><a href="#将数据卷挂载到将要创建的容器中" class="headerlink" title="将数据卷挂载到将要创建的容器中"></a>将数据卷挂载到将要创建的容器中</h4><p>创建容器 nginx01，并将数据卷 nginx_vol 挂在到容器中：</p>
+<pre><code class="hljs autoit">[root<span class="hljs-symbol">@test</span> volumes]<span class="hljs-meta"># docker run -d --name nginx01 --mount src=nginx_vol,dst=/usr/share/nginx/html -p 2333:80 nginx</span>
+[root<span class="hljs-symbol">@test</span> _data]<span class="hljs-meta"># docker inspect nginx01</span>
+        <span class="hljs-string">&quot;Mounts&quot;</span>: [
+            &#123;
+                <span class="hljs-string">&quot;Type&quot;</span>: <span class="hljs-string">&quot;volume&quot;</span>,
+                <span class="hljs-string">&quot;Name&quot;</span>: <span class="hljs-string">&quot;nginx_vol&quot;</span>,
+                <span class="hljs-string">&quot;Source&quot;</span>: <span class="hljs-string">&quot;/var/lib/docker/volumes/nginx_vol/_data&quot;</span>,
+                <span class="hljs-string">&quot;Destination&quot;</span>: <span class="hljs-string">&quot;/usr/share/nginx/html&quot;</span>,
+                <span class="hljs-string">&quot;Driver&quot;</span>: <span class="hljs-string">&quot;local&quot;</span>,
+                <span class="hljs-string">&quot;Mode&quot;</span>: <span class="hljs-string">&quot;z&quot;</span>,
+                <span class="hljs-string">&quot;RW&quot;</span>: <span class="hljs-literal">true</span>,
+                <span class="hljs-string">&quot;Propagation&quot;</span>: <span class="hljs-string">&quot;&quot;</span>
+            &#125;
+        ],
+[root<span class="hljs-symbol">@test</span> volumes]<span class="hljs-meta"># tree</span>
+.
+└── nginx_vol
+    └── _data
+        ├── <span class="hljs-number">50</span>x.html
+        └── index.html</code></pre>
+
+<p>修改主页内容，显示 Hello Nginx!，打开网页</p>
+<p><img src="/img/Docker/Docker_7.jpg" srcset="/img/loading.gif"></p>
+<p>创建容器 nginx02，并将数据卷 nginx_vol 挂在到容器中：</p>
+<pre><code class="hljs gradle">[root@test _data]# docker run -d --name nginx02 --mount src=nginx_vol,dst=<span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/nginx/</span>html -p <span class="hljs-number">2334</span>:<span class="hljs-number">80</span> nginx</code></pre>
+
+<p>打开网页，显示和 nginx01 一样</p>
+<p><img src="/img/Docker/Docker_8.jpg" srcset="/img/loading.gif"></p>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>多个运行容器之间共享数据，多个容器可以同时挂载相同的卷。</li>
+<li>当容器停止或被移除时，该卷依然存在。</li>
+<li>当明确删除卷时，卷才会被删除。</li>
+<li>将容器的数据存储在远程主机或其他存储上（间接）</li>
+<li>将数据从一台 Docker 主机迁移到另一台时，先停止容器，然后备份卷的目录（/var/lib/docker/volumes/）</li>
+</ul>
+<h3 id="5-2-2-Bind-Mounts"><a href="#5-2-2-Bind-Mounts" class="headerlink" title="5.2.2 Bind Mounts"></a>5.2.2 Bind Mounts</h3><p>用卷创建一个容器：</p>
+<ul>
+<li><code>docker run -d -it --name=nginx-test --mount type=bind,src=/app/wwwroot,dst=/usr/share/nginx/html nginx</code></li>
+<li><code>docker run -d -it --name=nginx-test -v /app/wwwroot:/usr/share/nginx/html nginx</code></li>
+</ul>
+<p>验证绑定：</p>
+<ul>
+<li><code>docker inspect nginx-test</code></li>
+</ul>
+<p>清理：</p>
+<ul>
+<li><code>docker stop nginx-test</code></li>
+<li><code>docker rm nginx-test</code></li>
+</ul>
+<p><strong>注意：</strong></p>
+<ol>
+<li>如果源文件/目录没有存在如果挂载目标在容器中非空目录，则该目录现有内容将被隐藏。</li>
+<li>不会自动创建，会抛出一个错误。</li>
+</ol>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>从主机共享配置文件到容器。默认情况下，挂载主机 <code>/etc/resolv.conf</code> 到每个容器，提供 DNS 解析。</li>
+<li>在 Docker 主机上的开发环境和容器之间共享源代码。例如，可以将 Maven target 目录挂载到容器中，每次在 Docker 主机上构建 Maven 项目时，容器都可以访问构建的项目包。</li>
+<li>当 Docker 主机的文件或目录结构保证与容器所需的绑定挂载一致时</li>
+</ul>
+<h2 id="5-3-容器网络"><a href="#5-3-容器网络" class="headerlink" title="5.3 容器网络"></a>5.3 容器网络</h2><h1 id="六、-DockerFile"><a href="#六、-DockerFile" class="headerlink" title="六、 DockerFile"></a>六、 DockerFile</h1><h2 id="6-1-DockerFile-是什么"><a href="#6-1-DockerFile-是什么" class="headerlink" title="6.1 DockerFile 是什么"></a>6.1 DockerFile 是什么</h2><p>Dockerfile 是用来构建 Docker 镜像的构建文件，是由一系列命令和参数构成的脚本</p>
+<p>构建步骤：</p>
+<ol>
+<li>编写 Dockerfile 文件</li>
+<li><code>docker build</code></li>
+<li><code>docker run</code></li>
+</ol>
+<p>文件结构：</p>
+<p>CentOS Dockerfile:</p>
+<pre><code class="hljs stylus">FROM scratch
+ADD centos-<span class="hljs-number">7</span>-x86_64-docker<span class="hljs-selector-class">.tar</span><span class="hljs-selector-class">.xz</span> /
+
+LABEL \
+    org<span class="hljs-selector-class">.label-schema</span>.schema-version=<span class="hljs-string">&quot;1.0&quot;</span> \
+    org<span class="hljs-selector-class">.label-schema</span>.name=<span class="hljs-string">&quot;CentOS Base Image&quot;</span> \
+    org<span class="hljs-selector-class">.label-schema</span>.vendor=<span class="hljs-string">&quot;CentOS&quot;</span> \
+    org<span class="hljs-selector-class">.label-schema</span>.license=<span class="hljs-string">&quot;GPLv2&quot;</span> \
+    org<span class="hljs-selector-class">.label-schema</span>.build-date=<span class="hljs-string">&quot;20200809&quot;</span> \
+    org<span class="hljs-selector-class">.opencontainers</span><span class="hljs-selector-class">.image</span>.title=<span class="hljs-string">&quot;CentOS Base Image&quot;</span> \
+    org<span class="hljs-selector-class">.opencontainers</span><span class="hljs-selector-class">.image</span>.vendor=<span class="hljs-string">&quot;CentOS&quot;</span> \
+    org<span class="hljs-selector-class">.opencontainers</span><span class="hljs-selector-class">.image</span>.licenses=<span class="hljs-string">&quot;GPL-2.0-only&quot;</span> \
+    org<span class="hljs-selector-class">.opencontainers</span><span class="hljs-selector-class">.image</span>.created=<span class="hljs-string">&quot;2020-08-09 00:00:00+01:00&quot;</span>
+
+CMD [<span class="hljs-string">&quot;/bin/bash&quot;</span>]
+</code></pre>
+
+<p>基础内容：</p>
+<ol>
+<li>每条保留字指令都必须为大写字母且后面要跟随至少一个参数</li>
+<li>指令按照从上到下顺序执行</li>
+<li>#表示注释</li>
+<li>每条指令都会创建一个新的镜像层，并对镜像进行提交</li>
+</ol>
+<h2 id="6-2-Dockerfile-指令"><a href="#6-2-Dockerfile-指令" class="headerlink" title="6.2 Dockerfile 指令"></a>6.2 Dockerfile 指令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FROM</td>
+<td>构建新镜像是基于哪个镜像</td>
+</tr>
+<tr>
+<td>MAINTAINER</br>LABEL</td>
+<td>镜像维护者姓名或邮箱地址</td>
+</tr>
+<tr>
+<td>RUN</td>
+<td>构建镜像时运行的Shell命令</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>拷贝文件或目录到镜像中</td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>设置环境变量</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>为RUN、CMD和ENTRYPOINT执行命令指定运行用户</td>
+</tr>
+<tr>
+<td>EXPOSE</td>
+<td>声明容器运行的服务端口</td>
+</tr>
+<tr>
+<td>HEALTHCHECK</td>
+<td>容器中服务健康检查</td>
+</tr>
+<tr>
+<td>WORKDIR</td>
+<td>为RUN、CMD、ENTRYPOINT、COPY和ADD设置工作目录</td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>运行容器时执行，如果有多个ENTRYPOINT指令，最后一个生效</td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>运行容器时执行，如果有多个CMD指令，最后一个生效</td>
+</tr>
+</tbody></table>
+<h2 id="6-3-Dockerfile-与-Docker容器、镜像的关系"><a href="#6-3-Dockerfile-与-Docker容器、镜像的关系" class="headerlink" title="6.3 Dockerfile 与 Docker容器、镜像的关系"></a>6.3 Dockerfile 与 Docker容器、镜像的关系</h2><p>从应用软件的角度来看，Dockerfile、Docker镜像与Docker容器分别代表软件的三个不同阶段，</p>
+<ul>
+<li>Dockerfile是软件的原材料</li>
+<li>Docker镜像是软件的交付品</li>
+<li>Docker容器则可以认为是软件的运行态。</li>
+</ul>
+<p>Dockerfile面向开发，Docker镜像成为交付标准，Docker容器则涉及部署与运维，三者缺一不可，合力充当Docker体系的基石。</p>
+<p><img src="/img/Docker/Docker_9.jpg" srcset="/img/loading.gif"></p>
+<ol>
+<li>Dockerfile，需要定义一个Dockerfile，Dockerfile定义了进程需要的一切东西。Dockerfile涉及的内容包括执行代码或者是文件、环境变量、依赖包、运行时环境、动态链接库、操作系统的发行版、服务进程和内核进程(当应用进程需要和系统服务和内核进程打交道，这时需要考虑如何设计namespace的权限控制)等等;</li>
+<li>Docker镜像，在用Dockerfile定义一个文件之后，docker build时会产生一个Docker镜像，当运行 Docker镜像时，会真正开始提供服务;</li>
+<li>Docker容器，容器是直接提供服务的。</li>
+</ol>
+<h1 id="七、-Docker-安装常用服务"><a href="#七、-Docker-安装常用服务" class="headerlink" title="七、 Docker 安装常用服务"></a>七、 Docker 安装常用服务</h1>
             </div>
             <hr>
             <div>
