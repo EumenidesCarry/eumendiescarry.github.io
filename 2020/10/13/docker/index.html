@@ -177,8 +177,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-12 21:04" pubdate>
-        2020年10月12日 晚上
+      <time datetime="2020-10-13 10:28" pubdate>
+        2020年10月13日 上午
       </time>
     </span>
   
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.8k 字
+      4.1k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      53
+      56
        分钟
     </span>
   
@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月12日 晚上
+                  本文最后更新于：2020年10月13日 上午
                 
               </p>
             
@@ -433,7 +433,7 @@ sudo tee <span class="hljs-regexp">/etc/</span>docker/daemon.json &lt;&lt;-<span
 &#125;
 EOF
 
-cat daemon.json 
+cat <span class="hljs-regexp">/etc/</span>docker/daemon.json 
 &#123;
   <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://0hm4nl4c.mirror.aliyuncs.com&quot;</span>]
 &#125;
@@ -469,8 +469,68 @@ sudo systemctl restart docker</code></pre>
   <span class="hljs-attr">Version:</span>          <span class="hljs-number">0.18</span><span class="hljs-number">.0</span>
   <span class="hljs-attr">GitCommit:</span>        <span class="hljs-string">fec3683</span></code></pre>
 
-<h3 id="3-1-2-docker-info"><a href="#3-1-2-docker-info" class="headerlink" title="3.1.2 docker info"></a>3.1.2 docker info</h3><h3 id="3-1-3-docker-–help"><a href="#3-1-3-docker-–help" class="headerlink" title="3.1.3 docker –help"></a>3.1.3 docker –help</h3><h2 id="3-2-镜像命令"><a href="#3-2-镜像命令" class="headerlink" title="3.2 镜像命令"></a>3.2 镜像命令</h2><h3 id="3-2-1-docker-images"><a href="#3-2-1-docker-images" class="headerlink" title="3.2.1 docker images"></a>3.2.1 docker images</h3><p>显示本地镜像：</p>
-<pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>test ~]# docker images
+<h3 id="3-1-2-docker-info"><a href="#3-1-2-docker-info" class="headerlink" title="3.1.2 docker info"></a>3.1.2 docker info</h3><h3 id="3-1-3-docker-–help"><a href="#3-1-3-docker-–help" class="headerlink" title="3.1.3 docker –help"></a>3.1.3 docker –help</h3><h2 id="3-2-镜像命令"><a href="#3-2-镜像命令" class="headerlink" title="3.2 镜像命令"></a>3.2 镜像命令</h2><table>
+<thead>
+<tr>
+<th>指令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ls</td>
+<td>列出镜像</td>
+</tr>
+<tr>
+<td>build</td>
+<td>构建镜像来自 Dockerfile</td>
+</tr>
+<tr>
+<td>history</td>
+<td>查看镜像历史</td>
+</tr>
+<tr>
+<td>inspect</td>
+<td>显示一个或多个镜像详细信息</td>
+</tr>
+<tr>
+<td>pull</td>
+<td>从镜像仓库拉去镜像</td>
+</tr>
+<tr>
+<td>push</td>
+<td>推送一个或多个镜像到镜像仓库</td>
+</tr>
+<tr>
+<td>rm</td>
+<td>移除一个或者多个镜像</td>
+</tr>
+<tr>
+<td>prune</td>
+<td>移除未使用的镜像。没有被标记或被任何容器引用的</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>创建一个引用源镜像标记目标镜像</td>
+</tr>
+<tr>
+<td>export</td>
+<td>导出容器文件系统到tar归档文件</td>
+</tr>
+<tr>
+<td>import</td>
+<td>导入容器文件系统tar归档文件创建镜像</td>
+</tr>
+<tr>
+<td>save</td>
+<td>保存一个或多个镜像到一个tar归档文件</td>
+</tr>
+<tr>
+<td>load</td>
+<td>加载镜像来自tar归档或标准输入</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-1-docker-images"><a href="#3-2-1-docker-images" class="headerlink" title="3.2.1 docker images"></a>3.2.1 docker images</h3><p>显示本地镜像：</p>
+<pre><code class="hljs angelscript">[<span class="hljs-symbol">root@</span>test ~]# docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               latest              <span class="hljs-number">992e3</span>b7be046        <span class="hljs-number">6</span> days ago          <span class="hljs-number">133</span>MB
 hello-world         latest              bf756fb1ae65        <span class="hljs-number">9</span> months ago        <span class="hljs-number">13.3</span>kB</code></pre>
@@ -500,27 +560,34 @@ tiangolo/nginx-rtmp                Docker image with Nginx using the nginx-rtmp�
 Using<span class="hljs-built_in"> default </span>tag: latest
 latest: Pulling <span class="hljs-keyword">from</span> library/nginx</code></pre>
 
-<h3 id="3-2-4-docker-rmi"><a href="#3-2-4-docker-rmi" class="headerlink" title="3.2.4 docker rmi"></a>3.2.4 docker rmi</h3><p><code>docker rmi 镜像ID</code> ：删除镜像</p>
+<h3 id="3-2-4-docker-image-rm"><a href="#3-2-4-docker-image-rm" class="headerlink" title="3.2.4 docker image rm"></a>3.2.4 docker image rm</h3><p><code>docker image rm 镜像ID</code> ：删除镜像</p>
 <ul>
-<li>docker rmi -f 镜像ID ：删除单个</li>
-<li>docker rmi -f 镜像1ID 镜像2ID ：删除多个镜像</li>
-<li>docker rmi -f $(docker images -qa) ：删除所有镜像</li>
+<li>docker image rm -f 镜像ID ：删除单个</li>
+<li>docker image rm -f 镜像1ID 镜像2ID ：删除多个镜像</li>
+<li>docker image rm -f $(docker images -qa) ：删除所有镜像</li>
 </ul>
 <h2 id="3-3-容器命令"><a href="#3-3-容器命令" class="headerlink" title="3.3 容器命令"></a>3.3 容器命令</h2><p><font color=red>有镜像才能够创建容器</font>，下载 CentOS 镜像演示：<code>docker pull centos</code></p>
 <h3 id="3-3-1-新建并启动容器"><a href="#3-3-1-新建并启动容器" class="headerlink" title="3.3.1 新建并启动容器"></a>3.3.1 新建并启动容器</h3><p><code>docker run [options] image [command] [arg]</code></p>
 <h4 id="options-2"><a href="#options-2" class="headerlink" title="options"></a>options</h4><ul>
 <li>–name=”new name” ：为容器指定一个名称</li>
-<li>-d ：后台运行容器，并返回容器ID，也即启动守护式容器</li>
-<li>-i ：以交互模式运行容器，通常与 -t 同时使用</li>
-<li>-t ：为容器重新分配一个伪终端，通常与 -i 同时使用</li>
-<li>-P ：随机端口映射</li>
-<li>-p ：指定端口映射，有以下四种格式<ul>
+<li>-d,-detach ：后台运行容器，并返回容器ID，也即启动守护式容器</li>
+<li>-e,-env ：设置环境变量</li>
+<li>-i,-interactive ：以交互模式运行容器，通常与 -t 同时使用</li>
+<li>-t,-tty ：为容器重新分配一个伪终端，通常与 -i 同时使用</li>
+<li>-P ：发布容器所有 EXPOSE 的端口到宿主机随机端口</li>
+<li>-p ：发布容器端口到主机<ul>
 <li>ip:hostPort:containerPort</li>
 <li>ip::containerPort</li>
 <li>hostPort:containerPort</li>
 <li>containerPort</li>
 </ul>
 </li>
+<li>-h ：设置容器主机名</li>
+<li>-ip string ：指定容器 ip，只能用于自定义网络</li>
+<li>-network ：连接容器到一个网络</li>
+<li>-mount mount ：将文件系统附加到容器</li>
+<li>-v，-volume list ：绑定挂载一个卷</li>
+<li>-restart string ：容器退出时重启策略，默认 no，可选值：[always|on-failure]</li>
 </ul>
 <pre><code class="hljs gradle">#使用镜像centos:latest以交互模式启动一个容器，在容器内执行<span class="hljs-regexp">/bin/</span>bash命令
 [root@test ~]# docker run -it centos <span class="hljs-regexp">/bin/</span>bash
@@ -625,6 +692,7 @@ IMAGE               CREATED             CREATED BY                              
 <li>-m ：提交的描述信息</li>
 <li>-a ：作者</li>
 </ul>
+<p><code>docker commit -m &quot;xxxx&quot; -a &quot;xxx&quot; 容器ID new_image_name:[tag] </code> ：将容器打包成新的镜像</p>
 <h1 id="五、-Docker-容器数据卷"><a href="#五、-Docker-容器数据卷" class="headerlink" title="五、 Docker 容器数据卷"></a>五、 Docker 容器数据卷</h1><h1 id="六、-DockerFile"><a href="#六、-DockerFile" class="headerlink" title="六、 DockerFile"></a>六、 DockerFile</h1><h1 id="七、-Docker-安装常用服务"><a href="#七、-Docker-安装常用服务" class="headerlink" title="七、 Docker 安装常用服务"></a>七、 Docker 安装常用服务</h1>
             </div>
             <hr>
