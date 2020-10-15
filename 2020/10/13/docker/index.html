@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      5.9k 字
+      6.2k 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      80
+      85
        分钟
     </span>
   
@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月13日 晚上
+                  本文最后更新于：2020年10月15日 上午
                 
               </p>
             
@@ -935,6 +935,52 @@ CMD [<span class="hljs-string">&quot;/bin/bash&quot;</span>]
 <li>Docker镜像，在用Dockerfile定义一个文件之后，docker build时会产生一个Docker镜像，当运行 Docker镜像时，会真正开始提供服务;</li>
 <li>Docker容器，容器是直接提供服务的。</li>
 </ol>
+<h2 id="6-4-Build-镜像"><a href="#6-4-Build-镜像" class="headerlink" title="6.4 Build 镜像"></a>6.4 Build 镜像</h2><p>Usage:<code>docker build [option] PATH |URL| -[flags]</code></p>
+<h4 id="option"><a href="#option" class="headerlink" title="option:"></a>option:</h4><ul>
+<li>-t,–tag list ：镜像名称</li>
+<li>-f，–file string :指定 Dockerfile 文件位置</li>
+</ul>
+<h2 id="6-5-构建-Nginx-基础镜像"><a href="#6-5-构建-Nginx-基础镜像" class="headerlink" title="6.5 构建 Nginx 基础镜像"></a>6.5 构建 Nginx 基础镜像</h2><h3 id="6-5-1-编写-Dockerfile"><a href="#6-5-1-编写-Dockerfile" class="headerlink" title="6.5.1 编写 Dockerfile"></a>6.5.1 编写 Dockerfile</h3><pre><code class="hljs awk">FROM centos:<span class="hljs-number">7</span>
+MAINTAINER ecarry
+<span class="hljs-comment">#安装 nginx 依赖</span>
+RUN yum install -y gcc gcc-c++ make \
+    openssl-devel pcre-devel gd-devel \
+    iproute net-tools wget &amp;&amp; \
+    yum clean all &amp;&amp; \
+    rm -rf <span class="hljs-regexp">/var/</span>cache<span class="hljs-regexp">/yum/</span>*
+<span class="hljs-comment">#源码编译 nginx，为nginx设置安装目录和启用的模块</span>
+RUN wget http:<span class="hljs-regexp">//</span>nginx.org<span class="hljs-regexp">/download/</span>nginx-<span class="hljs-number">1.19</span>.<span class="hljs-number">3</span>.tar.gz &amp;&amp; \
+    tar zxf nginx-<span class="hljs-number">1.19</span>.<span class="hljs-number">3</span>.tar.gz &amp;&amp; \
+    cd nginx-<span class="hljs-number">1.19</span>.<span class="hljs-number">3</span> &amp;&amp; \
+    .<span class="hljs-regexp">/configure --prefix=/u</span>sr<span class="hljs-regexp">/local/</span>nginx \
+    --with-http_ssl_module \
+    --with-http_stub_status_module &amp;&amp; \
+    make -j <span class="hljs-number">4</span> &amp;&amp; make install &amp;&amp; \
+    cd / &amp;&amp; rm -rf nginx-* &amp;&amp; \
+    ln -sf <span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/zoneinfo/</span>Asia<span class="hljs-regexp">/Shanghai /</span>etc/localtime
+
+ENV PATH <span class="hljs-variable">$PATH</span>:<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/nginx/</span>sbin
+WORKDIR <span class="hljs-regexp">/usr/</span>local/nginx
+EXPOSE <span class="hljs-number">80</span>
+CMD [<span class="hljs-string">&quot;nginx&quot;</span> <span class="hljs-string">&quot;-g&quot;</span> <span class="hljs-string">&quot;daemon off;&quot;</span>]</code></pre>
+
+<p><strong>参数说明：</strong></p>
+<ul>
+<li>–prefix ：用于指定nginx编译后的安装目录</li>
+<li>–add-module ：为添加的第三方模块，此次添加了fdfs的nginx模块</li>
+<li>–with…_module ：表示启用的nginx模块</li>
+</ul>
+<h3 id="6-5-2-构建镜像"><a href="#6-5-2-构建镜像" class="headerlink" title="6.5.2 构建镜像"></a>6.5.2 构建镜像</h3><p><code>docker build -t nginx:v1 -f dockerfile .</code></p>
+<ul>
+<li>-t ：指定镜像名称</li>
+<li>-f ：指定编写的 dockerfile 文件</li>
+<li>. ：代表 dockerfile 文件里上下文</li>
+</ul>
+<pre><code class="hljs crmsh">[root@docker ~]<span class="hljs-comment"># docker image ls</span>
+REPOSITORY          <span class="hljs-keyword">TAG</span>                 <span class="hljs-title">IMAGE</span> ID            CREATED             SIZE
+nginx               v1                  a4906a1a6692        <span class="hljs-number">39</span> minutes ago      <span class="hljs-number">335M</span>B</code></pre>
+
+<h2 id="6-6-关系图"><a href="#6-6-关系图" class="headerlink" title="6.6 关系图"></a>6.6 关系图</h2><p><img src="/img/Docker/Docker_10.png" srcset="/img/loading.gif"></p>
 <h1 id="七、-Docker-安装常用服务"><a href="#七、-Docker-安装常用服务" class="headerlink" title="七、 Docker 安装常用服务"></a>七、 Docker 安装常用服务</h1>
             </div>
             <hr>
