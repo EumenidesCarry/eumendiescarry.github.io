@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      395 字
+      916 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      11
        分钟
     </span>
   
@@ -233,7 +233,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月21日 晚上
+                  本文最后更新于：2020年10月26日 上午
                 
               </p>
             
@@ -249,6 +249,8 @@
 <li>可作为缓存服务器、邮件代理服务器</li>
 <li>配置代码简洁且容易上手</li>
 </ul>
+<h2 id="1-1-静态页面"><a href="#1-1-静态页面" class="headerlink" title="1.1 静态页面"></a>1.1 静态页面</h2><p><strong>静态页面</strong>通常指不与数据库发生交互的页面，是一种基于 w3c 规范的一种网页书写格式，是一种统一协议语言，所以称之为静态网页。静态页面被设计好之后，一般很少去修改，不随着浏览器参数改变而内容改变，需注意的是动态的图片也是属于静态文件。从 SEO 角度来讲，HTML 页面更有利于搜索引擎的爬行和收录。常见的静态页面以 .html、 .gif、 .jpg、 .jpeg、 .bmp、 .png、 .ico、 .txt、 .js、 .css 等结尾。</p>
+<h2 id="1-2-动态页面"><a href="#1-2-动态页面" class="headerlink" title="1.2 动态页面"></a>1.2 动态页面</h2><p><strong>动态页面</strong>通常指与数据库发生交互的页面，内容展示丰富，功能非常强大，实用性广。从 SEO 角度来讲，搜索引擎很难全面的爬行和收录动态网页，因为动态网页会随着数据库的更新、参数的变更而发生改变，常见的动态页面以 .jsp、.php、.do、.asp、.cgi、.apsx 等结尾。</p>
 <h1 id="二、-工作原理"><a href="#二、-工作原理" class="headerlink" title="二、 工作原理"></a>二、 工作原理</h1><p>Nginx WEB 服务器最主要的就是各个模块的工作，模块从结构上分为<strong>核心模块</strong>、<strong>基础模块</strong>和<strong>第三方模块</strong>，其中三类模块分别为：</p>
 <ul>
 <li>核心模块：<strong>HTTP</strong> 模块、<strong>EVENT</strong> 模块和 <strong>MAIL</strong> 模块等</li>
@@ -261,6 +263,75 @@
 <li><font color=red>Filters（过滤器模块）：此类模块主要是对其他模块输出的内容进行修改操作，最后有 Nginx 输出</font></li>
 <li>Proxys（代理类模块）：此类模块是 Nginx 的 HTTP Upstream 之类的模块，这些模块</li>
 </ul>
+<pre><code class="hljs routeros"><span class="hljs-comment"># user  nobody;</span>
+worker_processes  1;
+
+<span class="hljs-comment"># error_log  logs/error.log;</span>
+<span class="hljs-comment"># error_log  logs/error.log  notice;</span>
+<span class="hljs-comment"># error_log  logs/error.log  info;</span>
+
+<span class="hljs-comment">#pid        logs/nginx.pid;</span>
+
+
+events &#123;
+    worker_connections  1024;
+&#125;
+
+
+http &#123;
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    # log_format  main  <span class="hljs-string">&#x27;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &#x27;</span>
+    #                   <span class="hljs-string">&#x27;$status $body_bytes_sent &quot;$http_referer&quot; &#x27;</span>
+    #                   <span class="hljs-string">&#x27;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&#x27;</span>;
+
+    # access_log  logs/access.log  main;
+
+    sendfile        on;
+    # tcp_nopush     on;
+
+    # keepalive_timeout  0;
+    keepalive_timeout  65;
+
+    # gzip  on;
+
+   <span class="hljs-built_in"> server </span>&#123;
+        listen       80;
+        server_name  localhost;
+
+        # charset koi8-r;
+
+        # access_log  logs/host.access.log  main;
+
+        location / &#123;
+            root   html;
+            index  index.html index.htm;
+        &#125;
+
+        # error_page  404              /404.html;
+
+        # redirect<span class="hljs-built_in"> server </span><span class="hljs-builtin-name">error</span> pages <span class="hljs-keyword">to</span> the static<span class="hljs-built_in"> page </span>/50x.html
+        #
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html &#123;
+            root   html;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+
+<p><strong>Nginx 运行原理：</strong></p>
+<p>Nginx  由 <strong>Nginx 内核</strong>和<strong>模块</strong>组成，其中内核的设计非常微小和简洁，完成的工作也非常简单，仅仅通过查找配置文件将客户端的请求映射到一个 <font color=red>location block</font>，而 location 是 Nginx 配置中的一个指令，用于访问的 URL 匹配，而在这个 location 中所配置的每个指令将会启动不同的模块去完成相应的工作。</p>
+<pre><code class="hljs glsl"><span class="hljs-meta">#访问根 /</span>
+<span class="hljs-keyword">location</span> / &#123;
+            root   html;
+            <span class="hljs-keyword">index</span>  <span class="hljs-keyword">index</span>.html <span class="hljs-keyword">index</span>.htm;
+        &#125;</code></pre>
+
+<p>根页面：</p>
+<p><img src="/img/nginx/nginx_1.jpg" srcset="/img/loading.gif"></p>
 
             </div>
             <hr>
