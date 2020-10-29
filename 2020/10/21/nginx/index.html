@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="ECarry">
   <meta name="keywords" content="">
-  <title>Nginx - ECarry的博客</title>
+  <title>Nginx 上手 - ECarry的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      916 字
+      951 字
     </span>
   
 
@@ -229,7 +229,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Nginx</h1>
+            <h1 style="display: none">Nginx 上手</h1>
             
               <p class="note note-info">
                 
@@ -322,16 +322,20 @@ http &#123;
 &#125;</code></pre>
 
 
-<p><strong>Nginx 运行原理：</strong></p>
-<p>Nginx  由 <strong>Nginx 内核</strong>和<strong>模块</strong>组成，其中内核的设计非常微小和简洁，完成的工作也非常简单，仅仅通过查找配置文件将客户端的请求映射到一个 <font color=red>location block</font>，而 location 是 Nginx 配置中的一个指令，用于访问的 URL 匹配，而在这个 location 中所配置的每个指令将会启动不同的模块去完成相应的工作。</p>
+<h2 id="2-1-Nginx-运行原理："><a href="#2-1-Nginx-运行原理：" class="headerlink" title="2.1 Nginx 运行原理："></a>2.1 Nginx 运行原理：</h2><p>Nginx  由 <strong>Nginx 内核</strong>和<strong>模块</strong>组成，其中内核的设计非常微小和简洁，完成的工作也非常简单，仅仅通过查找配置文件将客户端的请求映射到一个 <font color=red>location block</font>，而 location 是 Nginx 配置中的一个指令，用于访问的 URL 匹配，而在这个 location 中所配置的每个指令将会启动不同的模块去完成相应的工作。</p>
+<p><strong>location block</strong></p>
 <pre><code class="hljs glsl"><span class="hljs-meta">#访问根 /</span>
 <span class="hljs-keyword">location</span> / &#123;
-            root   html;
+            root   html;            <span class="hljs-meta"># 以 /usr/local/nginx/ 为基础的目录</span>
             <span class="hljs-keyword">index</span>  <span class="hljs-keyword">index</span>.html <span class="hljs-keyword">index</span>.htm;
         &#125;</code></pre>
 
 <p>根页面：</p>
 <p><img src="/img/nginx/nginx_1.jpg" srcset="/img/loading.gif"></p>
+<pre><code class="hljs crmsh"><span class="hljs-comment"># = 精确匹配</span>
+<span class="hljs-keyword">location</span> <span class="hljs-title">= /50x</span>.html &#123;
+            root   html; <span class="hljs-comment">#以/usr/local/nginx/为基础的目录</span>
+        &#125;</code></pre>
 
             </div>
             <hr>
@@ -534,7 +538,7 @@ http &#123;
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Nginx&nbsp;",
+        "Nginx 上手&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
