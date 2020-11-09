@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="ECarry">
   <meta name="keywords" content="">
-  <title>Nginx 上手 - ECarry的博客</title>
+  <title>Nginx 简单配置 - ECarry的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      951 字
+      989 字
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      12
        分钟
     </span>
   
@@ -229,11 +229,11 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">Nginx 上手</h1>
+            <h1 style="display: none">Nginx 简单配置</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2020年10月26日 上午
+                  本文最后更新于：2020年11月2日 上午
                 
               </p>
             
@@ -261,7 +261,7 @@
 <ul>
 <li><font color=red>Handlers（处理器模块）：此类模块直接处理请求，并进行输出内容和修改 headers 信息等操作，Handlers 处理器模块一般只能有一个</font></li>
 <li><font color=red>Filters（过滤器模块）：此类模块主要是对其他模块输出的内容进行修改操作，最后有 Nginx 输出</font></li>
-<li>Proxys（代理类模块）：此类模块是 Nginx 的 HTTP Upstream 之类的模块，这些模块</li>
+<li>Proxys（代理类模块）：此类模块是 Nginx 的 HTTP Upstream 之类的模块，这些模块主要与后端一些服务比如 FastCGI 等进行交互，实现服务代理和负载均衡等功能</li>
 </ul>
 <pre><code class="hljs routeros"><span class="hljs-comment"># user  nobody;</span>
 worker_processes  1;
@@ -321,8 +321,7 @@ http &#123;
     &#125;
 &#125;</code></pre>
 
-
-<h2 id="2-1-Nginx-运行原理："><a href="#2-1-Nginx-运行原理：" class="headerlink" title="2.1 Nginx 运行原理："></a>2.1 Nginx 运行原理：</h2><p>Nginx  由 <strong>Nginx 内核</strong>和<strong>模块</strong>组成，其中内核的设计非常微小和简洁，完成的工作也非常简单，仅仅通过查找配置文件将客户端的请求映射到一个 <font color=red>location block</font>，而 location 是 Nginx 配置中的一个指令，用于访问的 URL 匹配，而在这个 location 中所配置的每个指令将会启动不同的模块去完成相应的工作。</p>
+<h2 id="2-1-Nginx-运行原理"><a href="#2-1-Nginx-运行原理" class="headerlink" title="2.1 Nginx 运行原理"></a>2.1 Nginx 运行原理</h2><p>Nginx  由 <strong>Nginx 内核</strong>和<strong>模块</strong>组成，其中内核的设计非常微小和简洁，完成的工作也非常简单，仅仅通过查找配置文件将客户端的请求映射到一个 <font color=red>location block</font>，而 location 是 Nginx 配置中的一个指令，用于访问的 URL 匹配，而在这个 location 中所配置的每个指令将会启动不同的模块去完成相应的工作。</p>
 <p><strong>location block</strong></p>
 <pre><code class="hljs glsl"><span class="hljs-meta">#访问根 /</span>
 <span class="hljs-keyword">location</span> / &#123;
@@ -336,6 +335,8 @@ http &#123;
 <span class="hljs-keyword">location</span> <span class="hljs-title">= /50x</span>.html &#123;
             root   html; <span class="hljs-comment">#以/usr/local/nginx/为基础的目录</span>
         &#125;</code></pre>
+
+<p>精准匹配 50x 页面：<br><img src="/img/nginx/nginx_1.jpg" srcset="/img/loading.gif"></p>
 
             </div>
             <hr>
@@ -538,7 +539,7 @@ http &#123;
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "Nginx 上手&nbsp;",
+        "Nginx 简单配置&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,
