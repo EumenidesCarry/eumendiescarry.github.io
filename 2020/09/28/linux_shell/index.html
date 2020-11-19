@@ -264,7 +264,7 @@
 <p>1991 年，Linuxs Torvalds（林纳斯 - 托瓦兹）开发出了与 UNIX 兼容的 Linux 操作系统内核并在 GPL 条款下发布。</p>
 <p>1992 年，Linux 与其他 GUN 软件结合，完全自由的 GUN/Linux 操作系统正式诞生，简称 Linux。</p>
 <p>1995 年 1 月，Bob Young 创办 ACC 公司，以 GNU/Linux 为核心，开发出了 RedHat Linux 商业版。</p>
-<p>Linux 基本思想有两点：第一，** 一切都是文件 <strong>；第二，</strong> 每个软件都有确定的用途 **。与 Unix 思想十分相近。</p>
+<p>Linux 基本思想有两点：第一，<strong>一切都是文件</strong>；第二，<strong>每个软件都有确定的用途</strong>。与 Unix 思想十分相近。</p>
 <h2 id="1-2-Shell-基本分两大类"><a href="#1-2-Shell-基本分两大类" class="headerlink" title="1.2 Shell 基本分两大类"></a>1.2 Shell 基本分两大类</h2><h3 id="1-2-1-图形界面-Shell（GUI-Shell）"><a href="#1-2-1-图形界面-Shell（GUI-Shell）" class="headerlink" title="1.2.1 图形界面 Shell（GUI Shell）"></a>1.2.1 图形界面 Shell（GUI Shell）</h3><p>GUI 为 Unix 或者类 Unix 操作系统构造一个功能完善、操作简单以及界面友好的桌面环境。主流桌面环境有 KDE，Gnome 等。</p>
 <h3 id="1-2-2-命令行界面-Shell（CLI-Shell）"><a href="#1-2-2-命令行界面-Shell（CLI-Shell）" class="headerlink" title="1.2.2 命令行界面 Shell（CLI Shell）"></a>1.2.2 命令行界面 Shell（CLI Shell）</h3><p>CLI 是在用户提示符下键入可执行指令的界面，用户通过键盘输入指令，完成一系列操作。</p>
 <p>在 Linux 系统上主流的 CLI 实现是 Bash，是许多 Linux 发行版默认的 Shell。还有许多 Unix 上 Shell，例如 <strong>tcsh、csh、ash、bsh、ksh</strong> 等。</p>
@@ -489,7 +489,7 @@ hello world!
 <span class="hljs-comment"># echo $&#123;#VAR&#125;</span>
 12</code></pre>
 
-<h2 id="2-2-字符串切片"><a href="#2-2-字符串切片" class="headerlink" title="2.2 字符串切片"></a>2.2 字符串切片</h2><p>** 格式：**</p>
+<h2 id="2-2-字符串切片"><a href="#2-2-字符串切片" class="headerlink" title="2.2 字符串切片"></a>2.2 字符串切片</h2><p><strong>格式：</strong></p>
 <ul>
 <li>${parameter:offset}</li>
 <li>${parameter:offset:length}</li>
@@ -1231,7 +1231,7 @@ N=0
 5</code></pre>
 
 <p>当条件表达式为 false 时，终止循环。</p>
-<p>** 示例 2 ：条件表达式为 true，将会产生死循环 **</p>
+<p><strong>示例 2 ：条件表达式为 true，将会产生死循环</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-keyword">while</span> [1 -eq 1]; <span class="hljs-keyword">do</span>
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;yes&quot;</span>
@@ -1463,13 +1463,13 @@ mysql 5.6
 Select a number: 3</code></pre>
 
 <p>如果不想用默认的提示符，可以通过重新赋值变量 PS3 来自定义。这下就比较完美了！</p>
-<h1 id="五、-Shell-函数与数组"><a href="#五、-Shell-函数与数组" class="headerlink" title="五、 Shell 函数与数组"></a>五、 Shell 函数与数组</h1><h2 id="5-1-函数"><a href="#5-1-函数" class="headerlink" title="5.1 函数"></a>5.1 函数</h2><p>** 格式：**</p>
+<h1 id="五、-Shell-函数与数组"><a href="#五、-Shell-函数与数组" class="headerlink" title="五、 Shell 函数与数组"></a>五、 Shell 函数与数组</h1><h2 id="5-1-函数"><a href="#5-1-函数" class="headerlink" title="5.1 函数"></a>5.1 函数</h2><p><strong>格式：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-function"><span class="hljs-title">func</span></span>() &#123;
 <span class="hljs-built_in">command</span>
 &#125;</code></pre>
 
 <p><strong>function</strong> 关键字可写，也可不写。</p>
-<p>** 示例 1 ：**</p>
+<p><strong>示例 1 ：</strong></p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/bash</span>
 <span class="hljs-function"><span class="hljs-title">func</span></span>() &#123;
   <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;This is a function.&quot;</span>
@@ -2975,7 +2975,7 @@ c</code></pre>
 </tr>
 </tbody></table>
 <p>而动作呢，就是下面所讲的 print、流程控制、I/O 语句等。</p>
-<p>** 示例：**</p>
+<p><strong>示例：</strong></p>
 <p><strong>1 ）</strong> 从文件读取 awk 程序处理文件</p>
 <pre><code class="hljs bash"><span class="hljs-comment"># vi test.awk</span>
 &#123;<span class="hljs-built_in">print</span> <span class="hljs-variable">$2</span>&#125;
@@ -5545,7 +5545,7 @@ sun,mon,tue,wed,thu,fri,sat
 <p>怎么更好的学习命令呢？</p>
 <p>当然查看官方帮助文档了，可以通过 man cmd、cmd –help、help cmd、info cmd 等方式查看命令的使用。</p>
 <h2 id="11-1-ls"><a href="#11-1-ls" class="headerlink" title="11.1 ls"></a>11.1 ls</h2><p>功能：列出目录内容</p>
-<p>** 常用选项：**</p>
+<p><strong>常用选项：</strong></p>
 <ul>
 <li>-a 显示所有文件，包括隐藏的</li>
 <li>-l 长格式列出信息</li>
@@ -6555,7 +6555,7 @@ FTP 下载多个文件：
 <span class="hljs-comment"># SSHPASS=123456 rsync -avz /etc/hosts -e &quot;sshpass -e ssh&quot; root@192.168.1.221:/opt</span></code></pre>
 
 <h2 id="11-39-tar"><a href="#11-39-tar" class="headerlink" title="11.39 tar"></a>11.39 tar</h2><p>功能：归档目录或文件</p>
-<p>** 常用选项：**</p>
+<p><strong>常用选项：</strong></p>
 <ul>
 <li>-c 创建新归档</li>
 <li>-d 比较归档和文件系统的差异</li>
