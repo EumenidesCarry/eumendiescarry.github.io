@@ -139,6 +139,18 @@
             </li>
           
         
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/photo/">
+                <i class="iconfont icon-images"></i>
+                photo
+              </a>
+            </li>
+          
+        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
@@ -225,6 +237,12 @@
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">在 CentOS 7 下 搭建 Zabbix 5.0 LTS 日志</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2020年10月10日 上午
+                
+              </p>
             
             <div class="markdown-body">
               <h1 id="一、-YUM-安装-服务端"><a href="#一、-YUM-安装-服务端" class="headerlink" title="一、 YUM 安装-服务端"></a>一、 YUM 安装-服务端</h1><h2 id="1-1-关闭防火墙和-selinux-，重启"><a href="#1-1-关闭防火墙和-selinux-，重启" class="headerlink" title="1.1 关闭防火墙和 selinux ，重启"></a>1.1 关闭防火墙和 selinux ，重启</h2><pre><code class="hljs bash">[root@localhost ~]<span class="hljs-comment"># sed -i &#x27;s/SELINUX=enforcing/SELINUX=disabled/&#x27; /etc/selinux/config</span>
