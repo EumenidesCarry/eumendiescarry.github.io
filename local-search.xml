@@ -404,11 +404,11 @@
   
   
   <entry>
-    <title>Linux 启动详细流程</title>
+    <title>Linux 系统启动详细流程</title>
     <link href="/2020/06/01/Linux_boot/"/>
     <url>/2020/06/01/Linux_boot/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>POST –&gt; BIOS(Boot Sequence 启动顺序) –&gt; <a href="https://ecarry.cc/2020/06/09/Linux_part/">MBR</a>(Bootloader,446) –&gt; Kernel –&gt; initrd(init ram disk,Linux初始RAM磁盘) –&gt; /sbin/init </p>]]></content>
     
     
     <categories>
